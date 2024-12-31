@@ -1,6 +1,6 @@
 This repository uses multiple licensing schemes:
 
-1. Files explicitly marked as being under the GNU General Public License version 2 (GPLv2) are covered by that license. See the GPLv2 text below for details.
+1. Files explicitly marked as being under the GNU General Public License version 2 (or, at your option, any later version) are covered by that license. See the GPLv2 text below for details.
 2. All other files, including non-code files (e.g., `.csv`, `.json`, and documentation), are released into the public domain and may be freely used, copied, modified, or redistributed without restriction.
 ---
 This program is free software: you can redistribute it and/or modify
