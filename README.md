@@ -4,9 +4,12 @@ Flip card game written in Python
 # Why the name?
 `Luup`: Part of my nickname Luuppi (which literally means "loop") and it kind of references to the gameplay where you can play the cards on a loop.
 
-`y`: I added it since it's written in Python and sounds better than Loopcards
+`y`: I added it since it's written in Python and sounds better than "Luupcards"
 
 `cards`: This is a flip **CARD** game
+
+#### Pronunciation:
+`Luupy` like "loopy", the other part is self-explanatory
 
 # Licensing
 
