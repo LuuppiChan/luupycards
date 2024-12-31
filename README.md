@@ -2,6 +2,9 @@
 Flip card game written in Python
 I was inspired to make a this thanks to "[Nihongo Quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
 
+# Progress
+Still learning Python so I'm not actively working on this yet.
+
 # Why the name?
 `Luup`: Part of my nickname Luuppi (which literally means "loop") and it kind of references to the gameplay where you can play the cards on a loop.
 
