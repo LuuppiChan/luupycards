@@ -4,7 +4,7 @@ Flip card game written in Python
 I was inspired to make a this thanks to "[Nihongo Quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
 
 # Progress
-Still learning Python so I'm not actively working on this yet.
+I'm starting my work on v0 what will be a replica of latest [lfg](https://github.com/LuuppiZ/lfg) version. Let's see what happens after that.
 
 # Why the name?
 `Luup`: Part of my nickname Luuppi (which literally means "loop") and it kind of references to the gameplay where you can play the cards on a loop.
@@ -19,4 +19,4 @@ Still learning Python so I'm not actively working on this yet.
 # Licensing
 
 - Files explicitly marked as being under the GNU General Public License version 2 (or, at your option, any later version) are covered by that license. See the `LICENSE` file for details.
-- All other files, including non-code files (e.g., `.csv` and documentation), are released into the public domain and may be freely used, copied, modified, or redistributed without restriction.
+- All other files, including non-code files (e.g., `.csv`, `.json` and documentation), are released into the public domain and may be freely used, copied, modified, or redistributed without restriction.
