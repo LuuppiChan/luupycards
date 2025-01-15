@@ -5,6 +5,7 @@ I was inspired to make a this thanks to "[Nihongo Quest](https://store.steampowe
 
 # Progress
 I'm starting my work on v0 what will be a replica of latest [lfg](https://github.com/LuuppiZ/lfg) version. Let's see what happens after that.
+The game has been rewritten in a bit over 2 days after discarding the last attempt so it hasn't have time to be tested so throughly. I will make the first release when I feel like it's ready. You can already try the one what is in the `v0/` directory. I'll do install instructions later.
 
 # Why the name?
 `Luup`: Part of my nickname Luuppi (which literally means "loop") and it kind of references to the gameplay where you can play the cards on a loop.

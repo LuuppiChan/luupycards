@@ -1,0 +1,11 @@
+{
+    "all time streak": 6,
+    "all time survival streak": 9,
+    "reset all time streak": false,
+    "reset all time survival streak": false,
+    "min question": 1,
+    "max question": 200,
+    "show current question number": false,
+    "multiple choice max options": 5,
+    "lives": 5
+}
