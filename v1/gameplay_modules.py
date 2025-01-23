@@ -123,9 +123,11 @@ def survive(pairs, current_question=1, current_question_number_enabled=True, str
         os.system("clear")
         result, current_question = answer_check(pairs[current_question]["answer"], user_input, current_question)
 
-        if result not in ["wrong", "empty field", "correct answer"]:
+        if result not in ["wrong", "empty field"]:
             break
-        elif result == "wrong":
+        elif result in ["wrong", "correct answer"]:
+            os.system("clear")
+            print(f"Wrong, correct answer: {" / ".join(pairs[current_question]["answer"])}")
             lives -= 1
             break
 

@@ -10,9 +10,10 @@ import gameplay_modules as gameplay
 parser = argparse.ArgumentParser(description="Simple flip card program.")
 
 # Add arguments
-parser.add_argument("-i", type=str, required=True, help="csv file location.")
+parser.add_argument("-i", type=str, required=True, help="input csv file")
 args = parser.parse_args()
 
+# make pair list
 pairs = core.pair_import(args.i)
 
 game_version = "v1"
