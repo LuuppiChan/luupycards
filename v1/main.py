@@ -68,6 +68,15 @@ while True:
         case 11:
             options = core.get_options(mode="load")
             core.settings_menu(options, locked_values=locked_settings_values, static_values=static_settings_values)
+
+            # Reload options
+            all_time_streak = core.settings_value_manipulator("all time streak")
+            all_time_streak_survival = core.settings_value_manipulator("all time survival streak")
+            min_question = core.settings_value_manipulator("min question")
+            max_question = core.settings_value_manipulator("max question")
+            show_current_question_number = core.settings_value_manipulator("show current question number")
+            lives_left = core.settings_value_manipulator("lives")
+            
             playing = False
         case 12:
             exit(0)
@@ -119,8 +128,9 @@ while True:
                 else:
                     current_question = gameplay.next_question_minus_one(current_question)
             elif selected_mode in [1, 4, 7, 9]: # random + survive
-                if current_question == max_question:
+                if current_question >= max_question:
                     current_question = 0
+                    shuffled_questions = core.never_repeat_random_list(min_question, max_question)
                 else:
                     current_question = gameplay.next_question_plus_one(current_question)
             else:

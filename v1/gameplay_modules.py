@@ -20,7 +20,7 @@ def normal(pairs, current_question=1, current_question_number_enabled=True, stre
 
         if result not in ["wrong", "empty field", "correct answer"]:
             break
-        elif result == "wrong":
+        elif result in ["wrong", "correct answer"]:
             streak_current = streak_functions(mode="break")
 
     match result:
@@ -51,7 +51,7 @@ def reverse(pairs, current_question=1, current_question_number_enabled=True, str
 
         if result not in ["wrong", "empty field", "correct answer"]:
             break
-        elif result == "wrong":
+        elif result in ["wrong", "correct answer"]:
             streak_current = streak_functions(mode="break")
 
     match result:
@@ -80,7 +80,7 @@ def multiple_choice(pairs, current_question=1, current_question_number_enabled=T
             correct_letter, correct_answer, multiple_choice_options = generate_multiple_choice_answers(pairs, current_question)
         
         else:
-            correct_letter, correct_answer, multiple_choice_options = generate_multiple_choice_answers(pairs, current_question, generate_new=False, correct_letter=correct_letter, multiple_choice_options=multiple_choice_options, lives=1)
+            correct_letter, correct_answer, multiple_choice_options = generate_multiple_choice_answers(pairs, current_question, generate_new=False, correct_letter=correct_letter, multiple_choice_options=multiple_choice_options)
 
         user_input = input("Answer: ")
         user_input = user_input.lower()
@@ -94,7 +94,7 @@ def multiple_choice(pairs, current_question=1, current_question_number_enabled=T
 
         if result not in ["wrong", "empty field", "correct answer"]:
             break
-        elif result == "wrong":
+        elif result in ["wrong", "correct answer"]:
             streak_current = streak_functions(mode="break")
 
     match result:
@@ -138,7 +138,7 @@ def survive(pairs, current_question=1, current_question_number_enabled=True, str
             return True, current_question, streak_current, True, lives
         case "quit":
             return False, current_question, streak_current, False, lives
-        case "wrong":
+        case "wrong" | "correct answer":
             return True, current_question, streak_current, False, lives
         case _:
             raise Exception("Uhh... How...")
@@ -158,7 +158,7 @@ def answer_check(correct_answers, user_input, current_question):
             print("Correct")
             return "correct", current_question
         
-        match = re.search(r"^seek (\d+)", user_input)
+        match = re.search(r"^seek (\d+)|^seek(\d+)", user_input)
         if match:
             question_number = int(match.group(1))
             return "seek", question_number
