@@ -4,7 +4,7 @@
     "reset all time streak": false,
     "reset all time survival streak": false,
     "min question": 1,
-    "max question": 22,
+    "max question": 200,
     "show current question number": true,
     "multiple choice max options": 5,
     "lives": 3
