@@ -14,7 +14,7 @@ args = parser.parse_args()
 # make pair list
 pairs = core.pair_import(args.i)
 
-game_version = "v1.1"
+game_version = "v1.2"
 modes = [
     ["Normal", "n"],                            #0
     ["Normal Random", "nr"],                    #1
