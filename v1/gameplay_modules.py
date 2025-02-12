@@ -24,7 +24,7 @@ class MainGameplay:
         self.show_question_number = core.settings_value_manipulator("show current question number")
         self.streak_current = streak_current
         self.streak_all_time = core.settings_value_manipulator("all time streak")
-        self.max_question = core.settings_value_manipulator("max question")
+        self.max_question = core.settings_value_manipulator("max question")  # This is true inconsistency lol
         self.all_settings = core.get_options()
         self.user_input = ""
         self.random_list = core.never_repeat_random_list(self.all_settings["min question"], self.all_settings["max question"])
@@ -132,9 +132,17 @@ class MainGameplay:
 
     def next_question_plus_one(self):
         self.current_question += 1
+        try:
+            self.pairs[self.current_question]
+        except IndexError:
+            self.current_question = self.all_settings["min question"]
 
     def next_question_minus_one(self):
         self.current_question -= 1
+        try:
+            self.pairs[self.current_question]
+        except IndexError:
+            self.current_question = self.max_question
 
     def next_question_random(self):
         self.list_index += 1

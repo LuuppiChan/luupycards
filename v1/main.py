@@ -30,6 +30,23 @@ modes = [
     ["Settings", "s"],                          #11
     ["Quit", "q"],                              #12
 ]
+
+# Make a new main menu with these
+main_modes = [
+    ["Normal", "n"],
+    ["Multiple Choice", "m"],
+    ["Survive!", "s!"],
+]
+special_modes = [
+    ["Settings", "s"],
+    ["Quit", "q"]
+]
+sub_modes = [
+    ["Random", "r"],
+    ["Reverse", "re"],
+    ["Reverse order", "ro"]
+]
+
 locked_settings_values = ["all time streak", "all time survival streak"]
 static_settings_values = ["reset all time streak", "reset all time survival streak"]
 playing = True
@@ -59,7 +76,7 @@ while not False:  # I know this is cursed
     # Then in a sub condition does the setting for the sub game mode.
     match selected_mode:
         case 0:  # Normals
-            game = gameplay.Normal(pairs, current_question=max_question, streak_current=current_streak)
+            game = gameplay.Normal(pairs, streak_current=current_streak)
 
             current_streak = game.play()
         case 1:  # Normal random
@@ -67,7 +84,7 @@ while not False:  # I know this is cursed
 
             current_streak = game.play()
         case 2:  # Normal reverse order
-            game = gameplay.Normal(pairs, current_question=max_question, streak_current=current_streak, order="reverse")
+            game = gameplay.Normal(pairs, streak_current=current_streak, current_question=max_question, order="reverse")
 
             current_streak = game.play()
         case 3:  # Reverse
@@ -81,7 +98,7 @@ while not False:  # I know this is cursed
 
             current_streak = game.play()
         case 5:  # Reverse reverse order
-            game = gameplay.Reverse(pairs, current_question=max_question, streak_current=current_streak, order="reverse")
+            game = gameplay.Reverse(pairs, streak_current=current_streak, current_question=max_question, order="reverse")
             game.streak_current = current_streak
 
             current_streak = game.play()

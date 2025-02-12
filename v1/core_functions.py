@@ -2,14 +2,79 @@
 import csv
 import json
 import os
+import re
 import time
 import random
 import readline # for better input field
+
 pairs = [1,1]
 pairs.clear()
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 settings_path = os.path.join(script_dir, "settings.json")
+
+
+class Menu:
+    def __init__(self, main_modes, special_modes, sub_modes, title="Title", sub_title="N/A"):
+        self.main_modes = main_modes
+        self.special_modes = special_modes
+        self.sub_modes = sub_modes
+        self.sub_title = sub_title
+        self.option_number = 1
+        self.title = title
+        self.user_input = ""  # Initialize variable
+        self.selected_mode = ""  # Initialize it for later use
+        self.selected_sub_mode = ""
+
+        # Make a list with all the modes. This might be the easiest way to compare the user_input.
+        self.all_modes = ["mode zero"]
+        self.all_modes.append(main_modes)
+        self.all_modes.append(special_modes)
+
+
+    def print_titles(self):
+        if self.title: print(self.title)
+        if self.sub_title: print(self.sub_title)
+
+    def print_main_modes(self):
+        for i, mode in enumerate(self.main_modes, start=1):  # Prints all modes and their numbers
+            if mode[0]:  # Checks if there's anything in the mode
+                print(f"{i:<2} or {mode[1]:<3} for {mode[0]}")
+            else:
+                print(i)
+            self.option_number = i + 1  # puts the next option number to global variable
+
+    def print_special_modes(self):
+        for i, mode in enumerate(self.special_modes, start=self.option_number):  # Prints all modes and their numbers
+            if mode[0]:  # Checks if there's anything in the mode
+                print(f"{i:<2} or {mode[1]:<3} for {mode[0]}")
+            else:
+                print(i)
+
+    def user_input_check(self):
+        self.user_input = self.user_input.lower()
+        for i, mode in enumerate(self.all_modes):
+            if not i:
+                continue
+
+            for sub_i, sub_mode in enumerate(self.sub_modes):
+                full_combination = mode[0], sub_mode[0]
+                alias_combination = mode[1] + sub_mode[1]
+                if self.user_input in [full_combination, alias_combination]:
+                    self.selected_sub_mode = self.user_input.find(sub_mode[0]) if self.user_input.find(sub_mode[0]) != -1 else self.user_input.find(sub_mode[1])
+
+            if self.user_input in [i, mode[0], mode[1]]:
+                self.selected_mode = i
+
+    def run(self):
+        menu_is_open = True
+        while menu_is_open:
+            self.print_titles()
+            self.print_main_modes()
+            print()
+            self.print_special_modes()
+            self.user_input = input("Name, alias or number: ")
+
 
 def pair_import(csv_file_path):
     global pairs
@@ -106,8 +171,8 @@ def settings_menu(options={"example option" : "No options available"}, locked_va
 
         else:
             os.system("clear")
-            print(f'Invalid selection "{user_input}", please try again.')            
-        
+            print(f'Invalid selection "{user_input}", please try again.')
+
 
 def subsetting_menu(selected_setting, options, static_values, locked_values):
     user_input_subsetting = input("Insert a new value: ")
