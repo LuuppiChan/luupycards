@@ -7,5 +7,6 @@
     "max question": 200,
     "show current question number": true,
     "multiple choice max options": 5,
-    "lives": 3
+    "lives": 3,
+    "fuzzy select percent": 90
 }

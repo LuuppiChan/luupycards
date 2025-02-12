@@ -269,18 +269,20 @@ def check_for_invalid_setting_values():
 
     if options["all time streak"] < -1:
         options["all time streak"] = 0
-    elif options["reset all time streak"]:
+    if options["reset all time streak"]:
         options["reset all time streak"] = False
-    elif options["min question"] > options["max question"] or options["min question"] < 0:
+    if options["min question"] > options["max question"] or options["min question"] < 0:
         options["min question"] = 1
-    elif options["max question"] < options["min question"]:
+    if options["max question"] < options["min question"]:
         options["max question"] = options["min question"] + 1
-    elif options["max question"] > len(pairs) - 1:
+    if options["max question"] > len(pairs) - 1:
         options["max question"] = len(pairs) - 1
-    elif options["multiple choice max options"] > 26:
+    if options["multiple choice max options"] > 26:
         options["multiple choice max options"] = 5
-    elif options["lives"] < 1:
+    if options["lives"] < 1:
         options["lives"] = 5
+    if options["fuzzy select percent"] >= 100 or 1 > options["fuzzy select percent"]:
+        options["fuzzy select percent"] = 90
 
     if options_orig != options:
         print("One or more of your setting values is illegal, fixing it in 5 seconds...")

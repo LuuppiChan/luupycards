@@ -8,9 +8,19 @@ import string
 import time
 import readline  # for better input field
 
+# Check if fuzzy select is available
+fuzzy_is_available = False
+try:
+    from fuzzywuzzy import fuzz, process
+    fuzzy_is_available = True
+except ModuleNotFoundError:
+    fuzzy_is_available = False
 
 class MainGameplay:
     def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward"):
+
+        global fuzzy_is_available
+        self.fuzzy_matching = fuzzy_is_available
 
         # These for easy reverse mode functionality
         self.question = "question"
@@ -45,7 +55,8 @@ class MainGameplay:
             "show correct answer" : True,
             "return to main menu" : True,
             "empty field" : True,
-            "wrong answer" : True
+            "wrong answer" : True,
+            "fuzzy correct" : True,
         }
 
     def print_correct_answer(self):
@@ -76,6 +87,10 @@ class MainGameplay:
         if self.enabled_prints["wrong answer"]:
             print(f'"{self.user_input.capitalize()}" is not a valid answer.')
 
+    def print_fuzzy_correct(self, correct_answers):
+        if self.enabled_prints["fuzzy correct"]:
+            print(f"Almost correct! {" / ".join(correct_answers)}")
+
     def update_class_variables(self, variable, new_input):
         match variable:
             case "streak_current":
@@ -89,6 +104,15 @@ class MainGameplay:
         print(f"Current streak: {self.streak_current}, All time streak: {self.streak_all_time}")
         print(f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}")
 
+    def fuzzy_check(self, correct_answers):
+        result = False
+        processed = process.extract(self.user_input, correct_answers)
+        for items in processed:
+            if items[1] >= self.all_settings["fuzzy select percent"]:
+                result = True
+
+        return result
+
     def answer_check(self):
         correct_answers = self.pairs[self.current_question][self.answer]
         user_input = self.user_input
@@ -101,6 +125,13 @@ class MainGameplay:
                 self.streak_current += 1
                 self.print_correct_answer()
                 return "correct"
+
+        if self.fuzzy_matching:  # checks if fuzzy matching is available
+            if self.fuzzy_check(correct_answers):
+                self.next_question()
+                self.streak_current += 1
+                self.print_fuzzy_correct(correct_answers)
+                return "fuzzy correct"
 
         match = re.search(r"^seek (\d+)", user_input)
         if match:  # seeking
