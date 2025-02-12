@@ -17,9 +17,29 @@ The game has been rewritten in a bit over 2 days after discarding the last attem
 #### Pronunciation:
 `Luupy` like "loopy", the other part is self-explanatory
 
+## Features
+#### Modes
+- Normal
+- Reverse (Questions are answers)
+- Multiple choice
+- Survive (You have only `n` amount of lives)
+#### Question orders
+- Forward
+- Backward
+- Random
+#### Settings
+- Reset all time streaks
+- Min and max question for random (You can change, but they are automatically set)
+- Show question number
+- Max multiple choice options
+- Lives for Survive!
+- Fuzzy select percentage (Requires you to have the fuzzywuzzy module or use the venv)
+#### I'll note more things here later.
+- FOSS
+
 # Usage (Note that this has been copied and fitted from lfg!)
 If you have any issues understanding how to use this application please make an issue.
-THERE ARE VIDEO EXAMPLES OF SOME THINGS. Altough some knowledge is highly recommended.
+THERE ARE VIDEO EXAMPLES OF SOME THINGS. Although some knowledge is highly recommended.
 ## Installation
 Video of installation process will be available later.
 
@@ -46,7 +66,7 @@ mv /path/to/luupycards ~/.local/bin/luupycards
 ```
 To check that it works open up a new terminal and type `luupycards -h` it should open the help. If not it's likely that the folder you put it is not a binary folder. Do the "Move it to a local binary folder" step again.
 
-## Import queston/answer pairs
+## Import question/answer pairs
 Nothing is capital sensitive! The answer and user input is converted to lowercase when they are compared.
 
 You need to use the example file or make one yourself. To make one yourself you can use LibreOffice Calc for example.
