@@ -37,7 +37,8 @@ I was inspired to make this thanks to "[Nihongo Quest](https://store.steampowere
 If you have any issues understanding how to use this application please make an issue.
 THERE ARE VIDEO EXAMPLES OF SOME THINGS. Although some knowledge is highly recommended.
 ## Installation
-Video of installation process will be available later.
+- Video of installation process will be available later.
+- This is a Linux-only application for now!
 
 Clone this repository with the following command.
 ```bash

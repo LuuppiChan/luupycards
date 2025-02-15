@@ -4,13 +4,30 @@ import os
 import re
 import time
 import random
-import readline # for better input field
+import readline  # for better input field
+from pathlib import Path
 
-pairs = [1,1]
+pairs = [1, 1]
 pairs.clear()
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 settings_path = os.path.join(script_dir, "settings.json")
+
+######################################
+### This makes the code Linux only ###
+######################################
+# static settings path
+home_dir = Path.home()
+static_path = f"{home_dir}/.cache/luupycards"
+settings_filename = "settings.json"
+static_settings_path = Path(f"{static_path}/{settings_filename}")
+
+# creates the static dir if it doesn't exist
+os.system(f"mkdir -p {static_path}")
+
+# If there's no settings file, it creates one.
+if not static_settings_path.is_file():
+    os.system(f"cp {settings_path} {static_path}/settings.json")
 
 
 class Menu:
@@ -226,12 +243,12 @@ def get_options(mode="load", settings_dict=None):
         settings_dict = {}
 
     if mode == "load":
-        with open(settings_path, "r") as file:  # Open in read mode
+        with open(static_settings_path, "r") as file:  # Open in read mode
             settings_dict = json.load(file)  # Use json.load() to directly parse the file
             #print("Settings loaded:", settings_dict)
 
     elif mode == "dump":
-        with open(settings_path, "w") as file:  # Open in write mode
+        with open(static_settings_path, "w") as file:  # Open in write mode
             json.dump(settings_dict, file, indent=4)  # Write the dictionary to the file
             #print("Settings dumped successfully.")
 
