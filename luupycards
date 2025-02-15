@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Finds the script work dir
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+#echo "Activating python virtual environment."
+source "$SCRIPT_DIR"/.venv/bin/activate
+
+#echo "Launching the game."
+python "$SCRIPT_DIR"/v1/main.py "$@"
+
+#echo "Exited from the game, disabling python virtual environment."
+deactivate
