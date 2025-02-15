@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
 import csv
 import json
 import os
@@ -80,7 +79,7 @@ def pair_import(csv_file_path):
     global pairs
     pair0 = {
         "question": ["Wait... question zero? What's the answer though..."],
-        "answer": ["luupycards"],
+        "answer": ["Luupycards"],
     }
     pairs = [pair0]
     current_pair_dict = dict()

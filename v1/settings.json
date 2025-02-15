@@ -1,10 +1,10 @@
 {
     "all time streak": 11,
-    "all time survival streak": 7,
+    "all time survival streak": 9,
     "reset all time streak": false,
     "reset all time survival streak": false,
     "min question": 1,
-    "max question": 81,
+    "max question": 200,
     "show current question number": true,
     "multiple choice max options": 5,
     "lives": 3,

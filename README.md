@@ -99,8 +99,3 @@ Anyways here are the simple instructions:
 ## Settings
 There are minimal checks for if a setting value is valid!
 Invalid values may break the game!
-
-# Licensing
-
-- Files explicitly marked as being under the GNU General Public License version 2 (or, at your option, any later version) are covered by that license. See the `LICENSE` file for details.
-- All other files, including non-code files (e.g., `.csv`, `.json` and documentation), are released into the public domain and may be freely used, copied, modified, or redistributed without restriction.
