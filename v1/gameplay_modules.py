@@ -112,13 +112,16 @@ class MainGameplay:
         print(f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}")
 
     def fuzzy_check(self, correct_answers):
-        result = False
         processed = process.extract(self.user_input, correct_answers)
         for items in processed:
             if items[1] >= self.all_settings["fuzzy select percent"]:
-                result = True
+                return True  # Match was found
 
-        return result
+        for answer in correct_answers:
+            if fuzz.token_set_ratio(self.user_input, answer) > self.all_settings["fuzzy select percent"]:
+                return True  # Match was found
+
+        return False  # Match was not found
 
     def answer_check(self):
         correct_answers = self.pairs[self.current_question][self.answer]
@@ -127,7 +130,7 @@ class MainGameplay:
         # check for correct answer in user_input, iterates through all answer candidates
         for answer in correct_answers:
             answer = answer.lower()
-            if answer == user_input or answer in user_input:
+            if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
                 self.next_question()
                 self.streak_current += 1
                 self.print_correct_answer()
@@ -148,7 +151,6 @@ class MainGameplay:
             else:
                 self.print_valid_seek(question_number)
                 self.update_class_variables("current_question", question_number)
-
             return "seek",
 
         elif user_input in ["c", "correct"]:  # show correct answer
