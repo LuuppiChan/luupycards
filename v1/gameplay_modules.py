@@ -8,6 +8,14 @@ import string
 import time
 import readline  # for better input field
 
+# Ignore non-root warnings (does not have any effect for now)
+import warnings
+warnings.filterwarnings("ignore")
+
+# Suppress some root fuzzywuzzy warnings
+import logging
+logging.getLogger().setLevel(logging.ERROR)
+
 # Check if fuzzy select is available
 fuzzy_is_available = False
 try:

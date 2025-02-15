@@ -139,7 +139,14 @@ def main_menu(modes, version, title=""):
     return selected_mode # It isn't unbound
 
 
-def settings_menu(options={"example option" : "No options available"}, locked_values=[], static_values=[]):
+def settings_menu(options=None, locked_values=None, static_values=None):
+    if options is None:
+        options = {}
+    if locked_values is None:
+        locked_values = []
+    if static_values is None:
+        static_values = []
+
     os.system("clear")
     while True:
 
@@ -215,7 +222,9 @@ def static_value_functions(user_input_subsetting, options, static_values, select
         get_options("dump", options)
 
 
-def get_options(mode="load", settings_dict={}):
+def get_options(mode="load", settings_dict=None):
+    if settings_dict is None:
+        settings_dict = {}
 
     if mode == "load":
         with open(settings_path, "r") as file:  # Open in read mode
