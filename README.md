@@ -95,6 +95,15 @@ Anyways here are the simple instructions:
 - `seek [sumber]` for seeking to that question. Put a space between seek and the number!
 - In multiple choice you can type the answer or the letter. If you type `c` it either tells the correct answer or says it's correct if it's correct lol.
 
+# Uninstalling
+Just remove the folder where the game is.
+There's also a settings file located at `~/.cache/luupycards/settings.json`
+You can remove it by running this command
+```bash
+rm -r ~/.cache/luupycards/
+```
+It also removes the folder. You can remove the launch script from `bin/` if you made one.
+
 ## Settings
 There are minimal checks for if a setting value is valid!
 Invalid values may break the game!
