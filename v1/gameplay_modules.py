@@ -65,6 +65,17 @@ class MainGameplay:
             "wrong answer" : True,
             "fuzzy correct" : True,
         }
+        self.enabled_answer_checks = {
+            "correct answer" : True,
+            "fuzzy correct": True,
+            "seek" : True,
+            "show correct answer" : True,
+            "quit" : True,
+            "empty field" : True,
+            "wrong answer" : True,
+        }
+        self.show_correct_binds = ["c", "correct", "ｃ"]
+        self.quit_binds = ["q", "quit"]
 
     def print_correct_answer(self):
         if self.enabled_prints["correct answer"]:
@@ -72,7 +83,7 @@ class MainGameplay:
 
     def print_invalid_seek(self, question_number):
         if self.enabled_prints["invalid seek"]:
-            print(f'"{question_number}" is an invalid seek number.')
+            print(f'"{question_number}" is an invalid seek number. (Max: {self.max_question})')
 
     def print_valid_seek(self, question_number):
         if self.enabled_prints["valid seek"]:
@@ -123,52 +134,61 @@ class MainGameplay:
 
         return False  # Match was not found
 
-    def answer_check(self):
+    def answer_check(self) -> str:
         correct_answers = self.pairs[self.current_question][self.answer]
         user_input = self.user_input
 
-        # check for correct answer in user_input, iterates through all answer candidates
-        for answer in correct_answers:
-            answer = answer.lower()
-            if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
-                self.next_question()
-                self.streak_current += 1
-                self.print_correct_answer()
-                return "correct"
+        if self.enabled_answer_checks["correct answer"]:
+            # check for correct answer in user_input, iterates through all answer candidates
+            for answer in correct_answers:
+                answer = answer.lower()
+                if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
+                    self.next_question()
+                    self.streak_current += 1
+                    self.print_correct_answer()
+                    return "correct"
 
-        if self.fuzzy_matching:  # checks if fuzzy matching is available
-            if self.fuzzy_check(correct_answers):
-                self.next_question()
-                self.streak_current += 1
-                self.print_fuzzy_correct(correct_answers)
-                return "fuzzy correct"
+        if self.enabled_answer_checks["fuzzy correct"]:
+            if self.fuzzy_matching:  # checks if fuzzy matching is available
+                if self.fuzzy_check(correct_answers):
+                    self.next_question()
+                    self.streak_current += 1
+                    self.print_fuzzy_correct(correct_answers)
+                    return "fuzzy correct"
 
-        match = re.search(r"^seek (\d+)", user_input)
-        if match:  # seeking
-            question_number = int(match.group(1))
-            if question_number >= self.max_question:
-                self.print_invalid_seek(question_number)
-            else:
-                self.print_valid_seek(question_number)
-                self.update_class_variables("current_question", question_number)
-            return "seek",
+        if self.enabled_answer_checks["seek"]:
+            match = re.search(r"^seek (\d+)", user_input)
+            if match:  # seeking
+                question_number = int(match.group(1))
+                if question_number > self.max_question:
+                    self.print_invalid_seek(question_number)
+                else:
+                    self.print_valid_seek(question_number)
+                    self.update_class_variables("current_question", question_number)
+                return "seek"
 
-        elif user_input in ["c", "correct"]:  # show correct answer
+        if self.enabled_answer_checks["show correct answer"]:
+            if user_input in self.show_correct_binds:  # show correct answer
+                self.update_class_variables("streak_current", 0)  # breaks the streak
+                self.print_show_correct_answer(correct_answers)
+                return "show correct answer"
+
+        if self.enabled_answer_checks["quit"]:
+            if user_input in self.quit_binds:  # quit to main menu
+                self.print_return_to_main_menu()
+                return "quit"
+
+        if self.enabled_answer_checks["empty field"]:
+            if not user_input or re.findall("^ *$", user_input):  # checks if user_input is empty
+                self.print_empty_field()
+                return "empty field"
+
+        if self.enabled_answer_checks["wrong answer"]:
             self.update_class_variables("streak_current", 0)  # breaks the streak
-            self.print_show_correct_answer(correct_answers)
-            return "show correct answer"
+            self.print_wrong_answer()
+            return "wrong"  # if there's no match, the answer is incorrect
 
-        elif user_input in ["q", "quit"]:  # quit to main menu
-            self.print_return_to_main_menu()
-            return "quit"
-
-        elif not user_input or re.findall("^ *$", user_input):  # checks if user_input is empty
-            self.print_empty_field()
-            return "empty field"
-
-        self.update_class_variables("streak_current", 0)  # breaks the streak
-        self.print_wrong_answer()
-        return "wrong"  # if there's no match, the answer is incorrect
+        raise Exception("Please enable wrong answer check.")
 
     def next_question_plus_one(self):
         self.current_question += 1
@@ -283,7 +303,11 @@ class Reverse(MainGameplay):
         super().__init__(pairs, reverse, current_question, streak_current, order)
 
 class MultipleChoice(MainGameplay):
-    def play(self):
+    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward"):
+        super().__init__(pairs, reverse, current_question, streak_current, order)
+        self.enabled_answer_checks["fuzzy correct"] = False
+
+    def play(self):  # When seeking it keeps the old answers
         playing = True
         answer_check = ""
         # These are multiple choice specific
@@ -304,7 +328,7 @@ class MultipleChoice(MainGameplay):
             self.user_input_sanitized()
 
             # Multiple choice specific
-            if self.user_input == correct_letter or correct_letter in len(self.user_input.strip()) < 2:
+            if self.user_input == correct_letter or correct_letter in self.user_input.strip() and len(self.user_input) <= 2:
                 self.user_input = self.pairs[self.current_question][self.answer][0]
                 self.user_input = self.user_input.lower()
 
@@ -316,6 +340,8 @@ class MultipleChoice(MainGameplay):
                 return self.streak_current
             elif answer_check == "correct":  # Multiple choice specific
                 multiple_choice_options = {}  # This is to make it generate new options
+            elif answer_check =="seek":
+                multiple_choice_options = {}
 
 class Survive(MainGameplay):
     def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="random"):
@@ -359,11 +385,11 @@ class Survive(MainGameplay):
                     return self.streak_current
                 case "wrong":
                     print(f"Wrong, correct answer: {self.return_correct_answers()}")
-                    self.current_question += 1
+                    # self.current_question += 1  # removing this might make learning easier
                     self.lives -= 1
                 case "show correct answer":
                     print(f"The correct answer was: {self.return_correct_answers()}")
-                    self.current_question += 1
+                    # self.current_question += 1  # removing this might make learning easier
                     self.lives -= 1
 
             if self.lives <= 0:

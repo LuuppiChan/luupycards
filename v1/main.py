@@ -53,7 +53,9 @@ current_question = 1
 shuffled_questions = [1, 2, 3]
 core.settings_value_manipulator("max question", "dump", len(pairs) - 1)
 max_question = core.settings_value_manipulator("max question")
-min_question = core.settings_value_manipulator("min question")
+# min_question = core.settings_value_manipulator("min question")  # Hmm, kinda bad thing, I'll just override for now
+min_question = 1
+core.settings_value_manipulator("min question", "dump", min_question)
 show_current_question_number = core.settings_value_manipulator("show current question number")
 current_streak = 0
 all_time_streak = core.settings_value_manipulator("all time streak")
