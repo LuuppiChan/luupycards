@@ -1,4 +1,7 @@
 import argparse
+import os
+import logging
+from pathlib import Path
 
 import core_functions as core
 import gameplay_modules as gameplay
@@ -7,11 +10,39 @@ import gameplay_modules as gameplay
 parser = argparse.ArgumentParser(description="Simple flip card program.")
 
 # Add arguments
-parser.add_argument("-i", type=str, required=True, help="input csv file")
+parser.add_argument("-i", type=str, required=False, help="Input csv file")
+parser.add_argument("-j", type=str, required=False, help="Input json file (W.I.P.)")
+parser.add_argument("-jp", type=bool, default=False, required=False, help="Use my jp importing with json")
+parser.add_argument("-debug", type=str, default="critical", required=False, help="Choose logging level (debug, info, error etc. critical is default)")
+
 args = parser.parse_args()
 
+# Create logging configuration
+match args.debug:
+    case "debug":
+        log_level = logging.DEBUG
+    case "info":
+        log_level = logging.INFO
+    case "error":
+        log_level = logging.ERROR
+    case "critical" | _:  # the wild card is so that it won't warn me.
+        log_level = logging.CRITICAL
+
+mainlog = logging.getLogger(__name__)
+home_dir = Path.home()
+log_path = os.path.join(home_dir, ".cache/luupycards", "luupy.log")
+logging.basicConfig(filename=log_path, encoding="utf-8", level=log_level, filemode="w")
+
+if os.name == "nt":
+    mainlog.critical("Warning! This program is intended for Linux, using Windows WILL have unexpected behaviour!")
+
 # make pair list
-pairs = core.pair_import(args.i)
+if args.i:
+    pairs = core.pair_import(args.i)
+elif args.j:
+    pairs = core.pair_import_json(args.j, args.jp)
+else:
+    pairs = []  # if no input method is specified
 
 game_version = "v1.3"
 modes = [
@@ -45,7 +76,7 @@ sub_modes = [
     ["Reverse", "re"],
     ["Reverse order", "ro"]
 ]
-
+core.pass_pairs(pairs)
 locked_settings_values = ["all time streak", "all time survival streak"]
 static_settings_values = ["reset all time streak", "reset all time survival streak"]
 playing = True

@@ -6,14 +6,13 @@ import random
 import string
 import time
 import readline  # for better input field
-
-# Ignore non-root warnings (does not have any effect for now)
-import warnings
-warnings.filterwarnings("ignore")
-
-# Suppress some root fuzzywuzzy warnings
 import logging
-logging.getLogger().setLevel(logging.ERROR)
+
+gamelog = logging.getLogger(__name__)
+
+# Suppress some root fuzzywuzzy warnings (I've taken the logging into usage elsewhere.)
+# import logging
+# logging.getLogger().setLevel(logging.ERROR)
 
 # Check if fuzzy select is available
 fuzzy_is_available = False
@@ -76,6 +75,11 @@ class MainGameplay:
         }
         self.show_correct_binds = ["c", "correct", "ｃ"]
         self.quit_binds = ["q", "quit"]
+
+    def new_random_list(self):
+        self.random_list = core.never_repeat_random_list(self.all_settings["min question"],
+                                                         self.all_settings["max question"])
+        return self.random_list
 
     def print_correct_answer(self):
         if self.enabled_prints["correct answer"]:
@@ -209,6 +213,7 @@ class MainGameplay:
         try:
             self.current_question = self.random_list[self.list_index]
         except IndexError:  # Wrap around
+            self.new_random_list()  # creates new list for more randomness with smaller pair sets
             self.list_index = 0
             self.current_question = self.random_list[self.list_index]
 

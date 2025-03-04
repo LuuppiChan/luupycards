@@ -3,31 +3,36 @@ import json
 import os
 import re
 import time
+import json
 import random
 import readline  # for better input field
 from pathlib import Path
+import logging
+import shutil
 
-pairs = [1, 1]
-pairs.clear()
+corelog = logging.getLogger(__name__)
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 settings_path = os.path.join(script_dir, "settings.json")
+pairs = list()
 
 ######################################
-### This makes the code Linux only ###
+### This makes the code Linux only ###  I don't think it's anymore though.
 ######################################
+
 # static settings path
 home_dir = Path.home()
 static_path = f"{home_dir}/.cache/luupycards"
 settings_filename = "settings.json"
-static_settings_path = Path(f"{static_path}/{settings_filename}")
+static_settings_path = os.path.join(static_path, settings_filename)
 
 # creates the static dir if it doesn't exist
-os.system(f"mkdir -p {static_path}")
+os.makedirs(static_path, exist_ok=True)  # for cross-platform compatibility
 
 # If there's no settings file, it creates one.
-if not static_settings_path.is_file():
-    os.system(f"cp {settings_path} {static_path}/settings.json")
+if not os.path.isfile(static_settings_path):
+    user_settings = os.path.join(static_path, settings_filename)
+    shutil.copy(settings_path, user_settings)  # for cross-platform compatibility
 
 
 class Menu:
@@ -92,13 +97,12 @@ class Menu:
             self.user_input = input("Name, alias or number: ")
 
 
-def pair_import(csv_file_path):
-    global pairs
+def pair_import(csv_file_path) -> list:
     pair0 = {
         "question": ["Wait... question zero? What's the answer though..."],
         "answer": ["Luupycards"],
     }
-    pairs = [pair0]
+    pairs = [pair0.copy()]
     current_pair_dict = dict()
 
     with open(csv_file_path, mode="r") as file:
@@ -113,7 +117,59 @@ def pair_import(csv_file_path):
     return pairs
 
 
-def main_menu(modes, version, title=""):
+def pair_import_json(json_file_path, jp_mode) -> list:
+    corelog.info("Importing from json.")
+
+    pair0 = {
+        "question": ["Wait... question zero? What's the answer though..."],
+        "answer": ["Luupycards"],
+    }
+    pairs = list()
+    pairs.append(pair0)
+
+    with open(json_file_path, mode="r") as file:
+        raw_pairs = json.loads(file.read())
+        corelog.info("File opened successfully.")
+        for (key, content) in raw_pairs.items():  # goes through the keys' items
+            corelog.info(f'Going through key "{key}"')
+            for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
+                corelog.info('Going through pair number "%s"', i)
+                if "kanji" in pair:
+                    corelog.info("Kanji entry found, copying it to question.")
+                    pair["question"] = pair["kanji"].copy()
+                if "meaning" in pair:
+                    corelog.info("Meaning entry found, copying it to answer.")
+                    pair["answer"] = pair["meaning"].copy()
+
+                corelog.info("Appending pair to list...")
+                pairs.append(pair.copy())
+                corelog.info("List has now %s item(s).", len(pairs))
+                corelog.info("Pair contents: %s", pair)
+                if pairs[-1] != pair:
+                    corelog.error("The pair wasn't added to the list correctly!")
+
+            if jp_mode:
+                corelog.info("jp_mode is enabled.")
+                for i, jp_pair in enumerate(content, start=1):
+                    jp_pair = dict(jp_pair)
+
+                    corelog.info('Going through pair number "%s"', i)
+
+                    jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
+                    jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
+                    jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
+
+                    corelog.info("Appending pair to list...")
+                    pairs.append(jp_pair.copy())
+                    corelog.info("List has now %s item(s).", len(pairs))
+                    corelog.info("Pair contents: %s", jp_pair)
+                    if pairs[-1] != jp_pair:
+                        corelog.error("The pair wasn't added to the list correctly!")
+    return pairs
+
+
+def main_menu(modes, version, title="") -> int:
+    selected_mode = None
 
     if not title:
         title = f"Welcome to Luupycards! {version}"
@@ -152,10 +208,10 @@ def main_menu(modes, version, title=""):
         os.system("clear")
         print(f'Invalid selection "{selected_input}", please try again.')
 
-    return selected_mode # It isn't unbound
+    return selected_mode # It isn't going to be None ever
 
 
-def settings_menu(options=None, locked_values=None, static_values=None):
+def settings_menu(options=None, locked_values=None, static_values=None) -> None:
     if options is None:
         options = {}
     if locked_values is None:
@@ -197,7 +253,7 @@ def settings_menu(options=None, locked_values=None, static_values=None):
             print(f'Invalid selection "{user_input}", please try again.')
 
 
-def subsetting_menu(selected_setting, options, static_values, locked_values):
+def subsetting_menu(selected_setting, options, static_values, locked_values) -> None:
     user_input_subsetting = input("Insert a new value: ")
 
     if selected_setting in static_values:
@@ -224,7 +280,7 @@ def subsetting_menu(selected_setting, options, static_values, locked_values):
         get_options("dump", options)
 
 
-def static_value_functions(user_input_subsetting, options, static_values, selected_setting):
+def static_value_functions(user_input_subsetting, options, static_values, selected_setting) -> None:
 
     os.system("clear")
 
@@ -238,7 +294,12 @@ def static_value_functions(user_input_subsetting, options, static_values, select
         get_options("dump", options)
 
 
-def get_options(mode="load", settings_dict=None):
+def pass_pairs(pairs_local) -> None:
+    global pairs
+    pairs = pairs_local.copy()
+
+
+def get_options(mode="load", settings_dict=None) -> dict:
     if settings_dict is None:
         settings_dict = {}
 
@@ -257,7 +318,7 @@ def get_options(mode="load", settings_dict=None):
     return settings_dict
 
 
-def never_repeat_random_list(min_pair_number, amount_of_pairs):
+def never_repeat_random_list(min_pair_number, amount_of_pairs) -> list:
     if min_pair_number < 0:
         min_pair_number = 1
     number_list = list(range(min_pair_number, amount_of_pairs + 1))
@@ -265,7 +326,7 @@ def never_repeat_random_list(min_pair_number, amount_of_pairs):
     return number_list
 
 
-def fancy_line_print(string):
+def fancy_line_print(string) -> None:
     collect_the_string = ""
     time.sleep(.5)
     for x in string:
@@ -278,7 +339,7 @@ def fancy_line_print(string):
     time.sleep(3)
 
 
-def settings_value_manipulator(option, mode="return", new_value: int | bool = 0):
+def settings_value_manipulator(option, mode="return", new_value: int | bool = 0) -> str | None:
     options = get_options()
     if mode in ["write", "dump"]:
         options[option] = new_value
@@ -287,7 +348,7 @@ def settings_value_manipulator(option, mode="return", new_value: int | bool = 0)
     elif mode == "return":
         return options[option]
 
-def check_for_invalid_setting_values():
+def check_for_invalid_setting_values() -> None:
     global pairs
     options = get_options()
     options_orig = options.copy()
