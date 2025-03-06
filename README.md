@@ -29,7 +29,7 @@ I was inspired to make this thanks to "[Nihongo Quest](https://store.steampowere
 - Show question number
 - Max multiple choice options
 - Lives for Survive!
-- Fuzzy select percentage (Requires you to have the fuzzywuzzy module or use the venv)
+- Fuzzy select percentage (Requires you to have the fuzzywuzzy module)
 #### I'll note more things here later.
 - FOSS
 

@@ -13,8 +13,9 @@ import core_functions as core
 import gameplay_modules as gameplay
 
 
-class Ui_Luupycards(object):
+class Ui_Luupycards(QtWidgets.QMainWindow):
     def setupUi(self, Luupycards):
+        super().__init__()
         Luupycards.setObjectName("Luupycards")
         Luupycards.resize(582, 574)
 
@@ -514,6 +515,11 @@ class Ui_Luupycards(object):
 
         # from under this these are self set.
 
+        ## setting up
+    
+        # options
+        self.reload_settings()
+
         # I'll set some default states of the tabs
         self.tabs_event_play()
         self.tabs_event_inspector()
@@ -531,9 +537,15 @@ class Ui_Luupycards(object):
         self.action_tabs_settings.triggered.connect(self.tabs_event_settings)  # settings
         self.action_tabs_inspector.triggered.connect(self.tabs_event_inspector)  # inspector
 
+        # file buttons
+        self.menuOpen.triggered.connect(self.open_dir_dialog)
+
         # Start playing
         self.button_play.clicked.connect(self.gameplay_setup)
 
+
+    def open_dir_dialog(self):
+        pass
 
     def quit_action(self):
         exit()
@@ -545,6 +557,8 @@ class Ui_Luupycards(object):
 
         # set tab to play
         self.tab_main.setCurrentWidget(self.play)
+        self.action_tabls_play.setEnabled(True)
+        self.play.setEnabled(True)
 
         print(current_mode, current_order)  # then pass to backend
 
@@ -575,6 +589,23 @@ class Ui_Luupycards(object):
             self.tab_inspector.setEnabled(False)
         else:
             self.tab_inspector.setEnabled(True)
+
+    def reload_settings(self):
+        options = core.get_options("load")
+
+        self.all_time_streak_value_2.setText(str(options["all time streak"]))
+        self.all_time_survival_streak_value_2.setText(str(options["all time survival streak"]))
+        self.reset_all_time_streak_value_2.setCheckState(options["reset all time streak"])
+        self.reset_all_time_survival_streak_value_2.setCheckState(options["reset all time survival streak"])
+        self.min_question_value_2.setValue(options["min question"])
+        self.max_question_value_2.setValue(options["max question"])
+        self.show_current_question_number_value_2.setCheckState(options["show current question number"])
+        self.multiple_choice_max_options_value_2.setValue(options["multiple choice max options"])
+        self.lives_value_2.setValue(options["lives"])
+        self.fuzzy_select_precent_value_2.setValue(options["fuzzy select percent"])
+
+    def save_settings(self):
+        pass
 
     def retranslateUi(self, Luupycards):
         _translate = QtCore.QCoreApplication.translate

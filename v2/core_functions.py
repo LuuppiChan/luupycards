@@ -346,6 +346,8 @@ def settings_value_manipulator(option, mode="return", new_value: int | bool = 0)
         return None
     elif mode == "return":
         return options[option]
+    else:
+        raise Exception("Incorrect mode")
 
 def check_for_invalid_setting_values() -> None:
     global pairs
