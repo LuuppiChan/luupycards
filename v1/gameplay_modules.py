@@ -132,10 +132,6 @@ class MainGameplay:
             if items[1] >= self.all_settings["fuzzy select percent"]:
                 return True  # Match was found
 
-        for answer in correct_answers:
-            if fuzz.token_set_ratio(self.user_input, answer) > self.all_settings["fuzzy select percent"]:
-                return True  # Match was found
-
         return False  # Match was not found
 
     def answer_check(self) -> str:

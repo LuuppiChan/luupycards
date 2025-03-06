@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Luupycards</class>
+ <widget class="QMainWindow" name="Luupycards">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>563</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Luupycards</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../v1/luupycards.png</normaloff>../v1/luupycards.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>0.000000000000000</double>
+  </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="1" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>584</width>
+         <height>486</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tab_main">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="statusTip">
+           <string/>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
+          <property name="documentMode">
+           <bool>false</bool>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="tab_main_menu">
+           <attribute name="title">
+            <string>Main Menu</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="2" column="1">
+             <widget class="QPushButton" name="button_play">
+              <property name="toolTip">
+               <string>Start the game</string>
+              </property>
+              <property name="statusTip">
+               <string>Start the game</string>
+              </property>
+              <property name="text">
+               <string>Play</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+               <widget class="QLabel" name="label_question_order">
+                <property name="font">
+                 <font>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Question order</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_question_order">
+                <property name="toolTip">
+                 <string>Choose the question order</string>
+                </property>
+                <property name="statusTip">
+                 <string>Choose the question order</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Forward</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Reverse</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Random</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="0">
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignTop">
+               <widget class="QLabel" name="label_mode">
+                <property name="font">
+                 <font>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="toolTip">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string>Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QComboBox" name="comboBox_modes">
+                <property name="toolTip">
+                 <string>Choose the mode</string>
+                </property>
+                <property name="statusTip">
+                 <string>Choose the mode</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Normal</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Reverse</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Multiple Choice</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Survive!</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="button_quit">
+              <property name="toolTip">
+               <string>Close this app</string>
+              </property>
+              <property name="statusTip">
+               <string>Close this app</string>
+              </property>
+              <property name="text">
+               <string>Quit</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="play">
+           <attribute name="title">
+            <string>Play</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_13">
+            <item row="6" column="2">
+             <widget class="QPushButton" name="button_check">
+              <property name="text">
+               <string>Check</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="label_question">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Question</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="1">
+             <spacer name="verticalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="1">
+             <spacer name="verticalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="1">
+             <spacer name="verticalSpacer_8">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="3" column="0" colspan="3">
+             <widget class="QLineEdit" name="lineEdit_answer">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string>Input your answer</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_settings">
+           <attribute name="title">
+            <string>Settings</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="9" column="1">
+             <widget class="QScrollArea" name="scrollArea_2">
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_3">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>534</width>
+                 <height>423</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_9">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_10">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_all_time_survival_streak_2">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>Your all time survival streak</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Your all time survival streak</string>
+                    </property>
+                    <property name="text">
+                     <string>All time survival streak</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="all_time_survival_streak_value_2">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>ForbiddenCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_reset_all_time_streak_2">
+                    <property name="toolTip">
+                     <string>Reset your all time streak</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Reset your all time streak</string>
+                    </property>
+                    <property name="text">
+                     <string>Reset all time streak</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QCheckBox" name="reset_all_time_streak_value_2">
+                    <property name="font">
+                     <font>
+                      <kerning>true</kerning>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_reset_all_time_survival_streak_2">
+                    <property name="toolTip">
+                     <string>Reset your all time survival streak</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Reset your all time survival streak</string>
+                    </property>
+                    <property name="text">
+                     <string>Reset all time survival streak</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QCheckBox" name="reset_all_time_survival_streak_value_2">
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_min_question_2">
+                    <property name="toolTip">
+                     <string>Minimum question number it will ask you</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Minimum question number it will ask you</string>
+                    </property>
+                    <property name="text">
+                     <string>Min question</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QSpinBox" name="min_question_value_2">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>1000000</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_max_question_2">
+                    <property name="toolTip">
+                     <string>Maximum question number it will ask you</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Maximum question number it will ask you</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string/>
+                    </property>
+                    <property name="text">
+                     <string>Max question</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QSpinBox" name="max_question_value_2">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>1000000</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_show_current_question_number_2">
+                    <property name="toolTip">
+                     <string>Whether to show the current question number</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Whether to show the current question number</string>
+                    </property>
+                    <property name="text">
+                     <string>Show current question number</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QCheckBox" name="show_current_question_number_value_2">
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_multiple_choice_max_options_2">
+                    <property name="toolTip">
+                     <string>The ammount of answer candidates in multiple choice</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>The ammount of answer candidates in multiple choice</string>
+                    </property>
+                    <property name="text">
+                     <string>Multiple choice max options</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QSpinBox" name="multiple_choice_max_options_value_2">
+                    <property name="minimum">
+                     <number>2</number>
+                    </property>
+                    <property name="maximum">
+                     <number>26</number>
+                    </property>
+                    <property name="value">
+                     <number>5</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_lives_2">
+                    <property name="toolTip">
+                     <string>The ammount of lives in Survive!</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>The ammount of lives in Survive!</string>
+                    </property>
+                    <property name="text">
+                     <string>Lives</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QSpinBox" name="lives_value_2">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="value">
+                     <number>5</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="label_fuzzy_select_precent_2">
+                    <property name="toolTip">
+                     <string>How wrong can the answer be for it to be count correct. 100 is disabled.</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>How wrong can the answer be for it to be count correct. 100 is disabled.</string>
+                    </property>
+                    <property name="text">
+                     <string>Fuzzy select percent</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QSpinBox" name="fuzzy_select_precent_value_2">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>100</number>
+                    </property>
+                    <property name="value">
+                     <number>90</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_all_time_streak_2">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>Your all time streak</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Your all time streak</string>
+                    </property>
+                    <property name="text">
+                     <string>All time streak</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="all_time_streak_value_2">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>ForbiddenCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>0</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item row="13" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QPushButton" name="button_settings_reset_2">
+                <property name="toolTip">
+                 <string>Reset to default values</string>
+                </property>
+                <property name="statusTip">
+                 <string>Reset to default values</string>
+                </property>
+                <property name="text">
+                 <string>Reset</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="button_settings_save_2">
+                <property name="toolTip">
+                 <string>Save these settings</string>
+                </property>
+                <property name="statusTip">
+                 <string>Save these settings</string>
+                </property>
+                <property name="text">
+                 <string>Save</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="12" column="1">
+             <spacer name="verticalSpacer_7">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_inspector">
+           <attribute name="title">
+            <string>Inspector</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTableWidget" name="tableWidget">
+              <property name="toolTip">
+               <string>Your pairs nicely in raw Python</string>
+              </property>
+              <property name="statusTip">
+               <string>You can edit them, but be careful!</string>
+              </property>
+              <row>
+               <property name="text">
+                <string>1</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>2</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>3</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>4</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>5</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Questions</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Answers</string>
+               </property>
+              </column>
+              <item row="0" column="0">
+               <property name="text">
+                <string>[&quot;question1&quot;]</string>
+               </property>
+              </item>
+              <item row="0" column="1">
+               <property name="text">
+                <string>[&quot;answer1a&quot;, &quot;answer1b&quot;]</string>
+               </property>
+              </item>
+              <item row="1" column="0">
+               <property name="text">
+                <string>[&quot;question2&quot;]</string>
+               </property>
+              </item>
+              <item row="1" column="1">
+               <property name="text">
+                <string>[&quot;answer2a&quot;]</string>
+               </property>
+              </item>
+              <item row="2" column="0">
+               <property name="text">
+                <string>[&quot;question3&quot;]</string>
+               </property>
+              </item>
+              <item row="2" column="1">
+               <property name="text">
+                <string>[&quot;answer3a&quot;, &quot;answer3b&quot;, &quot;answer3c&quot;]</string>
+               </property>
+              </item>
+              <item row="3" column="0">
+               <property name="text">
+                <string>[&quot;question4&quot;]</string>
+               </property>
+              </item>
+              <item row="3" column="1">
+               <property name="text">
+                <string>[&quot;answer4a&quot;, &quot;answer4b&quot;]</string>
+               </property>
+              </item>
+              <item row="4" column="0">
+               <property name="text">
+                <string>[&quot;question5&quot;]</string>
+               </property>
+              </item>
+              <item row="4" column="1">
+               <property name="text">
+                <string>[&quot;answer5a&quot;]</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="button_save_file">
+                <property name="toolTip">
+                 <string>Save to a CSV file</string>
+                </property>
+                <property name="statusTip">
+                 <string>Save to a CSV file</string>
+                </property>
+                <property name="text">
+                 <string>Save to file</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="button_save_memory">
+                <property name="toolTip">
+                 <string>Saves changes to the program memory</string>
+                </property>
+                <property name="statusTip">
+                 <string>Saves changes to the program memory</string>
+                </property>
+                <property name="text">
+                 <string>Save to memory</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuOpen">
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Open a file</string>
+     </property>
+     <property name="title">
+      <string>Open</string>
+     </property>
+     <addaction name="actionCSV"/>
+     <addaction name="actionJSON"/>
+    </widget>
+    <addaction name="menuOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionRead_the_docs"/>
+   </widget>
+   <widget class="QMenu" name="menuTabs">
+    <property name="title">
+     <string>Tabs</string>
+    </property>
+    <addaction name="action_tabs_main_menu"/>
+    <addaction name="action_tabls_play"/>
+    <addaction name="action_tabs_settings"/>
+    <addaction name="action_tabs_inspector"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTabs"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCSV">
+   <property name="text">
+    <string>CSV</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a CSV file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionJSON">
+   <property name="text">
+    <string>JSON</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a JSON file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionRead_the_docs">
+   <property name="text">
+    <string>Just test stuff</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Saves the current file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new pair file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quits this app</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_tabs_main_menu">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Main Menu</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_tabls_play">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Play</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_tabs_settings">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_tabs_inspector">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Inspector</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>lineEdit_answer</sender>
+   <signal>returnPressed()</signal>
+   <receiver>button_check</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>272</x>
+     <y>311</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>442</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+ </buttongroups>
+</ui>

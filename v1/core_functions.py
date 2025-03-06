@@ -339,7 +339,7 @@ def fancy_line_print(string) -> None:
     time.sleep(3)
 
 
-def settings_value_manipulator(option, mode="return", new_value: int | bool = 0) -> str | None:
+def settings_value_manipulator(option, mode="return", new_value: int | bool = 0) -> str | None | int:
     options = get_options()
     if mode in ["write", "dump"]:
         options[option] = new_value
