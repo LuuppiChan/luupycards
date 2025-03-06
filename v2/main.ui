@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>563</height>
+    <width>582</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>584</width>
-         <height>486</height>
+         <width>566</width>
+         <height>497</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -68,7 +68,7 @@
            <bool>false</bool>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <property name="documentMode">
            <bool>false</bool>
@@ -98,7 +98,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <layout class="QVBoxLayout" name="verticalLayout_5">
+             <layout class="QVBoxLayout" name="layout_main_question_order">
               <item alignment="Qt::AlignHCenter|Qt::AlignTop">
                <widget class="QLabel" name="label_question_order">
                 <property name="font">
@@ -139,8 +139,8 @@
              </layout>
             </item>
             <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_6">
-              <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignTop">
+             <layout class="QVBoxLayout" name="layout_main_mode">
+              <item alignment="Qt::AlignHCenter">
                <widget class="QLabel" name="label_mode">
                 <property name="font">
                  <font>
@@ -155,7 +155,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item>
                <widget class="QComboBox" name="comboBox_modes">
                 <property name="toolTip">
                  <string>Choose the mode</string>
@@ -201,7 +201,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <spacer name="verticalSpacer_5">
+             <spacer name="verticalSpacer_main_menu">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -222,13 +222,19 @@
            <layout class="QGridLayout" name="gridLayout_13">
             <item row="6" column="2">
              <widget class="QPushButton" name="button_check">
+              <property name="toolTip">
+               <string>Check that did you answer correctly</string>
+              </property>
+              <property name="statusTip">
+               <string>Check that did you answer correctly</string>
+              </property>
               <property name="text">
                <string>Check</string>
               </property>
              </widget>
             </item>
             <item row="1" column="2">
-             <spacer name="horizontalSpacer_2">
+             <spacer name="horizontalSpacer_play_right">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -244,8 +250,14 @@
              <widget class="QLabel" name="label_question">
               <property name="font">
                <font>
-                <pointsize>16</pointsize>
+                <pointsize>20</pointsize>
                </font>
+              </property>
+              <property name="toolTip">
+               <string>The question</string>
+              </property>
+              <property name="statusTip">
+               <string>The question</string>
               </property>
               <property name="text">
                <string>Question</string>
@@ -253,7 +265,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <spacer name="horizontalSpacer">
+             <spacer name="horizontalSpacer_play_left">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -266,7 +278,7 @@
              </spacer>
             </item>
             <item row="2" column="1">
-             <spacer name="verticalSpacer_6">
+             <spacer name="verticalSpacer_play_middle">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -279,7 +291,7 @@
              </spacer>
             </item>
             <item row="0" column="1">
-             <spacer name="verticalSpacer_9">
+             <spacer name="verticalSpacer_play_top">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -292,7 +304,7 @@
              </spacer>
             </item>
             <item row="4" column="1">
-             <spacer name="verticalSpacer_8">
+             <spacer name="verticalSpacer_play_bottom">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -314,6 +326,9 @@
               <property name="toolTip">
                <string>Input your answer</string>
               </property>
+              <property name="statusTip">
+               <string>Input your answer</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -330,22 +345,22 @@
            </attribute>
            <layout class="QGridLayout" name="gridLayout_8">
             <item row="9" column="1">
-             <widget class="QScrollArea" name="scrollArea_2">
+             <widget class="QScrollArea" name="scrollArea_settings_settings">
               <property name="widgetResizable">
                <bool>true</bool>
               </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents_3">
+              <widget class="QWidget" name="scrollAreaWidgetContents_settings">
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>0</y>
-                 <width>534</width>
+                 <y>-49</y>
+                 <width>516</width>
                  <height>423</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_9">
                 <item row="0" column="0">
-                 <layout class="QGridLayout" name="gridLayout_10">
+                 <layout class="QGridLayout" name="gridLayout_settings">
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_all_time_survival_streak_2">
                     <property name="font">
@@ -364,18 +379,44 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="all_time_survival_streak_value_2">
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="label_fuzzy_select_precent_2">
+                    <property name="toolTip">
+                     <string>How wrong can the answer be for it to be count correct. 100 is disabled.</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>How wrong can the answer be for it to be count correct. 100 is disabled.</string>
+                    </property>
+                    <property name="text">
+                     <string>Fuzzy select percent</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_all_time_streak_2">
                     <property name="font">
                      <font>
                       <pointsize>12</pointsize>
                      </font>
                     </property>
-                    <property name="cursor">
-                     <cursorShape>ForbiddenCursor</cursorShape>
+                    <property name="toolTip">
+                     <string>Your all time streak</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Your all time streak</string>
                     </property>
                     <property name="text">
-                     <string>0</string>
+                     <string>All time streak</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QCheckBox" name="reset_all_time_survival_streak_value_2">
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string/>
                     </property>
                    </widget>
                   </item>
@@ -392,44 +433,6 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="1">
-                   <widget class="QCheckBox" name="reset_all_time_streak_value_2">
-                    <property name="font">
-                     <font>
-                      <kerning>true</kerning>
-                     </font>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_reset_all_time_survival_streak_2">
-                    <property name="toolTip">
-                     <string>Reset your all time survival streak</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>Reset your all time survival streak</string>
-                    </property>
-                    <property name="text">
-                     <string>Reset all time survival streak</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QCheckBox" name="reset_all_time_survival_streak_value_2">
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_min_question_2">
                     <property name="toolTip">
@@ -443,6 +446,45 @@
                     </property>
                    </widget>
                   </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_multiple_choice_max_options_2">
+                    <property name="toolTip">
+                     <string>The ammount of answer candidates in multiple choice</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>The ammount of answer candidates in multiple choice</string>
+                    </property>
+                    <property name="text">
+                     <string>Multiple choice max options</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QSpinBox" name="multiple_choice_max_options_value_2">
+                    <property name="minimum">
+                     <number>2</number>
+                    </property>
+                    <property name="maximum">
+                     <number>26</number>
+                    </property>
+                    <property name="value">
+                     <number>5</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QSpinBox" name="fuzzy_select_precent_value_2">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>100</number>
+                    </property>
+                    <property name="value">
+                     <number>90</number>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="4" column="1">
                    <widget class="QSpinBox" name="min_question_value_2">
                     <property name="minimum">
@@ -453,19 +495,16 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_max_question_2">
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_lives_2">
                     <property name="toolTip">
-                     <string>Maximum question number it will ask you</string>
+                     <string>The ammount of lives in Survive!</string>
                     </property>
                     <property name="statusTip">
-                     <string>Maximum question number it will ask you</string>
-                    </property>
-                    <property name="whatsThis">
-                     <string/>
+                     <string>The ammount of lives in Survive!</string>
                     </property>
                     <property name="text">
-                     <string>Max question</string>
+                     <string>Lives</string>
                     </property>
                    </widget>
                   </item>
@@ -505,45 +544,6 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="7" column="0">
-                   <widget class="QLabel" name="label_multiple_choice_max_options_2">
-                    <property name="toolTip">
-                     <string>The ammount of answer candidates in multiple choice</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>The ammount of answer candidates in multiple choice</string>
-                    </property>
-                    <property name="text">
-                     <string>Multiple choice max options</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="1">
-                   <widget class="QSpinBox" name="multiple_choice_max_options_value_2">
-                    <property name="minimum">
-                     <number>2</number>
-                    </property>
-                    <property name="maximum">
-                     <number>26</number>
-                    </property>
-                    <property name="value">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="0">
-                   <widget class="QLabel" name="label_lives_2">
-                    <property name="toolTip">
-                     <string>The ammount of lives in Survive!</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>The ammount of lives in Survive!</string>
-                    </property>
-                    <property name="text">
-                     <string>Lives</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="8" column="1">
                    <widget class="QSpinBox" name="lives_value_2">
                     <property name="minimum">
@@ -554,52 +554,67 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="9" column="0">
-                   <widget class="QLabel" name="label_fuzzy_select_precent_2">
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_max_question_2">
                     <property name="toolTip">
-                     <string>How wrong can the answer be for it to be count correct. 100 is disabled.</string>
+                     <string>Maximum question number it will ask you</string>
                     </property>
                     <property name="statusTip">
-                     <string>How wrong can the answer be for it to be count correct. 100 is disabled.</string>
+                     <string>Maximum question number it will ask you</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string/>
                     </property>
                     <property name="text">
-                     <string>Fuzzy select percent</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="1">
-                   <widget class="QSpinBox" name="fuzzy_select_precent_value_2">
-                    <property name="minimum">
-                     <number>1</number>
-                    </property>
-                    <property name="maximum">
-                     <number>100</number>
-                    </property>
-                    <property name="value">
-                     <number>90</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_all_time_streak_2">
-                    <property name="font">
-                     <font>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                    <property name="toolTip">
-                     <string>Your all time streak</string>
-                    </property>
-                    <property name="statusTip">
-                     <string>Your all time streak</string>
-                    </property>
-                    <property name="text">
-                     <string>All time streak</string>
+                     <string>Max question</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
                    <widget class="QLabel" name="all_time_streak_value_2">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>ForbiddenCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_reset_all_time_survival_streak_2">
+                    <property name="toolTip">
+                     <string>Reset your all time survival streak</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Reset your all time survival streak</string>
+                    </property>
+                    <property name="text">
+                     <string>Reset all time survival streak</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QCheckBox" name="reset_all_time_streak_value_2">
+                    <property name="font">
+                     <font>
+                      <kerning>true</kerning>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="all_time_survival_streak_value_2">
                     <property name="font">
                      <font>
                       <pointsize>12</pointsize>
@@ -619,8 +634,8 @@
               </widget>
              </widget>
             </item>
-            <item row="13" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item row="12" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_settings_buttons">
               <item>
                <widget class="QPushButton" name="button_settings_reset_2">
                 <property name="toolTip">
@@ -648,19 +663,6 @@
                </widget>
               </item>
              </layout>
-            </item>
-            <item row="12" column="1">
-             <spacer name="verticalSpacer_7">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </widget>
@@ -765,7 +767,7 @@
              </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout">
+             <layout class="QHBoxLayout" name="horizontalLayout_inspector_buttons">
               <item>
                <widget class="QPushButton" name="button_save_file">
                 <property name="toolTip">
@@ -809,7 +811,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>582</width>
      <height>33</height>
     </rect>
    </property>
@@ -846,6 +848,12 @@
     <addaction name="actionRead_the_docs"/>
    </widget>
    <widget class="QMenu" name="menuTabs">
+    <property name="toolTip">
+     <string>Toggle different tabs on or off</string>
+    </property>
+    <property name="statusTip">
+     <string>Toggle different tabs on or off</string>
+    </property>
     <property name="title">
      <string>Tabs</string>
     </property>
@@ -858,7 +866,11 @@
    <addaction name="menuTabs"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
   <action name="actionCSV">
    <property name="text">
     <string>CSV</string>
@@ -1008,8 +1020,4 @@
    </hints>
   </connection>
  </connections>
- <buttongroups>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
- </buttongroups>
 </ui>
