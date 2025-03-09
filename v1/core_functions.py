@@ -168,6 +168,41 @@ def pair_import_json(json_file_path, jp_mode) -> list:
     return pairs
 
 
+def pair_import_nq(file_path):
+    pair0 = {
+        "question": ["Wait... question zero? What's the answer though..."],
+        "answer": ["Luupycards"],
+    }
+    pairs = [pair0.copy()]
+    current_pair_dict = dict()
+
+    with open(file_path, mode="r") as file:
+        csv_reader = csv.reader(file)
+        for row_number, row in enumerate(csv_reader, start=1):
+            if row_number == 1:
+                continue
+            row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
+
+            if "|" in row[6]:
+                answers = row[6].split("|")
+                answer_on = 6
+            elif "|" in row[5]:
+                answers = row[5].split("|")
+                answer_on = 5
+            else:
+                answers = row[3]
+                answer_on = 3
+
+            pair = {
+                "question": [row[2]],
+                "answer" : [answers],
+                "pronunciation" : [row[answer_on + 1]]
+            }
+
+            pairs.append(pair.copy())
+    return pairs
+
+
 def main_menu(modes, version, title="") -> int:
     selected_mode = None
 

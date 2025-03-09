@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser(description="Simple flip card program.")
 parser.add_argument("-i", type=str, required=False, help="Input csv file")
 parser.add_argument("-j", type=str, required=False, help="Input json file (W.I.P.)")
 parser.add_argument("-jp", type=bool, default=False, required=False, help="Use my jp importing with json")
+parser.add_argument("-nq", "--nihongo-quest", type=str, required=False, help="Use an import method for Nihongo Quest's CSV format (REALLY EXPERIMENTAL)")
 parser.add_argument("-debug", type=str, default="critical", required=False, help="Choose logging level (debug, info, error etc. critical is default)")
 
 args = parser.parse_args()
@@ -41,6 +42,8 @@ if args.i:
     pairs = core.pair_import(args.i)
 elif args.j:
     pairs = core.pair_import_json(args.j, args.jp)
+elif args.nihongo_quest:
+    pairs = core.pair_import_nq(args.nihongo_quest)
 else:
     pairs = []  # if no input method is specified
 
