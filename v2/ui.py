@@ -19,15 +19,15 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QMainWindow, QMenu, QMenuBar, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QSpinBox,
-    QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+    QRadioButton, QScrollArea, QSizePolicy, QSpacerItem,
+    QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_Luupycards(object):
     def setupUi(self, Luupycards):
         if not Luupycards.objectName():
             Luupycards.setObjectName(u"Luupycards")
-        Luupycards.resize(623, 662)
+        Luupycards.resize(520, 624)
         font = QFont()
         font.setPointSize(12)
         Luupycards.setFont(font)
@@ -77,9 +77,9 @@ class Ui_Luupycards(object):
         self.actionCSV_2.setObjectName(u"actionCSV_2")
         self.actionJSON_2 = QAction(Luupycards)
         self.actionJSON_2.setObjectName(u"actionJSON_2")
-        self.actionOpen_2 = QAction(Luupycards)
-        self.actionOpen_2.setObjectName(u"actionOpen_2")
-        self.actionOpen_2.setFont(font)
+        self.actionOpen = QAction(Luupycards)
+        self.actionOpen.setObjectName(u"actionOpen")
+        self.actionOpen.setFont(font)
         self.centralwidget = QWidget(Luupycards)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_3 = QGridLayout(self.centralwidget)
@@ -89,7 +89,7 @@ class Ui_Luupycards(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 607, 585))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 504, 547))
         self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.tab_main = QTabWidget(self.scrollAreaWidgetContents_2)
@@ -161,51 +161,186 @@ class Ui_Luupycards(object):
         self.gridLayout_5.addItem(self.verticalSpacer_main_menu, 1, 0, 1, 1)
 
         self.tab_main.addTab(self.tab_main_menu, "")
-        self.play = QWidget()
-        self.play.setObjectName(u"play")
-        self.gridLayout_13 = QGridLayout(self.play)
-        self.gridLayout_13.setObjectName(u"gridLayout_13")
-        self.button_check = QPushButton(self.play)
-        self.button_check.setObjectName(u"button_check")
+        self.tab_play = QWidget()
+        self.tab_play.setObjectName(u"tab_play")
+        self.verticalLayout_2 = QVBoxLayout(self.tab_play)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.stackedWidget_gameplay = QStackedWidget(self.tab_play)
+        self.stackedWidget_gameplay.setObjectName(u"stackedWidget_gameplay")
+        self.stackedWidget_gameplay.setLineWidth(1)
+        self.input = QWidget()
+        self.input.setObjectName(u"input")
+        self.input.setEnabled(True)
+        self.verticalLayout_4 = QVBoxLayout(self.input)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.label_game_info = QLabel(self.input)
+        self.label_game_info.setObjectName(u"label_game_info")
 
-        self.gridLayout_13.addWidget(self.button_check, 6, 2, 1, 1)
+        self.horizontalLayout_3.addWidget(self.label_game_info)
 
-        self.horizontalSpacer_play_right = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.label_streak = QLabel(self.input)
+        self.label_streak.setObjectName(u"label_streak")
 
-        self.gridLayout_13.addItem(self.horizontalSpacer_play_right, 1, 2, 1, 1)
+        self.horizontalLayout_3.addWidget(self.label_streak, 0, Qt.AlignRight)
 
-        self.label_question = QLabel(self.play)
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_3)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer_4)
+
+        self.label_question = QLabel(self.input)
         self.label_question.setObjectName(u"label_question")
         font2 = QFont()
         font2.setPointSize(20)
         self.label_question.setFont(font2)
 
-        self.gridLayout_13.addWidget(self.label_question, 1, 1, 1, 1)
+        self.verticalLayout_4.addWidget(self.label_question, 0, Qt.AlignHCenter)
 
-        self.horizontalSpacer_play_left = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_13.addItem(self.horizontalSpacer_play_left, 1, 0, 1, 1)
+        self.verticalLayout_4.addItem(self.verticalSpacer_3)
 
-        self.verticalSpacer_play_middle = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_13.addItem(self.verticalSpacer_play_middle, 2, 1, 1, 1)
-
-        self.verticalSpacer_play_top = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_13.addItem(self.verticalSpacer_play_top, 0, 1, 1, 1)
-
-        self.verticalSpacer_play_bottom = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_13.addItem(self.verticalSpacer_play_bottom, 4, 1, 1, 1)
-
-        self.lineEdit_answer = QLineEdit(self.play)
+        self.lineEdit_answer = QLineEdit(self.input)
         self.lineEdit_answer.setObjectName(u"lineEdit_answer")
         self.lineEdit_answer.setFont(font1)
+        self.lineEdit_answer.setAutoFillBackground(False)
         self.lineEdit_answer.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_13.addWidget(self.lineEdit_answer, 3, 0, 1, 3)
+        self.verticalLayout_4.addWidget(self.lineEdit_answer)
 
-        self.tab_main.addTab(self.play, "")
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer_2)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.label_lives = QLabel(self.input)
+        self.label_lives.setObjectName(u"label_lives")
+
+        self.horizontalLayout_4.addWidget(self.label_lives)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_2)
+
+        self.button_check = QPushButton(self.input)
+        self.button_check.setObjectName(u"button_check")
+        self.button_check.setMaximumSize(QSize(80, 16777215))
+
+        self.horizontalLayout_4.addWidget(self.button_check)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_4)
+
+        self.stackedWidget_gameplay.addWidget(self.input)
+        self.multiple_choice = QWidget()
+        self.multiple_choice.setObjectName(u"multiple_choice")
+        self.verticalLayout_5 = QVBoxLayout(self.multiple_choice)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.scrollArea_mc = QScrollArea(self.multiple_choice)
+        self.scrollArea_mc.setObjectName(u"scrollArea_mc")
+        self.scrollArea_mc.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 630, 534))
+        self.verticalLayout_6 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_game_info_mc = QLabel(self.scrollAreaWidgetContents)
+        self.label_game_info_mc.setObjectName(u"label_game_info_mc")
+
+        self.horizontalLayout_5.addWidget(self.label_game_info_mc)
+
+        self.label_streak_mc = QLabel(self.scrollAreaWidgetContents)
+        self.label_streak_mc.setObjectName(u"label_streak_mc")
+
+        self.horizontalLayout_5.addWidget(self.label_streak_mc, 0, Qt.AlignRight)
+
+
+        self.verticalLayout_6.addLayout(self.horizontalLayout_5)
+
+        self.verticalSpacer_play_top_3 = QSpacerItem(20, 106, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_6.addItem(self.verticalSpacer_play_top_3)
+
+        self.label_question_mc = QLabel(self.scrollAreaWidgetContents)
+        self.label_question_mc.setObjectName(u"label_question_mc")
+        self.label_question_mc.setFont(font2)
+
+        self.verticalLayout_6.addWidget(self.label_question_mc, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_play_middle_3 = QSpacerItem(20, 106, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_6.addItem(self.verticalSpacer_play_middle_3)
+
+        self.mc_options = QVBoxLayout()
+        self.mc_options.setObjectName(u"mc_options")
+        self.radioButton_2 = QRadioButton(self.scrollAreaWidgetContents)
+        self.radioButton_2.setObjectName(u"radioButton_2")
+
+        self.mc_options.addWidget(self.radioButton_2, 0, Qt.AlignLeft)
+
+        self.radioButton_3 = QRadioButton(self.scrollAreaWidgetContents)
+        self.radioButton_3.setObjectName(u"radioButton_3")
+
+        self.mc_options.addWidget(self.radioButton_3, 0, Qt.AlignLeft)
+
+        self.radioButton_5 = QRadioButton(self.scrollAreaWidgetContents)
+        self.radioButton_5.setObjectName(u"radioButton_5")
+
+        self.mc_options.addWidget(self.radioButton_5, 0, Qt.AlignLeft)
+
+        self.radioButton_4 = QRadioButton(self.scrollAreaWidgetContents)
+        self.radioButton_4.setObjectName(u"radioButton_4")
+
+        self.mc_options.addWidget(self.radioButton_4, 0, Qt.AlignLeft)
+
+        self.radioButton = QRadioButton(self.scrollAreaWidgetContents)
+        self.radioButton.setObjectName(u"radioButton")
+
+        self.mc_options.addWidget(self.radioButton, 0, Qt.AlignLeft)
+
+
+        self.verticalLayout_6.addLayout(self.mc_options)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.pushButton_correct_mc = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_correct_mc.setObjectName(u"pushButton_correct_mc")
+
+        self.horizontalLayout_6.addWidget(self.pushButton_correct_mc)
+
+        self.pushButton_seek_mc = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_seek_mc.setObjectName(u"pushButton_seek_mc")
+
+        self.horizontalLayout_6.addWidget(self.pushButton_seek_mc)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_3)
+
+        self.pushButton_check_mc = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_check_mc.setObjectName(u"pushButton_check_mc")
+
+        self.horizontalLayout_6.addWidget(self.pushButton_check_mc)
+
+
+        self.verticalLayout_6.addLayout(self.horizontalLayout_6)
+
+        self.scrollArea_mc.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout_5.addWidget(self.scrollArea_mc)
+
+        self.stackedWidget_gameplay.addWidget(self.multiple_choice)
+
+        self.verticalLayout_2.addWidget(self.stackedWidget_gameplay)
+
+        self.tab_main.addTab(self.tab_play, "")
         self.tab_settings = QWidget()
         self.tab_settings.setObjectName(u"tab_settings")
         self.gridLayout_8 = QGridLayout(self.tab_settings)
@@ -215,7 +350,7 @@ class Ui_Luupycards(object):
         self.scrollArea_settings_settings.setWidgetResizable(True)
         self.scrollAreaWidgetContents_settings = QWidget()
         self.scrollAreaWidgetContents_settings.setObjectName(u"scrollAreaWidgetContents_settings")
-        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 571, 462))
+        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 524, 467))
         self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_settings)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_settings = QGridLayout()
@@ -348,6 +483,10 @@ class Ui_Luupycards(object):
 
         self.gridLayout_9.addLayout(self.gridLayout_settings, 0, 0, 1, 1)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_9.addItem(self.verticalSpacer, 1, 0, 1, 1)
+
         self.scrollArea_settings_settings.setWidget(self.scrollAreaWidgetContents_settings)
 
         self.gridLayout_8.addWidget(self.scrollArea_settings_settings, 9, 1, 1, 1)
@@ -439,40 +578,65 @@ class Ui_Luupycards(object):
         self.gridLayout_3.addWidget(self.scrollArea, 1, 0, 1, 1)
 
         Luupycards.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(Luupycards)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 623, 33))
-        self.menuFile = QMenu(self.menubar)
-        self.menuFile.setObjectName(u"menuFile")
-        self.menuHelp = QMenu(self.menubar)
-        self.menuHelp.setObjectName(u"menuHelp")
-        self.menuTabs = QMenu(self.menubar)
-        self.menuTabs.setObjectName(u"menuTabs")
-        Luupycards.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(Luupycards)
         self.statusbar.setObjectName(u"statusbar")
         self.statusbar.setEnabled(True)
         Luupycards.setStatusBar(self.statusbar)
+        self.menubar = QMenuBar(Luupycards)
+        self.menubar.setObjectName(u"menubar")
+        self.menubar.setGeometry(QRect(0, 0, 520, 33))
+        self.menuFile = QMenu(self.menubar)
+        self.menuFile.setObjectName(u"menuFile")
+        self.menuHelp = QMenu(self.menubar)
+        self.menuHelp.setObjectName(u"menuHelp")
+        Luupycards.setMenuBar(self.menubar)
+        QWidget.setTabOrder(self.scrollArea, self.tab_main)
+        QWidget.setTabOrder(self.tab_main, self.comboBox_modes)
+        QWidget.setTabOrder(self.comboBox_modes, self.comboBox_question_order)
+        QWidget.setTabOrder(self.comboBox_question_order, self.button_play)
+        QWidget.setTabOrder(self.button_play, self.button_quit)
+        QWidget.setTabOrder(self.button_quit, self.lineEdit_answer)
+        QWidget.setTabOrder(self.lineEdit_answer, self.button_check)
+        QWidget.setTabOrder(self.button_check, self.radioButton_2)
+        QWidget.setTabOrder(self.radioButton_2, self.radioButton_3)
+        QWidget.setTabOrder(self.radioButton_3, self.radioButton_5)
+        QWidget.setTabOrder(self.radioButton_5, self.radioButton_4)
+        QWidget.setTabOrder(self.radioButton_4, self.radioButton)
+        QWidget.setTabOrder(self.radioButton, self.pushButton_check_mc)
+        QWidget.setTabOrder(self.pushButton_check_mc, self.pushButton_seek_mc)
+        QWidget.setTabOrder(self.pushButton_seek_mc, self.pushButton_correct_mc)
+        QWidget.setTabOrder(self.pushButton_correct_mc, self.scrollArea_mc)
+        QWidget.setTabOrder(self.scrollArea_mc, self.reset_all_time_streak_value_2)
+        QWidget.setTabOrder(self.reset_all_time_streak_value_2, self.reset_all_time_survival_streak_value_2)
+        QWidget.setTabOrder(self.reset_all_time_survival_streak_value_2, self.min_question_value_2)
+        QWidget.setTabOrder(self.min_question_value_2, self.max_question_value_2)
+        QWidget.setTabOrder(self.max_question_value_2, self.show_current_question_number_value_2)
+        QWidget.setTabOrder(self.show_current_question_number_value_2, self.multiple_choice_max_options_value_2)
+        QWidget.setTabOrder(self.multiple_choice_max_options_value_2, self.lives_value_2)
+        QWidget.setTabOrder(self.lives_value_2, self.fuzzy_select_precent_value_2)
+        QWidget.setTabOrder(self.fuzzy_select_precent_value_2, self.button_settings_save_2)
+        QWidget.setTabOrder(self.button_settings_save_2, self.button_settings_reset_2)
+        QWidget.setTabOrder(self.button_settings_reset_2, self.scrollArea_settings_settings)
+        QWidget.setTabOrder(self.scrollArea_settings_settings, self.tableWidget)
+        QWidget.setTabOrder(self.tableWidget, self.button_save_file)
+        QWidget.setTabOrder(self.button_save_file, self.button_save_memory)
 
         self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuTabs.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
-        self.menuFile.addAction(self.actionOpen_2)
+        self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuHelp.addAction(self.actionRead_the_docs)
-        self.menuTabs.addAction(self.action_tabs_main_menu)
-        self.menuTabs.addAction(self.action_tabls_play)
-        self.menuTabs.addAction(self.action_tabs_settings)
-        self.menuTabs.addAction(self.action_tabs_inspector)
 
         self.retranslateUi(Luupycards)
         self.lineEdit_answer.returnPressed.connect(self.button_check.click)
+        self.lineEdit_answer.returnPressed.connect(self.button_check.animateClick)
 
         self.tab_main.setCurrentIndex(0)
+        self.stackedWidget_gameplay.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Luupycards)
@@ -512,6 +676,9 @@ class Ui_Luupycards(object):
 #if QT_CONFIG(tooltip)
         self.actionNew.setToolTip(QCoreApplication.translate("Luupycards", u"Create a new pair file", None))
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.actionNew.setStatusTip(QCoreApplication.translate("Luupycards", u"Create a new pair file", None))
+#endif // QT_CONFIG(statustip)
 #if QT_CONFIG(shortcut)
         self.actionNew.setShortcut(QCoreApplication.translate("Luupycards", u"Ctrl+E", None))
 #endif // QT_CONFIG(shortcut)
@@ -531,15 +698,15 @@ class Ui_Luupycards(object):
         self.action_tabs_inspector.setText(QCoreApplication.translate("Luupycards", u"Inspector", None))
         self.actionCSV_2.setText(QCoreApplication.translate("Luupycards", u"CSV", None))
         self.actionJSON_2.setText(QCoreApplication.translate("Luupycards", u"JSON", None))
-        self.actionOpen_2.setText(QCoreApplication.translate("Luupycards", u"Open", None))
+        self.actionOpen.setText(QCoreApplication.translate("Luupycards", u"Open", None))
 #if QT_CONFIG(tooltip)
-        self.actionOpen_2.setToolTip(QCoreApplication.translate("Luupycards", u"Open a pair file. Either CSV or JSON", None))
+        self.actionOpen.setToolTip(QCoreApplication.translate("Luupycards", u"Open a pair file. Either CSV or JSON", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.actionOpen_2.setStatusTip(QCoreApplication.translate("Luupycards", u"Open a pair file. Either CSV or JSON", None))
+        self.actionOpen.setStatusTip(QCoreApplication.translate("Luupycards", u"Open a pair file. Either CSV or JSON", None))
 #endif // QT_CONFIG(statustip)
 #if QT_CONFIG(shortcut)
-        self.actionOpen_2.setShortcut(QCoreApplication.translate("Luupycards", u"Ctrl+O", None))
+        self.actionOpen.setShortcut(QCoreApplication.translate("Luupycards", u"Ctrl+O", None))
 #endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         self.tab_main.setToolTip("")
@@ -589,12 +756,22 @@ class Ui_Luupycards(object):
         self.button_quit.setText(QCoreApplication.translate("Luupycards", u"Quit", None))
         self.tab_main.setTabText(self.tab_main.indexOf(self.tab_main_menu), QCoreApplication.translate("Luupycards", u"Main Menu", None))
 #if QT_CONFIG(tooltip)
-        self.button_check.setToolTip(QCoreApplication.translate("Luupycards", u"Check that did you answer correctly", None))
+        self.label_game_info.setToolTip(QCoreApplication.translate("Luupycards", u"Info about actions", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.button_check.setStatusTip(QCoreApplication.translate("Luupycards", u"Check that did you answer correctly", None))
+        self.label_game_info.setStatusTip(QCoreApplication.translate("Luupycards", u"Info about actions", None))
 #endif // QT_CONFIG(statustip)
-        self.button_check.setText(QCoreApplication.translate("Luupycards", u"Check", None))
+#if QT_CONFIG(whatsthis)
+        self.label_game_info.setWhatsThis("")
+#endif // QT_CONFIG(whatsthis)
+        self.label_game_info.setText(QCoreApplication.translate("Luupycards", u"Now playing: Normal", None))
+#if QT_CONFIG(tooltip)
+        self.label_streak.setToolTip(QCoreApplication.translate("Luupycards", u"Current streak: 0, All time streak: 0", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.label_streak.setStatusTip(QCoreApplication.translate("Luupycards", u"Current streak: 0, All time streak: 0", None))
+#endif // QT_CONFIG(statustip)
+        self.label_streak.setText(QCoreApplication.translate("Luupycards", u"Streak: 0", None))
 #if QT_CONFIG(tooltip)
         self.label_question.setToolTip(QCoreApplication.translate("Luupycards", u"The question", None))
 #endif // QT_CONFIG(tooltip)
@@ -608,8 +785,47 @@ class Ui_Luupycards(object):
 #if QT_CONFIG(statustip)
         self.lineEdit_answer.setStatusTip(QCoreApplication.translate("Luupycards", u"Input your answer", None))
 #endif // QT_CONFIG(statustip)
+        self.lineEdit_answer.setInputMask("")
         self.lineEdit_answer.setText("")
-        self.tab_main.setTabText(self.tab_main.indexOf(self.play), QCoreApplication.translate("Luupycards", u"Play", None))
+        self.lineEdit_answer.setPlaceholderText(QCoreApplication.translate("Luupycards", u"Type the answer here", None))
+        self.label_lives.setText(QCoreApplication.translate("Luupycards", u"Lives: 5", None))
+#if QT_CONFIG(tooltip)
+        self.button_check.setToolTip(QCoreApplication.translate("Luupycards", u"Check that did you answer correctly", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.button_check.setStatusTip(QCoreApplication.translate("Luupycards", u"Check that did you answer correctly", None))
+#endif // QT_CONFIG(statustip)
+        self.button_check.setText(QCoreApplication.translate("Luupycards", u"Check", None))
+#if QT_CONFIG(tooltip)
+        self.label_game_info_mc.setToolTip(QCoreApplication.translate("Luupycards", u"Info about actions", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.label_game_info_mc.setStatusTip(QCoreApplication.translate("Luupycards", u"Info about actions", None))
+#endif // QT_CONFIG(statustip)
+        self.label_game_info_mc.setText(QCoreApplication.translate("Luupycards", u"Now playing: Multiple Choice", None))
+#if QT_CONFIG(tooltip)
+        self.label_streak_mc.setToolTip(QCoreApplication.translate("Luupycards", u"Current streak: 0, All time streak: 0", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.label_streak_mc.setStatusTip(QCoreApplication.translate("Luupycards", u"Current streak: 0, All time streak: 0", None))
+#endif // QT_CONFIG(statustip)
+        self.label_streak_mc.setText(QCoreApplication.translate("Luupycards", u"Streak: 0", None))
+#if QT_CONFIG(tooltip)
+        self.label_question_mc.setToolTip(QCoreApplication.translate("Luupycards", u"The question", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.label_question_mc.setStatusTip(QCoreApplication.translate("Luupycards", u"The question", None))
+#endif // QT_CONFIG(statustip)
+        self.label_question_mc.setText(QCoreApplication.translate("Luupycards", u"Question", None))
+        self.radioButton_2.setText(QCoreApplication.translate("Luupycards", u"Option 1", None))
+        self.radioButton_3.setText(QCoreApplication.translate("Luupycards", u"Option 2", None))
+        self.radioButton_5.setText(QCoreApplication.translate("Luupycards", u"Option 3", None))
+        self.radioButton_4.setText(QCoreApplication.translate("Luupycards", u"Option 4", None))
+        self.radioButton.setText(QCoreApplication.translate("Luupycards", u"Option 5", None))
+        self.pushButton_correct_mc.setText(QCoreApplication.translate("Luupycards", u"Correct", None))
+        self.pushButton_seek_mc.setText(QCoreApplication.translate("Luupycards", u"Seek", None))
+        self.pushButton_check_mc.setText(QCoreApplication.translate("Luupycards", u"Check", None))
+        self.tab_main.setTabText(self.tab_main.indexOf(self.tab_play), QCoreApplication.translate("Luupycards", u"Play", None))
 #if QT_CONFIG(tooltip)
         self.label_all_time_survival_streak_2.setToolTip(QCoreApplication.translate("Luupycards", u"Your all time survival streak", None))
 #endif // QT_CONFIG(tooltip)
@@ -765,12 +981,5 @@ class Ui_Luupycards(object):
         self.tab_main.setTabText(self.tab_main.indexOf(self.tab_inspector), QCoreApplication.translate("Luupycards", u"Inspector", None))
         self.menuFile.setTitle(QCoreApplication.translate("Luupycards", u"File", None))
         self.menuHelp.setTitle(QCoreApplication.translate("Luupycards", u"Help", None))
-#if QT_CONFIG(tooltip)
-        self.menuTabs.setToolTip(QCoreApplication.translate("Luupycards", u"Toggle different tabs on or off", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.menuTabs.setStatusTip(QCoreApplication.translate("Luupycards", u"Toggle different tabs on or off", None))
-#endif // QT_CONFIG(statustip)
-        self.menuTabs.setTitle(QCoreApplication.translate("Luupycards", u"Tabs", None))
     # retranslateUi
 

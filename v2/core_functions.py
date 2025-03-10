@@ -96,6 +96,21 @@ class Menu:
             self.user_input = input("Name, alias or number: ")
 
 
+def determine_pair_file(file_path, jp_mode=False) -> list:
+    pairs = list()
+
+    json_match = re.search(f"^.*(\.json|\.csv)$", file_path)
+    if json_match.group(1).lower() == ".json":
+        print("Input file is json")
+        pairs = pair_import_json(file_path, jp_mode)
+        print("Imported")
+    else:
+        print("Input file is csv")
+        pairs = pair_import(file_path)
+        print("Imported")
+    return pairs
+
+
 def pair_import(csv_file_path) -> list:
     pair0 = {
         "question": ["Wait... question zero? What's the answer though..."],
@@ -147,7 +162,7 @@ def pair_import_json(json_file_path, jp_mode) -> list:
                 if pairs[-1] != pair:
                     corelog.error("The pair wasn't added to the list correctly!")
 
-            if jp_mode:
+            if pairs[1]["pronunciation"][0].isidentifier():  # if this exists it's a jp file
                 corelog.info("jp_mode is enabled.")
                 for i, jp_pair in enumerate(content, start=1):
                     jp_pair = dict(jp_pair)

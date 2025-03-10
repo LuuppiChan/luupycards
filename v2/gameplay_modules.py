@@ -22,6 +22,44 @@ try:
 except ModuleNotFoundError:
     fuzzy_is_available = False
 
+def determine_gamemode(current_mode: str, current_order: str, pairs: list):
+    modes = [
+        ["Normal", "n"],
+        ["Reverse", "r"],
+        ["Multiple Choice", "m"],
+        ["Survive!", "s!"],
+    ]
+    orders = [
+        ["Forward", "r"],
+        ["Reverse", "re"],
+        ["Random", "ro"]
+    ]
+    reverse = False
+    order = "forward"
+    game_object = MainGameplay
+
+    match current_mode:
+        case "Normal":
+            game_object = Normal
+        case "Reverse":
+            reverse = True
+            game_object = Reverse
+        case "Multiple Choice":
+            game_object = MultipleChoice
+        case "Survive!":
+            game_object = Survive
+
+    match current_order:
+        case "Forward":
+            pass
+        case "Reverse":
+            order = "reverse"
+        case "Random":
+            order = "random"
+
+    return game_object(pairs, order=order)  # This returns a ready game object
+
+
 class MainGameplay:
     def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward"):
 
@@ -84,34 +122,42 @@ class MainGameplay:
     def print_correct_answer(self):
         if self.enabled_prints["correct answer"]:
             print("Correct")
+            return "Correct"
 
     def print_invalid_seek(self, question_number):
         if self.enabled_prints["invalid seek"]:
             print(f'"{question_number}" is an invalid seek number. (Max: {self.max_question})')
+            return f'"{question_number}" is an invalid seek number. (Max: {self.max_question})'
 
     def print_valid_seek(self, question_number):
         if self.enabled_prints["valid seek"]:
             print(f"Seeking from {self.current_question} to {question_number}...")
+            return f"Seeking from {self.current_question} to {question_number}..."
 
     def print_show_correct_answer(self, correct_answers):
         if self.enabled_prints["show correct answer"]:
             print(f"Correct answers: {" / ".join(correct_answers)}")
+            return f"Correct answers: {" / ".join(correct_answers)}"
 
     def print_return_to_main_menu(self):
         if self.enabled_prints["return to main menu"]:
             print("Returning to main menu...")
+            return "Returning to main menu..."
 
     def print_empty_field(self):
         if self.enabled_prints["empty field"]:
             print("Please type something...")
+            return print("Please type something...")
 
     def print_wrong_answer(self):
         if self.enabled_prints["wrong answer"]:
             print(f'"{self.user_input.capitalize()}" is not a valid answer.')
+            return f'"{self.user_input.capitalize()}" is not a valid answer.'
 
     def print_fuzzy_correct(self, correct_answers):
         if self.enabled_prints["fuzzy correct"]:
             print(f"Almost correct! {" / ".join(correct_answers)}")
+            return f"Almost correct! {" / ".join(correct_answers)}"
 
     def update_class_variables(self, variable, new_input):
         match variable:
@@ -125,6 +171,7 @@ class MainGameplay:
     def print_question(self):
         print(f"Current streak: {self.streak_current}, All time streak: {self.streak_all_time}")
         print(f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}")
+        return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
 
     def fuzzy_check(self, correct_answers):
         processed = process.extract(self.user_input, correct_answers)
@@ -271,7 +318,9 @@ class MainGameplay:
 
     @staticmethod
     def clear():
-        os.system("clear")
+        # This method is not needed in graphical interfaces
+        pass
+        #os.system("clear")
 
     def check_max_streak(self):
         if self.streak_current > self.streak_all_time:
@@ -295,13 +344,74 @@ class MainGameplay:
             if answer_check == "quit":
                 return self.streak_current
 
+    def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
+        correct_answers = self.pairs[self.current_question][self.answer]
+        if not user_input:
+            user_input = self.user_input
+
+        if self.enabled_answer_checks["correct answer"]:
+            # check for correct answer in user_input, iterates through all answer candidates
+            for answer in correct_answers:
+                answer = answer.lower()
+                if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
+                    self.next_question()
+                    self.streak_current += 1
+                    return "correct", self.print_correct_answer()
+
+        if self.enabled_answer_checks["fuzzy correct"]:
+            if self.fuzzy_matching:  # checks if fuzzy matching is available
+                if self.fuzzy_check(correct_answers):
+                    self.next_question()
+                    self.streak_current += 1
+                    return "fuzzy correct", self.print_fuzzy_correct(correct_answers)
+
+        if self.enabled_answer_checks["seek"]:
+            match = re.search(r"^seek (\d+)", user_input)
+            if match:  # seeking
+                info_return = ""
+                question_number = int(match.group(1))
+                if question_number > self.max_question:
+                    info_return = self.print_invalid_seek(question_number)
+                else:
+                    info_return = self.print_valid_seek(question_number)
+                    self.current_question = question_number
+                return "seek", info_return
+
+        if self.enabled_answer_checks["show correct answer"]:
+            if user_input in self.show_correct_binds:  # show correct answer
+                self.streak_current = 0  # breaks the streak
+                return "show correct answer", self.print_show_correct_answer(correct_answers)
+
+        if self.enabled_answer_checks["quit"]:
+            if user_input in self.quit_binds:  # quit to main menu
+                self.print_return_to_main_menu()
+                return "quit"
+
+        if self.enabled_answer_checks["empty field"]:
+            if not user_input or re.findall("^ *$", user_input):  # checks if user_input is empty
+                self.print_empty_field()
+                return "empty field"
+
+        if self.enabled_answer_checks["wrong answer"]:
+            self.streak_current = 0  # breaks the streak
+            return "wrong", self.print_wrong_answer()  # if there's no match, the answer is incorrect
+
+        raise Exception("Please enable wrong answer check.")
+
+    def play_gui(self):
+        self.check_max_streak()
+
+        return self.print_question()
+
 
 class Normal(MainGameplay):
     pass
 
+
 class Reverse(MainGameplay):
     def __init__(self, pairs, reverse=True, current_question=1, streak_current=0, order="forward"):
         super().__init__(pairs, reverse, current_question, streak_current, order)
+
 
 class MultipleChoice(MainGameplay):
     def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward"):
@@ -343,6 +453,7 @@ class MultipleChoice(MainGameplay):
                 multiple_choice_options = {}  # This is to make it generate new options
             elif answer_check =="seek":
                 multiple_choice_options = {}
+
 
 class Survive(MainGameplay):
     def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="random"):
@@ -399,6 +510,7 @@ class Survive(MainGameplay):
                 print("Game over!")
                 time.sleep(5)
                 return 0
+
 
 # In this one the questions are images that are executed based on what's in the first question cell.
 # This could be used by making a .csv and then on that directory a subdirectory with the images.
