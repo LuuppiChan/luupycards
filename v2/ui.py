@@ -350,7 +350,7 @@ class Ui_Luupycards(object):
         self.scrollArea_settings_settings.setWidgetResizable(True)
         self.scrollAreaWidgetContents_settings = QWidget()
         self.scrollAreaWidgetContents_settings.setObjectName(u"scrollAreaWidgetContents_settings")
-        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 524, 467))
+        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 468, 429))
         self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_settings)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_settings = QGridLayout()

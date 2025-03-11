@@ -1,8 +1,6 @@
 import os
 import sys
-from symtable import Class
 
-from PySide6 import QtUiTools
 from PySide6 import QtWidgets
 from PySide6 import QtCore
 
@@ -10,7 +8,7 @@ from PySide6 import QtCore
 import core_functions as core
 import gameplay_modules as gameplay
 
-if True:  # PEP8
+if True:  # Because of PEP8
     os.system("pyside6-uic main.ui -o ui.py")  # recreates this file automatically
     from ui import Ui_Luupycards  # this loads the ui
 
@@ -41,16 +39,17 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def correct_checkbutton(self):
         line_text = self.ui.lineEdit_answer.text()
-        self.the_game.user_input = line_text
-        result = self.the_game.answer_check_gui(line_text)
+        if line_text:
+            self.the_game.user_input = line_text
+            result = self.the_game.answer_check_gui(line_text)
 
-        self.set_info(result[1])
-        self.set_question(self.the_game.print_question())
-        self.ui.lineEdit_answer.clear()
+            self.set_info(result[1])
+            self.set_question(self.the_game.print_question())
+            self.ui.lineEdit_answer.clear()
 
-        match result[0]:
-            case "correct":
-                pass
+            match result[0]:
+                case "correct":
+                    pass
 
     def open_dir_dialog(self):
         file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
@@ -113,8 +112,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    app.setStyle('Breeze')  # I'll set it properly later
+    args = sys.argv + ["--platformtheme ", "qt5ct"]
+    app = QtWidgets.QApplication(args)
+    #app.setStyle('Breeze')  # I'll set it properly later
+    style_name = app.style().metaObject().className()
+    if style_name == "QFusionStyle":
+        pass
+
 
     window = MainWindow()
     window.show()

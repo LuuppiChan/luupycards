@@ -10,14 +10,10 @@ import logging
 
 gamelog = logging.getLogger(__name__)
 
-# Suppress some root fuzzywuzzy warnings (I've taken the logging into usage elsewhere.)
-# import logging
-# logging.getLogger().setLevel(logging.ERROR)
-
 # Check if fuzzy select is available
 fuzzy_is_available = False
 try:
-    from fuzzywuzzy import fuzz, process
+    from thefuzz import fuzz, process
     fuzzy_is_available = True
 except ModuleNotFoundError:
     fuzzy_is_available = False
