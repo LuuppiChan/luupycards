@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>444</width>
-    <height>514</height>
+    <width>431</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>428</width>
-         <height>437</height>
+         <width>415</width>
+         <height>403</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -361,7 +361,7 @@
                   <item>
                    <widget class="QLabel" name="label_lives">
                     <property name="text">
-                     <string>Lives: 5</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
@@ -413,8 +413,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>312</width>
-                     <height>316</height>
+                     <width>371</width>
+                     <height>327</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1069,7 +1069,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>444</width>
+     <width>431</width>
      <height>33</height>
     </rect>
    </property>
@@ -1283,6 +1283,34 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionZoom_in">
+   <property name="text">
+    <string>Zoom+</string>
+   </property>
+   <property name="toolTip">
+    <string>Increase font size</string>
+   </property>
+   <property name="statusTip">
+    <string>Increase font size</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionZoom_out">
+   <property name="text">
+    <string>Zoom-</string>
+   </property>
+   <property name="toolTip">
+    <string>Decrease font size</string>
+   </property>
+   <property name="statusTip">
+    <string>Decrease font size</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
    </property>
   </action>
  </widget>

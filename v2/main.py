@@ -1,8 +1,10 @@
 #!/bin/python
 import os
 import sys
+import shutil
 import logging
 import argparse
+from pathlib import Path
 
 from PySide6 import QtWidgets
 from PySide6 import QtCore
@@ -52,7 +54,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # options
         self.reload_settings()
-        self.game_options = dict()
+        self.game_options = core.get_options()
         
         ## Buttons
         # Quit buttons
@@ -63,6 +65,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.button_play.clicked.connect(self.gameplay_setup)  # Start playing
         self.ui.button_check.clicked.connect(self.correct_checkbutton)  # check button
         self.ui.pushButton_check_mc.clicked.connect(self.correct_checkbutton)  # check button mc
+
+        self.ui.button_settings_reset_2.clicked.connect(self.reset_settings)
+        self.ui.button_settings_save_2.clicked.connect(self.save_settings)
 
         mainlog.info("Set up class init.")
 
@@ -120,6 +125,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.action_tabls_play.setEnabled(True)
             self.ui.tab_play.setEnabled(True)
 
+            if current_mode == "Survive!":
+                self.ui.label_lives.setText("Lives: 5")
+            else:
+                self.ui.label_lives.setText("")
+
             print(current_mode, current_order)  # then pass to backend
             self.the_game = gameplay.determine_gamemode(current_mode, current_order, self.pairs)
 
@@ -127,7 +137,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.set_question(self.the_game.print_question())
         else:
             mainlog.info("No pairs detected.")
-            QtWidgets.QMessageBox.warning(self, "Pair error!", "Please import pairs before you start playing!")
+            QtWidgets.QMessageBox.warning(self, "Pair error!", "Please import pairs before you start playing!\nFile -> Open")
 
     def reload_settings(self):
         self.game_options = core.get_options("load")
@@ -144,8 +154,64 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.lives_value_2.setValue(options["lives"])
         self.ui.fuzzy_select_precent_value_2.setValue(options["fuzzy select percent"])
 
+    def reset_settings(self):
+        are_you_sure = QtWidgets.QMessageBox(self)
+        are_you_sure.setText("Are you sure you want to reset all the settings?")
+        are_you_sure.setInformativeText("Your all time streaks will be reset!")
+        are_you_sure.setStandardButtons(QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
+        are_you_sure.exec()
+
+        if are_you_sure.buttonClicked:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            settings_path = os.path.join(script_dir, "settings.json")
+
+            # static settings path
+            home_dir = Path.home()
+            static_path = f"{home_dir}/.cache/luupycards"  # This isn't kinda cross-platform since Windows doesn't have this folder
+            settings_filename = "settings.json"
+            static_settings_path = os.path.join(static_path, settings_filename)
+
+            # creates the static dir if it doesn't exist (just in case)
+            os.makedirs(static_path, exist_ok=True)  # for cross-platform compatibility
+
+            # creates settings file
+            shutil.copy(settings_path, static_settings_path)  # for cross-platform compatibility
+
+            mainlog.info("Reset settings")
+
+            self.reload_settings()
+            mainlog.info("Reloaded settings")
+
     def save_settings(self):
-        pass
+        self.game_options["all time streak"]                = int(self.ui.all_time_streak_value_2.text())
+        self.game_options["all time survival streak"]       = int(self.ui.all_time_survival_streak_value_2.text())
+        self.game_options["reset all time streak"]          = self.ui.reset_all_time_streak_value_2.isChecked()
+        self.game_options["reset all time survival streak"] = self.ui.reset_all_time_survival_streak_value_2.isChecked()
+        self.game_options["min question"]                   = self.ui.min_question_value_2.value()
+        self.game_options["max question"]                   = self.ui.max_question_value_2.value()
+        self.game_options["show current question number"]   = self.ui.show_current_question_number_value_2.isChecked()
+        self.game_options["multiple choice max options"]    = self.ui.multiple_choice_max_options_value_2.value()
+        self.game_options["lives"]                          = self.ui.lives_value_2.value()
+        self.game_options["fuzzy select percent"]           = self.ui.fuzzy_select_precent_value_2.value()
+
+        core.static_value_functions_gui()
+        self.check_invalid_settings()
+        core.get_options("dump", self.game_options)
+        mainlog.info("Saved settings")
+        self.reload_settings()
+        mainlog.info("Reloaded settings")
+
+    def check_invalid_settings(self):
+        options_orig = core.get_options()
+
+        if self.game_options["min question"] > self.game_options["max question"]:
+            self.game_options["max question"] = self.game_options["min question"]
+        if self.pairs:
+            if self.game_options["max question"] > len(self.pairs):
+                self.game_options["max question"] = len(self.pairs) -1
+
+        if options_orig != self.game_options:
+            mainlog.warning("Found illegal settings values, fixing...")
 
 
 if __name__ == "__main__":

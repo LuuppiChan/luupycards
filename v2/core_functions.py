@@ -30,8 +30,7 @@ os.makedirs(static_path, exist_ok=True)  # for cross-platform compatibility
 
 # If there's no settings file, it creates one.
 if not os.path.isfile(static_settings_path):
-    user_settings = os.path.join(static_path, settings_filename)
-    shutil.copy(settings_path, user_settings)  # for cross-platform compatibility
+    shutil.copy(settings_path, static_settings_path)  # for cross-platform compatibility
 
 
 class Menu:
@@ -99,7 +98,7 @@ class Menu:
 def determine_pair_file(file_path, jp_mode=False) -> list:
     pairs = list()
 
-    json_match = re.search(f"^.*(\.json|\.csv)$", file_path)
+    json_match = re.search(fr"^.*(\.json|\.csv)$", file_path)
     if json_match.group(1).lower() == ".json":
         print("Input file is json")
         pairs = pair_import_json(file_path, jp_mode)
@@ -271,7 +270,7 @@ def subsetting_menu(selected_setting, options, static_values, locked_values) -> 
     user_input_subsetting = input("Insert a new value: ")
 
     if selected_setting in static_values:
-        static_value_functions(user_input_subsetting, options, static_values, selected_setting)
+        static_value_functions(user_input_subsetting, options, static_values)
         return
 
     elif selected_setting in locked_values:
@@ -294,9 +293,8 @@ def subsetting_menu(selected_setting, options, static_values, locked_values) -> 
         get_options("dump", options)
 
 
-def static_value_functions(user_input_subsetting, options, static_values, selected_setting) -> None:
-
-    os.system("clear")
+def static_value_functions(user_input_subsetting, options, selected_setting) -> None:
+    static_values = ["reset all time streak", "reset all time survival streak"]
 
     # other static value functions can be added here
     if selected_setting == static_values[0] and user_input_subsetting.lower() == "true":
@@ -306,6 +304,17 @@ def static_value_functions(user_input_subsetting, options, static_values, select
     elif selected_setting == static_values[1] and user_input_subsetting.lower() == "true":
         options["all time survival streak"] = 0
         get_options("dump", options)
+
+
+def static_value_functions_gui():
+    static_values = ["reset all time streak", "reset all time survival streak"]
+    options = get_options()
+
+    if options[static_values[0]]:
+        settings_value_manipulator("all time streak", "dump", 0)
+
+    if options[static_values[1]]:
+        settings_value_manipulator("all time survival streak", "dump", 0)
 
 
 def pass_pairs(pairs_local) -> None:
@@ -379,7 +388,7 @@ def check_for_invalid_setting_values() -> None:
         options["max question"] = options["min question"] + 1
     if options["max question"] > len(pairs) - 1:
         options["max question"] = len(pairs) - 1
-    if options["multiple choice max options"] > 26:
+    if options["multiple choice max options"] >= 26:
         options["multiple choice max options"] = 5
     if options["lives"] < 1:
         options["lives"] = 5
@@ -387,8 +396,7 @@ def check_for_invalid_setting_values() -> None:
         options["fuzzy select percent"] = 90
 
     if options_orig != options:
-        print("One or more of your setting values is illegal, fixing it in 5 seconds...")
-        fancy_line_print("5. 4. 3. 2. 1. 0.")
+        corelog.warning("Found illegal settings values, fixing...")
         get_options("dump", options)
 
 # Most useful function ever!
