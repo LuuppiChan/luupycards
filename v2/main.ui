@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>624</height>
+    <width>444</width>
+    <height>514</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>504</width>
-         <height>547</height>
+         <width>428</width>
+         <height>437</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -295,6 +295,9 @@
                   <property name="text">
                    <string>Question</string>
                   </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -410,8 +413,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>630</width>
-                     <height>534</height>
+                     <width>312</width>
+                     <height>316</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1066,7 +1069,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>520</width>
+     <width>444</width>
      <height>33</height>
     </rect>
    </property>
