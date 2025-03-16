@@ -340,6 +340,14 @@ class MainGameplay:
             if answer_check == "quit":
                 return self.streak_current
 
+    def settings_update(self):
+        self.show_question_number = core.settings_value_manipulator("show current question number")
+        self.streak_all_time = core.settings_value_manipulator("all time streak")
+        self.max_question = core.settings_value_manipulator("max question")  # This is true inconsistency lol
+        self.all_settings = core.get_options()
+        self.random_list = core.never_repeat_random_list(self.all_settings["min question"],
+                                                         self.all_settings["max question"])
+
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         correct_answers = self.pairs[self.current_question][self.answer]
         if not user_input:
@@ -380,8 +388,7 @@ class MainGameplay:
 
         if self.enabled_answer_checks["quit"]:
             if user_input in self.quit_binds:  # quit to main menu
-                self.print_return_to_main_menu()
-                return "quit"
+                return "quit", self.print_return_to_main_menu()
 
         if self.enabled_answer_checks["empty field"]:
             if not user_input or re.findall("^ *$", user_input):  # checks if user_input is empty
@@ -395,6 +402,7 @@ class MainGameplay:
         raise Exception("Please enable wrong answer check.")
 
     def play_gui(self):
+        self.settings_update()
         self.check_max_streak()
 
         return self.print_question()

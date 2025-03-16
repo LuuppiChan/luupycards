@@ -33,7 +33,7 @@ match args.debug:
         log_level = logging.INFO
     case "error":
         log_level = logging.ERROR
-    case "critical" | _:  # the wild card is so that it won't warn me.
+    case "critical" | _:
         log_level = logging.CRITICAL
 
 # logging
@@ -66,26 +66,73 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.button_check.clicked.connect(self.correct_checkbutton)  # check button
         self.ui.pushButton_check_mc.clicked.connect(self.correct_checkbutton)  # check button mc
 
+        # settings buttons
         self.ui.button_settings_reset_2.clicked.connect(self.reset_settings)
         self.ui.button_settings_save_2.clicked.connect(self.save_settings)
 
+        # font changes
+        self.ui.actionBig_mode.triggered.connect(self.big_font_mode)
+
         mainlog.info("Set up class init.")
+
+    def big_font_mode(self):
+        font_family = 'Sans Serif'
+        if self.ui.actionBig_mode.isChecked():
+            self.ui.label_question.setFont(QtGui.QFont(font_family, 20 * 2))
+            self.ui.label_question_mc.setFont(QtGui.QFont(font_family, 20 * 2))
+            self.ui.lineEdit_answer.setFont(QtGui.QFont(font_family, 16 * 2))
+            self.ui.label_streak.setFont(QtGui.QFont(font_family, 12 * 2))
+            self.ui.label_streak_mc.setFont(QtGui.QFont(font_family, 12 * 2))
+            self.ui.label_game_info.setFont(QtGui.QFont(font_family, 12 *2 ))
+            self.ui.label_game_info_mc.setFont(QtGui.QFont(font_family, 12 * 2))
+            self.ui.button_check.setFont(QtGui.QFont(font_family, 16))
+            self.ui.pushButton_check_mc.setFont(QtGui.QFont(font_family, 16))
+
+        else:
+            self.ui.label_question.setFont(QtGui.QFont(font_family, 20))
+            self.ui.label_question_mc.setFont(QtGui.QFont(font_family, 20))
+            self.ui.lineEdit_answer.setFont(QtGui.QFont(font_family, 16))
+            self.ui.label_streak.setFont(QtGui.QFont(font_family, 12))
+            self.ui.label_streak_mc.setFont(QtGui.QFont(font_family, 12))
+            self.ui.label_game_info.setFont(QtGui.QFont(font_family, 12))
+            self.ui.label_game_info_mc.setFont(QtGui.QFont(font_family, 12))
+            self.ui.button_check.setFont(QtGui.QFont(font_family, 12))
+            self.ui.pushButton_check_mc.setFont(QtGui.QFont(font_family, 12))
 
     def correct_checkbutton(self):
         line_text = self.ui.lineEdit_answer.text()
         if line_text:
+            self.reload_settings()
             self.the_game.user_input = line_text
             result = self.the_game.answer_check_gui(line_text)
 
-            self.set_info(result[1])
             self.set_question(self.the_game.print_question())
             self.ui.lineEdit_answer.clear()
 
             match result[0]:
                 case "correct":
-                    pass
+                    self.set_info(result[1])
+                case "fuzzy correct":
+                    self.set_info(result[1])
+                case "seek":
+                    self.set_info(result[1])
+                case "show correct answer":
+                    self.set_info(result[1])
+                case "quit":
+                    self.ui.tab_main.setCurrentWidget(self.ui.tab_main_menu)
+                    self.ui.tab_play.setEnabled(False)
+                case "empty field":  # this shouldn't appear though
+                    self.set_info("This shouldn't appear. Please inform if this appears.")
+                    mainlog.error("Empty field appeared!")
+                case "wrong":
+                    self.set_info(result[1])
         else:
             mainlog.info("Empty button press.")
+            self.ui.label_question_mc.setText("")
+            self.ui.label_question.setText("")
+
+            self.ui.label_question.setText(self.the_game.print_question())
+            self.ui.label_question_mc.setText(self.the_game.print_question())
 
     def open_dir_dialog(self):
         file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
@@ -115,6 +162,11 @@ class MainWindow(QtWidgets.QMainWindow):
             # determine mode
             current_mode = self.ui.comboBox_modes.currentText()
             current_order = self.ui.comboBox_question_order.currentText()
+
+            # pair lengths
+            core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
+            core.settings_value_manipulator("min question", "dump", 1)
+            self.reload_settings()
 
             # set tab to play
             self.ui.tab_main.setCurrentWidget(self.ui.tab_play)

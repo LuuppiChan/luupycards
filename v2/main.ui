@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>431</width>
-    <height>480</height>
+    <width>444</width>
+    <height>374</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>415</width>
-         <height>403</height>
+         <width>428</width>
+         <height>297</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -49,6 +49,12 @@
          <widget class="QTabWidget" name="tab_main">
           <property name="enabled">
            <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
           <property name="font">
            <font>
@@ -232,7 +238,7 @@
                <property name="enabled">
                 <bool>true</bool>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
                   <item>
@@ -249,6 +255,9 @@
                     <property name="text">
                      <string>Now playing: Normal</string>
                     </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::LinksAccessibleByMouse|Qt::TextEditable|Qt::TextSelectableByMouse</set>
+                    </property>
                    </widget>
                   </item>
                   <item alignment="Qt::AlignRight">
@@ -261,6 +270,9 @@
                     </property>
                     <property name="text">
                      <string>Streak: 0</string>
+                    </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                     </property>
                    </widget>
                   </item>
@@ -279,26 +291,51 @@
                   </property>
                  </spacer>
                 </item>
-                <item alignment="Qt::AlignHCenter">
-                 <widget class="QLabel" name="label_question">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                   </font>
-                  </property>
-                  <property name="toolTip">
-                   <string>The question</string>
-                  </property>
-                  <property name="statusTip">
-                   <string>The question</string>
-                  </property>
-                  <property name="text">
-                   <string>Question</string>
-                  </property>
-                  <property name="wordWrap">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <widget class="QLabel" name="label_question">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>20</pointsize>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>The question</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>The question</string>
+                    </property>
+                    <property name="text">
+                     <string>Question</string>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                    <property name="margin">
+                     <number>0</number>
+                    </property>
+                    <property name="indent">
+                     <number>0</number>
+                    </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::LinksAccessibleByMouse|Qt::TextEditable|Qt::TextSelectableByMouse</set>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_3">
@@ -413,11 +450,11 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>371</width>
-                     <height>327</height>
+                     <width>406</width>
+                     <height>530</height>
                     </rect>
                    </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_6">
+                   <layout class="QVBoxLayout" name="verticalLayout_4">
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_5">
                       <item>
@@ -461,23 +498,33 @@
                       </property>
                      </spacer>
                     </item>
-                    <item alignment="Qt::AlignHCenter">
-                     <widget class="QLabel" name="label_question_mc">
-                      <property name="font">
-                       <font>
-                        <pointsize>20</pointsize>
-                       </font>
-                      </property>
-                      <property name="toolTip">
-                       <string>The question</string>
-                      </property>
-                      <property name="statusTip">
-                       <string>The question</string>
-                      </property>
-                      <property name="text">
-                       <string>Question</string>
-                      </property>
-                     </widget>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_7">
+                      <item>
+                       <widget class="QLabel" name="label_question_mc">
+                        <property name="font">
+                         <font>
+                          <pointsize>20</pointsize>
+                         </font>
+                        </property>
+                        <property name="toolTip">
+                         <string>The question</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>The question</string>
+                        </property>
+                        <property name="text">
+                         <string>Question</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                     <item>
                      <spacer name="verticalSpacer_play_middle_3">
@@ -1069,7 +1116,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>431</width>
+     <width>444</width>
      <height>33</height>
     </rect>
    </property>
@@ -1090,7 +1137,14 @@
     </property>
     <addaction name="actionRead_the_docs"/>
    </widget>
+   <widget class="QMenu" name="menuMisc">
+    <property name="title">
+     <string>Misc</string>
+    </property>
+    <addaction name="actionBig_mode"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuMisc"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionCSV">
@@ -1313,6 +1367,25 @@
     <string>Ctrl+-</string>
    </property>
   </action>
+  <action name="actionBig_mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Big mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Bigger font for some gameplay elements</string>
+   </property>
+   <property name="statusTip">
+    <string>Bigger font for some gameplay elements</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>scrollArea</tabstop>
@@ -1331,7 +1404,6 @@
   <tabstop>pushButton_check_mc</tabstop>
   <tabstop>pushButton_seek_mc</tabstop>
   <tabstop>pushButton_correct_mc</tabstop>
-  <tabstop>scrollArea_mc</tabstop>
   <tabstop>reset_all_time_streak_value_2</tabstop>
   <tabstop>reset_all_time_survival_streak_value_2</tabstop>
   <tabstop>min_question_value_2</tabstop>
