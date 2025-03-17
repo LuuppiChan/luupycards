@@ -79,6 +79,7 @@ class MainGameplay:
         self.user_input = ""
         self.random_list = core.never_repeat_random_list(self.all_settings["min question"], self.all_settings["max question"])
         self.list_index = 0
+        self.mc_correct_index = -1
 
         # chooses the order
         self.order = order
@@ -143,12 +144,12 @@ class MainGameplay:
     def print_empty_field(self):
         if self.enabled_prints["empty field"]:
             print("Please type something...")
-            return print("Please type something...")
+            return "Please type something..."
 
     def print_wrong_answer(self):
         if self.enabled_prints["wrong answer"]:
-            print(f'"{self.user_input.capitalize()}" is not a valid answer.')
-            return f'"{self.user_input.capitalize()}" is not a valid answer.'
+            print(f'"{self.user_input.capitalize()}" is not a correct answer.')
+            return f'"{self.user_input.capitalize()}" is not a correct answer.'
 
     def print_fuzzy_correct(self, correct_answers):
         if self.enabled_prints["fuzzy correct"]:
@@ -309,6 +310,43 @@ class MainGameplay:
 
         return correct_letter, multiple_choice_options
 
+    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> (int, list):
+        if multiple_choice_options is None:
+            multiple_choice_options = []
+
+        if correct_index != -1:
+            self.mc_correct_index = correct_index
+
+        if generate_new:
+            gamelog.debug("New mc options")
+
+            mc_max_options = core.settings_value_manipulator("multiple choice max options")
+            gamelog.debug("max_options: %s", mc_max_options)
+            random_index_list = core.never_repeat_random_list(1, core.settings_value_manipulator("max question"))
+            gamelog.debug("random_index_list: %s", random_index_list)
+            # list from 1 to max question
+
+            multiple_choice_options.append(self.pairs[self.current_question].copy())  # appends the correct pair
+
+            # this chooses random pairs out of the pairs, but leaves space for the correct one
+            for i in range(mc_max_options - 1):
+                if random_index_list[i] == self.current_question:  # skips if it's the correct since it's already in
+                    continue
+                multiple_choice_options.append(self.pairs[random_index_list[i]])
+
+            random.shuffle(multiple_choice_options)  # randomize!
+
+            # converts the pairs into answer strings
+            for i, option in enumerate(multiple_choice_options):
+                # finds the correct index
+                if self.pairs[self.current_question] == option:
+                    self.mc_correct_index = i
+
+                # change the same index to the answer
+                multiple_choice_options[i] = " / ".join(option["answer"])
+
+        return self.mc_correct_index, multiple_choice_options
+
     def user_input_sanitized(self):
         self.user_input = input("Answer: ").lower()
 
@@ -392,8 +430,7 @@ class MainGameplay:
 
         if self.enabled_answer_checks["empty field"]:
             if not user_input or re.findall("^ *$", user_input):  # checks if user_input is empty
-                self.print_empty_field()
-                return "empty field"
+                return "empty field", self.print_empty_field()
 
         if self.enabled_answer_checks["wrong answer"]:
             self.streak_current = 0  # breaks the streak
@@ -475,9 +512,10 @@ class Survive(MainGameplay):
     def print_question(self):
         print(f"Current survival streak: {self.streak_current}, All time survival streak: {self.streak_all_time}")
         print(f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}")
+        return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
 
     def return_correct_answers(self):
-        return " / ".join(self.pairs[self.current_question][self.answer])
+        return f"Correct answers: {" / ".join(self.pairs[self.current_question][self.answer])}"
 
     def print_lives(self):
         print("Lives left: ", end="")

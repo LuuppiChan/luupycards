@@ -32,6 +32,11 @@ os.makedirs(static_path, exist_ok=True)  # for cross-platform compatibility
 if not os.path.isfile(static_settings_path):
     shutil.copy(settings_path, static_settings_path)  # for cross-platform compatibility
 
+def get_data_dir() -> str:
+    home_dir = Path.home()
+    static_path = f"{home_dir}/.cache/luupycards"
+    return static_path
+
 
 class Menu:
     def __init__(self, main_modes, special_modes, sub_modes, title="Title", sub_title="N/A"):
@@ -142,40 +147,40 @@ def pair_import_json(json_file_path, jp_mode) -> list:
 
     with open(json_file_path, mode="r") as file:
         raw_pairs = json.loads(file.read())
-        corelog.info("File opened successfully.")
+        corelog.debug("File opened successfully.")
         for (key, content) in raw_pairs.items():  # goes through the keys' items
-            corelog.info(f'Going through key "{key}"')
+            corelog.debug(f'Going through key "{key}"')
             for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
-                corelog.info('Going through pair number "%s"', i)
+                corelog.debug('Going through pair number "%s"', i)
                 if "kanji" in pair:
-                    corelog.info("Kanji entry found, copying it to question.")
+                    corelog.debug("Kanji entry found, copying it to question.")
                     pair["question"] = pair["kanji"].copy()
                 if "meaning" in pair:
-                    corelog.info("Meaning entry found, copying it to answer.")
+                    corelog.debug("Meaning entry found, copying it to answer.")
                     pair["answer"] = pair["meaning"].copy()
 
-                corelog.info("Appending pair to list...")
+                corelog.debug("Appending pair to list...")
                 pairs.append(pair.copy())
-                corelog.info("List has now %s item(s).", len(pairs))
-                corelog.info("Pair contents: %s", pair)
+                corelog.debug("List has now %s item(s).", len(pairs))
+                corelog.debug("Pair contents: %s", pair)
                 if pairs[-1] != pair:
                     corelog.error("The pair wasn't added to the list correctly!")
 
             if pairs[1]["pronunciation"][0].isidentifier():  # if this exists it's a jp file
-                corelog.info("jp_mode is enabled.")
+                corelog.debug("jp_mode is enabled.")
                 for i, jp_pair in enumerate(content, start=1):
                     jp_pair = dict(jp_pair)
 
-                    corelog.info('Going through pair number "%s"', i)
+                    corelog.debug('Going through pair number "%s"', i)
 
                     jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
                     jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
                     jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
 
-                    corelog.info("Appending pair to list...")
+                    corelog.debug("Appending pair to list...")
                     pairs.append(jp_pair.copy())
-                    corelog.info("List has now %s item(s).", len(pairs))
-                    corelog.info("Pair contents: %s", jp_pair)
+                    corelog.debug("List has now %s item(s).", len(pairs))
+                    corelog.debug("Pair contents: %s", jp_pair)
                     if pairs[-1] != jp_pair:
                         corelog.error("The pair wasn't added to the list correctly!")
     return pairs
