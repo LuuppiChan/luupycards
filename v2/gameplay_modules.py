@@ -439,7 +439,9 @@ class MainGameplay:
         raise Exception("Please enable wrong answer check.")
 
     def play_gui(self):
-        self.settings_update()
+        # The line under will break never repeat random
+        #self.settings_update()
+
         self.check_max_streak()
 
         return self.print_question()

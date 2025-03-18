@@ -154,7 +154,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.the_game.user_input = line_text.lower()
             result = self.the_game.answer_check_gui(line_text)
 
-            self.set_question(self.the_game.print_question())
+            self.set_question(self.the_game.play_gui())
             self.ui.lineEdit_answer.clear()
             self.set_streak()
 
@@ -246,9 +246,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
             pairs = list()
 
-
-
-
     @staticmethod
     def quit_action():
         exit()
@@ -303,8 +300,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.current_order = self.ui.comboBox_question_order.currentText()
 
             # pair lengths
-            core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
-            core.settings_value_manipulator("min question", "dump", 1)
+            if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
+                core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
+            if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
+                core.settings_value_manipulator("min question", "dump", 1)
+                
             self.reload_settings()
 
             # set tab to play
