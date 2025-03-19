@@ -36,7 +36,7 @@ I was inspired to make this thanks to "[Nihongo Quest](https://store.steampowere
 # Usage (Note that this has been copied and fitted from lfg!)
 If you have any issues understanding how to use this application please make an issue.
 THERE ARE VIDEO EXAMPLES OF SOME THINGS. Although some knowledge is highly recommended.
-## Installation
+## Installation (V1)
 - Video of installation process will be available later.
 - This is a Linux-only application for now!
 
