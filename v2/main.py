@@ -14,6 +14,7 @@ from PySide6 import QtGui
 import core_functions as core
 import gameplay_modules as gameplay
 from seek import Ui_Seek
+from import_dialog import Ui_DialogImport
 
 if True:  # Because of PEP8
     os.system("pyside6-uic main.ui -o ui.py")  # recreates this file automatically
@@ -41,6 +42,104 @@ match args.debug:
 # logging
 mainlog = logging.getLogger(__name__)
 logging.basicConfig(filename=f"{core.get_data_dir()}/luupy.log", encoding="utf-8", level=log_level, filemode="w")
+
+
+class ImportDialog(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(ImportDialog, self).__init__(parent)
+        self.ui = Ui_DialogImport()
+        self.ui.setupUi(self)
+
+        self.hide_json()
+
+        self.ui.comboBox_import.activated.connect(self.combobox_update)
+
+        self.ui.pushButton_cancel.clicked.connect(self.cancel_button)
+        self.ui.pushButton_ok.clicked.connect(self.ok_button)
+
+        self.filepaths = list()
+        self.mode = "CSV"
+        self.methods = {
+            "json" : {
+                "default" : False,
+                "japan" : False,
+                "sentences" : False
+            },
+            "csv" : {
+                "default" : False,
+                "nq" : False
+            }
+        }
+        self.selected_a_file = False
+
+    def combobox_update(self):
+        current_text = self.ui.comboBox_import.currentText()
+        if current_text == "CSV":
+            mainlog.info("CSV modes")
+            self.hide_json()
+            self.show_csv()
+            self.mode = current_text
+        elif current_text == "JSON":
+            mainlog.info("JSON modes")
+            self.hide_csv()
+            self.show_json()
+            self.mode = current_text
+        else:
+            mainlog.error("Whoa! I didn't know this mode existed! %s", self.ui.comboBox_import.currentText())
+
+    def ok_button(self):
+        if self.mode == "CSV":
+            self.methods["csv"]["default"] = True if self.ui.radioButton_csv.isChecked() else False
+            self.methods["csv"]["nq"] = True if self.ui.radioButton_nq.isChecked() else False
+
+            self.filepaths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file(s)", "Pair files (*.csv)")
+            self.filepaths = self.filepaths[0]  # only the file paths
+
+        elif self.mode == "JSON":
+            self.methods["json"]["default"] = True if self.ui.checkBox_json.isChecked() else False
+            self.methods["json"]["japan"] = True if self.ui.checkBox_jp.isChecked() else False
+            self.methods["json"]["sentences"] = True if self.ui.checkBox_sentences.isChecked() else False
+
+            self.filepaths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file(s)", "Pair files (*.json)")
+            self.filepaths = self.filepaths[0]  # only the file paths
+
+        if self.filepaths:
+            self.selected_a_file = True
+            mainlog.info("User selected file(s)")
+        else:
+            self.selected_a_file = False
+            mainlog.info("User did not select a file")
+
+        self.hide()
+
+    def cancel_button(self):
+        self.hide()
+        window.setEnabled(True)
+
+    def import_pairs(self):
+        pass
+
+    def hide_csv(self):
+        mainlog.info("csv hidden")
+        self.ui.radioButton_csv.hide()
+        self.ui.radioButton_nq.hide()
+
+    def show_csv(self):
+        mainlog.info("csv shown")
+        self.ui.radioButton_csv.show()
+        self.ui.radioButton_nq.show()
+
+    def hide_json(self):
+        mainlog.info("json hidden")
+        self.ui.checkBox_json.hide()
+        self.ui.checkBox_jp.hide()
+        self.ui.checkBox_sentences.hide()
+
+    def show_json(self):
+        mainlog.info("json shown")
+        self.ui.checkBox_json.show()
+        self.ui.checkBox_jp.show()
+        self.ui.checkBox_sentences.show()
 
 
 class SeekWidget(QtWidgets.QDialog):
@@ -112,8 +211,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.actionBig_mode.triggered.connect(self.big_font_mode)
 
         self.ui.actionTest_trigger.triggered.connect(self.test_trigger)
+        self.ui.actionOpen_Advanced.triggered.connect(self.advanced_import)
 
         mainlog.info("Set up class init.")
+
+    def advanced_import(self):
+        self.setEnabled(False)
+        mainlog.info("User used advanced import")
+        advanced_import = ImportDialog(self)
+        advanced_import.show()
 
     def big_font_mode(self):
         font_family = 'Sans Serif'
@@ -238,10 +344,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.set_info(result[1])
 
     def open_dir_dialog(self):
+        pair_import = core.PairImport()
         file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
         if file_path[0]:
             print(file_path[0])
-            self.pairs = core.determine_pair_file(file_path[0])
+            self.pairs = pair_import.determine_pair_file(file_path[0])
             json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_path[0])
             self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
             pairs = list()

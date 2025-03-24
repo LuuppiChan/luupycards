@@ -91,6 +91,9 @@ class Ui_Luupycards(object):
         self.actionTest_trigger = QAction(Luupycards)
         self.actionTest_trigger.setObjectName(u"actionTest_trigger")
         self.actionTest_trigger.setFont(font)
+        self.actionOpen_Advanced = QAction(Luupycards)
+        self.actionOpen_Advanced.setObjectName(u"actionOpen_Advanced")
+        self.actionOpen_Advanced.setFont(font)
         self.centralwidget = QWidget(Luupycards)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_3 = QGridLayout(self.centralwidget)
@@ -329,6 +332,7 @@ class Ui_Luupycards(object):
         self.label_question_mc.setFont(font2)
         self.label_question_mc.setAlignment(Qt.AlignCenter)
         self.label_question_mc.setWordWrap(True)
+        self.label_question_mc.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextEditable|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_7.addWidget(self.label_question_mc)
 
@@ -659,6 +663,7 @@ class Ui_Luupycards(object):
         self.menubar.addAction(self.menuMisc.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
         self.menuFile.addAction(self.actionOpen)
+        self.menuFile.addAction(self.actionOpen_Advanced)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionNew)
@@ -779,6 +784,7 @@ class Ui_Luupycards(object):
 #if QT_CONFIG(statustip)
         self.actionTest_trigger.setStatusTip(QCoreApplication.translate("Luupycards", u"This item is for testing things in development", None))
 #endif // QT_CONFIG(statustip)
+        self.actionOpen_Advanced.setText(QCoreApplication.translate("Luupycards", u"Open (Advanced)", None))
 #if QT_CONFIG(tooltip)
         self.tab_main.setToolTip("")
 #endif // QT_CONFIG(tooltip)

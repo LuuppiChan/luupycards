@@ -99,91 +99,105 @@ class Menu:
             self.print_special_modes()
             self.user_input = input("Name, alias or number: ")
 
+class PairImport:
+    def __init__(self):
+        self.jp_mode = False
+        self.sentences = False
+        self.automatic = False
 
-def determine_pair_file(file_path, jp_mode=False) -> list:
-    pairs = list()
+    def determine_pair_file(self, file_path, jp_mode=False, sentences=False) -> list:
+        self.automatic = True
+        pairs = list()
 
-    json_match = re.search(fr"^.*(\.json|\.csv)$", file_path)
-    if json_match.group(1).lower() == ".json":
-        print("Input file is json")
-        pairs = pair_import_json(file_path, jp_mode)
-        print("Imported")
-    else:
-        print("Input file is csv")
-        pairs = pair_import(file_path)
-        print("Imported")
-    return pairs
+        json_match = re.search(fr"^.*(\.json|\.csv)$", file_path)
+        if json_match.group(1).lower() == ".json":
+            corelog.info("Input file is json")
+            self.jp_mode = jp_mode
+            self.sentences = sentences
+            pairs = self.pair_import_json(file_path)
+            corelog.info("Imported")
+        else:
+            corelog.info("Input file is csv")
+            pairs = self.pair_import(file_path)
+            corelog.info("Imported")
+        return pairs
 
+    @staticmethod
+    def pair_import(csv_file_path) -> list:
+        pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+        }
+        pairs = [pair0.copy()]
+        current_pair_dict = dict()
 
-def pair_import(csv_file_path) -> list:
-    pair0 = {
-        "question": ["Wait... question zero? What's the answer though..."],
-        "answer": ["Luupycards"],
-    }
-    pairs = [pair0.copy()]
-    current_pair_dict = dict()
+        with open(csv_file_path, mode="r") as file:
+            csv_reader = csv.reader(file)
+            for row_number, row in enumerate(csv_reader, start=1):
+                row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
+                if row_number % 2 != 0:  # questions
+                    current_pair_dict["question"] = row
+                else:  # answers
+                    current_pair_dict["answer"] = row
+                    pairs.append(current_pair_dict.copy())
+        return pairs
 
-    with open(csv_file_path, mode="r") as file:
-        csv_reader = csv.reader(file)
-        for row_number, row in enumerate(csv_reader, start=1):
-            row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
-            if row_number % 2 != 0:  # questions
-                current_pair_dict["question"] = row
-            else:  # answers
-                current_pair_dict["answer"] = row
-                pairs.append(current_pair_dict.copy())
-    return pairs
+    def pair_import_json(self, json_file_path) -> list:
+        corelog.info("Importing from json.")
 
+        pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+        }
+        pairs = list()
+        pairs.append(pair0)
 
-def pair_import_json(json_file_path, jp_mode) -> list:
-    corelog.info("Importing from json.")
-
-    pair0 = {
-        "question": ["Wait... question zero? What's the answer though..."],
-        "answer": ["Luupycards"],
-    }
-    pairs = list()
-    pairs.append(pair0)
-
-    with open(json_file_path, mode="r") as file:
-        raw_pairs = json.loads(file.read())
-        corelog.debug("File opened successfully.")
-        for (key, content) in raw_pairs.items():  # goes through the keys' items
-            corelog.debug(f'Going through key "{key}"')
-            for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
-                corelog.debug('Going through pair number "%s"', i)
-                if "kanji" in pair:
-                    corelog.debug("Kanji entry found, copying it to question.")
-                    pair["question"] = pair["kanji"].copy()
-                if "meaning" in pair:
-                    corelog.debug("Meaning entry found, copying it to answer.")
-                    pair["answer"] = pair["meaning"].copy()
-
-                corelog.debug("Appending pair to list...")
-                pairs.append(pair.copy())
-                corelog.debug("List has now %s item(s).", len(pairs))
-                corelog.debug("Pair contents: %s", pair)
-                if pairs[-1] != pair:
-                    corelog.error("The pair wasn't added to the list correctly!")
-
-            if pairs[1]["pronunciation"][0].isidentifier():  # if this exists it's a jp file
-                corelog.debug("jp_mode is enabled.")
-                for i, jp_pair in enumerate(content, start=1):
-                    jp_pair = dict(jp_pair)
-
+        with open(json_file_path, mode="r") as file:
+            raw_pairs = json.loads(file.read())
+            corelog.debug("File opened successfully.")
+            for (key, content) in raw_pairs.items():  # goes through the keys' items
+                corelog.debug(f'Going through key "{key}"')
+                for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
                     corelog.debug('Going through pair number "%s"', i)
-
-                    jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
-                    jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
-                    jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
+                    if "kanji" in pair:
+                        corelog.debug("Kanji entry found, copying it to question.")
+                        pair["question"] = pair["kanji"].copy()
+                    if "meaning" in pair:
+                        corelog.debug("Meaning entry found, copying it to answer.")
+                        pair["answer"] = pair["meaning"].copy()
 
                     corelog.debug("Appending pair to list...")
-                    pairs.append(jp_pair.copy())
+                    pairs.append(pair.copy())
                     corelog.debug("List has now %s item(s).", len(pairs))
-                    corelog.debug("Pair contents: %s", jp_pair)
-                    if pairs[-1] != jp_pair:
+                    corelog.debug("Pair contents: %s", pair)
+                    if pairs[-1] != pair:
                         corelog.error("The pair wasn't added to the list correctly!")
-    return pairs
+
+                # if this exists it's a jp file or if advanced is on
+                if pairs[1]["pronunciation"][0].isidentifier() and self.automatic or self.jp_mode:
+                    corelog.debug("jp_mode is enabled.")
+                    for i, jp_pair in enumerate(content, start=1):
+                        jp_pair = dict(jp_pair)
+
+                        corelog.debug('Going through pair number "%s"', i)
+
+                        jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
+                        jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
+                        jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
+
+                        corelog.debug("Appending pair to list...")
+                        pairs.append(jp_pair.copy())
+                        corelog.debug("List has now %s item(s).", len(pairs))
+                        corelog.debug("Pair contents: %s", jp_pair)
+                        if pairs[-1] != jp_pair:
+                            corelog.error("The pair wasn't added to the list correctly!")
+
+                if self.sentences:
+                    corelog.debug("sentences are enabled")
+                    for i, sentence_pair in enumerate(content, start=1):
+                        pass
+
+        return pairs
 
 
 def main_menu(modes, version, title="") -> int:

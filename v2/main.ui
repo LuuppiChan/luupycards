@@ -475,8 +475,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>361</width>
-                     <height>310</height>
+                     <width>312</width>
+                     <height>149</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1144,6 +1144,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpen_Advanced"/>
     <addaction name="actionSave"/>
     <addaction name="separator"/>
     <addaction name="actionNew"/>
@@ -1415,6 +1416,16 @@
    </property>
    <property name="statusTip">
     <string>This item is for testing things in development</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionOpen_Advanced">
+   <property name="text">
+    <string>Open (Advanced)</string>
    </property>
    <property name="font">
     <font>

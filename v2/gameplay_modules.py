@@ -379,12 +379,17 @@ class MainGameplay:
                 return self.streak_current
 
     def settings_update(self):
+        max_question = core.settings_value_manipulator("max question")
+        min_question = core.settings_value_manipulator("min question")
+
         self.show_question_number = core.settings_value_manipulator("show current question number")
         self.streak_all_time = core.settings_value_manipulator("all time streak")
-        self.max_question = core.settings_value_manipulator("max question")  # This is true inconsistency lol
+        self.max_question = core.settings_value_manipulator("max question")
         self.all_settings = core.get_options()
-        self.random_list = core.never_repeat_random_list(self.all_settings["min question"],
-                                                         self.all_settings["max question"])
+
+        # updates only if there are changes to these 2 settings
+        if max_question != self.max_question or min_question != self.all_settings["min question"]:
+            self.random_list = core.never_repeat_random_list(self.all_settings["min question"], self.all_settings["max question"])
 
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         correct_answers = self.pairs[self.current_question][self.answer]
@@ -439,8 +444,7 @@ class MainGameplay:
         raise Exception("Please enable wrong answer check.")
 
     def play_gui(self):
-        # The line under will break never repeat random
-        #self.settings_update()
+        self.settings_update()
 
         self.check_max_streak()
 
