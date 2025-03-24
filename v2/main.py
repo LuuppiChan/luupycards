@@ -406,11 +406,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.current_mode = self.ui.comboBox_modes.currentText()
             self.current_order = self.ui.comboBox_question_order.currentText()
 
-            # pair lengths
-            if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
-                core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
-            if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
-                core.settings_value_manipulator("min question", "dump", 1)
+            # pair lengths so that user can only change then after gameplay has been initialized
+            #if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
+            core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
+            #if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
+            core.settings_value_manipulator("min question", "dump", 1)
                 
             self.reload_settings()
 
