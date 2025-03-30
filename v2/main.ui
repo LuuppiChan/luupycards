@@ -1171,8 +1171,8 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionOpen_Advanced"/>
-    <addaction name="actionSave"/>
     <addaction name="separator"/>
+    <addaction name="actionSave"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
