@@ -326,13 +326,17 @@ class MainGameplay:
             gamelog.debug("random_index_list: %s", random_index_list)
             # list from 1 to max question
 
-            multiple_choice_options.append(self.pairs[self.current_question].copy())  # appends the correct pair
-
-            # this chooses random pairs out of the pairs, but leaves space for the correct one
-            for i in range(mc_max_options - 1):
+            # this chooses random pairs out of the pairs, but doesn't leave space for the correct one yet
+            for i in range(mc_max_options):
                 if random_index_list[i] == self.current_question:  # skips if it's the correct since it's already in
                     continue
                 multiple_choice_options.append(self.pairs[random_index_list[i]])
+
+            # this checks if the length is 1 over the target
+            if len(multiple_choice_options) -1 == mc_max_options:
+                multiple_choice_options.pop(0)
+
+            multiple_choice_options.append(self.pairs[self.current_question].copy())  # appends the correct pair
 
             random.shuffle(multiple_choice_options)  # randomize!
 
@@ -405,6 +409,11 @@ class MainGameplay:
                     self.streak_current += 1
                     return "correct", self.print_correct_answer()
 
+            if user_input == " / ".join(correct_answers):  # or the user has inputted all the options
+                self.next_question()
+                self.streak_current += 1
+                return "correct", self.print_correct_answer()
+
         if self.enabled_answer_checks["fuzzy correct"]:
             if self.fuzzy_matching:  # checks if fuzzy matching is available
                 if self.fuzzy_check(correct_answers):
@@ -413,7 +422,7 @@ class MainGameplay:
                     return "fuzzy correct", self.print_fuzzy_correct(correct_answers)
 
         if self.enabled_answer_checks["seek"]:
-            match = re.search(r"^seek (\d+)", user_input)
+            match = re.search(r"^seek (\d+)", str(user_input))
             if match:  # seeking
                 info_return = ""
                 question_number = int(match.group(1))

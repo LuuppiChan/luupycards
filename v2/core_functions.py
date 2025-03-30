@@ -101,9 +101,11 @@ class Menu:
 
 class PairImport:
     def __init__(self):
+        self.default_json = True
         self.jp_mode = False
         self.sentences = False
         self.automatic = False
+        self.first_time = True
 
     def determine_pair_file(self, file_path, jp_mode=False, sentences=False) -> list:
         self.automatic = True
@@ -122,13 +124,19 @@ class PairImport:
             corelog.info("Imported")
         return pairs
 
-    @staticmethod
-    def pair_import(csv_file_path) -> list:
+    def pair_import(self, csv_file_path) -> list:
         pair0 = {
             "question": ["Wait... question zero? What's the answer though..."],
             "answer": ["Luupycards"],
         }
-        pairs = [pair0.copy()]
+        pairs = list()
+
+        if self.first_time:
+            pairs.append(pair0)
+            self.first_time = False
+        else:
+            pass
+
         current_pair_dict = dict()
 
         with open(csv_file_path, mode="r") as file:
@@ -140,7 +148,8 @@ class PairImport:
                 else:  # answers
                     current_pair_dict["answer"] = row
                     pairs.append(current_pair_dict.copy())
-        return pairs
+
+        return pairs.copy()
 
     def pair_import_json(self, json_file_path) -> list:
         corelog.info("Importing from json.")
@@ -150,28 +159,33 @@ class PairImport:
             "answer": ["Luupycards"],
         }
         pairs = list()
-        pairs.append(pair0)
+        if self.first_time:
+            pairs.append(pair0)
+            self.first_time = False
+        else:
+            pass
 
         with open(json_file_path, mode="r") as file:
             raw_pairs = json.loads(file.read())
             corelog.debug("File opened successfully.")
             for (key, content) in raw_pairs.items():  # goes through the keys' items
                 corelog.debug(f'Going through key "{key}"')
-                for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
-                    corelog.debug('Going through pair number "%s"', i)
-                    if "kanji" in pair:
-                        corelog.debug("Kanji entry found, copying it to question.")
-                        pair["question"] = pair["kanji"].copy()
-                    if "meaning" in pair:
-                        corelog.debug("Meaning entry found, copying it to answer.")
-                        pair["answer"] = pair["meaning"].copy()
+                if self.default_json:
+                    for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
+                        corelog.debug('Going through pair number "%s"', i)
+                        if "kanji" in pair:
+                            corelog.debug("Kanji entry found, copying it to question.")
+                            pair["question"] = pair["kanji"].copy()
+                        if "meaning" in pair:
+                            corelog.debug("Meaning entry found, copying it to answer.")
+                            pair["answer"] = pair["meaning"].copy()
 
-                    corelog.debug("Appending pair to list...")
-                    pairs.append(pair.copy())
-                    corelog.debug("List has now %s item(s).", len(pairs))
-                    corelog.debug("Pair contents: %s", pair)
-                    if pairs[-1] != pair:
-                        corelog.error("The pair wasn't added to the list correctly!")
+                        corelog.debug("Appending pair to list...")
+                        pairs.append(pair.copy())
+                        corelog.debug("List has now %s item(s).", len(pairs))
+                        corelog.debug("Pair contents: %s", pair)
+                        if pairs[-1] != pair:
+                            corelog.error("The pair wasn't added to the list correctly!")
 
                 # if this exists it's a jp file or if advanced is on
                 if pairs[1]["pronunciation"][0].isidentifier() and self.automatic or self.jp_mode:
@@ -194,10 +208,20 @@ class PairImport:
 
                 if self.sentences:
                     corelog.debug("sentences are enabled")
-                    for i, sentence_pair in enumerate(content, start=1):
-                        pass
+                    for ii, pair in enumerate(content, start=1):
+                        corelog.debug("Going through pair %s", ii)
+                        for iii, sentence in enumerate(pair["sentences"], start=1):
+                            corelog.debug("Going through sentence %s", iii)
+                            new_pair = {
+                                "question" : sentence["sentence"],
+                                "answer" : sentence["answer"]
+                            }
+                            corelog.debug("Appending pair to list...")
+                            pairs.append(new_pair.copy())
+                            corelog.debug("List has now %s item(s).", len(pairs))
 
-        return pairs
+        corelog.debug("Returning the list")
+        return pairs.copy()
 
 
 def main_menu(modes, version, title="") -> int:

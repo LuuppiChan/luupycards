@@ -28,7 +28,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>-92</y>
         <width>331</width>
         <height>374</height>
        </rect>
@@ -74,6 +74,9 @@ answer2</string>
            <property name="text">
             <string>Default</string>
            </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -110,6 +113,9 @@ You'll have to implement the &quot;question&quot; and &quot;answer&quot; fields 
            </property>
            <property name="text">
             <string>Default</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

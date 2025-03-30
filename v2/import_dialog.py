@@ -35,7 +35,7 @@ class Ui_DialogImport(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 331, 374))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -92, 331, 374))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.scrollAreaWidgetContents)
@@ -56,6 +56,7 @@ class Ui_DialogImport(object):
         self.verticalLayout_csv.setObjectName(u"verticalLayout_csv")
         self.radioButton_csv = QRadioButton(self.scrollAreaWidgetContents)
         self.radioButton_csv.setObjectName(u"radioButton_csv")
+        self.radioButton_csv.setChecked(True)
 
         self.verticalLayout_csv.addWidget(self.radioButton_csv)
 
@@ -71,6 +72,7 @@ class Ui_DialogImport(object):
         self.verticalLayout_json.setObjectName(u"verticalLayout_json")
         self.checkBox_json = QCheckBox(self.scrollAreaWidgetContents)
         self.checkBox_json.setObjectName(u"checkBox_json")
+        self.checkBox_json.setChecked(True)
 
         self.verticalLayout_json.addWidget(self.checkBox_json)
 

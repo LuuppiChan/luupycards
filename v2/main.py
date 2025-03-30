@@ -7,9 +7,9 @@ import logging
 import argparse
 from pathlib import Path
 
-from PySide6 import QtWidgets
-from PySide6 import QtCore
 from PySide6 import QtGui
+from PySide6 import QtCore
+from PySide6 import QtWidgets
 
 import core_functions as core
 import gameplay_modules as gameplay
@@ -49,6 +49,9 @@ class ImportDialog(QtWidgets.QDialog):
         super(ImportDialog, self).__init__(parent)
         self.ui = Ui_DialogImport()
         self.ui.setupUi(self)
+
+        # gameplay pair related
+        self.pairs = list()
 
         self.hide_json()
 
@@ -100,24 +103,53 @@ class ImportDialog(QtWidgets.QDialog):
             self.methods["json"]["japan"] = True if self.ui.checkBox_jp.isChecked() else False
             self.methods["json"]["sentences"] = True if self.ui.checkBox_sentences.isChecked() else False
 
-            self.filepaths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file(s)", "Pair files (*.json)")
-            self.filepaths = self.filepaths[0]  # only the file paths
+            if not(self.methods["json"]["default"] or self.methods["json"]["japan"] or self.methods["json"]["sentences"]):
+                please = QtWidgets.QMessageBox(self)
+                please.setText("You didn't check any import methods you silly!")
+                please.setInformativeText("Please select at least one.")
+                please.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                please.exec()
+                self.filepaths = []
+            else:
+                self.filepaths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file(s)", "Pair files (*.json)")
+                self.filepaths = self.filepaths[0]  # only the file paths
 
         if self.filepaths:
             self.selected_a_file = True
             mainlog.info("User selected file(s)")
+            self.import_pairs()
+            window.setEnabled(True)
+            if len(self.filepaths) == 1:
+                json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", self.filepaths[0])
+                window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+            else:
+                window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+            self.hide()
         else:
             self.selected_a_file = False
             mainlog.info("User did not select a file")
 
-        self.hide()
-
     def cancel_button(self):
-        self.hide()
         window.setEnabled(True)
+        self.hide()
 
     def import_pairs(self):
-        pass
+        self.pairs.clear()
+
+        pair_import = core.PairImport()
+        if self.mode == "CSV":
+            for file in self.filepaths:
+                self.pairs.extend(pair_import.pair_import(file))
+        elif self.mode == "JSON":
+            pair_import.default_json = True if self.methods["json"]["default"] else False
+            pair_import.jp_mode = True if self.methods["json"]["japan"] else False
+            pair_import.sentences = True if self.methods["json"]["sentences"] else False
+
+            for file in self.filepaths:
+                self.pairs.extend(pair_import.pair_import_json(file))
+
+        window.pairs.clear()
+        window.pairs = self.pairs.copy()
 
     def hide_csv(self):
         mainlog.info("csv hidden")
@@ -281,6 +313,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.ui.tab_main.setCurrentWidget(self.ui.tab_main_menu)
                     self.ui.tab_play.setEnabled(False)
                     self.ui.label_game_info.setText("Quitting...")
+                    self.ui.label_game_info_mc.setText("Quitting...")
                 case "empty field":  # this shouldn't appear though
                     self.set_info("This shouldn't appear. Please inform if this appears.")
                     mainlog.error("Empty field appeared!")
@@ -302,9 +335,8 @@ class MainWindow(QtWidgets.QMainWindow):
                             lose_dialog.exec()
         else:
             mainlog.info("Empty button press.")
-            self.ui.label_question_mc.setText("")
-            self.ui.label_question.setText("")
 
+            self.set_question("")
             self.set_question(self.the_game.play_gui())
 
     def correct_checkbutton_mc(self, user_input = ""):
@@ -337,21 +369,27 @@ class MainWindow(QtWidgets.QMainWindow):
             case "quit":
                 self.ui.tab_main.setCurrentWidget(self.ui.tab_main_menu)
                 self.ui.tab_play.setEnabled(False)
+                self.ui.label_game_info.setText("Quitting...")
                 self.ui.label_game_info_mc.setText("Quitting...")
             case "empty field":
                 self.set_info("Please choose an option...")
+
+                self.set_question("")
+                self.set_question(self.the_game.play_gui())
             case "wrong":
                 self.set_info(result[1])
 
     def open_dir_dialog(self):
+        self.pairs.clear()
         pair_import = core.PairImport()
         file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
         if file_path[0]:
             print(file_path[0])
-            self.pairs = pair_import.determine_pair_file(file_path[0])
+            # ready for multiple pair files
+            self.pairs.extend(pair_import.determine_pair_file(file_path[0]))
+            mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
             json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_path[0])
             self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
-            pairs = list()
 
     @staticmethod
     def quit_action():
@@ -391,6 +429,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for (choice, button) in zip(self.mc_choices, self.mc_buttons):
             button.setText(choice)
+
+        self.big_font_mode()  # ensures the buttons get big font
 
     def seek_mc(self):
         seek = SeekWidget(self)
@@ -447,6 +487,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for i in range(buttons_needed):
             button = QtWidgets.QRadioButton(f"This shouldn't show up :/ {i + 1}")
+            button.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
             self.mc_buttons.append(button)
             self.ui.mc_options.addWidget(self.mc_buttons[i])
 
