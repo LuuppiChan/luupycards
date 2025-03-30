@@ -18,12 +18,10 @@ try:
 except ModuleNotFoundError:
     fuzzy_is_available = False
 
-def determine_gamemode(current_mode: str, current_order: str, pairs: list):
+def determine_gamemode(current_mode: str, current_order: str, pairs: list, reverse=False):
     modes = [
         ["Normal", "n"],
-        ["Reverse", "r"],
         ["Multiple Choice", "m"],
-        ["Multiple Choice Reverse", "mr"],
         ["Survive!", "s!"],
     ]
     orders = [
@@ -31,21 +29,14 @@ def determine_gamemode(current_mode: str, current_order: str, pairs: list):
         ["Reverse", "re"],
         ["Random", "ro"]
     ]
-    reverse = False
     order = "forward"
     game_object = MainGameplay
 
     match current_mode:
         case "Normal":
-            game_object = Normal
-        case "Reverse":
-            reverse = True
-            game_object = Reverse
+            game_object = MainGameplay
         case "Multiple Choice":
             game_object = MultipleChoice
-        case "Multiple Choice Reverse":
-            game_object = MultipleChoice
-            reverse = True
         case "Survive!":
             game_object = Survive
 
@@ -460,15 +451,6 @@ class MainGameplay:
         self.check_max_streak()
 
         return self.print_question()
-
-
-class Normal(MainGameplay):
-    pass
-
-
-class Reverse(MainGameplay):
-    def __init__(self, pairs, reverse=True, current_question=1, streak_current=0, order="forward"):
-        super().__init__(pairs, reverse, current_question, streak_current, order)
 
 
 class MultipleChoice(MainGameplay):

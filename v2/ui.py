@@ -27,7 +27,7 @@ class Ui_Luupycards(object):
     def setupUi(self, Luupycards):
         if not Luupycards.objectName():
             Luupycards.setObjectName(u"Luupycards")
-        Luupycards.resize(425, 475)
+        Luupycards.resize(425, 477)
         font = QFont()
         font.setPointSize(12)
         Luupycards.setFont(font)
@@ -103,7 +103,7 @@ class Ui_Luupycards(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 409, 398))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 464, 386))
         self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.tab_main = QTabWidget(self.scrollAreaWidgetContents_2)
@@ -140,8 +140,6 @@ class Ui_Luupycards(object):
         self.comboBox_modes.addItem("")
         self.comboBox_modes.addItem("")
         self.comboBox_modes.addItem("")
-        self.comboBox_modes.addItem("")
-        self.comboBox_modes.addItem("")
         self.comboBox_modes.setObjectName(u"comboBox_modes")
 
         self.layout_main_mode.addWidget(self.comboBox_modes)
@@ -170,6 +168,11 @@ class Ui_Luupycards(object):
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
+
+        self.checkBox_question_flip = QCheckBox(self.tab_main_menu)
+        self.checkBox_question_flip.setObjectName(u"checkBox_question_flip")
+
+        self.verticalLayout_6.addWidget(self.checkBox_question_flip)
 
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -223,7 +226,7 @@ class Ui_Luupycards(object):
 
         self.label_streak = QLabel(self.input)
         self.label_streak.setObjectName(u"label_streak")
-        self.label_streak.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_streak.setTextInteractionFlags(Qt.TextBrowserInteraction)
 
         self.horizontalLayout_3.addWidget(self.label_streak, 0, Qt.AlignRight)
 
@@ -316,6 +319,7 @@ class Ui_Luupycards(object):
 
         self.label_streak_mc = QLabel(self.scrollAreaWidgetContents)
         self.label_streak_mc.setObjectName(u"label_streak_mc")
+        self.label_streak_mc.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextSelectableByKeyboard)
 
         self.horizontalLayout_5.addWidget(self.label_streak_mc, 0, Qt.AlignRight)
 
@@ -797,10 +801,8 @@ class Ui_Luupycards(object):
 #endif // QT_CONFIG(tooltip)
         self.label_mode.setText(QCoreApplication.translate("Luupycards", u"Mode", None))
         self.comboBox_modes.setItemText(0, QCoreApplication.translate("Luupycards", u"Normal", None))
-        self.comboBox_modes.setItemText(1, QCoreApplication.translate("Luupycards", u"Reverse", None))
-        self.comboBox_modes.setItemText(2, QCoreApplication.translate("Luupycards", u"Multiple Choice", None))
-        self.comboBox_modes.setItemText(3, QCoreApplication.translate("Luupycards", u"Multiple Choice Reverse", None))
-        self.comboBox_modes.setItemText(4, QCoreApplication.translate("Luupycards", u"Survive!", None))
+        self.comboBox_modes.setItemText(1, QCoreApplication.translate("Luupycards", u"Multiple Choice", None))
+        self.comboBox_modes.setItemText(2, QCoreApplication.translate("Luupycards", u"Survive!", None))
 
 #if QT_CONFIG(tooltip)
         self.comboBox_modes.setToolTip(QCoreApplication.translate("Luupycards", u"Choose the mode", None))
@@ -819,6 +821,13 @@ class Ui_Luupycards(object):
 #if QT_CONFIG(statustip)
         self.comboBox_question_order.setStatusTip(QCoreApplication.translate("Luupycards", u"Choose the question order", None))
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        self.checkBox_question_flip.setToolTip(QCoreApplication.translate("Luupycards", u"Makes questions answers and answers questions.", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.checkBox_question_flip.setStatusTip(QCoreApplication.translate("Luupycards", u"Makes questions answers and answers questions.", None))
+#endif // QT_CONFIG(statustip)
+        self.checkBox_question_flip.setText(QCoreApplication.translate("Luupycards", u"Flip questions and answers", None))
 #if QT_CONFIG(tooltip)
         self.label_pair_status.setToolTip(QCoreApplication.translate("Luupycards", u"You can load pairs by going File -> Open. If the loading fails make sure that they are on the correct format.", None))
 #endif // QT_CONFIG(tooltip)

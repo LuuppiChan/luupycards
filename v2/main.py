@@ -464,7 +464,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.tab_play.setEnabled(True)
 
             print(self.current_mode, self.current_order)  # then pass to backend
-            self.the_game = gameplay.determine_gamemode(self.current_mode, self.current_order, self.pairs)
+            self.the_game = gameplay.determine_gamemode(self.current_mode, self.current_order, self.pairs, self.ui.checkBox_question_flip.isChecked())
 
             self.set_streak()
             self.set_question(self.the_game.play_gui())

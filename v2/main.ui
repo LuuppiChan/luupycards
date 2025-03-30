@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>425</width>
-    <height>475</height>
+    <height>477</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>409</width>
-         <height>398</height>
+         <width>464</width>
+         <height>386</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -124,17 +124,7 @@
                   </item>
                   <item>
                    <property name="text">
-                    <string>Reverse</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
                     <string>Multiple Choice</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Multiple Choice Reverse</string>
                    </property>
                   </item>
                   <item>
@@ -188,6 +178,19 @@
                </layout>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_question_flip">
+              <property name="toolTip">
+               <string>Makes questions answers and answers questions.</string>
+              </property>
+              <property name="statusTip">
+               <string>Makes questions answers and answers questions.</string>
+              </property>
+              <property name="text">
+               <string>Flip questions and answers</string>
+              </property>
+             </widget>
             </item>
             <item>
              <spacer name="verticalSpacer_5">
@@ -302,7 +305,7 @@
                      <string>Streak: 0</string>
                     </property>
                     <property name="textInteractionFlags">
-                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                     <set>Qt::TextBrowserInteraction</set>
                     </property>
                    </widget>
                   </item>
@@ -510,6 +513,9 @@
                         </property>
                         <property name="text">
                          <string>Streak: 0</string>
+                        </property>
+                        <property name="textInteractionFlags">
+                         <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard</set>
                         </property>
                        </widget>
                       </item>
