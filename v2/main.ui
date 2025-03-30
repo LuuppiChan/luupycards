@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>425</width>
-    <height>477</height>
+    <width>431</width>
+    <height>439</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>409</width>
-         <height>400</height>
+         <width>415</width>
+         <height>362</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -483,8 +483,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>361</width>
-                     <height>312</height>
+                     <width>312</width>
+                     <height>149</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1004,7 +1004,7 @@
                </sizepolicy>
               </property>
               <property name="toolTip">
-               <string>Your pairs nicely in raw Python</string>
+               <string>Your pairs nicely in custom CSV. The separator is &quot;;&quot; characer.</string>
               </property>
               <property name="statusTip">
                <string>You can edit them, but be careful!</string>
@@ -1012,6 +1012,18 @@
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>300</number>
+              </attribute>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <row>
                <property name="text">
                 <string>1</string>
@@ -1049,52 +1061,52 @@
               </column>
               <item row="0" column="0">
                <property name="text">
-                <string>[&quot;question1&quot;]</string>
+                <string>question1</string>
                </property>
               </item>
               <item row="0" column="1">
                <property name="text">
-                <string>[&quot;answer1a&quot;, &quot;answer1b&quot;]</string>
+                <string>answer1a;answer1b</string>
                </property>
               </item>
               <item row="1" column="0">
                <property name="text">
-                <string>[&quot;question2&quot;]</string>
+                <string>question2</string>
                </property>
               </item>
               <item row="1" column="1">
                <property name="text">
-                <string>[&quot;answer2a&quot;]</string>
+                <string>answer2a</string>
                </property>
               </item>
               <item row="2" column="0">
                <property name="text">
-                <string>[&quot;question3&quot;]</string>
+                <string>question3</string>
                </property>
               </item>
               <item row="2" column="1">
                <property name="text">
-                <string>[&quot;answer3a&quot;, &quot;answer3b&quot;, &quot;answer3c&quot;]</string>
+                <string>answer3a;answer3b;answer3c</string>
                </property>
               </item>
               <item row="3" column="0">
                <property name="text">
-                <string>[&quot;question4&quot;]</string>
+                <string>question4</string>
                </property>
               </item>
               <item row="3" column="1">
                <property name="text">
-                <string>[&quot;answer4a&quot;, &quot;answer4b&quot;]</string>
+                <string>answer4a;answer4b</string>
                </property>
               </item>
               <item row="4" column="0">
                <property name="text">
-                <string>[&quot;question5&quot;]</string>
+                <string>question5</string>
                </property>
               </item>
               <item row="4" column="1">
                <property name="text">
-                <string>[&quot;answer5a&quot;]</string>
+                <string>answer5a</string>
                </property>
               </item>
              </widget>
@@ -1149,7 +1161,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>425</width>
+     <width>431</width>
      <height>33</height>
     </rect>
    </property>

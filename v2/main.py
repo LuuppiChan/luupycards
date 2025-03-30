@@ -1,4 +1,5 @@
 #!/bin/python
+import json
 import re
 import os
 import sys
@@ -124,6 +125,7 @@ class ImportDialog(QtWidgets.QDialog):
                 window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
             else:
                 window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+            window.pair_inspector_load()
             self.hide()
         else:
             self.selected_a_file = False
@@ -245,6 +247,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.actionTest_trigger.triggered.connect(self.test_trigger)
         self.ui.actionOpen_Advanced.triggered.connect(self.advanced_import)
+
+        # inspector
+        self.ui.actionSave.triggered.connect(self.pair_inspector_save_to_file)
+        self.ui.button_save_file.clicked.connect(self.pair_inspector_save_to_file)
+        self.ui.button_save_memory.clicked.connect(self.pair_inspector_save_to_memory)
+        self.pair_widget_items = {
+            "question" : [],
+            "answer" : [],
+        }
+        self.pair_inspector_load()
 
         mainlog.info("Set up class init.")
 
@@ -383,14 +395,16 @@ class MainWindow(QtWidgets.QMainWindow):
     def open_dir_dialog(self):
         self.pairs.clear()
         pair_import = core.PairImport()
-        file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
-        if file_path[0]:
-            print(file_path[0])
-            # ready for multiple pair files
-            self.pairs.extend(pair_import.determine_pair_file(file_path[0]))
-            mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
-            json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_path[0])
-            self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+        file_paths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
+        if file_paths[0]:
+            print(file_paths[0])
+            for file in file_paths[0]:
+                self.pairs.extend(pair_import.determine_pair_file(file))
+                mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
+                json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
+                self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+
+        self.pair_inspector_load()
 
     @staticmethod
     def quit_action():
@@ -576,6 +590,76 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if options_orig != self.game_options:
             mainlog.warning("Found illegal settings values, fixing...")
+
+    def pair_inspector_load(self):
+        if self.pairs:
+            self.pairs.pop(0)
+
+        for _ in range(self.ui.tableWidget.rowCount()):  # first remove all old rows
+            self.ui.tableWidget.removeRow(0)
+
+        for i, pair in enumerate(self.pairs):
+            self.ui.tableWidget.insertRow(i)
+
+            question = QtWidgets.QTableWidgetItem()
+            question.setText(";".join(pair["question"]))
+
+            answer = QtWidgets.QTableWidgetItem()
+            answer.setText(";".join(pair["answer"]))
+
+            self.ui.tableWidget.setItem(i, 0, question)  # questions
+            self.ui.tableWidget.setItem(i, 1, answer)  # answers
+
+            self.pair_widget_items["question"].append(question)
+            self.pair_widget_items["answer"].append(answer)
+
+
+        # after everything is done adds the pair back
+        pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+        }
+        self.pairs.insert(0, pair0)
+
+    def pair_inspector_save_to_memory(self):
+        self.pairs.clear()
+
+        for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
+            self.pairs.append(
+                {
+                    "question" : question.text().split(";"),
+                    "answer" : answer.text().split(";"),
+                }
+            )
+
+        # after everything is done adds the pair back
+        pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+        }
+        self.pairs.insert(0, pair0)
+
+    def pair_inspector_save_to_file(self):
+        file_pairs = []
+
+        for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
+            file_pairs.append(
+                {
+                    "question": question.text().split(";"),
+                    "answer": answer.text().split(";"),
+                }
+            )
+
+        full_json_file = {
+            "pairs" : file_pairs
+        }
+
+        filepath = QtWidgets.QFileDialog.getSaveFileName(self, "Save Pair File", "new_pair_file.json", "Pair file (*.json)")
+        filepath = filepath[0]  # only the file path
+
+        if filepath:  # ensures user chose a location
+            with open(filepath, "w") as file:
+                json.dump(full_json_file, file, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":

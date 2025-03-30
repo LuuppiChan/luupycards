@@ -27,7 +27,7 @@ class Ui_Luupycards(object):
     def setupUi(self, Luupycards):
         if not Luupycards.objectName():
             Luupycards.setObjectName(u"Luupycards")
-        Luupycards.resize(425, 477)
+        Luupycards.resize(431, 439)
         font = QFont()
         font.setPointSize(12)
         Luupycards.setFont(font)
@@ -103,7 +103,7 @@ class Ui_Luupycards(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 409, 400))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 415, 362))
         self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.tab_main = QTabWidget(self.scrollAreaWidgetContents_2)
@@ -307,7 +307,7 @@ class Ui_Luupycards(object):
         self.scrollArea_mc.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 361, 312))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 312, 149))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_5 = QHBoxLayout()
@@ -600,6 +600,10 @@ class Ui_Luupycards(object):
         sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
         self.tableWidget.setSizePolicy(sizePolicy)
         self.tableWidget.setFrameShape(QFrame.StyledPanel)
+        self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
+        self.tableWidget.horizontalHeader().setDefaultSectionSize(300)
+        self.tableWidget.horizontalHeader().setProperty(u"showSortIndicator", False)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
 
         self.verticalLayout.addWidget(self.tableWidget)
 
@@ -633,7 +637,7 @@ class Ui_Luupycards(object):
         Luupycards.setStatusBar(self.statusbar)
         self.menubar = QMenuBar(Luupycards)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 425, 33))
+        self.menubar.setGeometry(QRect(0, 0, 431, 33))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuHelp = QMenu(self.menubar)
@@ -1046,29 +1050,29 @@ class Ui_Luupycards(object):
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
         ___qtablewidgetitem7 = self.tableWidget.item(0, 0)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("Luupycards", u"[\"question1\"]", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("Luupycards", u"question1", None));
         ___qtablewidgetitem8 = self.tableWidget.item(0, 1)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("Luupycards", u"[\"answer1a\", \"answer1b\"]", None));
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("Luupycards", u"answer1a;answer1b", None));
         ___qtablewidgetitem9 = self.tableWidget.item(1, 0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("Luupycards", u"[\"question2\"]", None));
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("Luupycards", u"question2", None));
         ___qtablewidgetitem10 = self.tableWidget.item(1, 1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("Luupycards", u"[\"answer2a\"]", None));
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("Luupycards", u"answer2a", None));
         ___qtablewidgetitem11 = self.tableWidget.item(2, 0)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("Luupycards", u"[\"question3\"]", None));
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("Luupycards", u"question3", None));
         ___qtablewidgetitem12 = self.tableWidget.item(2, 1)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("Luupycards", u"[\"answer3a\", \"answer3b\", \"answer3c\"]", None));
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("Luupycards", u"answer3a;answer3b;answer3c", None));
         ___qtablewidgetitem13 = self.tableWidget.item(3, 0)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("Luupycards", u"[\"question4\"]", None));
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("Luupycards", u"question4", None));
         ___qtablewidgetitem14 = self.tableWidget.item(3, 1)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("Luupycards", u"[\"answer4a\", \"answer4b\"]", None));
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("Luupycards", u"answer4a;answer4b", None));
         ___qtablewidgetitem15 = self.tableWidget.item(4, 0)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("Luupycards", u"[\"question5\"]", None));
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("Luupycards", u"question5", None));
         ___qtablewidgetitem16 = self.tableWidget.item(4, 1)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("Luupycards", u"[\"answer5a\"]", None));
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("Luupycards", u"answer5a", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
 #if QT_CONFIG(tooltip)
-        self.tableWidget.setToolTip(QCoreApplication.translate("Luupycards", u"Your pairs nicely in raw Python", None))
+        self.tableWidget.setToolTip(QCoreApplication.translate("Luupycards", u"Your pairs nicely in custom CSV. The separator is \";\" characer.", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         self.tableWidget.setStatusTip(QCoreApplication.translate("Luupycards", u"You can edit them, but be careful!", None))
