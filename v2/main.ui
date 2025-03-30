@@ -1004,7 +1004,7 @@
                </sizepolicy>
               </property>
               <property name="toolTip">
-               <string>Your pairs nicely in custom CSV. The separator is &quot;;&quot; characer.</string>
+               <string>Your pairs nicely in custom CSV. The separator is &quot;;&quot;</string>
               </property>
               <property name="statusTip">
                <string>You can edit them, but be careful!</string>
@@ -1173,7 +1173,6 @@
     <addaction name="actionOpen_Advanced"/>
     <addaction name="actionSave"/>
     <addaction name="separator"/>
-    <addaction name="actionNew"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
