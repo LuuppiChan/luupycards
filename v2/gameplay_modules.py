@@ -86,6 +86,7 @@ class MainGameplay:
         self.order = order
         if order == "reverse":
             self.order = "reverse"
+            self.current_question = self.max_question
         elif order == "random":
             self.order = "random"
             self.current_question = self.random_list[0]
@@ -243,11 +244,10 @@ class MainGameplay:
             self.current_question = self.all_settings["min question"]
 
     def next_question_minus_one(self):
-        self.current_question -= 1
-        try:
-            self.pairs[self.current_question]
-        except IndexError:
+        if self.current_question == 1:
             self.current_question = self.max_question
+        else:
+            self.current_question -= 1
 
     def next_question_random(self):
         self.list_index += 1
@@ -325,7 +325,7 @@ class MainGameplay:
             # list from 1 to max question
 
             # this chooses random pairs out of the pairs, but doesn't leave space for the correct one yet
-            for i in range(mc_max_options):
+            for i in range(mc_max_options +2):
                 if random_index_list[i] == self.current_question:  # skips if it's the correct since it's already in
                     continue
                 multiple_choice_options.append(self.pairs[random_index_list[i]])
