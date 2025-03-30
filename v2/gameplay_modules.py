@@ -69,6 +69,7 @@ class MainGameplay:
             self.question = "answer"
             self.answer = "question"
 
+        # Maybe like import the whole dictionary and then assign values from it to variables?
         self.pairs = pairs
         self.current_question = current_question
         self.show_question_number = core.settings_value_manipulator("show current question number")
@@ -310,7 +311,7 @@ class MainGameplay:
 
         return correct_letter, multiple_choice_options
 
-    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> (int, list):
+    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> tuple[int, list]:
         if multiple_choice_options is None:
             multiple_choice_options = []
 
@@ -318,12 +319,9 @@ class MainGameplay:
             self.mc_correct_index = correct_index
 
         if generate_new:
-            gamelog.debug("New mc options")
 
-            mc_max_options = core.settings_value_manipulator("multiple choice max options")
-            gamelog.debug("max_options: %s", mc_max_options)
-            random_index_list = core.never_repeat_random_list(1, core.settings_value_manipulator("max question"))
-            gamelog.debug("random_index_list: %s", random_index_list)
+            mc_max_options = self.all_settings["multiple choice max options"]
+            random_index_list = core.never_repeat_random_list(1, self.max_question)  # use internal dictionary copy in future
             # list from 1 to max question
 
             # this chooses random pairs out of the pairs, but doesn't leave space for the correct one yet
@@ -332,8 +330,8 @@ class MainGameplay:
                     continue
                 multiple_choice_options.append(self.pairs[random_index_list[i]])
 
-            # this checks if the length is 1 over the target
-            if len(multiple_choice_options) -1 == mc_max_options:
+            # this checks if the length is over the target and removes accordingly
+            while len(multiple_choice_options) != mc_max_options -1:  # it should remove up to 2 incorrect pairs...
                 multiple_choice_options.pop(0)
 
             multiple_choice_options.append(self.pairs[self.current_question].copy())  # appends the correct pair
