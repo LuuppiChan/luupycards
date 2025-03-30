@@ -349,7 +349,7 @@ class MainGameplay:
                     self.mc_correct_index = i
 
                 # change the same index to the answer
-                multiple_choice_options[i] = " / ".join(option["answer"])
+                multiple_choice_options[i] = " / ".join(option[self.answer])
 
         return self.mc_correct_index, multiple_choice_options
 
