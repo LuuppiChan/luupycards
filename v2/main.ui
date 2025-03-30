@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>464</width>
-         <height>386</height>
+         <width>409</width>
+         <height>400</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -483,8 +483,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>312</width>
-                     <height>149</height>
+                     <width>361</width>
+                     <height>312</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -501,6 +501,9 @@
                         <property name="text">
                          <string>Now playing: Multiple Choice</string>
                         </property>
+                        <property name="textInteractionFlags">
+                         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                        </property>
                        </widget>
                       </item>
                       <item alignment="Qt::AlignRight">
@@ -515,7 +518,7 @@
                          <string>Streak: 0</string>
                         </property>
                         <property name="textInteractionFlags">
-                         <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard</set>
+                         <set>Qt::TextBrowserInteraction</set>
                         </property>
                        </widget>
                       </item>

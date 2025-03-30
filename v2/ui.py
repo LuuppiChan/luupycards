@@ -103,7 +103,7 @@ class Ui_Luupycards(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 464, 386))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 409, 400))
         self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.tab_main = QTabWidget(self.scrollAreaWidgetContents_2)
@@ -307,19 +307,20 @@ class Ui_Luupycards(object):
         self.scrollArea_mc.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 312, 149))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 361, 312))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_game_info_mc = QLabel(self.scrollAreaWidgetContents)
         self.label_game_info_mc.setObjectName(u"label_game_info_mc")
+        self.label_game_info_mc.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_5.addWidget(self.label_game_info_mc)
 
         self.label_streak_mc = QLabel(self.scrollAreaWidgetContents)
         self.label_streak_mc.setObjectName(u"label_streak_mc")
-        self.label_streak_mc.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextSelectableByKeyboard)
+        self.label_streak_mc.setTextInteractionFlags(Qt.TextBrowserInteraction)
 
         self.horizontalLayout_5.addWidget(self.label_streak_mc, 0, Qt.AlignRight)
 
