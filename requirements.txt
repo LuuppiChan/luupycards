@@ -1,0 +1,3 @@
+# use pip install -r requrements.txt
+pyside6
+thefuzz

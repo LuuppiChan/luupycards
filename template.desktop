@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=luupycards
+Type=Application
+Categories=Utility;Qt;
+Comment=A flip card game
+Terminal=false
+Icon=PATH/TO/logos/luupycards-256.png
+Exec=python PATH/TO/v2/main.py

@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 import json
 import re
 import os
@@ -12,14 +12,12 @@ from PySide6 import QtGui
 from PySide6 import QtCore
 from PySide6 import QtWidgets
 
+from seek import Ui_Seek
+from ui import Ui_Luupycards
 import core_functions as core
 import gameplay_modules as gameplay
-from seek import Ui_Seek
 from import_dialog import Ui_DialogImport
 
-if True:  # Because of PEP8
-    os.system("pyside6-uic main.ui -o ui.py")  # recreates this file automatically
-    from ui import Ui_Luupycards  # this loads the ui
 
 # argparse
 # Create parser
@@ -662,7 +660,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 json.dump(full_json_file, file, ensure_ascii=False, indent=4)
 
 
-if __name__ == "__main__":
+def run():
     if os.name == "nt":
         mainlog.critical("Warning! This program is intended for Linux, using Windows WILL have unexpected behaviour!")
     app = QtWidgets.QApplication(sys.argv)
@@ -690,3 +688,6 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec())
+
+if __name__ == "__main__":
+    run()
