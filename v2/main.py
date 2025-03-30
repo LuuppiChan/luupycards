@@ -456,7 +456,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             # set tab to play
             self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
-            if self.current_mode == "Multiple Choice":
+            if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
                 self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.multiple_choice)
             else:
                 self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.input)
@@ -470,7 +470,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.set_question(self.the_game.play_gui())
 
             # Then back to finish mc and s!
-            if self.current_mode == "Multiple Choice":
+            if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
                 self.spawn_mc_buttons()
             elif self.current_mode == "Survive!":
                 self.ui.label_lives.setText(f"Lives left: {self.the_game.lives}")

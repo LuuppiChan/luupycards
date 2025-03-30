@@ -141,6 +141,7 @@ class Ui_Luupycards(object):
         self.comboBox_modes.addItem("")
         self.comboBox_modes.addItem("")
         self.comboBox_modes.addItem("")
+        self.comboBox_modes.addItem("")
         self.comboBox_modes.setObjectName(u"comboBox_modes")
 
         self.layout_main_mode.addWidget(self.comboBox_modes)
@@ -798,7 +799,8 @@ class Ui_Luupycards(object):
         self.comboBox_modes.setItemText(0, QCoreApplication.translate("Luupycards", u"Normal", None))
         self.comboBox_modes.setItemText(1, QCoreApplication.translate("Luupycards", u"Reverse", None))
         self.comboBox_modes.setItemText(2, QCoreApplication.translate("Luupycards", u"Multiple Choice", None))
-        self.comboBox_modes.setItemText(3, QCoreApplication.translate("Luupycards", u"Survive!", None))
+        self.comboBox_modes.setItemText(3, QCoreApplication.translate("Luupycards", u"Multiple Choice Reverse", None))
+        self.comboBox_modes.setItemText(4, QCoreApplication.translate("Luupycards", u"Survive!", None))
 
 #if QT_CONFIG(tooltip)
         self.comboBox_modes.setToolTip(QCoreApplication.translate("Luupycards", u"Choose the mode", None))

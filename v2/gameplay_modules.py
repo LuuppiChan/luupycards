@@ -23,6 +23,7 @@ def determine_gamemode(current_mode: str, current_order: str, pairs: list):
         ["Normal", "n"],
         ["Reverse", "r"],
         ["Multiple Choice", "m"],
+        ["Multiple Choice Reverse", "mr"],
         ["Survive!", "s!"],
     ]
     orders = [
@@ -42,18 +43,21 @@ def determine_gamemode(current_mode: str, current_order: str, pairs: list):
             game_object = Reverse
         case "Multiple Choice":
             game_object = MultipleChoice
+        case "Multiple Choice Reverse":
+            game_object = MultipleChoice
+            reverse = True
         case "Survive!":
             game_object = Survive
 
     match current_order:
         case "Forward":
-            pass
+            pass  # this is the default
         case "Reverse":
             order = "reverse"
         case "Random":
             order = "random"
 
-    return game_object(pairs, order=order)  # This returns a ready game object
+    return game_object(pairs, order=order, reverse=reverse)  # This returns a ready game object
 
 
 class MainGameplay:
@@ -215,7 +219,7 @@ class MainGameplay:
 
         if self.enabled_answer_checks["show correct answer"]:
             if user_input in self.show_correct_binds:  # show correct answer
-                self.update_class_variables("streak_current", 0)  # breaks the streak
+                self.streak_current = 0
                 self.print_show_correct_answer(correct_answers)
                 return "show correct answer"
 
@@ -230,7 +234,7 @@ class MainGameplay:
                 return "empty field"
 
         if self.enabled_answer_checks["wrong answer"]:
-            self.update_class_variables("streak_current", 0)  # breaks the streak
+            self.streak_current = 0
             self.print_wrong_answer()
             return "wrong"  # if there's no match, the answer is incorrect
 

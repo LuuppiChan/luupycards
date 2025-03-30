@@ -134,6 +134,11 @@
                   </item>
                   <item>
                    <property name="text">
+                    <string>Multiple Choice Reverse</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
                     <string>Survive!</string>
                    </property>
                   </item>
