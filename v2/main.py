@@ -250,6 +250,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.actionSave.triggered.connect(self.pair_inspector_save_to_file)
         self.ui.button_save_file.clicked.connect(self.pair_inspector_save_to_file)
         self.ui.button_save_memory.clicked.connect(self.pair_inspector_save_to_memory)
+        self.ui.pushButton_new_row.clicked.connect(self.pair_inspector_add_row)
+        self.ui.pushButton_delete_row.clicked.connect(self.pair_inspector_remove_row)
         self.pair_widget_items = {
             "question" : [],
             "answer" : [],
@@ -590,8 +592,13 @@ class MainWindow(QtWidgets.QMainWindow):
             mainlog.warning("Found illegal settings values, fixing...")
 
     def pair_inspector_load(self):
+        pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+        }
         if self.pairs:
-            self.pairs.pop(0)
+            if self.pairs[0] == pair0:
+                self.pairs.pop(0)
 
         for _ in range(self.ui.tableWidget.rowCount()):  # first remove all old rows
             self.ui.tableWidget.removeRow(0)
@@ -613,11 +620,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
         # after everything is done adds the pair back
-        pair0 = {
-            "question": ["Wait... question zero? What's the answer though..."],
-            "answer": ["Luupycards"],
-        }
-        self.pairs.insert(0, pair0)
+        if self.pairs:
+            if self.pairs[0] != pair0:
+                self.pairs.insert(0, pair0)
 
     def pair_inspector_save_to_memory(self):
         self.pairs.clear()
@@ -641,12 +646,13 @@ class MainWindow(QtWidgets.QMainWindow):
         file_pairs = []
 
         for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
-            file_pairs.append(
-                {
-                    "question": question.text().split(";"),
-                    "answer": answer.text().split(";"),
-                }
-            )
+            if question or answer:
+                file_pairs.append(
+                    {
+                        "question": question.text().split(";"),
+                        "answer": answer.text().split(";"),
+                    }
+                )
 
         full_json_file = {
             "pairs" : file_pairs
@@ -659,8 +665,34 @@ class MainWindow(QtWidgets.QMainWindow):
             with open(filepath, "w") as file:
                 json.dump(full_json_file, file, ensure_ascii=False, indent=4)
 
+    def pair_inspector_add_row(self):
+        last_row = self.ui.tableWidget.rowCount()
 
-def run():
+        self.ui.tableWidget.insertRow(last_row)
+
+        question = QtWidgets.QTableWidgetItem()
+        question.setText("")
+
+        answer = QtWidgets.QTableWidgetItem()
+        answer.setText("")
+
+        self.ui.tableWidget.setItem(last_row, 0, question)  # questions
+        self.ui.tableWidget.setItem(last_row, 1, answer)  # answers
+
+        self.pair_widget_items["question"].append(question)
+        self.pair_widget_items["answer"].append(answer)
+
+    def pair_inspector_remove_row(self):
+        last_row = self.ui.tableWidget.rowCount() -1
+
+        self.ui.tableWidget.removeRow(last_row)
+
+        if self.pair_widget_items["question"]:
+            self.pair_widget_items["question"].pop(-1)
+            self.pair_widget_items["answer"].pop(-1)
+
+
+if __name__ == "__main__":
     if os.name == "nt":
         mainlog.critical("Warning! This program is intended for Linux, using Windows WILL have unexpected behaviour!")
     app = QtWidgets.QApplication(sys.argv)
@@ -688,6 +720,3 @@ def run():
     window.show()
 
     sys.exit(app.exec())
-
-if __name__ == "__main__":
-    run()

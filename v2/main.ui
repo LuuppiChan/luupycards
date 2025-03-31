@@ -996,6 +996,36 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QPushButton" name="pushButton_delete_row">
+                <property name="toolTip">
+                 <string>Removes a row from the end of the list</string>
+                </property>
+                <property name="statusTip">
+                 <string>Removes a row from the end of the list</string>
+                </property>
+                <property name="text">
+                 <string>Delete row</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_new_row">
+                <property name="toolTip">
+                 <string>Adds a new row at the end of the list</string>
+                </property>
+                <property name="statusTip">
+                 <string>Adds a new row at the end of the list</string>
+                </property>
+                <property name="text">
+                 <string>New row</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
              <widget class="QTableWidget" name="tableWidget">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1171,6 +1201,7 @@
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionOpen_Advanced"/>
+    <addaction name="actionNew_file"/>
     <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="separator"/>
@@ -1456,6 +1487,25 @@
     <font>
      <pointsize>12</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionNew_file">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="iconText">
+    <string>Create a new pair file</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new pair file</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>
