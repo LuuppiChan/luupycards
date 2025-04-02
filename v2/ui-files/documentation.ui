@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>documentation</class>
+ <widget class="QWidget" name="documentation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>734</width>
+    <height>647</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_quickstart_2">
+      <attribute name="title">
+       <string>Quick Start</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_17">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_8">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_9">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>684</width>
+            <height>2603</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_18">
+           <item>
+            <widget class="QLabel" name="label_11">
+             <property name="font">
+              <font>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;The documentation for the game.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Click the tab to chose the category.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;EVERYTHING IMPORTANT SHOULD HAVE TOOLTIPS AND STATUS TIPS!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;They should give you general understanding. If you're confused about a tooltip, please submit an issue to the GitHub page.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Creating pair files&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For the game to be useful you need pairs. You can create a pair file externally or by using the simple built-in inspector.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Formats&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There are 2 main formats, some special formats and a Nihongo Quest import. You can see all of them in File -&amp;gt; Open (Advanced).&lt;/p&gt;&lt;p&gt;The two modes you should be aware of are Default CSV and Default JSON. You should write your pairs in Default CSV or in the inspector since those are the easiest to use. The inspector will create JSON files.&lt;/p&gt;&lt;p&gt;A pair can have as many questions or answers as you want. The reason why it can have many questions is because you can flip questions and answers so that answers are questions and questions are answers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTabWidget" name="tabWidget_examples_2">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>400</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>400</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QWidget" name="tab_examples_csv_default_2">
+              <attribute name="title">
+               <string>Default CSV</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_19">
+               <item>
+                <widget class="QScrollArea" name="scrollArea_9">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_10">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>648</width>
+                    <height>336</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_20">
+                   <item alignment="Qt::AlignTop">
+                    <widget class="QLabel" name="label_13">
+                     <property name="cursor">
+                      <cursorShape>IBeamCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;What is the capital of Japan?&lt;br/&gt;Tokyo&lt;br/&gt;What is the tallest mountain in the world?&lt;br/&gt;Mount Everest,Everest&lt;br/&gt;What is 5 + 3?&lt;br/&gt;8&lt;br/&gt;What is the currency of the United States?&lt;br/&gt;Dollar,US Dollar,USD&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="textInteractionFlags">
+                      <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_examples_json_2">
+              <attribute name="title">
+               <string>Default JSON</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <widget class="QScrollArea" name="scrollArea_10">
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_11">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>634</width>
+                    <height>932</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_22">
+                   <item>
+                    <widget class="QLabel" name="label_14">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>IBeamCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>{
+    &quot;This title doesn't matter for now.&quot;: [
+        {
+            &quot;question&quot;: [
+                &quot;What is 5 + 3?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;8&quot;
+            ]
+        },
+        {
+            &quot;question&quot;: [
+                &quot;What is the tallest mountain in the world?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;Mount Everest&quot;,
+                &quot;Everest&quot;
+            ]
+        },
+        {
+            &quot;question&quot;: [
+                &quot;What is the capital of Japan?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;Tokyo&quot;
+            ]
+        },
+        {
+            &quot;question&quot;: [
+                &quot;What is the currency of the United States?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;Dollar&quot;,
+                &quot;US Dollar&quot;,
+                &quot;USD&quot;
+            ]
+        }
+    ]
+}
+</string>
+                     </property>
+                     <property name="textInteractionFlags">
+                      <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_15">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Importing pairs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This is really easy. Just go File -&amp;gt; Open or Open (Advanced) and choose the file or files you have made. Advanced gives more control over what do you want to import, but normal open should work 99.9% of the time.&lt;/p&gt;&lt;p&gt;After you have imported the pairs you can see on the bottom of the main menu screen that &amp;quot;Loaded [Amount of pairs] pairs from [Filename].&amp;quot; or &amp;quot;Loaded [Amount of pairs] pairs from multiple files. That means you have successfully imported the pairs.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Playing the game&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Modes:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Normal: This is a generic mode where a question is asked and you have to input the answer.&lt;/p&gt;&lt;p&gt;Multiple Choice: In this you can choose from answer candidates taken from the pairs.&lt;/p&gt;&lt;p&gt;Survive!: This is like Normal, but you can fail only a specified amount of times.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Question orders:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Forward: Go forward from question 1 to the last question. After that returns back to question one etc.&lt;/p&gt;&lt;p&gt;Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.&lt;/p&gt;&lt;p&gt;Random: Goes through the questions in a random order with a simple never repeat way.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Other:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Flip questions and answers: This flips questions and answers so that now questions are answers and answers are questions.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After selecting the wanted modes you can press the &amp;quot;Play&amp;quot; button at the bottom of the screen. That throws you into the gameplay section.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Gameplay tricks&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There are some neat things you can do in gameplay. Other than answerring the question.&lt;/p&gt;&lt;p&gt;&amp;quot;c&amp;quot; or &amp;quot;correct&amp;quot;: Shows the correct answer. Breaks your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;seek NUMBER&amp;quot;: Seeks to the specified number. Does not break your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;q&amp;quot; or &amp;quot;quit&amp;quot;: Quits back to main menu. Breaks your streak (For now)&lt;/p&gt;&lt;p&gt;You can also just go back to the Main Menu tab by clicking it and start a new game.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In Multiple Choice to quit the game you have to just click the Main Menu tab.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_main_menu_2">
+      <attribute name="title">
+       <string>Main Menu</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_23">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_11">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_12">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>684</width>
+            <height>1013</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_24">
+           <item alignment="Qt::AlignTop">
+            <widget class="QLabel" name="label_16">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Main Menu&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Here you select the wanted game mode and go play it.&lt;/p&gt;&lt;p&gt;You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Modes:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Normal: This is a generic mode where a question is asked and you have to input the answer.&lt;/p&gt;&lt;p&gt;Multiple Choice: In this you can choose from answer candidates taken from the pairs.&lt;/p&gt;&lt;p&gt;Survive!: This is like Normal, but you can fail only a specified amount of times.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Question orders:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Forward: Go forward from question 1 to the last question. After that returns back to question one etc.&lt;/p&gt;&lt;p&gt;Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.&lt;/p&gt;&lt;p&gt;Random: Goes through the questions in a random order with a simple never repeat way.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Other:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Flip questions and answers: This flips questions and answers so that now questions are answers and answers are questions.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After selecting the wanted modes you can press the &amp;quot;Play&amp;quot; button at the bottom of the screen. That throws you into the gameplay section.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;The Quit Button&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This button simply closes the game.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_play_normal_2">
+      <attribute name="title">
+       <string>Play</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_25">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_12">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_13">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>684</width>
+            <height>1509</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_26">
+           <item alignment="Qt::AlignTop">
+            <widget class="QLabel" name="label_17">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Play (Normal)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Play tab has a couple of items to it.&lt;/p&gt;&lt;p&gt;On the top left corner there's an info field. This displays current information such as if you answerred correctly or not.&lt;/p&gt;&lt;p&gt;On the top right there's streak. If you hover over it you can see your all time streak. This is saved across sessions.&lt;/p&gt;&lt;p&gt;On the middle you can see the question.&lt;/p&gt;&lt;p&gt;Under that there's the input field.&lt;/p&gt;&lt;p&gt;On the bottom right corner there's a check button which can be pressed to check if what you wrote was correct. You can also press enter while typing.&lt;/p&gt;&lt;p&gt;If you don't give an answer nothing will happen if the Check button is pressed.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Commands&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Instead of typing the answer you can also type these commands to the input field and press check.&lt;/p&gt;&lt;p&gt;&amp;quot;c&amp;quot; or &amp;quot;correct&amp;quot;: Shows the correct answer. Breaks your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;seek NUMBER&amp;quot;: Seeks to the specified number. Does not break your streak. (Replace NUMBER with an actual number)&lt;/p&gt;&lt;p&gt;&amp;quot;q&amp;quot; or &amp;quot;quit&amp;quot;: Quits back to main menu. Breaks your streak (For now)&lt;/p&gt;&lt;p&gt;You can also just go back to the Main Menu tab by clicking it. If you want to start a new game you just press play again.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Survive!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;In this mode you can see your &amp;quot;lives&amp;quot; at the bottom left corner of the window.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Play (Multiple Choice)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There's also a multiple choice mode.&lt;/p&gt;&lt;p&gt;In this you have a bit different layout. I'll still go through every item on the layout though.&lt;/p&gt;&lt;p&gt;On the top left corner there's an info field. This displays current information such as if you answerred correctly or not.&lt;/p&gt;&lt;p&gt;On the top right there's streak. If you hover over it you can see your all time streak. This is saved across sessions.&lt;/p&gt;&lt;p&gt;On the middle you can see the question.&lt;/p&gt;&lt;p&gt;Under that there are the answer options. They are on the right side for less mouse movement from an answer to the check button.&lt;/p&gt;&lt;p&gt;On the bottom right corner there's a check button which can be pressed to check if what you wrote was correct.&lt;/p&gt;&lt;p&gt;On the bottom left corner there are two buttons:&lt;/p&gt;&lt;p&gt;Correct: This shows the correct answer in the info field on top left corner.&lt;/p&gt;&lt;p&gt;Seek: This shows a widget where you can choose question number you want to go. You cannot enter an incorrect value to it.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Big mode (Font)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can go to Misc -&amp;gt; Big mode to enable a bigger font for certain gameplay items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_settings_2">
+      <attribute name="title">
+       <string>Settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_27">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_15">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>684</width>
+            <height>611</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_32">
+           <item>
+            <widget class="QLabel" name="label_18">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Settings&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This will cover every single setting in the settings tab.&lt;/p&gt;&lt;p&gt;All time streak: Shows your all time streak&lt;/p&gt;&lt;p&gt;All time survival streak: Shows you all time streak on Survive! mode.&lt;/p&gt;&lt;p&gt;Reset all time streak: Resets your all time streak. You have to first check the box and save.&lt;/p&gt;&lt;p&gt;Reset all time survival streak: Resets your all time survival streak. You have to first check the box and save.&lt;/p&gt;&lt;p&gt;Min question: The lowest question number to be asked &lt;span style=&quot; font-weight:600;&quot;&gt;in random mode&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Max question: The highest question number to be asked &lt;span style=&quot; font-weight:600;&quot;&gt;in random mode&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Show current question number: Whether to show the current question number before the question.&lt;/p&gt;&lt;p&gt;Multiple choice max options: How many candidates to show in multiple choice.&lt;/p&gt;&lt;p&gt;Lives: Choose the amount of lives you want to have in Survive! mode.&lt;/p&gt;&lt;p&gt;Fuzzy select percent: ONLY WORKS IF THEFUZZ IS INTALLED! How many percent of error can the answer have for it to be counted as &amp;quot;almost correct&amp;quot;. &lt;br/&gt;100% = The answer has to be 100% correct. No mistakes.&lt;br/&gt;80% = The answer has to be 90% correct for it to count as &amp;quot;almost correct&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>33</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_inspector_2">
+      <attribute name="title">
+       <string>Inspector</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_28">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_13">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_14">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>684</width>
+            <height>725</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_29">
+           <item>
+            <widget class="QLabel" name="label_19">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Inspector&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The inspector is probably the most advanced feature of the game although it's still really simple.&lt;/p&gt;&lt;p&gt;You can create, remove and inspect pairs with it.&lt;/p&gt;&lt;p&gt;The format on it is a bit different than the Default CSV format. This format uses only the &amp;quot;;&amp;quot; character as a separator.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;-- Question --&lt;/p&gt;&lt;p&gt;What currency does the United States use?&lt;/p&gt;&lt;p&gt;-- Answer --&lt;/p&gt;&lt;p&gt;US Dollar;USD;United States Dollar&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Here there are 3 answer options separated by the &amp;quot;;&amp;quot; character.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Inspector Tools&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There's an Inspector section on the top bar.&lt;/p&gt;&lt;p&gt;This section has all the tools you can use in the inspector. I suggest you to use the shortcuts that are provided for more convenience. If the shorcuts don't feel intuitive please make a GitHub issue and suggest better ones.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_menubar_2">
+      <attribute name="title">
+       <string>Menu Bar</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_30">
+       <item>
+        <widget class="QScrollArea" name="scrollArea_14">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_15">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>684</width>
+            <height>950</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_31">
+           <item>
+            <widget class="QLabel" name="label_20">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Menu Bar options&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This section goes through every single option in the menu bar.&lt;/p&gt;&lt;p&gt;The menu bar is the bar on top of the window. It has the sections File, Inspector, Misc and Help.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;File&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This section has 5 items.&lt;/p&gt;&lt;p&gt;Open: This opens a file selector that you can open a pair file with.&lt;/p&gt;&lt;p&gt;Open (Advanced): Clicking this opens a small widget where you can choose what kind of import methods you want to use. (Hover to see examples on the tooltip.)&lt;/p&gt;&lt;p&gt;New: This use clears current pairs from the game memory. &lt;span style=&quot; font-weight:600;&quot;&gt;There is no check for unsaved files.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Save: This is the same as the &amp;quot;Save to file&amp;quot; button in the inspector. It opens a file dialog where you can save the current pair file as a JSON.&lt;/p&gt;&lt;p&gt;Quit: Quits the game.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Inspector&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This has all the tools for the inspector.&lt;/p&gt;&lt;p&gt;New Row: Creates a new row at the end of the list.&lt;/p&gt;&lt;p&gt;New Row after selected: Creates a new row after the one you have a selected box in it.&lt;/p&gt;&lt;p&gt;Delete Last Row: Deletes the last row...&lt;/p&gt;&lt;p&gt;Delete Selected Row: Deletes the row you have a selected box in it.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Misc&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Big mode: Increases the size of certain gameplay elements.&lt;/p&gt;&lt;p&gt;Test trigger: This is used for testing things. It should not do anything if you press it.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Help&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Help!: Shows this documentation.&lt;/p&gt;&lt;p&gt;Info: Shows information about the game.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

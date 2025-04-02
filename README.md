@@ -58,9 +58,9 @@ chmod a+x install.sh
 6. Open the app from your application menu.
 
 # Making pair files
-The game is kind of useless without pairs to play with.
+The documentation on everything about the game is in the game. 
 
-This section will be done later.
+From the top bar, go to Help -> Help! to see the documentation.
 
 ## Settings
 There are minimal checks for if a setting value is valid!

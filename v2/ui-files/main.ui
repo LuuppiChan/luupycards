@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>431</width>
-    <height>439</height>
+    <width>724</width>
+    <height>712</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>415</width>
-         <height>362</height>
+         <width>708</width>
+         <height>635</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -276,6 +276,9 @@
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
                   <item>
                    <widget class="QLabel" name="label_game_info">
+                    <property name="cursor">
+                     <cursorShape>IBeamCursor</cursorShape>
+                    </property>
                     <property name="toolTip">
                      <string>Info about actions</string>
                     </property>
@@ -295,6 +298,9 @@
                   </item>
                   <item alignment="Qt::AlignRight">
                    <widget class="QLabel" name="label_streak">
+                    <property name="cursor">
+                     <cursorShape>IBeamCursor</cursorShape>
+                    </property>
                     <property name="toolTip">
                      <string>Current streak: 0, All time streak: 0</string>
                     </property>
@@ -338,6 +344,9 @@
                      <font>
                       <pointsize>20</pointsize>
                      </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>IBeamCursor</cursorShape>
                     </property>
                     <property name="toolTip">
                      <string>The question</string>
@@ -429,6 +438,19 @@
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_4">
                   <item>
+                   <widget class="QPushButton" name="pushButton_seek_mc_">
+                    <property name="toolTip">
+                     <string>Seek to a specific question</string>
+                    </property>
+                    <property name="statusTip">
+                     <string>Seek to a specific question</string>
+                    </property>
+                    <property name="text">
+                     <string>Seek</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QLabel" name="label_lives">
                     <property name="text">
                      <string/>
@@ -436,14 +458,14 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="horizontalSpacer_2">
+                   <spacer name="horizontalSpacer">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>0</width>
-                      <height>0</height>
+                      <width>40</width>
+                      <height>20</height>
                      </size>
                     </property>
                    </spacer>
@@ -483,8 +505,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>312</width>
-                     <height>149</height>
+                     <width>660</width>
+                     <height>547</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -492,6 +514,9 @@
                      <layout class="QHBoxLayout" name="horizontalLayout_5">
                       <item>
                        <widget class="QLabel" name="label_game_info_mc">
+                        <property name="cursor">
+                         <cursorShape>IBeamCursor</cursorShape>
+                        </property>
                         <property name="toolTip">
                          <string>Info about actions</string>
                         </property>
@@ -508,6 +533,9 @@
                       </item>
                       <item alignment="Qt::AlignRight">
                        <widget class="QLabel" name="label_streak_mc">
+                        <property name="cursor">
+                         <cursorShape>IBeamCursor</cursorShape>
+                        </property>
                         <property name="toolTip">
                          <string>Current streak: 0, All time streak: 0</string>
                         </property>
@@ -545,6 +573,9 @@
                          <font>
                           <pointsize>20</pointsize>
                          </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>IBeamCursor</cursorShape>
                         </property>
                         <property name="toolTip">
                          <string>The question</string>
@@ -665,8 +696,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>468</width>
-                 <height>429</height>
+                 <width>672</width>
+                 <height>512</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_9">
@@ -996,36 +1027,6 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item>
-               <widget class="QPushButton" name="pushButton_delete_row">
-                <property name="toolTip">
-                 <string>Removes a row from the end of the list</string>
-                </property>
-                <property name="statusTip">
-                 <string>Removes a row from the end of the list</string>
-                </property>
-                <property name="text">
-                 <string>Delete row</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_new_row">
-                <property name="toolTip">
-                 <string>Adds a new row at the end of the list</string>
-                </property>
-                <property name="statusTip">
-                 <string>Adds a new row at the end of the list</string>
-                </property>
-                <property name="text">
-                 <string>New row</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
              <widget class="QTableWidget" name="tableWidget">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1191,7 +1192,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>431</width>
+     <width>724</width>
      <height>33</height>
     </rect>
    </property>
@@ -1212,6 +1213,8 @@
      <string>Help</string>
     </property>
     <addaction name="actionRead_the_docs"/>
+    <addaction name="separator"/>
+    <addaction name="actionInfo"/>
    </widget>
    <widget class="QMenu" name="menuMisc">
     <property name="title">
@@ -1220,7 +1223,23 @@
     <addaction name="actionBig_mode"/>
     <addaction name="actionTest_trigger"/>
    </widget>
+   <widget class="QMenu" name="menuInspector">
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Inspector</string>
+    </property>
+    <addaction name="actionNew_Row"/>
+    <addaction name="actionNew_Row_After_Selected"/>
+    <addaction name="separator"/>
+    <addaction name="actionRemove_Last_Row"/>
+    <addaction name="actionDelete_Selected_Row"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuInspector"/>
    <addaction name="menuMisc"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -1258,7 +1277,7 @@
   </action>
   <action name="actionRead_the_docs">
    <property name="text">
-    <string>Just test stuff</string>
+    <string>Help!</string>
    </property>
    <property name="font">
     <font>
@@ -1494,9 +1513,12 @@
     <string>New</string>
    </property>
    <property name="iconText">
-    <string>Create a new pair file</string>
+    <string>New</string>
    </property>
    <property name="toolTip">
+    <string>Create a new pair file</string>
+   </property>
+   <property name="statusTip">
     <string>Create a new pair file</string>
    </property>
    <property name="font">
@@ -1506,6 +1528,124 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="text">
+    <string>Info</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionDiagnostics">
+   <property name="text">
+    <string>Diagnostics</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionHide_Inspector_Tool_Buttons">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hide Inspector Buttons</string>
+   </property>
+   <property name="toolTip">
+    <string>Whether to hide or show the tool row.</string>
+   </property>
+   <property name="statusTip">
+    <string>Whether to hide or show the tool row.</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionNew_Row">
+   <property name="text">
+    <string>New Row</string>
+   </property>
+   <property name="iconText">
+    <string>Adds a new row at the end of the list.</string>
+   </property>
+   <property name="toolTip">
+    <string>Adds a new row at the end of the list.</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionNew_Row_After_Selected">
+   <property name="text">
+    <string>New Row After Selected</string>
+   </property>
+   <property name="iconText">
+    <string>Insert a new row after the the row you've selected.</string>
+   </property>
+   <property name="toolTip">
+    <string>Insert a new row after the the row you've selected.</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Return</string>
+   </property>
+  </action>
+  <action name="actionRemove_Last_Row">
+   <property name="text">
+    <string>Delete Last Row</string>
+   </property>
+   <property name="iconText">
+    <string>Removes a row from the end of the list.</string>
+   </property>
+   <property name="toolTip">
+    <string>Removes a row from the end of the list.</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionDelete_Selected_Row">
+   <property name="text">
+    <string>Delete Selected Row</string>
+   </property>
+   <property name="iconText">
+    <string>Select a box from the wanted row and delete it.</string>
+   </property>
+   <property name="toolTip">
+    <string>Select a box from the wanted row and delete it.</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Backspace</string>
    </property>
   </action>
  </widget>
@@ -1544,12 +1684,12 @@
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>488</x>
-     <y>429</y>
+     <x>117</x>
+     <y>117</y>
     </hint>
     <hint type="destinationlabel">
-     <x>492</x>
-     <y>587</y>
+     <x>109</x>
+     <y>155</y>
     </hint>
    </hints>
   </connection>
@@ -1560,12 +1700,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>467</x>
-     <y>422</y>
+     <x>117</x>
+     <y>117</y>
     </hint>
     <hint type="destinationlabel">
-     <x>478</x>
-     <y>583</y>
+     <x>109</x>
+     <y>155</y>
     </hint>
    </hints>
   </connection>

@@ -18,7 +18,7 @@ try:
 except ModuleNotFoundError:
     fuzzy_is_available = False
 
-def determine_gamemode(current_mode: str, current_order: str, pairs: list, reverse=False):
+def determine_gamemode(current_mode: str, current_order: str, pairs: list, reverse=False, current_question=0, current_streak=0):
     modes = [
         ["Normal", "n"],
         ["Multiple Choice", "m"],
@@ -48,7 +48,7 @@ def determine_gamemode(current_mode: str, current_order: str, pairs: list, rever
         case "Random":
             order = "random"
 
-    return game_object(pairs, order=order, reverse=reverse)  # This returns a ready game object
+    return game_object(pairs, order=order, reverse=reverse, current_question=current_question, streak_current=current_streak)  # This returns a ready game object
 
 
 class MainGameplay:
@@ -316,11 +316,11 @@ class MainGameplay:
         if generate_new:
 
             mc_max_options = self.all_settings["multiple choice max options"]
-            random_index_list = core.never_repeat_random_list(1, self.max_question)  # use internal dictionary copy in future
+            random_index_list = core.never_repeat_random_list(1, self.max_question)
             # list from 1 to max question
 
             # this chooses random pairs out of the pairs, but doesn't leave space for the correct one yet
-            for i in range(mc_max_options +2):
+            for i in range(mc_max_options +1):
                 if random_index_list[i] == self.current_question:  # skips if it's the correct since it's already in
                     continue
                 multiple_choice_options.append(self.pairs[random_index_list[i]])
@@ -375,18 +375,26 @@ class MainGameplay:
             if answer_check == "quit":
                 return self.streak_current
 
-    def settings_update(self):
+    def settings_update(self, update_random_list=False):
         max_question = core.settings_value_manipulator("max question")
+        pair_length = len(self.pairs)
+        if pair_length -1 < max_question:
+            max_question = len(self.pairs) - 1
+            core.settings_value_manipulator("max question", "dump", max_question)
+            update_random_list = True  # update needed since the settings number is invalid for some reason
+        else:
+            max_question = core.settings_value_manipulator("max question")
+
         min_question = core.settings_value_manipulator("min question")
+
+        # updates only if there are changes to these 2 settings or force is on
+        if max_question != self.max_question or min_question != self.all_settings["min question"] or update_random_list:
+            self.random_list = core.never_repeat_random_list(min_question, max_question)
 
         self.show_question_number = core.settings_value_manipulator("show current question number")
         self.streak_all_time = core.settings_value_manipulator("all time streak")
-        self.max_question = core.settings_value_manipulator("max question")
+        self.max_question = max_question
         self.all_settings = core.get_options()
-
-        # updates only if there are changes to these 2 settings
-        if max_question != self.max_question or min_question != self.all_settings["min question"]:
-            self.random_list = core.never_repeat_random_list(self.all_settings["min question"], self.all_settings["max question"])
 
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         correct_answers = self.pairs[self.current_question][self.answer]

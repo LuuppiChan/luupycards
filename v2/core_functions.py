@@ -340,13 +340,13 @@ def static_value_functions(user_input_subsetting, options, selected_setting) -> 
     static_values = ["reset all time streak", "reset all time survival streak"]
 
     # other static value functions can be added here
-    if selected_setting == static_values[0] and user_input_subsetting.lower() == "true":
+    if selected_setting == static_values[0] and user_input_subsetting == True:
         options["all time streak"] = 0
-        get_options("dump", options)
 
-    elif selected_setting == static_values[1] and user_input_subsetting.lower() == "true":
+    elif selected_setting == static_values[1] and user_input_subsetting == True:
         options["all time survival streak"] = 0
-        get_options("dump", options)
+
+    get_options("dump", options)
 
 
 def static_value_functions_gui():

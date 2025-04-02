@@ -12,11 +12,13 @@ from PySide6 import QtGui
 from PySide6 import QtCore
 from PySide6 import QtWidgets
 
+from info import Ui_info
 from seek import Ui_Seek
 from ui import Ui_Luupycards
 import core_functions as core
 import gameplay_modules as gameplay
 from import_dialog import Ui_DialogImport
+from documentation import Ui_documentation
 
 
 # argparse
@@ -41,6 +43,27 @@ match args.debug:
 # logging
 mainlog = logging.getLogger(__name__)
 logging.basicConfig(filename=f"{core.get_data_dir()}/luupy.log", encoding="utf-8", level=log_level, filemode="w")
+
+
+class DocumentationWidget(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(DocumentationWidget, self).__init__(parent)
+        self.ui = Ui_documentation()
+        self.ui.setupUi(self)
+
+        self.ui.pushButton.clicked.connect(self.hide)
+
+
+class InfoWidget(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(InfoWidget, self).__init__(parent)
+        self.ui = Ui_info()
+        self.ui.setupUi(self)
+
+        self.ui.pushButton.clicked.connect(self.hide)
+
+        self.ui.checkBox.setChecked(gameplay.fuzzy_is_available)
+        self.ui.checkBox.setEnabled(False)
 
 
 class ImportDialog(QtWidgets.QDialog):
@@ -73,6 +96,9 @@ class ImportDialog(QtWidgets.QDialog):
             }
         }
         self.selected_a_file = False
+
+    def closeEvent(self, event):
+        window.setEnabled(True)
 
     def combobox_update(self):
         current_text = self.ui.comboBox_import.currentText()
@@ -188,6 +214,9 @@ class SeekWidget(QtWidgets.QDialog):
         self.seek_value = self.ui.spinBox_seek_value.value()
         self.user_entered_number = False
 
+        self.ui.spinBox_seek_value.valueChanged.connect(self.refresh_question)
+        self.refresh_question()
+
     def ok_press(self):
         self.seek_value = self.ui.spinBox_seek_value.value()  # refresh
         self.user_entered_number = True
@@ -197,6 +226,9 @@ class SeekWidget(QtWidgets.QDialog):
     def cancel_press(self):
         self.user_entered_number = False
         self.hide()
+
+    def refresh_question(self):
+        self.ui.label_question.setText(f"Question: {" / ".join(window.pairs[self.ui.spinBox_seek_value.value()]["question"])}")
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -226,6 +258,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.button_play.clicked.connect(self.gameplay_setup)  # Start playing
         self.ui.button_check.clicked.connect(self.correct_checkbutton)  # check button
         self.ui.pushButton_check_mc.clicked.connect(self.correct_checkbutton_mc)  # check button mc
+        self.ui.actionNew_file.triggered.connect(self.new_pairs)  # new file
 
         # settings buttons
         self.ui.button_settings_reset_2.clicked.connect(self.reset_settings)
@@ -240,23 +273,32 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mc_choices = list()
         self.mc_correct_choice = ""
 
+        self.ui.pushButton_seek.clicked.connect(self.seek_mc)  # added to the normal modes
+
         # font changes
         self.ui.actionBig_mode.triggered.connect(self.big_font_mode)
 
         self.ui.actionTest_trigger.triggered.connect(self.test_trigger)
         self.ui.actionOpen_Advanced.triggered.connect(self.advanced_import)
 
+        # help menu buttons
+        self.ui.actionRead_the_docs.triggered.connect(self.open_help)
+        self.ui.actionInfo.triggered.connect(self.open_info)
+
         # inspector
         self.ui.actionSave.triggered.connect(self.pair_inspector_save_to_file)
         self.ui.button_save_file.clicked.connect(self.pair_inspector_save_to_file)
         self.ui.button_save_memory.clicked.connect(self.pair_inspector_save_to_memory)
-        self.ui.pushButton_new_row.clicked.connect(self.pair_inspector_add_row)
-        self.ui.pushButton_delete_row.clicked.connect(self.pair_inspector_remove_row)
+        self.ui.actionNew_Row.triggered.connect(self.pair_inspector_add_row)
+        self.ui.actionRemove_Last_Row.triggered.connect(self.pair_inspector_remove_row)
+        self.ui.actionNew_Row_After_Selected.triggered.connect(self.pair_inspector_new_row_after_selected)
+        self.ui.actionDelete_Selected_Row.triggered.connect(self.pair_inspector_remove_selected_row)
         self.pair_widget_items = {
             "question" : [],
             "answer" : [],
         }
         self.pair_inspector_load()
+        self.enough_pairs = True
 
         mainlog.info("Set up class init.")
 
@@ -282,6 +324,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 button.setFont(QtGui.QFont(font_family, 12*2))
             self.ui.pushButton_correct_mc.setFont(QtGui.QFont(font_family, 16))
             self.ui.pushButton_seek_mc.setFont(QtGui.QFont(font_family, 16))
+            self.ui.pushButton_seek.setFont(QtGui.QFont(font_family, 16))
 
         else:
             self.ui.label_question.setFont(QtGui.QFont(font_family, 20))
@@ -297,6 +340,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 button.setFont(QtGui.QFont(font_family, 12))
             self.ui.pushButton_correct_mc.setFont(QtGui.QFont(font_family, 12))
             self.ui.pushButton_seek_mc.setFont(QtGui.QFont(font_family, 12))
+            self.ui.pushButton_seek.setFont(QtGui.QFont(font_family, 12))
 
     def correct_checkbutton(self):
         line_text = self.ui.lineEdit_answer.text()
@@ -404,7 +448,16 @@ class MainWindow(QtWidgets.QMainWindow):
                 json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
                 self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
 
+            if len(file_paths[0]) == 1:
+                json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
+                window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+            else:
+                window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+
         self.pair_inspector_load()
+        if self.ui.tab_play.isEnabled():
+            # setups the gameplay again if it's enabled
+            self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
 
     @staticmethod
     def quit_action():
@@ -454,12 +507,30 @@ class MainWindow(QtWidgets.QMainWindow):
     def correct_mc(self):
         self.correct_checkbutton_mc("correct")
 
-    def gameplay_setup(self):
-        if self.pairs:
+    def gameplay_setup(self, new_game="True", current_streak=0, current_question=1):
+        multiple_choice_criteria = True
+        if new_game == "False":
+            new_game = False
+        else:
+            new_game = True
+
+        if current_question <= 0:
+            # Honestly I don't know how to fix this any other way, but whatever.
+            mainlog.error(f"Invalid question number {current_question}! This is likely from reloading the game when on question 1. Fixing...")
+            current_question = 1
+
+        # determine mode
+        self.current_mode = self.ui.comboBox_modes.currentText()
+        self.current_order = self.ui.comboBox_question_order.currentText()
+
+        if self.current_mode == "Multiple Choice":
+            if len(self.pairs) < core.settings_value_manipulator("multiple choice max options") + 1:
+                multiple_choice_criteria = False
+                mainlog.error("Not enough pairs to make options!")
+                QtWidgets.QMessageBox.warning(self, "Error!", "Not enough pairs to make options!\nPlease decrease multiple choice option count or make more pairs.")
+
+        if self.pairs and multiple_choice_criteria:
             mainlog.info("Creating gameplay...")
-            # determine mode
-            self.current_mode = self.ui.comboBox_modes.currentText()
-            self.current_order = self.ui.comboBox_question_order.currentText()
 
             # pair lengths so that user can only change then after gameplay has been initialized
             #if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
@@ -470,16 +541,24 @@ class MainWindow(QtWidgets.QMainWindow):
             self.reload_settings()
 
             # set tab to play
-            self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
-            if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
-                self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.multiple_choice)
-            else:
-                self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.input)
-            self.ui.action_tabls_play.setEnabled(True)
-            self.ui.tab_play.setEnabled(True)
+            if new_game:
+                self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
+                if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
+                    self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.multiple_choice)
+                else:
+                    self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.input)
+                self.ui.action_tabls_play.setEnabled(True)
+                self.ui.tab_play.setEnabled(True)
 
             print(self.current_mode, self.current_order)  # then pass to backend
-            self.the_game = gameplay.determine_gamemode(self.current_mode, self.current_order, self.pairs, self.ui.checkBox_question_flip.isChecked())
+            self.the_game = gameplay.determine_gamemode(
+                self.current_mode,
+                self.current_order,
+                self.pairs,
+                self.ui.checkBox_question_flip.isChecked(),
+                current_question,
+                current_streak
+            )
 
             self.set_streak()
             self.set_question(self.the_game.play_gui())
@@ -492,7 +571,9 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 self.ui.label_lives.setText("")
 
-        else:
+            self.set_info(f"Now playing: {self.current_mode}")
+
+        elif not(self.current_mode == "Multiple Choice"):
             mainlog.info("No pairs detected.")
             QtWidgets.QMessageBox.warning(self, "Pair error!", "Please import pairs before you start playing!\nFile -> Open")
 
@@ -533,13 +614,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.fuzzy_select_precent_value_2.setValue(options["fuzzy select percent"])
 
     def reset_settings(self):
-        are_you_sure = QtWidgets.QMessageBox(self)
-        are_you_sure.setText("Are you sure you want to reset all the settings?")
-        are_you_sure.setInformativeText("Your all time streaks will be reset!")
-        are_you_sure.setStandardButtons(QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
-        are_you_sure.exec()
-
-        if are_you_sure.buttonClicked:
+        def ok():
             script_dir = os.path.dirname(os.path.abspath(__file__))
             settings_path = os.path.join(script_dir, "settings.json")
 
@@ -560,6 +635,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self.reload_settings()
             mainlog.info("Reloaded settings")
 
+        are_you_sure = QtWidgets.QMessageBox(self)
+        are_you_sure.setText("Are you sure you want to reset all the settings?")
+        are_you_sure.setInformativeText("Your all time streaks will be reset!")
+        are_you_sure.setStandardButtons(QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
+        are_you_sure.button(QtWidgets.QMessageBox.Ok).clicked.connect(ok)
+        are_you_sure.exec()
+
     def save_settings(self):
         self.game_options["all time streak"]                = int(self.ui.all_time_streak_value_2.text())
         self.game_options["all time survival streak"]       = int(self.ui.all_time_survival_streak_value_2.text())
@@ -573,6 +655,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.game_options["fuzzy select percent"]           = self.ui.fuzzy_select_precent_value_2.value()
 
         core.static_value_functions_gui()
+        self.static_value_settings()
         self.check_invalid_settings()
         core.get_options("dump", self.game_options)
         mainlog.info("Saved settings")
@@ -590,6 +673,20 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if options_orig != self.game_options:
             mainlog.warning("Found illegal settings values, fixing...")
+
+    def static_value_settings(self):
+        static_values = ["reset all time streak", "reset all time survival streak"]
+
+        # other static value functions can be added here
+        if self.ui.reset_all_time_streak_value_2.isChecked():
+            self.ui.reset_all_time_streak_value_2.setChecked(False)
+            self.game_options["reset all time streak"] = False
+            self.game_options["all time streak"] = 0
+
+        if self.ui.reset_all_time_survival_streak_value_2.isChecked():
+            self.ui.reset_all_time_survival_streak_value_2.setChecked(False)
+            self.game_options["reset all time survival streak"] = False
+            self.game_options["all time survival streak"] = 0
 
     def pair_inspector_load(self):
         pair0 = {
@@ -624,8 +721,21 @@ class MainWindow(QtWidgets.QMainWindow):
             if self.pairs[0] != pair0:
                 self.pairs.insert(0, pair0)
 
+    def ensure_loaded(self):
+        self.pair_widget_items["question"].clear()
+        self.pair_widget_items["answer"].clear()
+
+        rows = self.ui.tableWidget.rowCount()
+
+        # It seems that in some cases the C++ objects have already been deleted, so this loads them again
+        for row in range(rows):
+            self.pair_widget_items["question"].append(self.ui.tableWidget.item(row, 0))
+            self.pair_widget_items["answer"].append(self.ui.tableWidget.item(row, 1))
+
     def pair_inspector_save_to_memory(self):
         self.pairs.clear()
+
+        self.ensure_loaded()
 
         for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
             self.pairs.append(
@@ -641,16 +751,28 @@ class MainWindow(QtWidgets.QMainWindow):
             "answer": ["Luupycards"],
         }
         self.pairs.insert(0, pair0)
+        self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from Inspector.")
+
+        if self.pairs:
+            if self.ui.tab_play.isEnabled():
+                # setups the gameplay again
+                self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+
+        else:
+            QtWidgets.QMessageBox.warning(self, "Warning", "You don't have any pairs.\nRestart game play from main menu.")
+            self.ui.tab_play.setEnabled(False)
 
     def pair_inspector_save_to_file(self):
         file_pairs = []
+
+        self.ensure_loaded()
 
         for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
             if question or answer:
                 file_pairs.append(
                     {
-                        "question": question.text().split(";"),
-                        "answer": answer.text().split(";"),
+                        "question": question.text().split(";") if question.text() else "",
+                        "answer": answer.text().split(";") if answer.text() else "",
                     }
                 )
 
@@ -690,6 +812,56 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.pair_widget_items["question"]:
             self.pair_widget_items["question"].pop(-1)
             self.pair_widget_items["answer"].pop(-1)
+
+    def pair_inspector_remove_selected_row(self):
+        this_row = self.ui.tableWidget.currentRow()
+
+        self.ui.tableWidget.removeRow(this_row)
+
+        if len(self.pair_widget_items["question"]):
+            self.pair_widget_items["question"].pop(this_row)
+            self.pair_widget_items["answer"].pop(this_row)
+
+    def pair_inspector_new_row_after_selected(self):
+        this_row = self.ui.tableWidget.currentRow() +1
+
+        self.ui.tableWidget.insertRow(this_row)
+
+        question = QtWidgets.QTableWidgetItem()
+        question.setText("")
+
+        answer = QtWidgets.QTableWidgetItem()
+        answer.setText("")
+
+        self.ui.tableWidget.setItem(this_row, 0, question)  # questions
+        self.ui.tableWidget.setItem(this_row, 1, answer)  # answers
+
+        self.pair_widget_items["question"].insert(this_row, question)
+        self.pair_widget_items["answer"].insert(this_row, answer)
+
+    def open_help(self):
+        mainlog.info("User needs help")
+        documentation = DocumentationWidget(self)
+        documentation.show()
+
+    def open_info(self):
+        mainlog.info("User wants info")
+        info = InfoWidget(self)
+        info.show()
+
+    def new_pairs(self):
+        def ok():
+            self.pairs.clear()
+            self.ui.tab_play.setEnabled(False)
+            self.pair_inspector_load()
+
+        if self.pairs:
+            warning = QtWidgets.QMessageBox(self)
+            warning.setText("Are you sure you want to create a new file")
+            warning.setInformativeText("Unsaved pairs will be lost.")
+            warning.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+            warning.button(QtWidgets.QMessageBox.Ok).clicked.connect(ok)
+            warning.exec()
 
 
 if __name__ == "__main__":

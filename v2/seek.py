@@ -52,6 +52,14 @@ class Ui_Seek(object):
 
         self.verticalLayout.addWidget(self.spinBox_seek_value)
 
+        self.label_question = QLabel(Seek)
+        self.label_question.setObjectName(u"label_question")
+        font1 = QFont()
+        font1.setPointSize(12)
+        self.label_question.setFont(font1)
+
+        self.verticalLayout.addWidget(self.label_question)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -80,6 +88,7 @@ class Ui_Seek(object):
     def retranslateUi(self, Seek):
         Seek.setWindowTitle(QCoreApplication.translate("Seek", u"Form", None))
         self.label_static_eqn.setText(QCoreApplication.translate("Seek", u"Enter question number", None))
+        self.label_question.setText(QCoreApplication.translate("Seek", u"Question: ", None))
         self.pushButton_cancel.setText(QCoreApplication.translate("Seek", u"Cancel", None))
         self.pushButton_ok.setText(QCoreApplication.translate("Seek", u"Ok", None))
     # retranslateUi
