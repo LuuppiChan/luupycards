@@ -16,12 +16,13 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
-    QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QSpinBox, QStackedWidget, QStatusBar,
+    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_Luupycards(object):
     def setupUi(self, Luupycards):
@@ -341,7 +342,7 @@ class Ui_Luupycards(object):
         self.scrollArea_mc.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 660, 547))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 312, 149))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_5 = QHBoxLayout()
@@ -636,7 +637,13 @@ class Ui_Luupycards(object):
         self.tableWidget.setObjectName(u"tableWidget")
         sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
         self.tableWidget.setSizePolicy(sizePolicy)
+        self.tableWidget.setAcceptDrops(False)
         self.tableWidget.setFrameShape(QFrame.StyledPanel)
+        self.tableWidget.setEditTriggers(QAbstractItemView.AnyKeyPressed|QAbstractItemView.DoubleClicked|QAbstractItemView.EditKeyPressed)
+        self.tableWidget.setDragEnabled(True)
+        self.tableWidget.setDragDropOverwriteMode(True)
+        self.tableWidget.setDragDropMode(QAbstractItemView.NoDragDrop)
+        self.tableWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(300)
         self.tableWidget.horizontalHeader().setProperty(u"showSortIndicator", False)
@@ -1169,13 +1176,13 @@ class Ui_Luupycards(object):
         ___qtablewidgetitem12 = self.tableWidget.item(2, 1)
         ___qtablewidgetitem12.setText(QCoreApplication.translate("Luupycards", u"answer3a;answer3b;answer3c", None));
         ___qtablewidgetitem13 = self.tableWidget.item(3, 0)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("Luupycards", u"question4", None));
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("Luupycards", u"question1", None));
         ___qtablewidgetitem14 = self.tableWidget.item(3, 1)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("Luupycards", u"answer4a;answer4b", None));
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("Luupycards", u"answer1a;answer1b", None));
         ___qtablewidgetitem15 = self.tableWidget.item(4, 0)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("Luupycards", u"question5", None));
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("Luupycards", u"question2", None));
         ___qtablewidgetitem16 = self.tableWidget.item(4, 1)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("Luupycards", u"answer5a", None));
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("Luupycards", u"answer2a", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
 #if QT_CONFIG(tooltip)

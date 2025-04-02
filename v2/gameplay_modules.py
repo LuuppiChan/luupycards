@@ -115,56 +115,37 @@ class MainGameplay:
 
     def print_correct_answer(self):
         if self.enabled_prints["correct answer"]:
-            print("Correct")
             return "Correct"
 
     def print_invalid_seek(self, question_number):
         if self.enabled_prints["invalid seek"]:
-            print(f'"{question_number}" is an invalid seek number. (Max: {self.max_question})')
             return f'"{question_number}" is an invalid seek number. (Max: {self.max_question})'
 
     def print_valid_seek(self, question_number):
         if self.enabled_prints["valid seek"]:
-            print(f"Seeking from {self.current_question} to {question_number}...")
             return f"Seeking from {self.current_question} to {question_number}..."
 
     def print_show_correct_answer(self, correct_answers):
         if self.enabled_prints["show correct answer"]:
-            print(f"Correct answers: {" / ".join(correct_answers)}")
             return f"Correct answers: {" / ".join(correct_answers)}"
 
     def print_return_to_main_menu(self):
         if self.enabled_prints["return to main menu"]:
-            print("Returning to main menu...")
             return "Returning to main menu..."
 
     def print_empty_field(self):
         if self.enabled_prints["empty field"]:
-            print("Please type something...")
             return "Please type something..."
 
     def print_wrong_answer(self):
         if self.enabled_prints["wrong answer"]:
-            print(f'"{self.user_input.capitalize()}" is not a correct answer.')
             return f'"{self.user_input.capitalize()}" is not a correct answer.'
 
     def print_fuzzy_correct(self, correct_answers):
         if self.enabled_prints["fuzzy correct"]:
-            print(f"Almost correct! {" / ".join(correct_answers)}")
             return f"Almost correct! {" / ".join(correct_answers)}"
 
-    def update_class_variables(self, variable, new_input):
-        match variable:
-            case "streak_current":
-                self.streak_current = new_input
-            case "streak_all_time":
-                self.streak_all_time = new_input
-            case "current_question":
-                self.current_question = new_input
-
     def print_question(self):
-        print(f"Current streak: {self.streak_current}, All time streak: {self.streak_all_time}")
-        print(f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}")
         return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
 
     def fuzzy_check(self, correct_answers):
@@ -205,7 +186,7 @@ class MainGameplay:
                     self.print_invalid_seek(question_number)
                 else:
                     self.print_valid_seek(question_number)
-                    self.update_class_variables("current_question", question_number)
+                    self.current_question = question_number
                 return "seek"
 
         if self.enabled_answer_checks["show correct answer"]:
@@ -264,48 +245,6 @@ class MainGameplay:
         else:
             raise Exception("Someone has set an invalid question order.")
 
-    def generate_multiple_choice_answers(self, generate_new=True, correct_letter="", multiple_choice_options=None):
-
-        if multiple_choice_options is None:
-            multiple_choice_options = {}
-        if generate_new:
-            options = core.get_options()
-            max_options = options["multiple choice max options"]
-            random_list = core.never_repeat_random_list(1, core.settings_value_manipulator("max question"))
-
-            if len(random_list) < max_options:
-                raise Exception(
-                    f"Not enough unique pairs to generate {max_options} options from {len(random_list)} pairs.")
-
-            if self.current_question in random_list:
-                random_list.remove(self.current_question)
-
-            random_list = random_list[:max_options]  # one less than max_options
-            random_list.append(self.current_question)
-
-            while len(random_list) != max_options:
-                random_list.pop(0)
-
-            random.shuffle(random_list)
-
-            letters = string.ascii_lowercase
-
-            for _, (letter, answer_number) in enumerate(zip(letters, random_list)):
-                if answer_number == self.current_question:
-                    correct_letter = letter
-
-                multiple_choice_options[letter] = self.pairs[answer_number]["answer"][0]
-
-            if not correct_letter:
-                raise Exception("There's no correct answer for some reason. ¯\\(ツ)/¯")
-
-        print()
-        for _, (key, option) in enumerate(multiple_choice_options.items()):
-            print(f"{key}. {option}")
-        print()
-
-        return correct_letter, multiple_choice_options
-
     def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> tuple[int, list]:
         if multiple_choice_options is None:
             multiple_choice_options = []
@@ -344,36 +283,10 @@ class MainGameplay:
 
         return self.mc_correct_index, multiple_choice_options
 
-    def user_input_sanitized(self):
-        self.user_input = input("Answer: ").lower()
-
-    @staticmethod
-    def clear():
-        # This method is not needed in graphical interfaces
-        pass
-        #os.system("clear")
-
     def check_max_streak(self):
         if self.streak_current > self.streak_all_time:
             core.settings_value_manipulator("all time streak", "dump", self.streak_current)
             self.streak_all_time = core.settings_value_manipulator("all time streak")
-
-    def streak_question_and_input(self):
-        self.check_max_streak()
-        self.print_question()
-        self.user_input_sanitized()
-
-    def play(self):
-        playing = True
-        answer_check = ""
-
-        while playing:
-            self.streak_question_and_input()
-            self.clear()  # To get the screen clear for the next question print like done in the last functions
-            answer_check = self.answer_check()
-            # Other return values have already done their job in the answer_check()
-            if answer_check == "quit":
-                return self.streak_current
 
     def settings_update(self, update_random_list=False):
         max_question = core.settings_value_manipulator("max question")
@@ -466,42 +379,6 @@ class MultipleChoice(MainGameplay):
         super().__init__(pairs, reverse, current_question, streak_current, order)
         self.enabled_answer_checks["fuzzy correct"] = False
 
-    def play(self):  # When seeking it keeps the old answers
-        playing = True
-        answer_check = ""
-        # These are multiple choice specific
-        multiple_choice_options = {}
-        correct_letter = ""
-
-        while playing:
-            self.check_max_streak()
-            self.print_question()
-
-            # Multiple choice specific
-            if not multiple_choice_options:
-                correct_letter, multiple_choice_options = self.generate_multiple_choice_answers()
-
-            else:
-                correct_letter, multiple_choice_options = self.generate_multiple_choice_answers(generate_new=False, correct_letter=correct_letter, multiple_choice_options=multiple_choice_options)
-
-            self.user_input_sanitized()
-
-            # Multiple choice specific
-            if self.user_input == correct_letter or correct_letter in self.user_input.strip() and len(self.user_input) <= 2:
-                self.user_input = self.pairs[self.current_question][self.answer][0]
-                self.user_input = self.user_input.lower()
-
-            self.clear()
-
-            answer_check = self.answer_check()
-            # Other return values have already done their job in the answer_check()
-            if answer_check == "quit":
-                return self.streak_current
-            elif answer_check == "correct":  # Multiple choice specific
-                multiple_choice_options = {}  # This is to make it generate new options
-            elif answer_check =="seek":
-                multiple_choice_options = {}
-
 
 class Survive(MainGameplay):
     def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="random"):
@@ -523,46 +400,3 @@ class Survive(MainGameplay):
 
     def return_correct_answers(self):
         return f"Correct answers: {" / ".join(self.pairs[self.current_question][self.answer])}"
-
-    def print_lives(self):
-        print("Lives left: ", end="")
-        for _ in range(self.lives):
-            print(" ", end="")
-        else:
-            print()
-
-    def play(self):
-        playing = True
-        answer_check = ""
-
-        while playing:
-            self.print_lives()
-            self.streak_question_and_input()
-            self.clear()  # To get the screen clear for the next question print like done in the last functions
-            answer_check = self.answer_check()
-            # Other return values have already done their job in the answer_check()
-            match answer_check:
-                case "quit":
-                    return self.streak_current
-                case "wrong":
-                    print(f"Wrong, correct answer: {self.return_correct_answers()}")
-                    # self.current_question += 1  # removing this might make learning easier
-                    self.lives -= 1
-                case "show correct answer":
-                    print(f"The correct answer was: {self.return_correct_answers()}")
-                    # self.current_question += 1  # removing this might make learning easier
-                    self.lives -= 1
-
-            if self.lives <= 0:
-                self.clear()
-                print(f"The correct answer was: {self.return_correct_answers()}")
-                print("Game over!")
-                time.sleep(5)
-                return 0
-
-
-# In this one the questions are images that are executed based on what's in the first question cell.
-# This could be used by making a .csv and then on that directory a subdirectory with the images.
-class Images(MainGameplay):
-    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="normal"):
-        super().__init__(pairs, reverse, current_question, streak_current, order)

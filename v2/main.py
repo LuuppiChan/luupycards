@@ -712,22 +712,18 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.tableWidget.setItem(i, 0, question)  # questions
             self.ui.tableWidget.setItem(i, 1, answer)  # answers
 
-            self.pair_widget_items["question"].append(question)
-            self.pair_widget_items["answer"].append(answer)
-
-
         # after everything is done adds the pair back
         if self.pairs:
             if self.pairs[0] != pair0:
                 self.pairs.insert(0, pair0)
 
     def ensure_loaded(self):
+        # It seems that in some cases the C++ objects have already been deleted, so this loads them again
         self.pair_widget_items["question"].clear()
         self.pair_widget_items["answer"].clear()
 
         rows = self.ui.tableWidget.rowCount()
 
-        # It seems that in some cases the C++ objects have already been deleted, so this loads them again
         for row in range(rows):
             self.pair_widget_items["question"].append(self.ui.tableWidget.item(row, 0))
             self.pair_widget_items["answer"].append(self.ui.tableWidget.item(row, 1))
@@ -801,26 +797,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.tableWidget.setItem(last_row, 0, question)  # questions
         self.ui.tableWidget.setItem(last_row, 1, answer)  # answers
 
-        self.pair_widget_items["question"].append(question)
-        self.pair_widget_items["answer"].append(answer)
-
     def pair_inspector_remove_row(self):
         last_row = self.ui.tableWidget.rowCount() -1
 
         self.ui.tableWidget.removeRow(last_row)
 
-        if self.pair_widget_items["question"]:
-            self.pair_widget_items["question"].pop(-1)
-            self.pair_widget_items["answer"].pop(-1)
-
     def pair_inspector_remove_selected_row(self):
         this_row = self.ui.tableWidget.currentRow()
 
         self.ui.tableWidget.removeRow(this_row)
-
-        if len(self.pair_widget_items["question"]):
-            self.pair_widget_items["question"].pop(this_row)
-            self.pair_widget_items["answer"].pop(this_row)
 
     def pair_inspector_new_row_after_selected(self):
         this_row = self.ui.tableWidget.currentRow() +1
@@ -835,9 +820,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.tableWidget.setItem(this_row, 0, question)  # questions
         self.ui.tableWidget.setItem(this_row, 1, answer)  # answers
-
-        self.pair_widget_items["question"].insert(this_row, question)
-        self.pair_widget_items["answer"].insert(this_row, answer)
 
     def open_help(self):
         mainlog.info("User needs help")

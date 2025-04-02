@@ -438,7 +438,7 @@
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_4">
                   <item>
-                   <widget class="QPushButton" name="pushButton_seek_mc_">
+                   <widget class="QPushButton" name="pushButton_seek">
                     <property name="toolTip">
                      <string>Seek to a specific question</string>
                     </property>
@@ -505,8 +505,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>660</width>
-                     <height>547</height>
+                     <width>312</width>
+                     <height>149</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1034,6 +1034,9 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="acceptDrops">
+               <bool>false</bool>
+              </property>
               <property name="toolTip">
                <string>Your pairs nicely in custom CSV. The separator is &quot;;&quot;</string>
               </property>
@@ -1042,6 +1045,21 @@
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+              </property>
+              <property name="dragEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="dragDropOverwriteMode">
+               <bool>true</bool>
+              </property>
+              <property name="dragDropMode">
+               <enum>QAbstractItemView::NoDragDrop</enum>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
               <attribute name="horizontalHeaderCascadingSectionResizes">
                <bool>true</bool>
@@ -1122,22 +1140,22 @@
               </item>
               <item row="3" column="0">
                <property name="text">
-                <string>question4</string>
+                <string>question1</string>
                </property>
               </item>
               <item row="3" column="1">
                <property name="text">
-                <string>answer4a;answer4b</string>
+                <string>answer1a;answer1b</string>
                </property>
               </item>
               <item row="4" column="0">
                <property name="text">
-                <string>question5</string>
+                <string>question2</string>
                </property>
               </item>
               <item row="4" column="1">
                <property name="text">
-                <string>answer5a</string>
+                <string>answer2a</string>
                </property>
               </item>
              </widget>
