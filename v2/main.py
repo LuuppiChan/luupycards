@@ -347,7 +347,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if line_text:
             self.reload_settings()
             self.the_game.user_input = line_text.lower()
-            result = self.the_game.answer_check_gui(line_text)
+            result = self.the_game.answer_check_gui(line_text.lower())
 
             self.set_question(self.the_game.play_gui())
             self.ui.lineEdit_answer.clear()

@@ -149,68 +149,14 @@ class MainGameplay:
         return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
 
     def fuzzy_check(self, correct_answers):
-        processed = process.extract(self.user_input, correct_answers)
-        for items in processed:
-            if items[1] >= self.all_settings["fuzzy select percent"]:
+        for answer in correct_answers:
+            if (fuzz.ratio(self.user_input.lower(), answer) >
+                    self.all_settings["fuzzy select percent"] or
+                    fuzz.ratio(self.user_input.lower(), " / ".join(correct_answers)) >
+                    self.all_settings["fuzzy select percent"]):
                 return True  # Match was found
 
         return False  # Match was not found
-
-    def answer_check(self) -> str:
-        correct_answers = self.pairs[self.current_question][self.answer]
-        user_input = self.user_input
-
-        if self.enabled_answer_checks["correct answer"]:
-            # check for correct answer in user_input, iterates through all answer candidates
-            for answer in correct_answers:
-                answer = answer.lower()
-                if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
-                    self.next_question()
-                    self.streak_current += 1
-                    self.print_correct_answer()
-                    return "correct"
-
-        if self.enabled_answer_checks["fuzzy correct"]:
-            if self.fuzzy_matching:  # checks if fuzzy matching is available
-                if self.fuzzy_check(correct_answers):
-                    self.next_question()
-                    self.streak_current += 1
-                    self.print_fuzzy_correct(correct_answers)
-                    return "fuzzy correct"
-
-        if self.enabled_answer_checks["seek"]:
-            match = re.search(r"^seek (\d+)", user_input)
-            if match:  # seeking
-                question_number = int(match.group(1))
-                if question_number > self.max_question:
-                    self.print_invalid_seek(question_number)
-                else:
-                    self.print_valid_seek(question_number)
-                    self.current_question = question_number
-                return "seek"
-
-        if self.enabled_answer_checks["show correct answer"]:
-            if user_input in self.show_correct_binds:  # show correct answer
-                self.streak_current = 0
-                self.print_show_correct_answer(correct_answers)
-                return "show correct answer"
-
-        if self.enabled_answer_checks["quit"]:
-            if user_input in self.quit_binds:  # quit to main menu
-                self.print_return_to_main_menu()
-                return "quit"
-
-        if self.enabled_answer_checks["empty field"]:
-            if not user_input or re.findall("^ *$", user_input):  # checks if user_input is empty
-                self.print_empty_field()
-                return "empty field"
-
-        if self.enabled_answer_checks["wrong answer"]:
-            self.streak_current = 0
-            self.print_wrong_answer()
-            return "wrong"  # if there's no match, the answer is incorrect
-
-        raise Exception("Please enable wrong answer check.")
 
     def next_question_plus_one(self):
         self.current_question += 1
@@ -310,14 +256,19 @@ class MainGameplay:
         self.all_settings = core.get_options()
 
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
+        # lowercase every check
         correct_answers = self.pairs[self.current_question][self.answer]
+        for i, correct_answer in enumerate(correct_answers):
+            correct_answers[i] = correct_answer.lower()
         if not user_input:
-            user_input = self.user_input
+            user_input = self.user_input.lower()
+        else:
+            user_input = user_input.lower()
 
         if self.enabled_answer_checks["correct answer"]:
             # check for correct answer in user_input, iterates through all answer candidates
             for answer in correct_answers:
-                answer = answer.lower()
+                answer = answer
                 if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
                     self.next_question()
                     self.streak_current += 1
