@@ -24,7 +24,7 @@ class Ui_DialogImport(object):
     def setupUi(self, DialogImport):
         if not DialogImport.objectName():
             DialogImport.setObjectName(u"DialogImport")
-        DialogImport.resize(361, 352)
+        DialogImport.resize(367, 368)
         font = QFont()
         font.setPointSize(16)
         DialogImport.setFont(font)
@@ -35,7 +35,7 @@ class Ui_DialogImport(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 331, 374))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 337, 706))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.scrollAreaWidgetContents)
@@ -92,6 +92,58 @@ class Ui_DialogImport(object):
         self.verticalSpacer = QSpacerItem(50, 0, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
+
+        self.verticalLayout_nq = QVBoxLayout()
+        self.verticalLayout_nq.setObjectName(u"verticalLayout_nq")
+        self.label_nq = QLabel(self.scrollAreaWidgetContents)
+        self.label_nq.setObjectName(u"label_nq")
+
+        self.verticalLayout_nq.addWidget(self.label_nq)
+
+        self.checkBox_nq_hiragana = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_hiragana.setObjectName(u"checkBox_nq_hiragana")
+        self.checkBox_nq_hiragana.setChecked(False)
+
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_hiragana)
+
+        self.checkBox_nq_katakana = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_katakana.setObjectName(u"checkBox_nq_katakana")
+        self.checkBox_nq_katakana.setChecked(False)
+
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_katakana)
+
+        self.checkBox_nq_radical = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_radical.setObjectName(u"checkBox_nq_radical")
+        self.checkBox_nq_radical.setChecked(False)
+
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_radical)
+
+        self.checkBox_nq_kanji = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_kanji.setObjectName(u"checkBox_nq_kanji")
+        self.checkBox_nq_kanji.setChecked(False)
+
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_kanji)
+
+        self.checkBox_nq_vocabulary_meaning = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_vocabulary_meaning.setObjectName(u"checkBox_nq_vocabulary_meaning")
+        self.checkBox_nq_vocabulary_meaning.setChecked(True)
+
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_vocabulary_meaning)
+
+        self.checkBox_nq_vocabulary = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_vocabulary.setObjectName(u"checkBox_nq_vocabulary")
+        self.checkBox_nq_vocabulary.setChecked(True)
+
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_vocabulary)
+
+
+        self.verticalLayout.addLayout(self.verticalLayout_nq)
+
+        self.checkBox_nq_pronunciation = QCheckBox(self.scrollAreaWidgetContents)
+        self.checkBox_nq_pronunciation.setObjectName(u"checkBox_nq_pronunciation")
+        self.checkBox_nq_pronunciation.setChecked(True)
+
+        self.verticalLayout.addWidget(self.checkBox_nq_pronunciation)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -196,6 +248,44 @@ class Ui_DialogImport(object):
 "}", None))
 #endif // QT_CONFIG(tooltip)
         self.checkBox_sentences.setText(QCoreApplication.translate("DialogImport", u"Sentences", None))
+        self.label_nq.setText(QCoreApplication.translate("DialogImport", u"What categories to add?", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_hiragana.setToolTip(QCoreApplication.translate("DialogImport", u"Add all of Hiragana.\n"
+"Example: \u3042 - a", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.checkBox_nq_hiragana.setStatusTip("")
+#endif // QT_CONFIG(statustip)
+        self.checkBox_nq_hiragana.setText(QCoreApplication.translate("DialogImport", u"Hiragana", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_katakana.setToolTip(QCoreApplication.translate("DialogImport", u"Add all of Katakana.\n"
+"Example: \u30a2 - a", None))
+#endif // QT_CONFIG(tooltip)
+        self.checkBox_nq_katakana.setText(QCoreApplication.translate("DialogImport", u"Katakana", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_radical.setToolTip(QCoreApplication.translate("DialogImport", u"Add all of radicals.\n"
+"Example: \u4e00 - one", None))
+#endif // QT_CONFIG(tooltip)
+        self.checkBox_nq_radical.setText(QCoreApplication.translate("DialogImport", u"Radical", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_kanji.setToolTip(QCoreApplication.translate("DialogImport", u"Add all of kanji.\n"
+"Example: \u4e01 - street", None))
+#endif // QT_CONFIG(tooltip)
+        self.checkBox_nq_kanji.setText(QCoreApplication.translate("DialogImport", u"Kanji", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_vocabulary_meaning.setToolTip(QCoreApplication.translate("DialogImport", u"Add all of vocabulary meaning.\n"
+"Example: \u4e00 - one - \u3044\u3061", None))
+#endif // QT_CONFIG(tooltip)
+        self.checkBox_nq_vocabulary_meaning.setText(QCoreApplication.translate("DialogImport", u"Vocab Meaning", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_vocabulary.setToolTip(QCoreApplication.translate("DialogImport", u"Add all of vocabulary.\n"
+"Example: \u304f\u3093 - casual male suffix", None))
+#endif // QT_CONFIG(tooltip)
+        self.checkBox_nq_vocabulary.setText(QCoreApplication.translate("DialogImport", u"Vocabulary", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_nq_pronunciation.setToolTip(QCoreApplication.translate("DialogImport", u"Includes the reading of items that have a reading.", None))
+#endif // QT_CONFIG(tooltip)
+        self.checkBox_nq_pronunciation.setText(QCoreApplication.translate("DialogImport", u"Pronunciation", None))
         self.pushButton_cancel.setText(QCoreApplication.translate("DialogImport", u"Cancel", None))
         self.pushButton_ok.setText(QCoreApplication.translate("DialogImport", u"Ok", None))
     # retranslateUi

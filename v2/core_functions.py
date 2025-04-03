@@ -165,6 +165,44 @@ class PairImport:
         corelog.debug("Returning the list")
         return pairs.copy()
 
+    def nq_import(self, csv_file_path, categories: list, pronunciation=False) -> list:
+        pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+        }
+        pairs = list()
+
+        pairs.append(pair0)
+
+        with open(csv_file_path, mode="r") as file:
+            csv_reader = csv.reader(file)
+            for row_number, row in enumerate(csv_reader, start=1):
+                if row[1] in categories:  # checks that the import is enabled
+
+                    pairs.append(
+                        {
+                            "question" : [row[2]],
+                            "answer" : row[3].split("; ")
+                        }
+                    )
+                    if pronunciation:
+                        if row[5] == "0":
+                            # It's in kana so there's no point in having it
+                            #answer_p = row[2]
+                            pass
+                        elif row[5] == "1":
+                            # This category doesn't have pronunciations
+                            pass
+                        else:
+                            pairs.append(
+                                {
+                                    "question" : [f"{row[2]} pronunciation"],
+                                    "answer" : row[5].split("|")
+                                }
+                            )
+
+        return pairs.copy()
+
 
 def static_value_functions(user_input_subsetting, options, selected_setting) -> None:
     static_values = ["reset all time streak", "reset all time survival streak"]

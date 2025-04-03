@@ -75,11 +75,15 @@ class ImportDialog(QtWidgets.QDialog):
         self.pairs = list()
 
         self.hide_json()
+        self.hide_nq()
 
         self.ui.comboBox_import.activated.connect(self.combobox_update)
 
         self.ui.pushButton_cancel.clicked.connect(self.cancel_button)
         self.ui.pushButton_ok.clicked.connect(self.ok_button)
+
+        self.ui.radioButton_nq.clicked.connect(self.show_nq)
+        self.ui.radioButton_csv.clicked.connect(self.hide_nq)
 
         self.filepaths = list()
         self.mode = "CSV"
@@ -95,6 +99,8 @@ class ImportDialog(QtWidgets.QDialog):
             }
         }
         self.selected_a_file = False
+        self.all_categories = ["Hiragana", "Katakana", "Radical", "Vocab Meaning", "Vocabulary", "Kanji"]
+        self.pronunciation = False
 
     def closeEvent(self, event):
         window.setEnabled(True)
@@ -113,6 +119,7 @@ class ImportDialog(QtWidgets.QDialog):
             self.mode = current_text
         else:
             mainlog.error("Whoa! I didn't know this mode existed! %s", self.ui.comboBox_import.currentText())
+        self.show_nq() if not self.ui.radioButton_nq.isHidden() and self.ui.radioButton_nq.isChecked() else self.hide_nq()
 
     def ok_button(self):
         if self.mode == "CSV":
@@ -163,8 +170,12 @@ class ImportDialog(QtWidgets.QDialog):
 
         pair_import = core.PairImport()
         if self.mode == "CSV":
-            for file in self.filepaths:
-                self.pairs.extend(pair_import.pair_import(file))
+            if self.methods["csv"]["default"]:
+                for file in self.filepaths:
+                    self.pairs.extend(pair_import.pair_import(file))
+            elif self.methods["csv"]["nq"]:
+                # only first one since I assume there's only a single file
+                self.pairs = pair_import.nq_import(self.filepaths[0], self.selected_categories(), self.pronunciation)
         elif self.mode == "JSON":
             pair_import.default_json = True if self.methods["json"]["default"] else False
             pair_import.jp_mode = True if self.methods["json"]["japan"] else False
@@ -197,6 +208,39 @@ class ImportDialog(QtWidgets.QDialog):
         self.ui.checkBox_json.show()
         self.ui.checkBox_jp.show()
         self.ui.checkBox_sentences.show()
+
+    def hide_nq(self):
+        mainlog.info("nq hidden")
+        self.ui.label_nq.hide()
+        self.ui.checkBox_nq_hiragana.hide()
+        self.ui.checkBox_nq_katakana.hide()
+        self.ui.checkBox_nq_radical.hide()
+        self.ui.checkBox_nq_kanji.hide()
+        self.ui.checkBox_nq_vocabulary_meaning.hide()
+        self.ui.checkBox_nq_vocabulary.hide()
+        self.ui.checkBox_nq_pronunciation.hide()
+
+    def show_nq(self):
+        mainlog.info("nq shown")
+        self.ui.label_nq.show()
+        self.ui.checkBox_nq_hiragana.show()
+        self.ui.checkBox_nq_katakana.show()
+        self.ui.checkBox_nq_radical.show()
+        self.ui.checkBox_nq_kanji.show()
+        self.ui.checkBox_nq_vocabulary_meaning.show()
+        self.ui.checkBox_nq_vocabulary.show()
+        self.ui.checkBox_nq_pronunciation.show()
+
+    def selected_categories(self) -> list:
+        selected_list = []
+        if self.ui.checkBox_nq_hiragana.isChecked(): selected_list.append("Hiragana")
+        if self.ui.checkBox_nq_katakana.isChecked(): selected_list.append("Katakana")
+        if self.ui.checkBox_nq_radical.isChecked(): selected_list.append("Radical")
+        if self.ui.checkBox_nq_kanji.isChecked(): selected_list.append("Kanji")
+        if self.ui.checkBox_nq_pronunciation.isChecked(): self.pronunciation = True
+        if self.ui.checkBox_nq_vocabulary_meaning.isChecked(): selected_list.append("Vocab Meaning")
+        if self.ui.checkBox_nq_vocabulary.isChecked(): selected_list.append("Vocabulary")
+        return selected_list
 
 
 class SeekWidget(QtWidgets.QDialog):
@@ -453,10 +497,12 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
 
-        self.pair_inspector_load()
-        if self.ui.tab_play.isEnabled():
-            # setups the gameplay again if it's enabled
-            self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+            # only if new pair files
+            self.pair_inspector_load()
+
+            if self.ui.tab_play.isEnabled():
+                # setups the gameplay again if it's enabled
+                self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
 
     @staticmethod
     def quit_action():

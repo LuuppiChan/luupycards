@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>361</width>
-    <height>352</height>
+    <width>367</width>
+    <height>368</height>
    </rect>
   </property>
   <property name="font">
@@ -28,9 +28,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>331</width>
-        <height>374</height>
+        <y>-408</y>
+        <width>337</width>
+        <height>706</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -189,6 +189,117 @@ You will have to create a sentence block and the fields in it, other fields don'
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_nq">
+         <item>
+          <widget class="QLabel" name="label_nq">
+           <property name="text">
+            <string>What categories to add?</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_hiragana">
+           <property name="toolTip">
+            <string>Add all of Hiragana.
+Example: あ - a</string>
+           </property>
+           <property name="statusTip">
+            <string/>
+           </property>
+           <property name="text">
+            <string>Hiragana</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_katakana">
+           <property name="toolTip">
+            <string>Add all of Katakana.
+Example: ア - a</string>
+           </property>
+           <property name="text">
+            <string>Katakana</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_radical">
+           <property name="toolTip">
+            <string>Add all of radicals.
+Example: 一 - one</string>
+           </property>
+           <property name="text">
+            <string>Radical</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_kanji">
+           <property name="toolTip">
+            <string>Add all of kanji.
+Example: 丁 - street</string>
+           </property>
+           <property name="text">
+            <string>Kanji</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_vocabulary_meaning">
+           <property name="toolTip">
+            <string>Add all of vocabulary meaning.
+Example: 一 - one - いち</string>
+           </property>
+           <property name="text">
+            <string>Vocab Meaning</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_vocabulary">
+           <property name="toolTip">
+            <string>Add all of vocabulary.
+Example: くん - casual male suffix</string>
+           </property>
+           <property name="text">
+            <string>Vocabulary</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_nq_pronunciation">
+           <property name="toolTip">
+            <string>Includes the reading of items that have a reading.</string>
+           </property>
+           <property name="text">
+            <string>Pronunciation</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
