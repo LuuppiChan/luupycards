@@ -126,24 +126,27 @@ class PairImport:
                         if pairs[-1] != pair:
                             corelog.error("The pair wasn't added to the list correctly!")
 
-                # if this exists it's a jp file or if advanced is on
-                if pairs[1]["pronunciation"][0].isidentifier() and self.automatic or self.jp_mode:
-                    corelog.debug("jp_mode is enabled.")
-                    for i, jp_pair in enumerate(content, start=1):
-                        jp_pair = dict(jp_pair)
+                try:
+                    # if this exists it's a jp file or if advanced is on
+                    if content[0]["pronunciation"][0].isidentifier() and self.automatic or self.jp_mode:
+                        corelog.debug("jp_mode is enabled.")
+                        for i, jp_pair in enumerate(content, start=1):
+                            jp_pair = dict(jp_pair)
 
-                        corelog.debug('Going through pair number "%s"', i)
+                            corelog.debug('Going through pair number "%s"', i)
 
-                        jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
-                        jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
-                        jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
+                            jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
+                            jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
+                            jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
 
-                        corelog.debug("Appending pair to list...")
-                        pairs.append(jp_pair.copy())
-                        corelog.debug("List has now %s item(s).", len(pairs))
-                        corelog.debug("Pair contents: %s", jp_pair)
-                        if pairs[-1] != jp_pair:
-                            corelog.error("The pair wasn't added to the list correctly!")
+                            corelog.debug("Appending pair to list...")
+                            pairs.append(jp_pair.copy())
+                            corelog.debug("List has now %s item(s).", len(pairs))
+                            corelog.debug("Pair contents: %s", jp_pair)
+                            if pairs[-1] != jp_pair:
+                                corelog.error("The pair wasn't added to the list correctly!")
+                except IndexError:
+                    corelog.critical("Index error while importing pairs!")
 
                 if self.sentences:
                     corelog.debug("sentences are enabled")
@@ -152,8 +155,8 @@ class PairImport:
                         for iii, sentence in enumerate(pair["sentences"], start=1):
                             corelog.debug("Going through sentence %s", iii)
                             new_pair = {
-                                "question" : sentence["sentence"],
-                                "answer" : sentence["answer"]
+                                "question" : [sentence["sentence"]],
+                                "answer" : [sentence["answer"]]
                             }
                             corelog.debug("Appending pair to list...")
                             pairs.append(new_pair.copy())
