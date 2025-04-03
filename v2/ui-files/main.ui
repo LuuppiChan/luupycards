@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>712</height>
+    <width>427</width>
+    <height>411</height>
    </rect>
   </property>
   <property name="font">
@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>708</width>
-         <height>635</height>
+         <width>411</width>
+         <height>334</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -289,7 +289,10 @@
                      <string/>
                     </property>
                     <property name="text">
-                     <string>Now playing: Normal</string>
+                     <string>Start the game from main menu.</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                     <property name="textInteractionFlags">
                      <set>Qt::LinksAccessibleByMouse|Qt::TextEditable|Qt::TextSelectableByMouse</set>
@@ -696,8 +699,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>672</width>
-                 <height>512</height>
+                 <width>468</width>
+                 <height>429</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_9">
@@ -1210,7 +1213,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>724</width>
+     <width>427</width>
      <height>33</height>
     </rect>
    </property>
@@ -1663,7 +1666,7 @@
     </font>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Backspace</string>
+    <string>Ctrl+Del</string>
    </property>
   </action>
  </widget>

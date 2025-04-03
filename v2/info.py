@@ -89,7 +89,7 @@ class Ui_info(object):
     # setupUi
 
     def retranslateUi(self, info):
-        info.setWindowTitle(QCoreApplication.translate("info", u"Form", None))
+        info.setWindowTitle(QCoreApplication.translate("info", u"Info", None))
         self.label.setText(QCoreApplication.translate("info", u"Luupycards", None))
         self.label_2.setText(QCoreApplication.translate("info", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

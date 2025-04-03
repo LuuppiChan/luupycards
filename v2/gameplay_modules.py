@@ -258,6 +258,7 @@ class MainGameplay:
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         # lowercase every check
         correct_answers = self.pairs[self.current_question][self.answer]
+        when_showing_correct_answers = self.pairs[self.current_question][self.answer]
         for i, correct_answer in enumerate(correct_answers):
             correct_answers[i] = correct_answer.lower()
         if not user_input:
@@ -301,7 +302,7 @@ class MainGameplay:
         if self.enabled_answer_checks["show correct answer"]:
             if user_input in self.show_correct_binds:  # show correct answer
                 self.streak_current = 0  # breaks the streak
-                return "show correct answer", self.print_show_correct_answer(correct_answers)
+                return "show correct answer", self.print_show_correct_answer(when_showing_correct_answers)
 
         if self.enabled_answer_checks["quit"]:
             if user_input in self.quit_binds:  # quit to main menu

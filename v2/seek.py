@@ -57,6 +57,7 @@ class Ui_Seek(object):
         font1 = QFont()
         font1.setPointSize(12)
         self.label_question.setFont(font1)
+        self.label_question.setWordWrap(True)
 
         self.verticalLayout.addWidget(self.label_question)
 
@@ -86,7 +87,7 @@ class Ui_Seek(object):
     # setupUi
 
     def retranslateUi(self, Seek):
-        Seek.setWindowTitle(QCoreApplication.translate("Seek", u"Form", None))
+        Seek.setWindowTitle(QCoreApplication.translate("Seek", u"Seek", None))
         self.label_static_eqn.setText(QCoreApplication.translate("Seek", u"Enter question number", None))
         self.label_question.setText(QCoreApplication.translate("Seek", u"Question: ", None))
         self.pushButton_cancel.setText(QCoreApplication.translate("Seek", u"Cancel", None))
