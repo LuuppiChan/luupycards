@@ -28,7 +28,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-92</y>
+        <y>0</y>
         <width>331</width>
         <height>374</height>
        </rect>
@@ -82,7 +82,7 @@ answer2</string>
          <item>
           <widget class="QRadioButton" name="radioButton_nq">
            <property name="toolTip">
-            <string>Take the vocabulary.csv from the game files.</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Take the vocabulary.csv from the game files and choose it.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Nihongo Quest (W.I.P.)</string>

@@ -159,15 +159,18 @@ class MainGameplay:
         return False  # Match was not found
 
     def next_question_plus_one(self):
-        self.current_question += 1
-        try:
-            self.pairs[self.current_question]
-        except IndexError:
+        if self.current_question >= self.max_question:
             self.current_question = self.all_settings["min question"]
+        elif self.current_question < self.all_settings["min question"]:  # usually 1
+            self.current_question = self.max_question
+        else:
+            self.current_question += 1
 
     def next_question_minus_one(self):
-        if self.current_question == 1:
+        if self.current_question < self.all_settings["min question"]:  # usually 1
             self.current_question = self.max_question
+        elif self.current_question >= self.max_question:
+            self.current_question = self.all_settings["min question"]
         else:
             self.current_question -= 1
 

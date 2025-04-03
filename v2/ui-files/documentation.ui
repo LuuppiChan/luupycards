@@ -38,9 +38,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-191</y>
             <width>684</width>
-            <height>2603</height>
+            <height>2649</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -76,7 +76,7 @@
               <cursorShape>IBeamCursor</cursorShape>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;EVERYTHING IMPORTANT SHOULD HAVE TOOLTIPS AND STATUS TIPS!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;They should give you general understanding. If you're confused about a tooltip, please submit an issue to the GitHub page.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Creating pair files&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For the game to be useful you need pairs. You can create a pair file externally or by using the simple built-in inspector.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Formats&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There are 2 main formats, some special formats and a Nihongo Quest import. You can see all of them in File -&amp;gt; Open (Advanced).&lt;/p&gt;&lt;p&gt;The two modes you should be aware of are Default CSV and Default JSON. You should write your pairs in Default CSV or in the inspector since those are the easiest to use. The inspector will create JSON files.&lt;/p&gt;&lt;p&gt;A pair can have as many questions or answers as you want. The reason why it can have many questions is because you can flip questions and answers so that answers are questions and questions are answers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;EVERYTHING IMPORTANT SHOULD HAVE TOOLTIPS AND STATUS TIPS!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;They should give you general understanding. If you're confused about a tooltip, please submit an issue to the GitHub page.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Creating pair files&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For the game to be useful you need pairs. You can create a pair file externally or by using the simple built-in inspector.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Formats&lt;br/&gt;&lt;/span&gt;SPECIAL FORMATS ARE CONSIDERED LEGACY SINCE THEY DON'T SERVE A PURPOSE AFTER MULTIPLE PAIR FILES CAN BE LOADED.&lt;/p&gt;&lt;p&gt;There are 2 main formats, some special formats and a Nihongo Quest import. You can see all of them in File -&amp;gt; Open (Advanced).&lt;/p&gt;&lt;p&gt;The two modes you should be aware of are Default CSV and Default JSON. You should write your pairs in Default CSV or in the inspector since those are the easiest to use. The inspector will create JSON files.&lt;/p&gt;&lt;p&gt;A pair can have as many questions or answers as you want. The reason why it can have many questions is because you can flip questions and answers so that answers are questions and questions are answers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -128,8 +128,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>131</width>
-                    <height>403</height>
+                    <width>648</width>
+                    <height>336</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -290,8 +290,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>105</width>
-            <height>3270</height>
+            <width>684</width>
+            <height>1013</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -345,8 +345,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>130</width>
-            <height>4891</height>
+            <width>684</width>
+            <height>1509</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -400,8 +400,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>116</width>
-            <height>2589</height>
+            <width>684</width>
+            <height>611</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -455,8 +455,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>151</width>
-            <height>1544</height>
+            <width>684</width>
+            <height>725</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -510,8 +510,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>134</width>
-            <height>2634</height>
+            <width>684</width>
+            <height>950</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_31">

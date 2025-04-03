@@ -20,7 +20,6 @@ import gameplay_modules as gameplay
 from import_dialog import Ui_DialogImport
 from documentation import Ui_documentation
 
-
 # argparse
 # Create parser
 parser = argparse.ArgumentParser(description="Simple flip card program. (GUI!)")
@@ -507,7 +506,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def correct_mc(self):
         self.correct_checkbutton_mc("correct")
 
-    def gameplay_setup(self, new_game="True", current_streak=0, current_question=1):
+    def gameplay_setup(self, new_game="True", current_streak=0, current_question=1, respect_user_minmax=False):
         multiple_choice_criteria = True
         if new_game == "False":
             new_game = False
@@ -532,11 +531,13 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.pairs and multiple_choice_criteria:
             mainlog.info("Creating gameplay...")
 
-            # pair lengths so that user can only change then after gameplay has been initialized
-            #if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
-            core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
-            #if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
-            core.settings_value_manipulator("min question", "dump", 1)
+            if respect_user_minmax:
+                pass
+            else:
+                #if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
+                core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
+                #if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
+                core.settings_value_manipulator("min question", "dump", 1)
                 
             self.reload_settings()
 
@@ -556,7 +557,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.current_order,
                 self.pairs,
                 self.ui.checkBox_question_flip.isChecked(),
-                current_question,
+                current_question if self.game_options["min question"] < current_question < self.game_options["max question"] else self.game_options["min question"],
                 current_streak
             )
 
@@ -661,6 +662,12 @@ class MainWindow(QtWidgets.QMainWindow):
         mainlog.info("Saved settings")
         self.reload_settings()
         mainlog.info("Reloaded settings")
+
+        # paris check seems kind of useless to be honest
+        if self.pairs and self.ui.tab_play.isEnabled():
+            current_question = self.the_game.current_question
+            # setups the gameplay again
+            self.gameplay_setup("False", current_question, self.the_game.streak_current, True)
 
     def check_invalid_settings(self):
         options_orig = core.get_options()
