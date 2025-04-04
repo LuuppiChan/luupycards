@@ -28,10 +28,11 @@ class Ui_Luupycards(object):
     def setupUi(self, Luupycards):
         if not Luupycards.objectName():
             Luupycards.setObjectName(u"Luupycards")
-        Luupycards.resize(427, 411)
+        Luupycards.resize(427, 387)
         font = QFont()
         font.setPointSize(12)
         Luupycards.setFont(font)
+        Luupycards.setAcceptDrops(True)
         icon = QIcon()
         icon.addFile(u"../v1/luupycards.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         Luupycards.setWindowIcon(icon)
@@ -130,7 +131,7 @@ class Ui_Luupycards(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 411, 334))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 411, 310))
         self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.tab_main = QTabWidget(self.scrollAreaWidgetContents_2)
@@ -200,6 +201,12 @@ class Ui_Luupycards(object):
         self.checkBox_question_flip.setObjectName(u"checkBox_question_flip")
 
         self.verticalLayout_6.addWidget(self.checkBox_question_flip)
+
+        self.label_drag = QLabel(self.tab_main_menu)
+        self.label_drag.setObjectName(u"label_drag")
+        self.label_drag.setFont(font1)
+
+        self.verticalLayout_6.addWidget(self.label_drag, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -941,6 +948,7 @@ class Ui_Luupycards(object):
         self.checkBox_question_flip.setStatusTip(QCoreApplication.translate("Luupycards", u"Makes questions answers and answers questions.", None))
 #endif // QT_CONFIG(statustip)
         self.checkBox_question_flip.setText(QCoreApplication.translate("Luupycards", u"Flip questions and answers", None))
+        self.label_drag.setText("")
 #if QT_CONFIG(tooltip)
         self.label_pair_status.setToolTip(QCoreApplication.translate("Luupycards", u"You can load pairs by going File -> Open. If the loading fails make sure that they are on the correct format.", None))
 #endif // QT_CONFIG(tooltip)

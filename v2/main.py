@@ -345,6 +345,29 @@ class MainWindow(QtWidgets.QMainWindow):
 
         mainlog.info("Set up class init.")
 
+    def dragEnterEvent(self, event, /):
+        if event.mimeData().hasUrls():
+            self.ui.label_drag.setText("Drop your pair file.")
+            event.accept()
+        else:
+            event.ignore()
+
+    def dragLeaveEvent(self, event, /):
+        self.ui.label_drag.setText("")
+
+    def dropEvent(self, event):
+        files = [u.toLocalFile() for u in event.mimeData().urls()]
+        load_files = True
+        for file in files:
+            json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
+            if not json_match:
+                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.")
+                load_files = False
+
+        self.ui.label_drag.setText("")
+        if load_files:
+            self.open_dir_dialog(files)
+
     def advanced_import(self):
         self.setEnabled(False)
         mainlog.info("User used advanced import")
@@ -479,30 +502,39 @@ class MainWindow(QtWidgets.QMainWindow):
             case "wrong":
                 self.set_info(result[1])
 
-    def open_dir_dialog(self):
-        self.pairs.clear()
-        pair_import = core.PairImport()
-        file_paths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
-        if file_paths[0]:
-            print(file_paths[0])
-            for file in file_paths[0]:
-                self.pairs.extend(pair_import.determine_pair_file(file))
-                mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
-                json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
-                self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+    def open_dir_dialog(self, files=None):
+        try:
+            self.pairs.clear()
+            pair_import = core.PairImport()
 
-            if len(file_paths[0]) == 1:
-                json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
-                window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+            if files is None:
+                file_paths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
             else:
-                window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+                file_paths = [files]
 
-            # only if new pair files
-            self.pair_inspector_load()
+            if file_paths[0]:
+                print(file_paths[0])
+                for file in file_paths[0]:
+                    self.pairs.extend(pair_import.determine_pair_file(file))
+                    mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
+                    json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
+                    self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
 
-            if self.ui.tab_play.isEnabled():
-                # setups the gameplay again if it's enabled
-                self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+                if len(file_paths[0]) == 1:
+                    json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
+                    self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+                else:
+                    self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+
+                # only if new pair files
+                self.pair_inspector_load()
+
+                if self.ui.tab_play.isEnabled():
+                    # setups the gameplay again if it's enabled
+                    self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+        except:
+            self.ui.label_pair_status.setText("Pairs not loaded")
+            QtWidgets.QMessageBox.critical(self, "Import Error!", "Something went wrong while trying to import pairs.\nPlease check that you gave a valid pair file.")
 
     @staticmethod
     def quit_action():

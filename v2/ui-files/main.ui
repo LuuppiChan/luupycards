@@ -7,13 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>427</width>
-    <height>411</height>
+    <height>387</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <pointsize>12</pointsize>
    </font>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>Luupycards</string>
@@ -41,7 +44,7 @@
          <x>0</x>
          <y>0</y>
          <width>411</width>
-         <height>334</height>
+         <height>310</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -189,6 +192,18 @@
               </property>
               <property name="text">
                <string>Flip questions and answers</string>
+              </property>
+             </widget>
+            </item>
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+             <widget class="QLabel" name="label_drag">
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
