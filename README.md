@@ -67,6 +67,19 @@ The documentation on everything about the game is in the game.
 
 From the top bar, go to Help -> Help! to see the documentation.
 
+But in short this is an example pair file:
+```csv
+What is the capital of Japan?
+Tokyo
+What is the tallest mountain in the world?
+Mount Everest,Everest
+What is 5 + 3?
+8
+What is the currency of the United States?
+Dollar,US Dollar,USD
+```
+As you can see, it follows a format where uneven lines are questions and even lines are answers.
+
 ## Settings
 There are minimal checks for if a setting value is valid!
 Invalid values may break the game!

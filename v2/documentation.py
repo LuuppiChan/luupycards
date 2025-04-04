@@ -40,7 +40,7 @@ class Ui_documentation(object):
         self.scrollArea_8.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, -191, 684, 2649))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 684, 2707))
         self.verticalLayout_18 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.label_11 = QLabel(self.scrollAreaWidgetContents_9)
@@ -148,7 +148,7 @@ class Ui_documentation(object):
         self.scrollArea_11.setWidgetResizable(True)
         self.scrollAreaWidgetContents_12 = QWidget()
         self.scrollAreaWidgetContents_12.setObjectName(u"scrollAreaWidgetContents_12")
-        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 684, 1013))
+        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 105, 3270))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents_12)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.label_16 = QLabel(self.scrollAreaWidgetContents_12)
@@ -177,7 +177,7 @@ class Ui_documentation(object):
         self.scrollArea_12.setWidgetResizable(True)
         self.scrollAreaWidgetContents_13 = QWidget()
         self.scrollAreaWidgetContents_13.setObjectName(u"scrollAreaWidgetContents_13")
-        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 684, 1509))
+        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 130, 4891))
         self.verticalLayout_26 = QVBoxLayout(self.scrollAreaWidgetContents_13)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.label_17 = QLabel(self.scrollAreaWidgetContents_13)
@@ -206,7 +206,7 @@ class Ui_documentation(object):
         self.scrollArea_15.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 684, 611))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 116, 2589))
         self.verticalLayout_32 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
         self.label_18 = QLabel(self.scrollAreaWidgetContents)
@@ -235,7 +235,7 @@ class Ui_documentation(object):
         self.scrollArea_13.setWidgetResizable(True)
         self.scrollAreaWidgetContents_14 = QWidget()
         self.scrollAreaWidgetContents_14.setObjectName(u"scrollAreaWidgetContents_14")
-        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 684, 725))
+        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 151, 1544))
         self.verticalLayout_29 = QVBoxLayout(self.scrollAreaWidgetContents_14)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_19 = QLabel(self.scrollAreaWidgetContents_14)
@@ -264,7 +264,7 @@ class Ui_documentation(object):
         self.scrollArea_14.setWidgetResizable(True)
         self.scrollAreaWidgetContents_15 = QWidget()
         self.scrollAreaWidgetContents_15.setObjectName(u"scrollAreaWidgetContents_15")
-        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 684, 950))
+        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 134, 2634))
         self.verticalLayout_31 = QVBoxLayout(self.scrollAreaWidgetContents_15)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.label_20 = QLabel(self.scrollAreaWidgetContents_15)
@@ -305,7 +305,7 @@ class Ui_documentation(object):
         self.retranslateUi(documentation)
 
         self.tabWidget.setCurrentIndex(0)
-        self.tabWidget_examples_2.setCurrentIndex(1)
+        self.tabWidget_examples_2.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(documentation)
@@ -316,7 +316,7 @@ class Ui_documentation(object):
         self.label_11.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:24pt;\">The documentation for the game.</span></p><p><span style=\" font-size:24pt;\">Click the tab to chose the category.</span></p></body></html>", None))
         self.label_12.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><br/></p><p><span style=\" font-size:20pt;\">EVERYTHING IMPORTANT SHOULD HAVE TOOLTIPS AND STATUS TIPS!</span></p><p><span style=\" font-size:16pt;\">They should give you general understanding. If you're confused about a tooltip, please submit an issue to the GitHub page.</span></p><p><span style=\" font-size:20pt;\">Creating pair files</span></p><p>For the game to be useful you need pairs. You can create a pair file externally or by using the simple built-in inspector.</p><p><span style=\" font-size:20pt;\">Formats<br/></span>SPECIAL FORMATS ARE CONSIDERED LEGACY SINCE THEY DON'T SERVE A PURPOSE AFTER MULTIPLE PAIR FILES CAN BE LOADED.</p><p>There are 2 main formats, some special formats and a Nihongo Quest import. You can see all of them in File -&gt; Open (Advanced).</p><p>The two modes you should be aware of are Default CSV and Default JSON. You should write your pairs in Default CSV or in the inspector since those are the easiest to use. The inspector will create JSON files.</p><p>A "
                         "pair can have as many questions or answers as you want. The reason why it can have many questions is because you can flip questions and answers so that answers are questions and questions are answers.</p></body></html>", None))
-        self.label_13.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p>What is the capital of Japan?<br/>Tokyo<br/>What is the tallest mountain in the world?<br/>Mount Everest,Everest<br/>What is 5 + 3?<br/>8<br/>What is the currency of the United States?<br/>Dollar,US Dollar,USD</p></body></html>", None))
+        self.label_13.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p>Question1<br/>Answer1<br/>Question2a,Question2b,Question2c<br/>Answer2a<br/>What is the capital of Japan?<br/>Tokyo<br/>What is the tallest mountain in the world?<br/>Mount Everest,Everest<br/>What is 5 + 3?<br/>8<br/>What is the currency of the United States?<br/>Dollar,US Dollar,USD</p></body></html>", None))
         self.tabWidget_examples_2.setTabText(self.tabWidget_examples_2.indexOf(self.tab_examples_csv_default_2), QCoreApplication.translate("documentation", u"Default CSV", None))
         self.label_14.setText(QCoreApplication.translate("documentation", u"{\n"
 "    \"This title doesn't matter for now.\": [\n"
@@ -360,9 +360,9 @@ class Ui_documentation(object):
                         "}\n"
 "", None))
         self.tabWidget_examples_2.setTabText(self.tabWidget_examples_2.indexOf(self.tab_examples_json_2), QCoreApplication.translate("documentation", u"Default JSON", None))
-        self.label_15.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">Importing pairs</span></p><p>This is really easy. Just go File -&gt; Open or Open (Advanced) and choose the file or files you have made. Advanced gives more control over what do you want to import, but normal open should work 99.9% of the time.</p><p>After you have imported the pairs you can see on the bottom of the main menu screen that &quot;Loaded [Amount of pairs] pairs from [Filename].&quot; or &quot;Loaded [Amount of pairs] pairs from multiple files. That means you have successfully imported the pairs.</p><p><br/></p><p><span style=\" font-size:20pt;\">Playing the game</span></p><p>You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.</p><p><br/></p><p><span style=\" font-size:16pt;\">Modes:</span></p><p>Normal: This is a generic mode where a question is asked and you have to input the answer.</p><p>Multiple Choice: In this you can choose from answer candidates taken from the pairs.</p><p>Survive!: This is like"
-                        " Normal, but you can fail only a specified amount of times.<br/></p><p><span style=\" font-size:16pt;\">Question orders:</span></p><p>Forward: Go forward from question 1 to the last question. After that returns back to question one etc.</p><p>Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.</p><p>Random: Goes through the questions in a random order with a simple never repeat way.</p><p><span style=\" font-size:16pt;\">Other:</span></p><p>Flip questions and answers: This flips questions and answers so that now questions are answers and answers are questions.</p><p><br/></p><p>After selecting the wanted modes you can press the &quot;Play&quot; button at the bottom of the screen. That throws you into the gameplay section.</p><p><br/></p><p><span style=\" font-size:20pt;\">Gameplay tricks</span></p><p>There are some neat things you can do in gameplay. Other than answerring the question.</p><p>&quot;c&quot; or &quot;correct&quot;: Shows the correct answer. Br"
-                        "eaks your streak.</p><p>&quot;seek NUMBER&quot;: Seeks to the specified number. Does not break your streak.</p><p>&quot;q&quot; or &quot;quit&quot;: Quits back to main menu. Breaks your streak (For now)</p><p>You can also just go back to the Main Menu tab by clicking it and start a new game.</p><p><br/></p><p>In Multiple Choice to quit the game you have to just click the Main Menu tab.</p></body></html>", None))
+        self.label_15.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p>As you can see, it follows a format where uneven lines are questions and even lines are answers.</p><p><span style=\" font-size:20pt;\">Importing pairs</span></p><p>This is really easy. Just go File -&gt; Open or Open (Advanced) and choose the file or files you have made. Advanced gives more control over what do you want to import, but normal open should work 99.9% of the time.</p><p>After you have imported the pairs you can see on the bottom of the main menu screen that &quot;Loaded [Amount of pairs] pairs from [Filename].&quot; or &quot;Loaded [Amount of pairs] pairs from multiple files. That means you have successfully imported the pairs.</p><p><br/></p><p><span style=\" font-size:20pt;\">Playing the game</span></p><p>You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.</p><p><br/></p><p><span style=\" font-size:16pt;\">Modes:</span></p><p>Normal: This is a generic mode where a question is asked and you have to input the answer.</p><p>Multiple C"
+                        "hoice: In this you can choose from answer candidates taken from the pairs.</p><p>Survive!: This is like Normal, but you can fail only a specified amount of times.<br/></p><p><span style=\" font-size:16pt;\">Question orders:</span></p><p>Forward: Go forward from question 1 to the last question. After that returns back to question one etc.</p><p>Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.</p><p>Random: Goes through the questions in a random order with a simple never repeat way.</p><p><span style=\" font-size:16pt;\">Other:</span></p><p>Flip questions and answers: This flips questions and answers so that now questions are answers and answers are questions.</p><p><br/></p><p>After selecting the wanted modes you can press the &quot;Play&quot; button at the bottom of the screen. That throws you into the gameplay section.</p><p><br/></p><p><span style=\" font-size:20pt;\">Gameplay tricks</span></p><p>There are some neat things you can do in gameplay. Other"
+                        " than answerring the question.</p><p>&quot;c&quot; or &quot;correct&quot;: Shows the correct answer. Breaks your streak.</p><p>&quot;seek NUMBER&quot;: Seeks to the specified number. Does not break your streak.</p><p>&quot;q&quot; or &quot;quit&quot;: Quits back to main menu. Breaks your streak (For now)</p><p>You can also just go back to the Main Menu tab by clicking it and start a new game.</p><p><br/></p><p>In Multiple Choice to quit the game you have to just click the Main Menu tab.</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_quickstart_2), QCoreApplication.translate("documentation", u"Quick Start", None))
         self.label_16.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">Main Menu</span></p><p>Here you select the wanted game mode and go play it.</p><p>You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.</p><p><br/></p><p><span style=\" font-size:16pt;\">Modes:</span></p><p>Normal: This is a generic mode where a question is asked and you have to input the answer.</p><p>Multiple Choice: In this you can choose from answer candidates taken from the pairs.</p><p>Survive!: This is like Normal, but you can fail only a specified amount of times.<br/></p><p><span style=\" font-size:16pt;\">Question orders:</span></p><p>Forward: Go forward from question 1 to the last question. After that returns back to question one etc.</p><p>Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.</p><p>Random: Goes through the questions in a random order with a simple never repeat way.</p><p><span style=\" font-size:16pt;\">Other:</span></p><p>Flip questions"
                         " and answers: This flips questions and answers so that now questions are answers and answers are questions.</p><p><br/></p><p>After selecting the wanted modes you can press the &quot;Play&quot; button at the bottom of the screen. That throws you into the gameplay section.</p><p><br/></p><p><span style=\" font-size:20pt;\">The Quit Button</span></p><p>This button simply closes the game.</p></body></html>", None))

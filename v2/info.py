@@ -42,11 +42,14 @@ class Ui_info(object):
         font1 = QFont()
         font1.setPointSize(32)
         self.label.setFont(font1)
+        self.label.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
+        self.label.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
 
         self.verticalLayout_2.addWidget(self.label)
 
         self.label_2 = QLabel(self.scrollAreaWidgetContents)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_2.setWordWrap(True)
         self.label_2.setOpenExternalLinks(True)
         self.label_2.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
@@ -97,7 +100,7 @@ class Ui_info(object):
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Made by Luuppi<br />Inspired by <a href=\"https://nihongoquest.com/\"><span style=\" text-decoration: underline; color:#1b6acb;\">Nihongo Quest<br /></span></a>Repository: <a href=\"https://github.com/LuuppiChan/luupycards\"><span style=\" text-decoration: underline; color:#1b6acb;\">GitHub</span></a></p></body></html>", None))
 #if QT_CONFIG(tooltip)
-        self.checkBox.setToolTip(QCoreApplication.translate("info", u"Shows if fuzzy matching is enabled.", None))
+        self.checkBox.setToolTip(QCoreApplication.translate("info", u"Shows if fuzzy matching is available.", None))
 #endif // QT_CONFIG(tooltip)
         self.checkBox.setText(QCoreApplication.translate("info", u"Is fuzzy matching available", None))
         self.pushButton.setText(QCoreApplication.translate("info", u"Ok", None))

@@ -41,13 +41,22 @@
            <pointsize>32</pointsize>
           </font>
          </property>
+         <property name="cursor">
+          <cursorShape>IBeamCursor</cursorShape>
+         </property>
          <property name="text">
           <string>Luupycards</string>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_2">
+         <property name="cursor">
+          <cursorShape>IBeamCursor</cursorShape>
+         </property>
          <property name="text">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -82,7 +91,7 @@ p, li { white-space: pre-wrap; }
        <item>
         <widget class="QCheckBox" name="checkBox">
          <property name="toolTip">
-          <string>Shows if fuzzy matching is enabled.</string>
+          <string>Shows if fuzzy matching is available.</string>
          </property>
          <property name="text">
           <string>Is fuzzy matching available</string>

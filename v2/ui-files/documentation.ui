@@ -38,9 +38,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-191</y>
+            <y>0</y>
             <width>684</width>
-            <height>2649</height>
+            <height>2707</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -106,7 +106,7 @@
               </font>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="tab_examples_csv_default_2">
               <attribute name="title">
@@ -139,7 +139,7 @@
                       <cursorShape>IBeamCursor</cursorShape>
                      </property>
                      <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;What is the capital of Japan?&lt;br/&gt;Tokyo&lt;br/&gt;What is the tallest mountain in the world?&lt;br/&gt;Mount Everest,Everest&lt;br/&gt;What is 5 + 3?&lt;br/&gt;8&lt;br/&gt;What is the currency of the United States?&lt;br/&gt;Dollar,US Dollar,USD&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Question1&lt;br/&gt;Answer1&lt;br/&gt;Question2a,Question2b,Question2c&lt;br/&gt;Answer2a&lt;br/&gt;What is the capital of Japan?&lt;br/&gt;Tokyo&lt;br/&gt;What is the tallest mountain in the world?&lt;br/&gt;Mount Everest,Everest&lt;br/&gt;What is 5 + 3?&lt;br/&gt;8&lt;br/&gt;What is the currency of the United States?&lt;br/&gt;Dollar,US Dollar,USD&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="wordWrap">
                       <bool>true</bool>
@@ -246,7 +246,7 @@
               <cursorShape>IBeamCursor</cursorShape>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Importing pairs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This is really easy. Just go File -&amp;gt; Open or Open (Advanced) and choose the file or files you have made. Advanced gives more control over what do you want to import, but normal open should work 99.9% of the time.&lt;/p&gt;&lt;p&gt;After you have imported the pairs you can see on the bottom of the main menu screen that &amp;quot;Loaded [Amount of pairs] pairs from [Filename].&amp;quot; or &amp;quot;Loaded [Amount of pairs] pairs from multiple files. That means you have successfully imported the pairs.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Playing the game&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Modes:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Normal: This is a generic mode where a question is asked and you have to input the answer.&lt;/p&gt;&lt;p&gt;Multiple Choice: In this you can choose from answer candidates taken from the pairs.&lt;/p&gt;&lt;p&gt;Survive!: This is like Normal, but you can fail only a specified amount of times.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Question orders:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Forward: Go forward from question 1 to the last question. After that returns back to question one etc.&lt;/p&gt;&lt;p&gt;Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.&lt;/p&gt;&lt;p&gt;Random: Goes through the questions in a random order with a simple never repeat way.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Other:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Flip questions and answers: This flips questions and answers so that now questions are answers and answers are questions.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After selecting the wanted modes you can press the &amp;quot;Play&amp;quot; button at the bottom of the screen. That throws you into the gameplay section.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Gameplay tricks&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There are some neat things you can do in gameplay. Other than answerring the question.&lt;/p&gt;&lt;p&gt;&amp;quot;c&amp;quot; or &amp;quot;correct&amp;quot;: Shows the correct answer. Breaks your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;seek NUMBER&amp;quot;: Seeks to the specified number. Does not break your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;q&amp;quot; or &amp;quot;quit&amp;quot;: Quits back to main menu. Breaks your streak (For now)&lt;/p&gt;&lt;p&gt;You can also just go back to the Main Menu tab by clicking it and start a new game.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In Multiple Choice to quit the game you have to just click the Main Menu tab.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As you can see, it follows a format where uneven lines are questions and even lines are answers.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Importing pairs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This is really easy. Just go File -&amp;gt; Open or Open (Advanced) and choose the file or files you have made. Advanced gives more control over what do you want to import, but normal open should work 99.9% of the time.&lt;/p&gt;&lt;p&gt;After you have imported the pairs you can see on the bottom of the main menu screen that &amp;quot;Loaded [Amount of pairs] pairs from [Filename].&amp;quot; or &amp;quot;Loaded [Amount of pairs] pairs from multiple files. That means you have successfully imported the pairs.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Playing the game&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can choose from 3 modes, 3 question orders and whether to flip the questions and answers.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Modes:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Normal: This is a generic mode where a question is asked and you have to input the answer.&lt;/p&gt;&lt;p&gt;Multiple Choice: In this you can choose from answer candidates taken from the pairs.&lt;/p&gt;&lt;p&gt;Survive!: This is like Normal, but you can fail only a specified amount of times.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Question orders:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Forward: Go forward from question 1 to the last question. After that returns back to question one etc.&lt;/p&gt;&lt;p&gt;Reverse: Go backwards from last question to question 1. After that returns back to the last question etc.&lt;/p&gt;&lt;p&gt;Random: Goes through the questions in a random order with a simple never repeat way.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Other:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Flip questions and answers: This flips questions and answers so that now questions are answers and answers are questions.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After selecting the wanted modes you can press the &amp;quot;Play&amp;quot; button at the bottom of the screen. That throws you into the gameplay section.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Gameplay tricks&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There are some neat things you can do in gameplay. Other than answerring the question.&lt;/p&gt;&lt;p&gt;&amp;quot;c&amp;quot; or &amp;quot;correct&amp;quot;: Shows the correct answer. Breaks your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;seek NUMBER&amp;quot;: Seeks to the specified number. Does not break your streak.&lt;/p&gt;&lt;p&gt;&amp;quot;q&amp;quot; or &amp;quot;quit&amp;quot;: Quits back to main menu. Breaks your streak (For now)&lt;/p&gt;&lt;p&gt;You can also just go back to the Main Menu tab by clicking it and start a new game.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In Multiple Choice to quit the game you have to just click the Main Menu tab.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -290,8 +290,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>1013</height>
+            <width>105</width>
+            <height>3270</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -345,8 +345,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>1509</height>
+            <width>130</width>
+            <height>4891</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -400,8 +400,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>611</height>
+            <width>116</width>
+            <height>2589</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -455,8 +455,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>725</height>
+            <width>151</width>
+            <height>1544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -510,8 +510,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>950</height>
+            <width>134</width>
+            <height>2634</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_31">
