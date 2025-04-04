@@ -507,7 +507,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.pairs.clear()
             pair_import = core.PairImport()
 
-            if files is None:
+            if not files:
                 file_paths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
             else:
                 file_paths = [files]

@@ -1,7 +1,7 @@
 # Luupycards
 Flip card game written in Python
 
-I was inspired to make this thanks to "[Nihongo Quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
+I was inspired to make this thanks to "[Nihongo Quest](https://nihongoquest.com/)".
 
 # Why the name?
 `Luup`: Part of my nickname Luuppi (which literally means "loop") and it kind of references to the gameplay where you can play the cards on a loop.
@@ -16,22 +16,27 @@ I was inspired to make this thanks to "[Nihongo Quest](https://store.steampowere
 ## Features
 #### Modes
 - Normal
-- Reverse (Questions are answers)
 - Multiple choice
-- Survive (You have only `n` amount of lives)
+- Survive! (You have only `n` amount of lives)
+- Option to flip questions and answers
 #### Question orders
 - Forward
 - Backward
 - Random
 #### Settings
-- Reset all time streaks
-- Min and max question for random (You can change, but they are automatically set)
+- Min and max question for random (You can change, but they are automatically set when pressed play)
 - Show question number
-- Max multiple choice options
+- Max multiple choice options (Choose how many multiple choice options you want)
 - Lives for Survive!
-- Fuzzy select percentage (Requires you to have the thefuzz module)
+- Fuzzy select percentage (Requires you to have the `thefuzz` module)
 #### I'll note more things here later.
-- FOSS
+- FOSS (Well MIT, but still)
+- Drag and drop pair files to load or open them with File -> Open or Open (Advanced)
+- Inspector
+  - Inspect your pairs in game or even make new ones and delete old ones. (If this app gets attraction I might add more editor functionality)
+  - Save to memory instantly reloads them in game
+  - Save to file opens a file dialog to save them into a pair file
+- All documentation is in the game under Help -> Help!
 
 # Installation V2 (Linux)
 
