@@ -348,6 +348,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def dragEnterEvent(self, event, /):
         if event.mimeData().hasUrls():
             self.ui.label_drag.setText("Drop your pair file.")
+            files = [u.toLocalFile() for u in event.mimeData().urls()]
+            for file in files:
+                json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
+                if not json_match:
+                    self.ui.label_drag.setText("The file(s) you're holding can't be (a) pair file(s)... Yet...")
             event.accept()
         else:
             event.ignore()
@@ -360,8 +365,8 @@ class MainWindow(QtWidgets.QMainWindow):
         load_files = True
         for file in files:
             json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
-            if not json_match:
-                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.")
+            if not json_match and load_files:
+                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.\n(.csv or .json)")
                 load_files = False
 
         self.ui.label_drag.setText("")

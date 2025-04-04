@@ -128,7 +128,7 @@ class PairImport:
 
                 try:
                     # if this exists it's a jp file or if advanced is on
-                    if content[0]["pronunciation"][0].isidentifier() and self.automatic or self.jp_mode:
+                    if "pronunciation" in content[0] and self.automatic or self.jp_mode:
                         corelog.debug("jp_mode is enabled.")
                         for i, jp_pair in enumerate(content, start=1):
                             jp_pair = dict(jp_pair)
