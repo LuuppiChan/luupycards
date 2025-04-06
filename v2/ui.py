@@ -28,7 +28,7 @@ class Ui_Luupycards(object):
     def setupUi(self, Luupycards):
         if not Luupycards.objectName():
             Luupycards.setObjectName(u"Luupycards")
-        Luupycards.resize(427, 387)
+        Luupycards.resize(440, 386)
         font = QFont()
         font.setPointSize(12)
         Luupycards.setFont(font)
@@ -131,7 +131,7 @@ class Ui_Luupycards(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 411, 310))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 424, 309))
         self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
         self.tab_main = QTabWidget(self.scrollAreaWidgetContents_2)
@@ -442,7 +442,7 @@ class Ui_Luupycards(object):
         self.scrollArea_settings_settings.setWidgetResizable(True)
         self.scrollAreaWidgetContents_settings = QWidget()
         self.scrollAreaWidgetContents_settings.setObjectName(u"scrollAreaWidgetContents_settings")
-        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 468, 429))
+        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 604, 429))
         self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_settings)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_settings = QGridLayout()
@@ -647,11 +647,17 @@ class Ui_Luupycards(object):
         self.tableWidget.setSizePolicy(sizePolicy)
         self.tableWidget.setAcceptDrops(False)
         self.tableWidget.setFrameShape(QFrame.StyledPanel)
-        self.tableWidget.setEditTriggers(QAbstractItemView.AnyKeyPressed|QAbstractItemView.DoubleClicked|QAbstractItemView.EditKeyPressed)
+        self.tableWidget.setFrameShadow(QFrame.Sunken)
+        self.tableWidget.setEditTriggers(QAbstractItemView.AnyKeyPressed|QAbstractItemView.CurrentChanged|QAbstractItemView.DoubleClicked|QAbstractItemView.EditKeyPressed)
         self.tableWidget.setDragEnabled(True)
-        self.tableWidget.setDragDropOverwriteMode(True)
-        self.tableWidget.setDragDropMode(QAbstractItemView.NoDragDrop)
+        self.tableWidget.setDragDropOverwriteMode(False)
+        self.tableWidget.setDragDropMode(QAbstractItemView.DragDrop)
+        self.tableWidget.setDefaultDropAction(Qt.MoveAction)
+        self.tableWidget.setAlternatingRowColors(False)
         self.tableWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.tableWidget.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.tableWidget.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.tableWidget.setSortingEnabled(False)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(300)
         self.tableWidget.horizontalHeader().setProperty(u"showSortIndicator", False)
@@ -689,7 +695,7 @@ class Ui_Luupycards(object):
         Luupycards.setStatusBar(self.statusbar)
         self.menubar = QMenuBar(Luupycards)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 427, 33))
+        self.menubar.setGeometry(QRect(0, 0, 440, 33))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuHelp = QMenu(self.menubar)
@@ -1177,13 +1183,13 @@ class Ui_Luupycards(object):
         ___qtablewidgetitem8 = self.tableWidget.item(0, 1)
         ___qtablewidgetitem8.setText(QCoreApplication.translate("Luupycards", u"answer1a;answer1b", None));
         ___qtablewidgetitem9 = self.tableWidget.item(1, 0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("Luupycards", u"question2", None));
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("Luupycards", u"question3", None));
         ___qtablewidgetitem10 = self.tableWidget.item(1, 1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("Luupycards", u"answer2a", None));
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("Luupycards", u"answer3a;answer3b;answer3c", None));
         ___qtablewidgetitem11 = self.tableWidget.item(2, 0)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("Luupycards", u"question3", None));
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("Luupycards", u"question2", None));
         ___qtablewidgetitem12 = self.tableWidget.item(2, 1)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("Luupycards", u"answer3a;answer3b;answer3c", None));
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("Luupycards", u"answer2a", None));
         ___qtablewidgetitem13 = self.tableWidget.item(3, 0)
         ___qtablewidgetitem13.setText(QCoreApplication.translate("Luupycards", u"question1", None));
         ___qtablewidgetitem14 = self.tableWidget.item(3, 1)

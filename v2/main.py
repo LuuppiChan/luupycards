@@ -343,16 +343,31 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pair_inspector_load()
         self.enough_pairs = True
 
+        self.drop_data = {
+            "file" : False,
+            "text" : False
+        }
+
         mainlog.info("Set up class init.")
 
     def dragEnterEvent(self, event, /):
+        # Reset all the options
+        for key in self.drop_data.keys():
+            self.drop_data[key] = False
+
         if event.mimeData().hasUrls():
+            self.drop_data["file"] = True
             self.ui.label_drag.setText("Drop your pair file.")
             files = [u.toLocalFile() for u in event.mimeData().urls()]
             for file in files:
                 json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
                 if not json_match:
-                    self.ui.label_drag.setText("The file(s) you're holding can't be (a) pair file(s)... Yet...")
+                    self.ui.label_drag.setText("One or more of the files you're holding can't be pair (a) file(s)... Yet...")
+            event.accept()
+
+        elif event.mimeData().hasText():
+            self.drop_data["text"] = True
+            self.ui.label_drag.setText("Text is not supported... Yet...")
             event.accept()
         else:
             event.ignore()
@@ -361,17 +376,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.label_drag.setText("")
 
     def dropEvent(self, event):
-        files = [u.toLocalFile() for u in event.mimeData().urls()]
-        load_files = True
-        for file in files:
-            json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
-            if not json_match and load_files:
-                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.\n(.csv or .json)")
-                load_files = False
+        if self.drop_data["file"]:
+            files = [u.toLocalFile() for u in event.mimeData().urls()]
+            to_be_loaded = []
+            has_invalid_files = False
+            for file in files:
+                json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
+                if not json_match:
+                    has_invalid_files = True
+                else:
+                    to_be_loaded.append(file)
+
+            if has_invalid_files:
+                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.\n(.csv or .json)\nOnly valid files were loaded.")
+
+            if to_be_loaded:
+                self.open_dir_dialog(to_be_loaded)
 
         self.ui.label_drag.setText("")
-        if load_files:
-            self.open_dir_dialog(files)
 
     def advanced_import(self):
         self.setEnabled(False)
@@ -396,7 +418,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton_correct_mc.setFont(QtGui.QFont(font_family, 16))
             self.ui.pushButton_seek_mc.setFont(QtGui.QFont(font_family, 16))
             self.ui.pushButton_seek.setFont(QtGui.QFont(font_family, 16))
-
         else:
             self.ui.label_question.setFont(QtGui.QFont(font_family, 20))
             self.ui.label_question_mc.setFont(QtGui.QFont(font_family, 20))

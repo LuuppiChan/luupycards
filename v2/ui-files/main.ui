@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>427</width>
-    <height>387</height>
+    <width>440</width>
+    <height>386</height>
    </rect>
   </property>
   <property name="font">
@@ -43,8 +43,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>411</width>
-         <height>310</height>
+         <width>424</width>
+         <height>309</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -77,7 +77,7 @@
            <bool>false</bool>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <property name="documentMode">
            <bool>false</bool>
@@ -1052,6 +1052,11 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
               <property name="acceptDrops">
                <bool>false</bool>
               </property>
@@ -1064,20 +1069,38 @@
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
               <property name="editTriggers">
-               <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+               <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
               </property>
               <property name="dragEnabled">
                <bool>true</bool>
               </property>
               <property name="dragDropOverwriteMode">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
               <property name="dragDropMode">
-               <enum>QAbstractItemView::NoDragDrop</enum>
+               <enum>QAbstractItemView::DragDrop</enum>
+              </property>
+              <property name="defaultDropAction">
+               <enum>Qt::MoveAction</enum>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>false</bool>
               </property>
               <property name="selectionMode">
                <enum>QAbstractItemView::ExtendedSelection</enum>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="sortingEnabled">
+               <bool>false</bool>
               </property>
               <attribute name="horizontalHeaderCascadingSectionResizes">
                <bool>true</bool>
@@ -1138,22 +1161,22 @@
               </item>
               <item row="1" column="0">
                <property name="text">
-                <string>question2</string>
+                <string>question3</string>
                </property>
               </item>
               <item row="1" column="1">
                <property name="text">
-                <string>answer2a</string>
+                <string>answer3a;answer3b;answer3c</string>
                </property>
               </item>
               <item row="2" column="0">
                <property name="text">
-                <string>question3</string>
+                <string>question2</string>
                </property>
               </item>
               <item row="2" column="1">
                <property name="text">
-                <string>answer3a;answer3b;answer3c</string>
+                <string>answer2a</string>
                </property>
               </item>
               <item row="3" column="0">
@@ -1228,7 +1251,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>427</width>
+     <width>440</width>
      <height>33</height>
     </rect>
    </property>
