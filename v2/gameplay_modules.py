@@ -1,11 +1,7 @@
 import re
-import os
 
 import core_functions as core
 import random
-import string
-import time
-import readline  # for better input field
 import logging
 
 gamelog = logging.getLogger(__name__)

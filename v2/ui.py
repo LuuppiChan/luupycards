@@ -442,7 +442,7 @@ class Ui_Luupycards(object):
         self.scrollArea_settings_settings.setWidgetResizable(True)
         self.scrollAreaWidgetContents_settings = QWidget()
         self.scrollAreaWidgetContents_settings.setObjectName(u"scrollAreaWidgetContents_settings")
-        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 604, 429))
+        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 468, 429))
         self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_settings)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_settings = QGridLayout()
@@ -645,6 +645,7 @@ class Ui_Luupycards(object):
         self.tableWidget.setObjectName(u"tableWidget")
         sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
         self.tableWidget.setSizePolicy(sizePolicy)
+        self.tableWidget.setFont(font1)
         self.tableWidget.setAcceptDrops(False)
         self.tableWidget.setFrameShape(QFrame.StyledPanel)
         self.tableWidget.setFrameShadow(QFrame.Sunken)
@@ -659,9 +660,11 @@ class Ui_Luupycards(object):
         self.tableWidget.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.tableWidget.setSortingEnabled(False)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
+        self.tableWidget.horizontalHeader().setMinimumSectionSize(64)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(300)
         self.tableWidget.horizontalHeader().setProperty(u"showSortIndicator", False)
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget.verticalHeader().setDefaultSectionSize(32)
 
         self.verticalLayout.addWidget(self.tableWidget)
 

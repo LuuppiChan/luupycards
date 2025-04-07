@@ -2,9 +2,8 @@ import csv
 import json
 import os
 import re
-import time
 import random
-import readline  # for better input field
+
 from pathlib import Path
 import logging
 import shutil
