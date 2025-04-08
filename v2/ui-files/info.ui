@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>422</width>
-    <height>363</height>
+    <height>382</height>
    </rect>
   </property>
   <property name="font">
@@ -30,7 +30,7 @@
         <x>0</x>
         <y>0</y>
         <width>406</width>
-        <height>347</height>
+        <height>366</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -72,6 +72,13 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="textInteractionFlags">
           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_licence">
+         <property name="text">
+          <string>Show MIT Licence</string>
          </property>
         </widget>
        </item>

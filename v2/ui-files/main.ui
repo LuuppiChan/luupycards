@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>386</height>
+    <width>679</width>
+    <height>644</height>
    </rect>
   </property>
   <property name="font">
@@ -26,7 +26,7 @@
     <normaloff>../v1/luupycards.png</normaloff>../v1/luupycards.png</iconset>
   </property>
   <property name="windowOpacity">
-   <double>0.000000000000000</double>
+   <double>1.000000000000000</double>
   </property>
   <property name="toolTip">
    <string/>
@@ -43,8 +43,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>424</width>
-         <height>309</height>
+         <width>663</width>
+         <height>567</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
@@ -1257,7 +1257,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>440</width>
+     <width>679</width>
      <height>33</height>
     </rect>
    </property>

@@ -42,7 +42,7 @@ I was inspired to make this thanks to "[Nihongo Quest](https://nihongoquest.com/
 
 This is a graphical version of the application. You can find the instructions to the old tui version in `v1/installation.md` As far as I know this should also work on Windows, but it hasn't been tested.
 
-1. Install Python if you haven't (duh)
+1. Install [Python](https://www.python.org/) if you haven't (duh)
 2. Download this repository with
 ```bash
 git clone https://github.com/LuuppiChan/luupycards.git
@@ -61,6 +61,12 @@ chmod a+x install.sh
 ./install.sh
 ```
 6. Open the app from your application menu.
+
+# Installation Windows
+Yes, it's finally supported on the most popular operating system.
+
+1. Download [Python](https://www.python.org/) from their official website if you haven't already.
+2. When installing Python remember to add it to the path for easier usage.
 
 # Making pair files
 The documentation on everything about the game is in the game. 

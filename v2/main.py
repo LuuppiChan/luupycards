@@ -16,9 +16,11 @@ from info import Ui_info
 from seek import Ui_Seek
 from ui import Ui_Luupycards
 import core_functions as core
+from licence import Ui_licence
 import gameplay_modules as gameplay
 from import_dialog import Ui_DialogImport
 from documentation import Ui_documentation
+
 
 # argparse
 # Create parser
@@ -44,6 +46,13 @@ mainlog = logging.getLogger(__name__)
 logging.basicConfig(filename=f"{core.get_data_dir()}/luupy.log", encoding="utf-8", level=log_level, filemode="w")
 
 
+class LicenceWidget(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(LicenceWidget, self).__init__(parent)
+        self.ui = Ui_licence()
+        self.ui.setupUi(self)
+
+
 class DocumentationWidget(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(DocumentationWidget, self).__init__(parent)
@@ -63,6 +72,12 @@ class InfoWidget(QtWidgets.QDialog):
 
         self.ui.checkBox.setChecked(gameplay.fuzzy_is_available)
         self.ui.checkBox.setEnabled(False)
+
+        self.ui.pushButton_licence.clicked.connect(self.show_licence)
+
+    def show_licence(self):
+        licence = LicenceWidget(self)
+        licence.show()
 
 
 class ImportDialog(QtWidgets.QDialog):
@@ -986,6 +1001,7 @@ if __name__ == "__main__":
 
     # Windows fixes
     if os.name == "nt":
+        # This is just ensuring:
         window.setWindowOpacity(1)  # Do not ever never remove this, it 100% breaks Windows compatibility.
 
     sys.exit(app.exec())

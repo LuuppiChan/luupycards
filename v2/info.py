@@ -34,7 +34,7 @@ class Ui_info(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 406, 347))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 392, 361))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label = QLabel(self.scrollAreaWidgetContents)
@@ -55,6 +55,11 @@ class Ui_info(object):
         self.label_2.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
 
         self.verticalLayout_2.addWidget(self.label_2)
+
+        self.pushButton_licence = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_licence.setObjectName(u"pushButton_licence")
+
+        self.verticalLayout_2.addWidget(self.pushButton_licence)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -99,6 +104,7 @@ class Ui_info(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Made by Luuppi<br />Inspired by <a href=\"https://nihongoquest.com/\"><span style=\" text-decoration: underline; color:#1b6acb;\">Nihongo Quest<br /></span></a>Repository: <a href=\"https://github.com/LuuppiChan/luupycards\"><span style=\" text-decoration: underline; color:#1b6acb;\">GitHub</span></a></p></body></html>", None))
+        self.pushButton_licence.setText(QCoreApplication.translate("info", u"Show MIT Licence", None))
 #if QT_CONFIG(tooltip)
         self.checkBox.setToolTip(QCoreApplication.translate("info", u"Shows if fuzzy matching is available.", None))
 #endif // QT_CONFIG(tooltip)

@@ -77,7 +77,7 @@ class PairImport:
 
         current_pair_dict = dict()
 
-        with open(csv_file_path, mode="r") as file:
+        with open(csv_file_path, mode="r", encoding="utf-8") as file:
             csv_reader = csv.reader(file)
             for row_number, row in enumerate(csv_reader, start=1):
                 row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
@@ -103,7 +103,7 @@ class PairImport:
         else:
             pass
 
-        with open(json_file_path, mode="r") as file:
+        with open(json_file_path, mode="r", encoding="utf-8") as file:
             raw_pairs = json.loads(file.read())
             corelog.debug("File opened successfully.")
             for (key, content) in raw_pairs.items():  # goes through the keys' items
