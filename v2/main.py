@@ -959,7 +959,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     if os.name == "nt":
-        mainlog.critical("Warning! This program is intended for Linux, using Windows WILL have unexpected behaviour!")
+        mainlog.warning("This program is intended for Linux, using Windows may have unexpected behaviour!")
     app = QtWidgets.QApplication(sys.argv)
     #app.setStyle('Breeze')  # I'll set it properly later
     style_name = app.style().metaObject().className()
@@ -983,5 +983,9 @@ if __name__ == "__main__":
 
     window = MainWindow()
     window.show()
+
+    # Windows fixes
+    if os.name == "nt":
+        window.setWindowOpacity(1)  # Do not ever never remove this, it 100% breaks Windows compatibility.
 
     sys.exit(app.exec())
