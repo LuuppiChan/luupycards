@@ -581,9 +581,9 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.label_pair_status.setText("Pairs not loaded")
             QtWidgets.QMessageBox.critical(self, "Import Error!", "Something went wrong while trying to import pairs.\nPlease check that you gave a valid pair file.")
 
-    @staticmethod
-    def quit_action():
-        exit()
+    def quit_action(self):
+        self.hide()
+        exit(0)
 
     def set_streak(self):
         streak = self.the_game.streak_current
