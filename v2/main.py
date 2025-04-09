@@ -573,6 +573,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 if self.ui.tab_play.isEnabled():
                     # setups the gameplay again if it's enabled
                     self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+        except UnicodeEncodeError:
+            self.ui.label_pair_status.setText("Pairs not loaded")
+            QtWidgets.QMessageBox.critical(self, "Import Error!", "The file(s) you're trying to import aren't in a supported format (utf-8)")
+
         except:
             self.ui.label_pair_status.setText("Pairs not loaded")
             QtWidgets.QMessageBox.critical(self, "Import Error!", "Something went wrong while trying to import pairs.\nPlease check that you gave a valid pair file.")
@@ -597,6 +601,31 @@ class MainWindow(QtWidgets.QMainWindow):
     def set_question(self, question):
         self.ui.label_question.setText(question)
         self.ui.label_question_mc.setText(question)
+        if f"{self.the_game.question} tooltip" in self.the_game.pairs[self.the_game.current_question]:
+            tooltip = self.the_game.pairs[self.the_game.current_question][f"{self.the_game.question} tooltip"]
+
+            self.ui.label_question.setToolTip(tooltip)
+            self.ui.label_question.setStatusTip(tooltip)
+            self.ui.label_question_mc.setToolTip(tooltip)
+            self.ui.label_question_mc.setStatusTip(tooltip)
+        else:
+            tooltip = "The question"
+
+            self.ui.label_question.setToolTip(tooltip)
+            self.ui.label_question.setStatusTip(tooltip)
+            self.ui.label_question_mc.setToolTip(tooltip)
+            self.ui.label_question_mc.setStatusTip(tooltip)
+
+        if f"{self.the_game.answer} tooltip" in self.the_game.pairs[self.the_game.current_question]:
+            tooltip = self.the_game.pairs[self.the_game.current_question][f"{self.the_game.answer} tooltip"]
+
+            self.ui.lineEdit_answer.setStatusTip(tooltip)
+            self.ui.lineEdit_answer.setToolTip(tooltip)
+        else:
+            tooltip = "The answer"
+
+            self.ui.lineEdit_answer.setStatusTip(tooltip)
+            self.ui.lineEdit_answer.setToolTip(tooltip)
 
     def set_info(self, info):
         self.ui.label_game_info.setText(info)
@@ -818,6 +847,8 @@ class MainWindow(QtWidgets.QMainWindow):
         pair0 = {
             "question": ["Wait... question zero? What's the answer though..."],
             "answer": ["Luupycards"],
+            "question tooltip": "Congrats for finding an easter egg!",
+            "answer tooltip": "I wonder what the game is called..."
         }
         if self.pairs:
             if self.pairs[0] == pair0:
@@ -831,9 +862,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
             question = QtWidgets.QTableWidgetItem()
             question.setText(";".join(pair["question"]))
+            if "question tooltip" in pair:
+                question.setText(f"{question.text()}{";" + "{tooltip='" + pair["question tooltip"] + "'}" if pair['question tooltip'] != " / ".join(pair["question"]) else ""}")
 
             answer = QtWidgets.QTableWidgetItem()
             answer.setText(";".join(pair["answer"]))
+            if "answer tooltip" in pair:
+                answer.setText(f"{answer.text()}{";" + "{tooltip='" + pair["answer tooltip"] + "'}" if pair['answer tooltip'] != 'Input your answer' else ""}")
 
             self.ui.tableWidget.setItem(i, 0, question)  # questions
             self.ui.tableWidget.setItem(i, 1, answer)  # answers
@@ -860,10 +895,37 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ensure_loaded()
 
         for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
+            pair = {
+                "question": question.text().split(";"),
+                "answer": answer.text().split(";"),
+            }
+
+            if "question tooltip" not in pair:
+                for item in pair["question"]:
+                    result = re.search(core.PairImport.tooltip_regex, item)
+                    if result:
+                        pair["question tooltip"] = result.group(1)
+                        pair["question"].remove(item)
+
+                if "question tooltip" not in pair:
+                    pair["question tooltip"] = " / ".join(pair["question"])
+
+            if "answer tooltip" not in pair:
+                for item in pair["answer"]:
+                    result = re.search(core.PairImport.tooltip_regex, item)
+                    if result:
+                        pair["answer tooltip"] = result.group(1)
+                        pair["answer"].remove(item)
+
+                if "answer tooltip" not in pair:
+                    pair["answer tooltip"] = "Input your answer"
+
             self.pairs.append(
                 {
-                    "question" : question.text().split(";"),
-                    "answer" : answer.text().split(";"),
+                    "question": pair["question"],
+                    "answer": pair["answer"],
+                    "question tooltip": pair["question tooltip"],
+                    "answer tooltip": pair["answer tooltip"],
                 }
             )
 
@@ -871,7 +933,10 @@ class MainWindow(QtWidgets.QMainWindow):
         pair0 = {
             "question": ["Wait... question zero? What's the answer though..."],
             "answer": ["Luupycards"],
+            "question tooltip": "Congrats for finding an easter egg!",
+            "answer tooltip": "I wonder what the game is called..."
         }
+
         self.pairs.insert(0, pair0)
         self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from Inspector.")
 
@@ -891,12 +956,26 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for (question, answer) in zip(self.pair_widget_items["question"], self.pair_widget_items["answer"]):
             if question or answer:
-                file_pairs.append(
-                    {
-                        "question": question.text().split(";") if question.text() else "",
-                        "answer": answer.text().split(";") if answer.text() else "",
-                    }
-                )
+                pair = {
+                    "question": question.text().split(";"),
+                    "answer": answer.text().split(";"),
+                }
+
+                if "question tooltip" not in pair:
+                    for item in pair["question"]:
+                        result = re.search(core.PairImport.tooltip_regex, item)
+                        if result:
+                            pair["question tooltip"] = result.group(1)
+                            pair["question"].remove(item)
+
+                if "answer tooltip" not in pair:
+                    for item in pair["answer"]:
+                        result = re.search(core.PairImport.tooltip_regex, item)
+                        if result:
+                            pair["answer tooltip"] = result.group(1)
+                            pair["answer"].remove(item)
+
+                file_pairs.append(pair)
 
         full_json_file = {
             "pairs" : file_pairs
@@ -906,7 +985,7 @@ class MainWindow(QtWidgets.QMainWindow):
         filepath = filepath[0]  # only the file path
 
         if filepath:  # ensures user chose a location
-            with open(filepath, "w") as file:
+            with open(filepath, "w", encoding="utf-8") as file:
                 json.dump(full_json_file, file, ensure_ascii=False, indent=4)
 
     def pair_inspector_add_row(self):

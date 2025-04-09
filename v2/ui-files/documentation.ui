@@ -40,7 +40,7 @@
             <x>0</x>
             <y>0</y>
             <width>684</width>
-            <height>2707</height>
+            <height>2752</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -55,7 +55,7 @@
               <cursorShape>IBeamCursor</cursorShape>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;The documentation for the game.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Click the tab to chose the category.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;The documentation (that nobody reads) for the game.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Click the tab to chose the category.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -275,6 +275,126 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_pairs">
+      <attribute name="title">
+       <string>Pairs</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-278</y>
+            <width>684</width>
+            <height>2352</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item alignment="Qt::AlignTop">
+            <widget class="QLabel" name="label">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;All about pairs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There's no use of the game without pairs.&lt;/p&gt;&lt;p&gt;Every format has the same end result; the pairs appear. There are still quite a lot of pair import methods for some reason. (Most of them will be considered legacy since they aren't needed anymore, I'll not be going through them here.)&lt;/p&gt;&lt;p&gt;The game supports only UTF 8 files. In most cases the files are UTF 8, but it will likely throw an error if the file is not UTF 8 encoded.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Tooltips&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can make your own tooltips by putting it as a question or answer in the following format. (It will not become a question or an answer)&lt;/p&gt;&lt;p&gt;{tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;{tooltip = 'This is also a tooltip.'}&lt;/p&gt;&lt;p&gt;These will show the text inside the quotes and remove the question or answer they are in. So your question answer pair could look something like this:&lt;/p&gt;&lt;p&gt;Question,{tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;Answer,{tooltip = 'Hint: There's an answer.'}&lt;br/&gt;Question2,This text will not appear {tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;Answer2,This text will also not appear {tooltip=&amp;quot;This is also a tooltip.&amp;quot;}&lt;/p&gt;&lt;p&gt;In this example the text inside second cells is not visible because they are in the same cell as the tooltip.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;CSV&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.&lt;/p&gt;&lt;p&gt;-----&lt;br/&gt;Question1&lt;br/&gt;Answer1&lt;br/&gt;Question2a,Question2b,Question2c&lt;br/&gt;Answer2a&lt;br/&gt;What is the capital of Japan?&lt;br/&gt;Tokyo&lt;br/&gt;What is the tallest mountain in the world?&lt;br/&gt;Mount Everest,Everest&lt;br/&gt;What is 5 + 3?&lt;br/&gt;8&lt;br/&gt;What is the currency of the United States?&lt;br/&gt;Dollar,US Dollar,USD&lt;br/&gt;-----&lt;/p&gt;&lt;p&gt;On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that question will appear followingly: &amp;quot;Question2a / Question2b / Question2c&amp;quot; in the game.&lt;/p&gt;&lt;p&gt;To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. &lt;span style=&quot; font-weight:600;&quot;&gt;When saving the file remember to choose CSV as the format.&lt;/span&gt; After that you can just drag and drop the file onto the game window.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;JSON&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The game saves its files in JSON. You don't need to know anything about it if you don't want.&lt;/p&gt;&lt;p&gt;Here's a simple example of a file in JSON format.&lt;/p&gt;&lt;p&gt;-----&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>{
+    &quot;This title doesn't matter for now.&quot;: [
+        {
+            &quot;question&quot;: [
+                &quot;What is 5 + 3?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;8&quot;
+            ]
+        },
+        {
+            &quot;question&quot;: [
+                &quot;What is the tallest mountain in the world?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;Mount Everest&quot;,
+                &quot;Everest&quot;
+            ]
+        },
+        {
+            &quot;question&quot;: [
+                &quot;What is the capital of Japan?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;Tokyo&quot;
+            ]
+        },
+        {
+            &quot;question&quot;: [
+                &quot;What is the currency of the United States?&quot;
+            ],
+            &quot;answer&quot;: [
+                &quot;Dollar&quot;,
+                &quot;US Dollar&quot;,
+                &quot;USD&quot;
+            ]
+        }
+    ]
+}
+</string>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="cursor">
+              <cursorShape>IBeamCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;-----&lt;br/&gt;There are some other fields, but most of them are considered legacy as of version 2.0.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tab_main_menu_2">
       <attribute name="title">
        <string>Main Menu</string>
@@ -290,8 +410,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>105</width>
-            <height>3270</height>
+            <width>684</width>
+            <height>1013</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -345,8 +465,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>130</width>
-            <height>4891</height>
+            <width>684</width>
+            <height>1509</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -400,8 +520,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>116</width>
-            <height>2589</height>
+            <width>684</width>
+            <height>611</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -455,8 +575,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>151</width>
-            <height>1544</height>
+            <width>684</width>
+            <height>725</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -510,8 +630,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>134</width>
-            <height>2634</height>
+            <width>684</width>
+            <height>950</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_31">

@@ -44,6 +44,15 @@ class PairImport:
         self.sentences = False
         self.automatic = False
         self.first_time = True
+        self.tooltip_regex = r"\{ *tooltip *= *[\"'](.*)[\"'] *\}"
+        self.pair0 = {
+            "question": ["Wait... question zero? What's the answer though..."],
+            "answer": ["Luupycards"],
+            "question tooltip" : "Congrats for finding an easter egg!",
+            "answer tooltip" : "I wonder what the game is called..."
+        }
+
+    tooltip_regex = r"\{ *tooltip *= *[\"'](.*)[\"'] *\}"
 
     def determine_pair_file(self, file_path, jp_mode=False, sentences=False) -> list:
         self.automatic = True
@@ -63,14 +72,11 @@ class PairImport:
         return pairs
 
     def pair_import(self, csv_file_path) -> list:
-        pair0 = {
-            "question": ["Wait... question zero? What's the answer though..."],
-            "answer": ["Luupycards"],
-        }
+
         pairs = list()
 
         if self.first_time:
-            pairs.append(pair0)
+            pairs.append(self.pair0)
             self.first_time = False
         else:
             pass
@@ -82,8 +88,21 @@ class PairImport:
             for row_number, row in enumerate(csv_reader, start=1):
                 row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
                 if row_number % 2 != 0:  # questions
+                    for item in row:
+                        result = re.search(self.tooltip_regex, item)
+                        if result:
+                            current_pair_dict["question tooltip"] = result.group(1)
+                            row.remove(item)
+
                     current_pair_dict["question"] = row
+
                 else:  # answers
+                    for item in row:
+                        result = re.search(self.tooltip_regex, item)
+                        if result:
+                            current_pair_dict["answer tooltip"] = result.group(1)
+                            row.remove(item)
+
                     current_pair_dict["answer"] = row
                     pairs.append(current_pair_dict.copy())
 
@@ -92,13 +111,9 @@ class PairImport:
     def pair_import_json(self, json_file_path) -> list:
         corelog.info("Importing from json.")
 
-        pair0 = {
-            "question": ["Wait... question zero? What's the answer though..."],
-            "answer": ["Luupycards"],
-        }
         pairs = list()
         if self.first_time:
-            pairs.append(pair0)
+            pairs.append(self.pair0)
             self.first_time = False
         else:
             pass
@@ -111,15 +126,33 @@ class PairImport:
                 if self.default_json:
                     for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
                         corelog.debug('Going through pair number "%s"', i)
-                        if "kanji" in pair:
-                            corelog.debug("Kanji entry found, copying it to question.")
-                            pair["question"] = pair["kanji"].copy()
-                        if "meaning" in pair:
-                            corelog.debug("Meaning entry found, copying it to answer.")
-                            pair["answer"] = pair["meaning"].copy()
+
+                        if "question tooltip" not in pair:
+                            for item in pair["question"]:
+                                result = re.search(self.tooltip_regex, item)
+                                if result:
+                                    pair["question tooltip"] = result.group(1)
+                                    pair["question"].remove(item)
+
+                        if "answer tooltip" not in pair:
+                            for item in pair["answer"]:
+                                result = re.search(self.tooltip_regex, item)
+                                if result:
+                                    pair["answer tooltip"] = result.group(1)
+                                    pair["answer"].remove(item)
+
+                        ready_pair = {
+                            "question" : pair["question"],
+                            "answer" : pair["answer"],
+                            "question tooltip" : pair["question tooltip"] if "question tooltip" in pair else "",
+                            "answer tooltip" : pair["answer tooltip"] if "answer tooltip" in pair else "",
+                        }
+
+                        ready_pair.pop("question tooltip") if not ready_pair["question tooltip"] else None
+                        ready_pair.pop("answer tooltip") if not ready_pair["answer tooltip"] else None
 
                         corelog.debug("Appending pair to list...")
-                        pairs.append(pair.copy())
+                        pairs.append(ready_pair.copy())
                         corelog.debug("List has now %s item(s).", len(pairs))
                         corelog.debug("Pair contents: %s", pair)
                         if pairs[-1] != pair:
@@ -137,6 +170,9 @@ class PairImport:
                             jp_pair["question"] = jp_pair["question"][:]  # Copy the list to avoid modifying the original
                             jp_pair["question"][0] = f"{jp_pair["question"][0]} pronunciation"
                             jp_pair["answer"] = jp_pair["pronunciation"][:]  # Copy the list
+
+                            jp_pair.pop("question tooltip") if "question tooltip" in jp_pair else None
+                            jp_pair.pop("answer tooltip") if "answer tooltip" in jp_pair else None
 
                             corelog.debug("Appending pair to list...")
                             pairs.append(jp_pair.copy())
@@ -165,13 +201,9 @@ class PairImport:
         return pairs.copy()
 
     def nq_import(self, csv_file_path, categories: list, pronunciation=False) -> list:
-        pair0 = {
-            "question": ["Wait... question zero? What's the answer though..."],
-            "answer": ["Luupycards"],
-        }
         pairs = list()
 
-        pairs.append(pair0)
+        pairs.append(self.pair0)
 
         with open(csv_file_path, mode="r") as file:
             csv_reader = csv.reader(file)

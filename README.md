@@ -63,10 +63,10 @@ chmod a+x install.sh
 6. Open the app from your application menu.
 
 # Installation Windows
-Yes, it's finally supported on the most popular operating system.
+Yes, it's finally supported on the most popular operating system. (As of v2.1)
 
-1. Download [Python](https://www.python.org/) from their official website if you haven't already.
-2. When installing Python remember to add it to the path for easier usage.
+1. Download the latest executable from [Latest Releases](https://github.com/LuuppiChan/luupycards/releases)
+2. You're all set! Just double-click it to open it. 
 
 # Making pair files
 The documentation on everything about the game is in the game. 
