@@ -75,6 +75,8 @@ class InfoWidget(QtWidgets.QDialog):
 
         self.ui.pushButton_licence.clicked.connect(self.show_licence)
 
+        self.ui.label.setText("Luupycards v2.1")
+
     def show_licence(self):
         licence = LicenceWidget(self)
         licence.show()
