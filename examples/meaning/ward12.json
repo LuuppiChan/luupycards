@@ -1,0 +1,89 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "遅い"
+            ],
+            "answer": [
+                "slow"
+            ]
+        },
+        {
+            "question": [
+                "早い"
+            ],
+            "answer": [
+                "fast",
+                "early"
+            ]
+        },
+        {
+            "question": [
+                "涼しい"
+            ],
+            "answer": [
+                "refreshing"
+            ]
+        },
+        {
+            "question": [
+                "忙しい"
+            ],
+            "answer": [
+                "busy"
+            ]
+        },
+        {
+            "question": [
+                "うるさい"
+            ],
+            "answer": [
+                "loud",
+                "annoying"
+            ]
+        },
+        {
+            "question": [
+                "薄い"
+            ],
+            "answer": [
+                "thin",
+                "dilute"
+            ]
+        },
+        {
+            "question": [
+                "美味しい"
+            ],
+            "answer": [
+                "delicious",
+                "tasty"
+            ]
+        },
+        {
+            "question": [
+                "太い"
+            ],
+            "answer": [
+                "fat",
+                "thick"
+            ]
+        },
+        {
+            "question": [
+                "細い"
+            ],
+            "answer": [
+                "slender"
+            ]
+        },
+        {
+            "question": [
+                "速い"
+            ],
+            "answer": [
+                "quick"
+            ]
+        }
+    ]
+}

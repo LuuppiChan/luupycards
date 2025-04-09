@@ -1,0 +1,85 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "悪い pronunciation"
+            ],
+            "answer": [
+                "わるい"
+            ]
+        },
+        {
+            "question": [
+                "若い pronunciation"
+            ],
+            "answer": [
+                "わかい"
+            ]
+        },
+        {
+            "question": [
+                "軽い pronunciation"
+            ],
+            "answer": [
+                "かるい"
+            ]
+        },
+        {
+            "question": [
+                "まずい pronunciation",
+                "不味い"
+            ],
+            "answer": [
+                "まずい"
+            ]
+        },
+        {
+            "question": [
+                "楽しい pronunciation"
+            ],
+            "answer": [
+                "たのしい"
+            ]
+        },
+        {
+            "question": [
+                "厚い pronunciation"
+            ],
+            "answer": [
+                "あつい"
+            ]
+        },
+        {
+            "question": [
+                "熱い pronunciation"
+            ],
+            "answer": [
+                "あつい"
+            ]
+        },
+        {
+            "question": [
+                "高い pronunciation"
+            ],
+            "answer": [
+                "たかい"
+            ]
+        },
+        {
+            "question": [
+                "低い pronunciation"
+            ],
+            "answer": [
+                "ひくい"
+            ]
+        },
+        {
+            "question": [
+                "難しい pronunciation"
+            ],
+            "answer": [
+                "むずかしい"
+            ]
+        }
+    ]
+}

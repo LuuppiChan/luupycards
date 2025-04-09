@@ -1,0 +1,89 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "悪い"
+            ],
+            "answer": [
+                "bad"
+            ]
+        },
+        {
+            "question": [
+                "若い"
+            ],
+            "answer": [
+                "young"
+            ]
+        },
+        {
+            "question": [
+                "軽い"
+            ],
+            "answer": [
+                "light"
+            ]
+        },
+        {
+            "question": [
+                "まずい",
+                "不味い"
+            ],
+            "answer": [
+                "not tasty"
+            ]
+        },
+        {
+            "question": [
+                "楽しい"
+            ],
+            "answer": [
+                "fun"
+            ]
+        },
+        {
+            "question": [
+                "厚い"
+            ],
+            "answer": [
+                "thick"
+            ]
+        },
+        {
+            "question": [
+                "熱い"
+            ],
+            "answer": [
+                "hot (to the touch)",
+                "hot to the touch"
+            ]
+        },
+        {
+            "question": [
+                "高い"
+            ],
+            "answer": [
+                "tall",
+                "expensive"
+            ]
+        },
+        {
+            "question": [
+                "低い"
+            ],
+            "answer": [
+                "low",
+                "short"
+            ]
+        },
+        {
+            "question": [
+                "難しい"
+            ],
+            "answer": [
+                "difficult",
+                "hard"
+            ]
+        }
+    ]
+}

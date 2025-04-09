@@ -1,0 +1,86 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "良い pronunciation"
+            ],
+            "answer": [
+                "よい",
+                "いい"
+            ]
+        },
+        {
+            "question": [
+                "かっこいい pronunciation"
+            ],
+            "answer": [
+                "かっこいい"
+            ]
+        },
+        {
+            "question": [
+                "綺麗 pronunciation",
+                "きれい"
+            ],
+            "answer": [
+                "きれい"
+            ]
+        },
+        {
+            "question": [
+                "嫌い pronunciation"
+            ],
+            "answer": [
+                "きらい"
+            ]
+        },
+        {
+            "question": [
+                "大きい pronunciation"
+            ],
+            "answer": [
+                "おおきい"
+            ]
+        },
+        {
+            "question": [
+                "小さい pronunciation"
+            ],
+            "answer": [
+                "ちいさい"
+            ]
+        },
+        {
+            "question": [
+                "安い pronunciation"
+            ],
+            "answer": [
+                "やすい"
+            ]
+        },
+        {
+            "question": [
+                "優しい pronunciation"
+            ],
+            "answer": [
+                "やさしい"
+            ]
+        },
+        {
+            "question": [
+                "桜 pronunciation"
+            ],
+            "answer": [
+                "さくら"
+            ]
+        },
+        {
+            "question": [
+                "少ない pronunciation"
+            ],
+            "answer": [
+                "すくない"
+            ]
+        }
+    ]
+}

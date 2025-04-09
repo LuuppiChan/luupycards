@@ -1,0 +1,84 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "あなたは良い名前だ。"
+            ],
+            "answer": [
+                "As for you, you have (a) good name."
+            ]
+        },
+        {
+            "question": [
+                "俺はかっこよくない。"
+            ],
+            "answer": [
+                "As for me, I'm not (cool/handsome)"
+            ]
+        },
+        {
+            "question": [
+                "汚いお皿は綺麗じゃない。"
+            ],
+            "answer": [
+                "As for (the) dirty plate, it's not clean."
+            ]
+        },
+        {
+            "question": [
+                "僕は卵くらいです。"
+            ],
+            "answer": [
+                "As for me, I don't like eggs."
+            ]
+        },
+        {
+            "question": [
+                "木は大きい。"
+            ],
+            "answer": [
+                "As for (the) tree, it's big."
+            ]
+        },
+        {
+            "question": [
+                "お金は小さい。"
+            ],
+            "answer": [
+                "As for (the) money, it's small."
+            ]
+        },
+        {
+            "question": [
+                "寿司は安くない。"
+            ],
+            "answer": [
+                "As for (the) sushi, it's not cheap."
+            ]
+        },
+        {
+            "question": [
+                "私の妹は優しい女の子です。"
+            ],
+            "answer": [
+                "As for my younger sister, she's (a) kind girl."
+            ]
+        },
+        {
+            "question": [
+                "日本の桜はきれいだ。"
+            ],
+            "answer": [
+                "As for Japan's cherry blossoms, they are pretty."
+            ]
+        },
+        {
+            "question": [
+                "まずいくら物は少ない。"
+            ],
+            "answer": [
+                "As for not tasty fruits, there are few."
+            ]
+        }
+    ]
+}

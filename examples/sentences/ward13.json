@@ -1,0 +1,84 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "お父さんは悪くなかった。"
+            ],
+            "answer": [
+                "As for Father, he was not bad."
+            ]
+        },
+        {
+            "question": [
+                "若い男の子だ。"
+            ],
+            "answer": [
+                "(It) is (a) young boy."
+            ]
+        },
+        {
+            "question": [
+                "弟は軽い。"
+            ],
+            "answer": [
+                "As for (my) younger brother, he is light."
+            ]
+        },
+        {
+            "question": [
+                "ご飯はまずかった。"
+            ],
+            "answer": [
+                "As for (the) food/cooked rice, it was not tasty."
+            ]
+        },
+        {
+            "question": [
+                "昨日は楽しくなった。"
+            ],
+            "answer": [
+                "As for yesterday, it was not fun."
+            ]
+        },
+        {
+            "question": [
+                "お皿は厚くない。"
+            ],
+            "answer": [
+                "As for (the) plate, it's not thick."
+            ]
+        },
+        {
+            "question": [
+                "ラーメンは熱くなった。"
+            ],
+            "answer": [
+                "As for (the) ramen, it was not hot."
+            ]
+        },
+        {
+            "question": [
+                "木は高い。"
+            ],
+            "answer": [
+                "As for (the) tree, it's tall."
+            ]
+        },
+        {
+            "question": [
+                "低い女の子だ。"
+            ],
+            "answer": [
+                "(It) is (a) short girl."
+            ]
+        },
+        {
+            "question": [
+                "ギターは難しくなった。"
+            ],
+            "answer": [
+                "As for guitar, it was not difficult."
+            ]
+        }
+    ]
+}

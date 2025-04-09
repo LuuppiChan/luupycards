@@ -1,0 +1,84 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "遅い pronunciation"
+            ],
+            "answer": [
+                "おそい"
+            ]
+        },
+        {
+            "question": [
+                "早い pronunciation"
+            ],
+            "answer": [
+                "はやい"
+            ]
+        },
+        {
+            "question": [
+                "涼しい pronunciation"
+            ],
+            "answer": [
+                "すずしい"
+            ]
+        },
+        {
+            "question": [
+                "忙しい pronunciation"
+            ],
+            "answer": [
+                "いそがしい"
+            ]
+        },
+        {
+            "question": [
+                "うるさい pronunciation"
+            ],
+            "answer": [
+                "うるさい"
+            ]
+        },
+        {
+            "question": [
+                "薄い pronunciation"
+            ],
+            "answer": [
+                "うすい"
+            ]
+        },
+        {
+            "question": [
+                "美味しい pronunciation"
+            ],
+            "answer": [
+                "おいしい"
+            ]
+        },
+        {
+            "question": [
+                "太い pronunciation"
+            ],
+            "answer": [
+                "ふとい"
+            ]
+        },
+        {
+            "question": [
+                "細い pronunciation"
+            ],
+            "answer": [
+                "ほそい"
+            ]
+        },
+        {
+            "question": [
+                "速い pronunciation"
+            ],
+            "answer": [
+                "はやい"
+            ]
+        }
+    ]
+}

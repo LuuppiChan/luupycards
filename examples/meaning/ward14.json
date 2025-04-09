@@ -1,0 +1,87 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "良い"
+            ],
+            "answer": [
+                "good"
+            ]
+        },
+        {
+            "question": [
+                "かっこいい"
+            ],
+            "answer": [
+                "cool",
+                "handsome"
+            ]
+        },
+        {
+            "question": [
+                "綺麗",
+                "きれい"
+            ],
+            "answer": [
+                "pretty"
+            ]
+        },
+        {
+            "question": [
+                "嫌い"
+            ],
+            "answer": [
+                "dislike"
+            ]
+        },
+        {
+            "question": [
+                "大きい"
+            ],
+            "answer": [
+                "big"
+            ]
+        },
+        {
+            "question": [
+                "小さい"
+            ],
+            "answer": [
+                "small"
+            ]
+        },
+        {
+            "question": [
+                "安い"
+            ],
+            "answer": [
+                "cheap"
+            ]
+        },
+        {
+            "question": [
+                "優しい"
+            ],
+            "answer": [
+                "gentle",
+                "kind"
+            ]
+        },
+        {
+            "question": [
+                "桜"
+            ],
+            "answer": [
+                "cherry blossom"
+            ]
+        },
+        {
+            "question": [
+                "少ない"
+            ],
+            "answer": [
+                "few"
+            ]
+        }
+    ]
+}

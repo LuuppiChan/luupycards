@@ -1,0 +1,84 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "おばあさんは遅い。"
+            ],
+            "answer": [
+                "As for (the) old man/grandpa, he is slow."
+            ]
+        },
+        {
+            "question": [
+                "早いです。"
+            ],
+            "answer": [
+                "(It) is fast/early"
+            ]
+        },
+        {
+            "question": [
+                "今日は涼しくない。"
+            ],
+            "answer": [
+                "As for (the weather) today, it's not refreshing."
+            ]
+        },
+        {
+            "question": [
+                "今日は忙しくない。"
+            ],
+            "answer": [
+                "As for today, it's not busy."
+            ]
+        },
+        {
+            "question": [
+                "妹はうるさくない。"
+            ],
+            "answer": [
+                "As for my younger sister, she is not loud/annoying."
+            ]
+        },
+        {
+            "question": [
+                "ギターは薄くない。"
+            ],
+            "answer": [
+                "(The) guitar is not thin."
+            ]
+        },
+        {
+            "question": [
+                "ラーメンは美味しいです。"
+            ],
+            "answer": [
+                "As for (the) ramen, it's tasty."
+            ]
+        },
+        {
+            "question": [
+                "ラーメンは太くない。"
+            ],
+            "answer": [
+                "As for (the) ramen, it's not thick."
+            ]
+        },
+        {
+            "question": [
+                "僕のお兄さんは細い。"
+            ],
+            "answer": [
+                "As for my older brother, he is slender."
+            ]
+        },
+        {
+            "question": [
+                "おばあさんは早くない。"
+            ],
+            "answer": [
+                "As for (the) (grandma/old woman), she is not quick."
+            ]
+        }
+    ]
+}

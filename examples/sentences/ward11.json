@@ -1,0 +1,84 @@
+{
+    "pairs": [
+        {
+            "question": [
+                "私のおばあさんは明るかった。"
+            ],
+            "answer": [
+                "As for my grandma, she had (a) bright (personality)."
+            ]
+        },
+        {
+            "question": [
+                "今日は暖かった。"
+            ],
+            "answer": [
+                "As for today, it was warm."
+            ]
+        },
+        {
+            "question": [
+                "恥ずかしかった。"
+            ],
+            "answer": [
+                "(That) was embarassing."
+            ]
+        },
+        {
+            "question": [
+                "痛かった。"
+            ],
+            "answer": [
+                "(That) was painful."
+            ]
+        },
+        {
+            "question": [
+                "お皿は汚い。"
+            ],
+            "answer": [
+                "As for (the) plate, it is dirty."
+            ]
+        },
+        {
+            "question": [
+                "短い木です。"
+            ],
+            "answer": [
+                "(It) is (a) short tree."
+            ]
+        },
+        {
+            "question": [
+                "長い本です。"
+            ],
+            "answer": [
+                "(It) is (a) long book."
+            ]
+        },
+        {
+            "question": [
+                "古い食べ物です。"
+            ],
+            "answer": [
+                "(It) is old food."
+            ]
+        },
+        {
+            "question": [
+                "ラジオはつまらなかった。"
+            ],
+            "answer": [
+                "As for the alcohol, it is dangerous."
+            ]
+        },
+        {
+            "question": [
+                "お酒は危ない。"
+            ],
+            "answer": [
+                "As for the alcohol, it is dangerous."
+            ]
+        }
+    ]
+}
