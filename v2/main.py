@@ -405,7 +405,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     to_be_loaded.append(file)
 
             if has_invalid_files:
-                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.\n(.csv or .json)\nOnly valid files were loaded.")
+                QtWidgets.QMessageBox.warning(self, "Filetype Error!", "Please select a valid filetype.\n(.csv or .json)\nOnly valid files will be loaded.")
 
             if to_be_loaded:
                 self.open_dir_dialog(to_be_loaded)
