@@ -260,7 +260,7 @@ class MainGameplay:
         correct_answers = self.pairs[self.current_question][self.answer]
         when_showing_correct_answers = self.pairs[self.current_question][self.answer]
         for i, correct_answer in enumerate(correct_answers):
-            correct_answers[i] = correct_answer.lower()
+            correct_answers[i] = correct_answer.lower().strip()
         if not user_input:
             user_input = self.user_input.lower().strip()
         else:
