@@ -256,14 +256,15 @@ class MainGameplay:
 
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         # lowercase every check
+        # Also strip trailing spaces
         correct_answers = self.pairs[self.current_question][self.answer]
         when_showing_correct_answers = self.pairs[self.current_question][self.answer]
         for i, correct_answer in enumerate(correct_answers):
             correct_answers[i] = correct_answer.lower()
         if not user_input:
-            user_input = self.user_input.lower()
+            user_input = self.user_input.lower().strip()
         else:
-            user_input = user_input.lower()
+            user_input = user_input.lower().strip()
 
         if self.enabled_answer_checks["correct answer"]:
             # check for correct answer in user_input, iterates through all answer candidates
