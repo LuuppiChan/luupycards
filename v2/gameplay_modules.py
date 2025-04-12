@@ -275,7 +275,9 @@ class MainGameplay:
                     self.streak_current += 1
                     return "correct", self.print_correct_answer()
 
-            if user_input == " / ".join(correct_answers):  # or the user has inputted all the options
+            match = re.search(r" ?[ /|;,]+ ?| ?or ?".join(correct_answers), user_input)
+
+            if match:  # or the user has inputted all the options
                 self.next_question()
                 self.streak_current += 1
                 return "correct", self.print_correct_answer()
