@@ -269,7 +269,6 @@ class MainGameplay:
         if self.enabled_answer_checks["correct answer"]:
             # check for correct answer in user_input, iterates through all answer candidates
             for answer in correct_answers:
-                answer = answer  # wtf is the purpose of this line???
                 if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
                     self.next_question()
                     self.streak_current += 1
