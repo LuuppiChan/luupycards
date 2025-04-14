@@ -292,7 +292,7 @@ class Ui_Luupycards(object):
         self.label_question.setWordWrap(True)
         self.label_question.setMargin(0)
         self.label_question.setIndent(0)
-        self.label_question.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextEditable|Qt.TextSelectableByMouse)
+        self.label_question.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.horizontalLayout.addWidget(self.label_question)
 
