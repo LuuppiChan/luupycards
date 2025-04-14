@@ -14,7 +14,7 @@ try:
 except ModuleNotFoundError:
     fuzzy_is_available = False
 
-def determine_gamemode(current_mode: str, current_order: str, pairs: list, reverse=False, current_question=0, current_streak=0):
+def determine_gamemode(current_mode: str, current_order: str, pairs: list, reverse=False, current_question=0, current_streak=0, regex=False):
     modes = [
         ["Normal", "n"],
         ["Multiple Choice", "m"],
@@ -44,11 +44,11 @@ def determine_gamemode(current_mode: str, current_order: str, pairs: list, rever
         case "Random":
             order = "random"
 
-    return game_object(pairs, order=order, reverse=reverse, current_question=current_question, streak_current=current_streak)  # This returns a ready game object
+    return game_object(pairs, order=order, reverse=reverse, current_question=current_question, streak_current=current_streak, regex=regex)  # This returns a ready game object
 
 
 class MainGameplay:
-    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward"):
+    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward", regex=False):
 
         global fuzzy_is_available
         self.fuzzy_matching = fuzzy_is_available
@@ -100,7 +100,7 @@ class MainGameplay:
             "quit" : True,
             "empty field" : True,
             "wrong answer" : True,
-            "regex" : False,
+            "regex" : regex,
         }
         self.show_correct_binds = ["c", "correct", "ｃ"]
         self.quit_binds = ["q", "quit"]
@@ -267,15 +267,15 @@ class MainGameplay:
         else:
             user_input = user_input.lower().strip()
 
-        try:
-            if self.enabled_answer_checks["correct answer"]:
-                # check for correct answer in user_input, iterates through all answer candidates
-                for answer in correct_answers:
-                    if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
-                        self.next_question()
-                        self.streak_current += 1
-                        return "correct", self.print_correct_answer()
+        if self.enabled_answer_checks["correct answer"]:
+            # check for correct answer in user_input, iterates through all answer candidates
+            for answer in correct_answers:
+                if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
+                    self.next_question()
+                    self.streak_current += 1
+                    return "correct", self.print_correct_answer()
 
+            try:
                 if len(correct_answers) > 1:
                     pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
                     regex = f"^{pattern.join(re.escape(ans) for ans in correct_answers)}$"
@@ -285,15 +285,14 @@ class MainGameplay:
                         self.next_question()
                         self.streak_current += 1
                         return "correct", self.print_correct_answer()
-        except re.PatternError:
-            pass
+            except re.PatternError:
+                pass
 
-        try:
-            # Regex checks
-            if self.enabled_answer_checks["regex"]:
+        # Regex checks
+        if self.enabled_answer_checks["regex"]:  # this doesn't work apparently
+            try:
                 # check for correct answer in user_input, iterates through all answer candidates
                 for answer in correct_answers:
-                    answer = str(answer)
                     match = re.search(answer, user_input)
                     if match:
                         self.next_question()
@@ -309,8 +308,8 @@ class MainGameplay:
                         self.next_question()
                         self.streak_current += 1
                         return "correct", self.print_correct_answer()
-        except re.PatternError:
-            return "wrong", "Invalid RegEx! (re.PatternError)"
+            except re.PatternError:
+                return "wrong", "Invalid RegEx! (re.PatternError)"
 
         if self.enabled_answer_checks["fuzzy correct"]:
             if self.fuzzy_matching:  # checks if fuzzy matching is available

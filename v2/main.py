@@ -414,7 +414,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.label_drag.setText("")
 
     def regex_setting(self):
-        if self.ui.actionRegEx_support.isEnabled():
+        if self.ui.actionRegEx_support.isChecked():
             self.the_game.enabled_answer_checks["regex"] = True
         else:
             self.the_game.enabled_answer_checks["regex"] = False
@@ -716,7 +716,8 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.pairs,
                     self.ui.checkBox_question_flip.isChecked(),
                     current_question if self.game_options["min question"] < current_question < self.game_options["max question"] else self.game_options["min question"],
-                    current_streak
+                    current_streak,
+                    self.ui.actionRegEx_support.isChecked()
                 )
 
                 self.set_streak()
@@ -729,12 +730,6 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.ui.label_lives.setText(f"Lives left: {self.the_game.lives}")
                 else:
                     self.ui.label_lives.setText("")
-
-                # check if regex is enabled
-                if self.ui.actionRegEx_support.isEnabled():
-                    self.the_game.enabled_answer_checks["regex"] = True
-                else:
-                    self.the_game.enabled_answer_checks["regex"] = False
 
                 self.set_info(f"Now playing: {self.current_mode}")
 
