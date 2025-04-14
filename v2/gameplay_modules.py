@@ -257,7 +257,7 @@ class MainGameplay:
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         # lowercase every check
         # Also strip trailing spaces
-        correct_answers = self.pairs[self.current_question][self.answer]
+        correct_answers: list[str] = self.pairs[self.current_question][self.answer]
         when_showing_correct_answers = self.pairs[self.current_question][self.answer]
         for i, correct_answer in enumerate(correct_answers):
             correct_answers[i] = correct_answer.lower().strip()
@@ -269,18 +269,21 @@ class MainGameplay:
         if self.enabled_answer_checks["correct answer"]:
             # check for correct answer in user_input, iterates through all answer candidates
             for answer in correct_answers:
-                answer = answer
+                answer = answer  # wtf is the purpose of this line???
                 if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
                     self.next_question()
                     self.streak_current += 1
                     return "correct", self.print_correct_answer()
 
-            match = re.search(r" ?[ /|;,]+ ?| ?or ?".join(correct_answers), user_input)
+            if len(correct_answers) > 1:
+                pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
+                regex = pattern.join(re.escape(ans) for ans in correct_answers)
+                match = re.search(regex, user_input)
 
-            if match:  # or the user has inputted all the options
-                self.next_question()
-                self.streak_current += 1
-                return "correct", self.print_correct_answer()
+                if match:  # or the user has inputted all the options
+                    self.next_question()
+                    self.streak_current += 1
+                    return "correct", self.print_correct_answer()
 
         if self.enabled_answer_checks["fuzzy correct"]:
             if self.fuzzy_matching:  # checks if fuzzy matching is available
