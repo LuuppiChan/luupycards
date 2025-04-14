@@ -299,8 +299,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         ## setting up
         # gameplay stuff
-        self.the_game = gameplay.MainGameplay([{"question" : "Please open a file.", "answer": "Please open a file."}])
-        self.pairs = list()
+        self.the_game = gameplay.MainGameplay([{"question" : ["Please open a file."], "answer": ["Please open a file."]}])
+        self.pairs = []
         self.ui.tab_play.setEnabled(False)  # this is enabled by the game setup thingy
         self.current_mode = "Unset"
         self.current_order = "Unset"
@@ -335,10 +335,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.pushButton_seek.clicked.connect(self.seek_mc)  # added to the normal modes
 
-        # font changes
+        # misc menu
         self.ui.actionBig_mode.triggered.connect(self.big_font_mode)
-
         self.ui.actionTest_trigger.triggered.connect(self.test_trigger)
+        self.ui.actionRegEx_support.triggered.connect(self.regex_setting)
+
         self.ui.actionOpen_Advanced.triggered.connect(self.advanced_import)
 
         # help menu buttons
@@ -411,6 +412,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.open_dir_dialog(to_be_loaded)
 
         self.ui.label_drag.setText("")
+
+    def regex_setting(self):
+        if self.ui.actionRegEx_support.isEnabled():
+            self.the_game.enabled_answer_checks["regex"] = True
+        else:
+            self.the_game.enabled_answer_checks["regex"] = False
 
     def advanced_import(self):
         self.setEnabled(False)
@@ -657,74 +664,84 @@ class MainWindow(QtWidgets.QMainWindow):
         self.correct_checkbutton_mc("correct")
 
     def gameplay_setup(self, new_game="True", current_streak=0, current_question=1, respect_user_minmax=False):
-        multiple_choice_criteria = True
-        if new_game == "False":
-            new_game = False
-        else:
-            new_game = True
-
-        if current_question <= 0:
-            # Honestly I don't know how to fix this any other way, but whatever.
-            mainlog.error(f"Invalid question number {current_question}! This is likely from reloading the game when on question 1. Fixing...")
-            current_question = 1
-
-        # determine mode
-        self.current_mode = self.ui.comboBox_modes.currentText()
-        self.current_order = self.ui.comboBox_question_order.currentText()
-
-        if self.current_mode == "Multiple Choice":
-            if len(self.pairs) < core.settings_value_manipulator("multiple choice max options") + 1:
-                multiple_choice_criteria = False
-                mainlog.error("Not enough pairs to make options!")
-                QtWidgets.QMessageBox.warning(self, "Error!", "Not enough pairs to make options!\nPlease decrease multiple choice option count or make more pairs.")
-
-        if self.pairs and multiple_choice_criteria:
-            mainlog.info("Creating gameplay...")
-
-            if respect_user_minmax:
-                pass
+        if len(self.pairs) > 1:
+            multiple_choice_criteria = True
+            if new_game == "False":
+                new_game = False
             else:
-                #if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
-                core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
-                #if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
-                core.settings_value_manipulator("min question", "dump", 1)
-                
-            self.reload_settings()
+                new_game = True
 
-            # set tab to play
-            if new_game:
-                self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
-                if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
-                    self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.multiple_choice)
+            if current_question <= 0:
+                # Honestly I don't know how to fix this any other way, but whatever.
+                mainlog.error(f"Invalid question number {current_question}! This is likely from reloading the game when on question 1. Fixing...")
+                current_question = 1
+
+            # determine mode
+            self.current_mode = self.ui.comboBox_modes.currentText()
+            self.current_order = self.ui.comboBox_question_order.currentText()
+
+            if self.current_mode == "Multiple Choice":
+                if len(self.pairs) < core.settings_value_manipulator("multiple choice max options") + 1:
+                    multiple_choice_criteria = False
+                    mainlog.error("Not enough pairs to make options!")
+                    QtWidgets.QMessageBox.warning(self, "Error!", "Not enough pairs to make options!\nPlease decrease multiple choice option count or make more pairs.")
+
+            if self.pairs and multiple_choice_criteria:
+                mainlog.info("Creating gameplay...")
+
+                if respect_user_minmax:
+                    pass
                 else:
-                    self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.input)
-                self.ui.action_tabls_play.setEnabled(True)
-                self.ui.tab_play.setEnabled(True)
+                    #if core.settings_value_manipulator("max question") > len(self.pairs) - 1:
+                    core.settings_value_manipulator("max question", "dump", len(self.pairs) - 1)
+                    #if core.settings_value_manipulator("min question") > core.settings_value_manipulator("max question"):
+                    core.settings_value_manipulator("min question", "dump", 1)
 
-            print(self.current_mode, self.current_order)  # then pass to backend
-            self.the_game = gameplay.determine_gamemode(
-                self.current_mode,
-                self.current_order,
-                self.pairs,
-                self.ui.checkBox_question_flip.isChecked(),
-                current_question if self.game_options["min question"] < current_question < self.game_options["max question"] else self.game_options["min question"],
-                current_streak
-            )
+                self.reload_settings()
 
-            self.set_streak()
-            self.set_question(self.the_game.play_gui())
+                # set tab to play
+                if new_game:
+                    self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
+                    if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
+                        self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.multiple_choice)
+                    else:
+                        self.ui.stackedWidget_gameplay.setCurrentWidget(self.ui.input)
+                    self.ui.action_tabls_play.setEnabled(True)
+                    self.ui.tab_play.setEnabled(True)
 
-            # Then back to finish mc and s!
-            if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
-                self.spawn_mc_buttons()
-            elif self.current_mode == "Survive!":
-                self.ui.label_lives.setText(f"Lives left: {self.the_game.lives}")
-            else:
-                self.ui.label_lives.setText("")
+                print(self.current_mode, self.current_order)  # then pass to backend
+                self.the_game = gameplay.determine_gamemode(
+                    self.current_mode,
+                    self.current_order,
+                    self.pairs,
+                    self.ui.checkBox_question_flip.isChecked(),
+                    current_question if self.game_options["min question"] < current_question < self.game_options["max question"] else self.game_options["min question"],
+                    current_streak
+                )
 
-            self.set_info(f"Now playing: {self.current_mode}")
+                self.set_streak()
+                self.set_question(self.the_game.play_gui())
 
-        elif not(self.current_mode == "Multiple Choice"):
+                # Then back to finish mc and s!
+                if self.current_mode in ["Multiple Choice", "Multiple Choice Reverse"]:
+                    self.spawn_mc_buttons()
+                elif self.current_mode == "Survive!":
+                    self.ui.label_lives.setText(f"Lives left: {self.the_game.lives}")
+                else:
+                    self.ui.label_lives.setText("")
+
+                # check if regex is enabled
+                if self.ui.actionRegEx_support.isEnabled():
+                    self.the_game.enabled_answer_checks["regex"] = True
+                else:
+                    self.the_game.enabled_answer_checks["regex"] = False
+
+                self.set_info(f"Now playing: {self.current_mode}")
+
+            elif not(self.current_mode == "Multiple Choice"):
+                mainlog.info("No pairs detected.")
+                QtWidgets.QMessageBox.warning(self, "Pair error!", "Please import pairs before you start playing!\nFile -> Open")
+        else:
             mainlog.info("No pairs detected.")
             QtWidgets.QMessageBox.warning(self, "Pair error!", "Please import pairs before you start playing!\nFile -> Open")
 

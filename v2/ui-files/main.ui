@@ -714,8 +714,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>468</width>
-                 <height>429</height>
+                 <width>627</width>
+                 <height>444</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_9">
@@ -1061,10 +1061,10 @@
                <bool>false</bool>
               </property>
               <property name="toolTip">
-               <string>Your pairs nicely in custom CSV. The separator is &quot;;&quot;</string>
+               <string/>
               </property>
               <property name="statusTip">
-               <string>You can edit them, but be careful!</string>
+               <string>Your pairs nicely in custom CSV. The separator is &quot;;&quot;. You can edit them, but be careful!</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -1286,6 +1286,7 @@
      <string>Misc</string>
     </property>
     <addaction name="actionBig_mode"/>
+    <addaction name="actionRegEx_support"/>
     <addaction name="actionTest_trigger"/>
    </widget>
    <widget class="QMenu" name="menuInspector">
@@ -1546,6 +1547,12 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
   </action>
   <action name="actionTest_trigger">
    <property name="text">
@@ -1713,19 +1720,51 @@
     <string>Ctrl+Del</string>
    </property>
   </action>
+  <action name="actionRegEx_support">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>RegEx support</string>
+   </property>
+   <property name="iconText">
+    <string>RegEx support</string>
+   </property>
+   <property name="toolTip">
+    <string>Enable RegEx support for answer matching.</string>
+   </property>
+   <property name="statusTip">
+    <string>Enable RegEx support for answer matching.</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>tab_main</tabstop>
   <tabstop>comboBox_modes</tabstop>
   <tabstop>comboBox_question_order</tabstop>
-  <tabstop>button_play</tabstop>
+  <tabstop>checkBox_question_flip</tabstop>
   <tabstop>button_quit</tabstop>
+  <tabstop>button_play</tabstop>
   <tabstop>lineEdit_answer</tabstop>
+  <tabstop>pushButton_seek</tabstop>
   <tabstop>button_check</tabstop>
-  <tabstop>pushButton_check_mc</tabstop>
-  <tabstop>pushButton_seek_mc</tabstop>
+  <tabstop>scrollArea_mc</tabstop>
   <tabstop>pushButton_correct_mc</tabstop>
+  <tabstop>pushButton_seek_mc</tabstop>
+  <tabstop>pushButton_check_mc</tabstop>
+  <tabstop>scrollArea_settings_settings</tabstop>
   <tabstop>reset_all_time_streak_value_2</tabstop>
   <tabstop>reset_all_time_survival_streak_value_2</tabstop>
   <tabstop>min_question_value_2</tabstop>
@@ -1734,9 +1773,9 @@
   <tabstop>multiple_choice_max_options_value_2</tabstop>
   <tabstop>lives_value_2</tabstop>
   <tabstop>fuzzy_select_precent_value_2</tabstop>
-  <tabstop>button_settings_save_2</tabstop>
   <tabstop>button_settings_reset_2</tabstop>
-  <tabstop>scrollArea_settings_settings</tabstop>
+  <tabstop>button_settings_save_2</tabstop>
+  <tabstop>tableWidget</tabstop>
   <tabstop>button_save_file</tabstop>
   <tabstop>button_save_memory</tabstop>
  </tabstops>

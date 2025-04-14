@@ -100,6 +100,7 @@ class MainGameplay:
             "quit" : True,
             "empty field" : True,
             "wrong answer" : True,
+            "regex" : False,
         }
         self.show_correct_binds = ["c", "correct", "ｃ"]
         self.quit_binds = ["q", "quit"]
@@ -266,23 +267,50 @@ class MainGameplay:
         else:
             user_input = user_input.lower().strip()
 
-        if self.enabled_answer_checks["correct answer"]:
-            # check for correct answer in user_input, iterates through all answer candidates
-            for answer in correct_answers:
-                if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
-                    self.next_question()
-                    self.streak_current += 1
-                    return "correct", self.print_correct_answer()
+        try:
+            if self.enabled_answer_checks["correct answer"]:
+                # check for correct answer in user_input, iterates through all answer candidates
+                for answer in correct_answers:
+                    if answer == user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
+                        self.next_question()
+                        self.streak_current += 1
+                        return "correct", self.print_correct_answer()
 
-            if len(correct_answers) > 1:
-                pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
-                regex = pattern.join(re.escape(ans) for ans in correct_answers)
-                match = re.search(regex, user_input)
+                if len(correct_answers) > 1:
+                    pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
+                    regex = f"^{pattern.join(re.escape(ans) for ans in correct_answers)}$"
+                    match = re.search(regex, user_input)
 
-                if match:  # or the user has inputted all the options
-                    self.next_question()
-                    self.streak_current += 1
-                    return "correct", self.print_correct_answer()
+                    if match:  # or the user has inputted all the options
+                        self.next_question()
+                        self.streak_current += 1
+                        return "correct", self.print_correct_answer()
+        except re.PatternError:
+            pass
+
+        try:
+            # Regex checks
+            if self.enabled_answer_checks["regex"]:
+                # check for correct answer in user_input, iterates through all answer candidates
+                for answer in correct_answers:
+                    answer = str(answer)
+                    match = re.search(answer, user_input)
+                    if match:
+                        self.next_question()
+                        self.streak_current += 1
+                        return "correct", self.print_correct_answer()
+
+                if len(correct_answers) > 1:
+                    pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
+                    regex = f"^{pattern.join(f"(?:{ans})" for ans in correct_answers)}$"
+                    match = re.search(regex, user_input)
+
+                    if match:  # or the user has inputted all the options
+                        self.next_question()
+                        self.streak_current += 1
+                        return "correct", self.print_correct_answer()
+        except re.PatternError:
+            return "wrong", "Invalid RegEx! (re.PatternError)"
 
         if self.enabled_answer_checks["fuzzy correct"]:
             if self.fuzzy_matching:  # checks if fuzzy matching is available
