@@ -105,6 +105,7 @@ class PairImport:
 
                     current_pair_dict["answer"] = row
                     pairs.append(current_pair_dict.copy())
+                    current_pair_dict = dict()
 
         return pairs.copy()
 
@@ -127,26 +128,24 @@ class PairImport:
                     for i, pair in enumerate(content, start=1):  # goes through the keys' lists that should be dictionaries containing needed info
                         corelog.debug('Going through pair number "%s"', i)
 
+                        ready_pair = {
+                            "question": pair["question"].copy(),
+                            "answer": pair["answer"].copy(),
+                            "question tooltip": pair["question tooltip"] if "question tooltip" in pair else "",
+                            "answer tooltip": pair["answer tooltip"] if "answer tooltip" in pair else "",
+                        }
+
                         if "question tooltip" not in pair:
                             for item in pair["question"]:
                                 result = re.search(self.tooltip_regex, item)
                                 if result:
-                                    pair["question tooltip"] = result.group(1)
-                                    pair["question"].remove(item)
+                                    ready_pair["question tooltip"] = result.group(1)
 
                         if "answer tooltip" not in pair:
                             for item in pair["answer"]:
                                 result = re.search(self.tooltip_regex, item)
                                 if result:
-                                    pair["answer tooltip"] = result.group(1)
-                                    pair["answer"].remove(item)
-
-                        ready_pair = {
-                            "question" : pair["question"],
-                            "answer" : pair["answer"],
-                            "question tooltip" : pair["question tooltip"] if "question tooltip" in pair else "",
-                            "answer tooltip" : pair["answer tooltip"] if "answer tooltip" in pair else "",
-                        }
+                                    ready_pair["answer tooltip"] = result.group(1)
 
                         ready_pair.pop("question tooltip") if not ready_pair["question tooltip"] else None
                         ready_pair.pop("answer tooltip") if not ready_pair["answer tooltip"] else None

@@ -310,7 +310,7 @@
                      <bool>true</bool>
                     </property>
                     <property name="textInteractionFlags">
-                     <set>Qt::LinksAccessibleByMouse|Qt::TextEditable|Qt::TextSelectableByMouse</set>
+                     <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
                     </property>
                    </widget>
                   </item>
@@ -329,7 +329,7 @@
                      <string>Streak: 0</string>
                     </property>
                     <property name="textInteractionFlags">
-                     <set>Qt::TextBrowserInteraction</set>
+                     <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
                     </property>
                    </widget>
                   </item>
@@ -714,8 +714,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>627</width>
-                 <height>444</height>
+                 <width>468</width>
+                 <height>429</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_9">

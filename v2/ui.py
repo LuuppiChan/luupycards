@@ -262,14 +262,14 @@ class Ui_Luupycards(object):
         self.label_game_info.setObjectName(u"label_game_info")
         self.label_game_info.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_game_info.setWordWrap(True)
-        self.label_game_info.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextEditable|Qt.TextSelectableByMouse)
+        self.label_game_info.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_3.addWidget(self.label_game_info)
 
         self.label_streak = QLabel(self.input)
         self.label_streak.setObjectName(u"label_streak")
         self.label_streak.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.label_streak.setTextInteractionFlags(Qt.TextBrowserInteraction)
+        self.label_streak.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_3.addWidget(self.label_streak, 0, Qt.AlignRight)
 
@@ -448,7 +448,7 @@ class Ui_Luupycards(object):
         self.scrollArea_settings_settings.setWidgetResizable(True)
         self.scrollAreaWidgetContents_settings = QWidget()
         self.scrollAreaWidgetContents_settings.setObjectName(u"scrollAreaWidgetContents_settings")
-        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 627, 444))
+        self.scrollAreaWidgetContents_settings.setGeometry(QRect(0, 0, 468, 429))
         self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_settings)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_settings = QGridLayout()
