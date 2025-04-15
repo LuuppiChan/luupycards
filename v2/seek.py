@@ -23,13 +23,12 @@ class Ui_Seek(object):
     def setupUi(self, Seek):
         if not Seek.objectName():
             Seek.setObjectName(u"Seek")
-        Seek.resize(289, 196)
+        Seek.resize(289, 225)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Seek.sizePolicy().hasHeightForWidth())
         Seek.setSizePolicy(sizePolicy)
-        Seek.setMaximumSize(QSize(289, 196))
         font = QFont()
         font.setPointSize(16)
         Seek.setFont(font)
