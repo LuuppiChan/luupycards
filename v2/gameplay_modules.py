@@ -358,14 +358,14 @@ class MainGameplay:
 
 
 class MultipleChoice(MainGameplay):
-    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward"):
-        super().__init__(pairs, reverse, current_question, streak_current, order)
+    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="forward", regex=False):
+        super().__init__(pairs, reverse, current_question, streak_current, order, regex)
         self.enabled_answer_checks["fuzzy correct"] = False
 
 
 class Survive(MainGameplay):
-    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="random"):
-        super().__init__(pairs, reverse, current_question, streak_current, order)
+    def __init__(self, pairs, reverse=False, current_question=1, streak_current=0, order="random", regex=False):
+        super().__init__(pairs, reverse, current_question, streak_current, order, regex)
         self.streak_all_time = core.settings_value_manipulator("all time survival streak")
         self.lives = core.settings_value_manipulator("lives")
         self.enabled_prints["wrong answer"] = False
