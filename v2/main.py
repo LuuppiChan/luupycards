@@ -957,7 +957,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.pairs:
             if self.ui.tab_play.isEnabled():
                 # setups the gameplay again
-                self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+                self.gameplay_setup("False", self.the_game.streak_current, self.the_game.current_question)
 
         else:
             QtWidgets.QMessageBox.warning(self, "Warning", "You don't have any pairs.\nRestart game play from main menu.")
