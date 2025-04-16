@@ -288,7 +288,7 @@ class SeekWidget(QtWidgets.QDialog):
         self.hide()
 
     def refresh_question(self):
-        self.ui.label_question.setText(f"Question: {" / ".join(window.pairs[self.ui.spinBox_seek_value.value()]["question"])}")
+        self.ui.label_question.setText(f"Question: {" / ".join(window.pairs[self.ui.spinBox_seek_value.value()][window.the_game.question])}")
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -829,7 +829,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.pairs and self.ui.tab_play.isEnabled():
             current_question = self.the_game.current_question
             # setups the gameplay again
-            self.gameplay_setup("False", current_question, self.the_game.streak_current, True)
+            self.gameplay_setup("False", self.the_game.streak_current, current_question, True)
 
     def check_invalid_settings(self):
         options_orig = core.get_options()
