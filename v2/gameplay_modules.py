@@ -255,6 +255,30 @@ class MainGameplay:
         self.max_question = max_question
         self.all_settings = core.get_options()
 
+    def regex_check(self, correct_answers, user_input) -> tuple[str, str] | str | None:
+        try:
+            # check for correct answer in user_input, iterates through all answer candidates
+            for answer in correct_answers:
+                match = re.search(answer, user_input)
+                if match:
+                    self.next_question()
+                    self.streak_current += 1
+                    return "correct", self.print_correct_answer()
+
+            if len(correct_answers) > 1:
+                pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
+                regex = f"^{pattern.join(f"(?:{ans})" for ans in correct_answers)}$"
+                match = re.search(regex, user_input)
+
+                if match:  # or the user has inputted all the options
+                    self.next_question()
+                    self.streak_current += 1
+                    return "correct", self.print_correct_answer()
+        except re.PatternError:
+            return "wrong", "Invalid RegEx! (re.PatternError)"
+
+        return None
+
     def answer_check_gui(self, user_input="") -> tuple[str, str] | str:
         # lowercase every check
         # Also strip trailing spaces
@@ -262,10 +286,17 @@ class MainGameplay:
         when_showing_correct_answers = self.pairs[self.current_question][self.answer]
         for i, correct_answer in enumerate(correct_answers):
             correct_answers[i] = correct_answer.lower().strip()
+
         if not user_input:
             user_input = self.user_input.lower().strip()
         else:
             user_input = user_input.lower().strip()
+
+        if "regex" in self.pairs[self.current_question]:
+            flag_exists = True
+            force_regex = self.pairs[self.current_question]["regex"]
+        else:
+            flag_exists = False
 
         if self.enabled_answer_checks["correct answer"]:
             # check for correct answer in user_input, iterates through all answer candidates
@@ -289,27 +320,16 @@ class MainGameplay:
                 pass
 
         # Regex checks
-        if self.enabled_answer_checks["regex"]:  # this doesn't work apparently
-            try:
-                # check for correct answer in user_input, iterates through all answer candidates
-                for answer in correct_answers:
-                    match = re.search(answer, user_input)
-                    if match:
-                        self.next_question()
-                        self.streak_current += 1
-                        return "correct", self.print_correct_answer()
+        if flag_exists:
+            if force_regex:  # it's really not unbound here
+                regex_result = self.regex_check(correct_answers, user_input)
+                if regex_result:
+                    return regex_result
 
-                if len(correct_answers) > 1:
-                    pattern = r"(?: ?[ /|;,]+ ?| ?or ?)"
-                    regex = f"^{pattern.join(f"(?:{ans})" for ans in correct_answers)}$"
-                    match = re.search(regex, user_input)
-
-                    if match:  # or the user has inputted all the options
-                        self.next_question()
-                        self.streak_current += 1
-                        return "correct", self.print_correct_answer()
-            except re.PatternError:
-                return "wrong", "Invalid RegEx! (re.PatternError)"
+        elif self.enabled_answer_checks["regex"]:
+            regex_result = self.regex_check(correct_answers, user_input)
+            if regex_result:
+                return regex_result
 
         if self.enabled_answer_checks["fuzzy correct"]:
             if self.fuzzy_matching:  # checks if fuzzy matching is available
