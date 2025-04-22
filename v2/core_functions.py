@@ -44,15 +44,16 @@ class PairImport:
         self.sentences = False
         self.automatic = False
         self.first_time = True
-        self.tooltip_regex = r"\{ *tooltip *= *[\"'](.*)[\"'] *\}"
-        self.pair0 = {
-            "question": ["Wait... question zero? What's the answer though..."],
-            "answer": ["Luupycards"],
-            "question tooltip" : "Congrats for finding an easter egg!",
-            "answer tooltip" : "I wonder what the game is called..."
-        }
 
-    tooltip_regex = r"\{ *tooltip *= *[\"'](.*)[\"'] *\}"
+    pair0 = {
+        "question": ["Wait... question zero? What's the answer though..."],
+        "answer": ["Luupycards"],
+        "question tooltip": "Congrats for finding an easter egg!",
+        "answer tooltip": "I wonder what the game is called...",
+        "regex": False,
+    }
+    tooltip_regex = r"\{\s*tooltip\s*=\s*[\"'](.*)[\"']\s*\}"
+    regex_enabled_regex = r"\{\s*regex\s*=\s*[\"']?([Tt]rue|[Ff]alse|1|0|[Yy]es|[Nn]o)[\"']?\s*\}"
 
     def determine_pair_file(self, file_path, jp_mode=False, sentences=False) -> list:
         self.automatic = True
@@ -88,22 +89,30 @@ class PairImport:
             for row_number, row in enumerate(csv_reader, start=1):
                 row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
                 if row_number % 2 != 0:  # questions
+                    current_pair_dict["question"] = row.copy()
+
                     for item in row:
                         result = re.search(self.tooltip_regex, item)
                         if result:
                             current_pair_dict["question tooltip"] = result.group(1)
-                            row.remove(item)
-
-                    current_pair_dict["question"] = row
+                            current_pair_dict["question"].remove(item)
 
                 else:  # answers
+                    current_pair_dict["answer"] = row.copy()
                     for item in row:
                         result = re.search(self.tooltip_regex, item)
                         if result:
                             current_pair_dict["answer tooltip"] = result.group(1)
-                            row.remove(item)
+                            current_pair_dict["answer"].remove(item)
 
-                    current_pair_dict["answer"] = row
+                        regex_match = re.search(self.regex_enabled_regex, item)
+                        if regex_match:
+                            if regex_match.group(1) in ["True", "true", "1", "Yes", "yes"]:
+                                current_pair_dict["regex"] = True
+                            elif regex_match.group(1) in ["False", "false", "0", "No", "no"]:
+                                current_pair_dict["regex"] = False
+                            current_pair_dict["answer"].remove(item)
+
                     pairs.append(current_pair_dict.copy())
                     current_pair_dict = dict()
 
@@ -134,21 +143,29 @@ class PairImport:
                             "question tooltip": pair["question tooltip"] if "question tooltip" in pair else "",
                             "answer tooltip": pair["answer tooltip"] if "answer tooltip" in pair else "",
                         }
+                        ready_pair.pop("question tooltip") if not ready_pair["question tooltip"] else None
+                        ready_pair.pop("answer tooltip") if not ready_pair["answer tooltip"] else None
 
                         if "question tooltip" not in pair:
                             for item in pair["question"]:
                                 result = re.search(self.tooltip_regex, item)
                                 if result:
                                     ready_pair["question tooltip"] = result.group(1)
+                                    ready_pair["question"].remove(item)
 
-                        if "answer tooltip" not in pair:
-                            for item in pair["answer"]:
-                                result = re.search(self.tooltip_regex, item)
-                                if result:
-                                    ready_pair["answer tooltip"] = result.group(1)
+                        for item in pair["answer"]:
+                            result = re.search(self.tooltip_regex, item)
+                            if result:
+                                ready_pair["answer tooltip"] = result.group(1)
+                                ready_pair["answer"].remove(item)
 
-                        ready_pair.pop("question tooltip") if not ready_pair["question tooltip"] else None
-                        ready_pair.pop("answer tooltip") if not ready_pair["answer tooltip"] else None
+                            regex_match = re.search(self.regex_enabled_regex, item)
+                            if regex_match:
+                                if regex_match.group(1) in ["True", "true", "1", "Yes", "yes"]:
+                                    ready_pair["regex"] = True
+                                elif regex_match.group(1) in ["False", "false", "0", "No", "no"]:
+                                    ready_pair["regex"] = False
+                                ready_pair["answer"].remove(item)
 
                         corelog.debug("Appending pair to list...")
                         pairs.append(ready_pair.copy())
