@@ -40,7 +40,7 @@ class Ui_documentation(object):
         self.scrollArea_8.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 684, 2752))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 247, 4710))
         self.verticalLayout_18 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.label_11 = QLabel(self.scrollAreaWidgetContents_9)
@@ -78,7 +78,7 @@ class Ui_documentation(object):
         self.scrollArea_9.setWidgetResizable(True)
         self.scrollAreaWidgetContents_10 = QWidget()
         self.scrollAreaWidgetContents_10.setObjectName(u"scrollAreaWidgetContents_10")
-        self.scrollAreaWidgetContents_10.setGeometry(QRect(0, 0, 648, 336))
+        self.scrollAreaWidgetContents_10.setGeometry(QRect(0, 0, 284, 334))
         self.verticalLayout_20 = QVBoxLayout(self.scrollAreaWidgetContents_10)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.label_13 = QLabel(self.scrollAreaWidgetContents_10)
@@ -148,7 +148,7 @@ class Ui_documentation(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 684, 2449))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 684, 2472))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label = QLabel(self.scrollAreaWidgetContents_2)
@@ -191,7 +191,7 @@ class Ui_documentation(object):
         self.scrollArea_11.setWidgetResizable(True)
         self.scrollAreaWidgetContents_12 = QWidget()
         self.scrollAreaWidgetContents_12.setObjectName(u"scrollAreaWidgetContents_12")
-        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 684, 1013))
+        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 105, 3270))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents_12)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.label_16 = QLabel(self.scrollAreaWidgetContents_12)
@@ -220,7 +220,7 @@ class Ui_documentation(object):
         self.scrollArea_12.setWidgetResizable(True)
         self.scrollAreaWidgetContents_13 = QWidget()
         self.scrollAreaWidgetContents_13.setObjectName(u"scrollAreaWidgetContents_13")
-        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 684, 1737))
+        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 188, 3934))
         self.verticalLayout_26 = QVBoxLayout(self.scrollAreaWidgetContents_13)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.label_17 = QLabel(self.scrollAreaWidgetContents_13)
@@ -249,7 +249,7 @@ class Ui_documentation(object):
         self.scrollArea_15.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 684, 611))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 116, 2589))
         self.verticalLayout_32 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
         self.label_18 = QLabel(self.scrollAreaWidgetContents)
@@ -278,7 +278,7 @@ class Ui_documentation(object):
         self.scrollArea_13.setWidgetResizable(True)
         self.scrollAreaWidgetContents_14 = QWidget()
         self.scrollAreaWidgetContents_14.setObjectName(u"scrollAreaWidgetContents_14")
-        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 684, 725))
+        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 151, 1544))
         self.verticalLayout_29 = QVBoxLayout(self.scrollAreaWidgetContents_14)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_19 = QLabel(self.scrollAreaWidgetContents_14)
@@ -307,7 +307,7 @@ class Ui_documentation(object):
         self.scrollArea_14.setWidgetResizable(True)
         self.scrollAreaWidgetContents_15 = QWidget()
         self.scrollAreaWidgetContents_15.setObjectName(u"scrollAreaWidgetContents_15")
-        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, -623, 684, 1436))
+        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 196, 3175))
         self.verticalLayout_31 = QVBoxLayout(self.scrollAreaWidgetContents_15)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.label_20 = QLabel(self.scrollAreaWidgetContents_15)
@@ -347,7 +347,7 @@ class Ui_documentation(object):
 
         self.retranslateUi(documentation)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.tabWidget_examples_2.setCurrentIndex(0)
 
 
@@ -408,8 +408,8 @@ class Ui_documentation(object):
                         " than answerring the question.</p><p>&quot;c&quot; or &quot;correct&quot;: Shows the correct answer. Breaks your streak.</p><p>&quot;seek NUMBER&quot;: Seeks to the specified number. Does not break your streak.</p><p>&quot;q&quot; or &quot;quit&quot;: Quits back to main menu. Breaks your streak (For now)</p><p>You can also just go back to the Main Menu tab by clicking it and start a new game.</p><p><br/></p><p>In Multiple Choice to quit the game you have to just click the Main Menu tab.</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_quickstart_2), QCoreApplication.translate("documentation", u"Quick Start", None))
         self.label.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">All about pairs</span></p><p>There's no use of the game without pairs.</p><p>Every format has the same end result; the pairs appear. There are still quite a lot of pair import methods for some reason. (Most of them will be considered legacy since they aren't needed anymore, I'll not be going through them here.)</p><p>The game supports only UTF 8 files. In most cases the files are UTF 8, but it will likely throw an error if the file is not UTF 8 encoded.</p><p><span style=\" font-size:16pt;\">Flags and Tooltips</span></p><p>You can make your own tooltips by putting it as a question or answer in the following format. (It will not become a question or an answer)</p><p>{tooltip=&quot;This is a tooltip.&quot;}<br/>{tooltip = 'This is also a tooltip.'}</p><p>These will show the text inside the quotes and remove the question or answer they are in. So your question answer pair could look something like this:</p><p>Question,{tooltip=&quot;This is a tooltip.&quot;}<"
-                        "br/>Answer,{tooltip = 'Hint: There's an answer.'}<br/>Question2,This text will not appear {tooltip=&quot;This is a tooltip.&quot;}<br/>Answer2,This text will also not appear {tooltip=&quot;This is also a tooltip.&quot;}</p><p>In this example the text inside second cells is not visible because they are in the same cell as the tooltip.</p><p><span style=\" font-weight:600;\">RegEx flag</span>: You can set a RegEx flag to force RegEx matching on or off like following: {regex=True} or {regex=False} The matching is as lenient as in the tooltip.</p><p><span style=\" font-size:16pt;\">CSV</span></p><p>This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.</p><p>-----<br/>Question1<br/>Answer1<br/>Question2a,Question2b,Question2c<br/>Answer2a<br/>What is the capital of Japan?<br/>Tokyo<br/>What is the tallest mountain in the world?<br/>Mount Everest,Everest<br/>What is 5 + 3?<br/>8<br/>What is the currency of the United States?<br/>Dollar,US Dollar,USD<br/>-----</p><p"
-                        ">On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that question will appear followingly: &quot;Question2a / Question2b / Question2c&quot; in the game.</p><p>To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. <span style=\" font-weight:600;\">When saving the file remember to choose CSV as the format.</span> After that you can just drag and drop the file onto the game window.</p><p><span style=\" font-size:16pt;\">JSON</span></p><p>The game saves its files in JSON. You don't need to know anything about it if you don't want.</p><p>Here's a simple example of a file in JSON format.</p><p>-----</p></body></html>", None))
+                        "br/>Answer,{tooltip = 'Hint: There's an answer.'}<br/>Question2,This text will not appear {tooltip=&quot;This is a tooltip.&quot;}<br/>Answer2,This text will also not appear {tooltip=&quot;This is also a tooltip.&quot;}</p><p>In this example the text inside second cells is not visible because they are in the same cell as the tooltip.</p><p><span style=\" font-weight:600;\">RegEx flag</span>: You can set a RegEx flag to force RegEx matching on or off like following: {regex=True} or {regex=False} The matching is as lenient as in the tooltip. THE REGEX FLAG GOES ONLY TO THE ANSWER ROW!</p><p><span style=\" font-size:16pt;\">CSV</span></p><p>This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.</p><p>-----<br/>Question1<br/>Answer1<br/>Question2a,Question2b,Question2c<br/>Answer2a<br/>What is the capital of Japan?<br/>Tokyo<br/>What is the tallest mountain in the world?<br/>Mount Everest,Everest<br/>What is 5 + 3?<br/>8<br/>What is the currency of the United Stat"
+                        "es?<br/>Dollar,US Dollar,USD<br/>-----</p><p>On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that question will appear followingly: &quot;Question2a / Question2b / Question2c&quot; in the game.</p><p>To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. <span style=\" font-weight:600;\">When saving the file remember to choose CSV as the format.</span> After that you can just drag and drop the file onto the game window.</p><p><span style=\" font-size:16pt;\">JSON</span></p><p>The game saves its files in JSON. You don't need to know anything about it if you don't want.</p><p>Here's a simple example of a file in JSON format.</p><p>-----</p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("documentation", u"{\n"
 "    \"This title doesn't matter for now.\": [\n"
 "        {\n"

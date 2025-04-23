@@ -22,7 +22,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_quickstart_2">
       <attribute name="title">
@@ -39,8 +39,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>2752</height>
+            <width>247</width>
+            <height>4710</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -128,8 +128,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>648</width>
-                    <height>336</height>
+                    <width>284</width>
+                    <height>334</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -291,7 +291,7 @@
             <x>0</x>
             <y>0</y>
             <width>684</width>
-            <height>2449</height>
+            <height>2472</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -301,7 +301,7 @@
               <cursorShape>IBeamCursor</cursorShape>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;All about pairs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There's no use of the game without pairs.&lt;/p&gt;&lt;p&gt;Every format has the same end result; the pairs appear. There are still quite a lot of pair import methods for some reason. (Most of them will be considered legacy since they aren't needed anymore, I'll not be going through them here.)&lt;/p&gt;&lt;p&gt;The game supports only UTF 8 files. In most cases the files are UTF 8, but it will likely throw an error if the file is not UTF 8 encoded.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Flags and Tooltips&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can make your own tooltips by putting it as a question or answer in the following format. (It will not become a question or an answer)&lt;/p&gt;&lt;p&gt;{tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;{tooltip = 'This is also a tooltip.'}&lt;/p&gt;&lt;p&gt;These will show the text inside the quotes and remove the question or answer they are in. So your question answer pair could look something like this:&lt;/p&gt;&lt;p&gt;Question,{tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;Answer,{tooltip = 'Hint: There's an answer.'}&lt;br/&gt;Question2,This text will not appear {tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;Answer2,This text will also not appear {tooltip=&amp;quot;This is also a tooltip.&amp;quot;}&lt;/p&gt;&lt;p&gt;In this example the text inside second cells is not visible because they are in the same cell as the tooltip.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RegEx flag&lt;/span&gt;: You can set a RegEx flag to force RegEx matching on or off like following: {regex=True} or {regex=False} The matching is as lenient as in the tooltip.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;CSV&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.&lt;/p&gt;&lt;p&gt;-----&lt;br/&gt;Question1&lt;br/&gt;Answer1&lt;br/&gt;Question2a,Question2b,Question2c&lt;br/&gt;Answer2a&lt;br/&gt;What is the capital of Japan?&lt;br/&gt;Tokyo&lt;br/&gt;What is the tallest mountain in the world?&lt;br/&gt;Mount Everest,Everest&lt;br/&gt;What is 5 + 3?&lt;br/&gt;8&lt;br/&gt;What is the currency of the United States?&lt;br/&gt;Dollar,US Dollar,USD&lt;br/&gt;-----&lt;/p&gt;&lt;p&gt;On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that question will appear followingly: &amp;quot;Question2a / Question2b / Question2c&amp;quot; in the game.&lt;/p&gt;&lt;p&gt;To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. &lt;span style=&quot; font-weight:600;&quot;&gt;When saving the file remember to choose CSV as the format.&lt;/span&gt; After that you can just drag and drop the file onto the game window.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;JSON&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The game saves its files in JSON. You don't need to know anything about it if you don't want.&lt;/p&gt;&lt;p&gt;Here's a simple example of a file in JSON format.&lt;/p&gt;&lt;p&gt;-----&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;All about pairs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;There's no use of the game without pairs.&lt;/p&gt;&lt;p&gt;Every format has the same end result; the pairs appear. There are still quite a lot of pair import methods for some reason. (Most of them will be considered legacy since they aren't needed anymore, I'll not be going through them here.)&lt;/p&gt;&lt;p&gt;The game supports only UTF 8 files. In most cases the files are UTF 8, but it will likely throw an error if the file is not UTF 8 encoded.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Flags and Tooltips&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You can make your own tooltips by putting it as a question or answer in the following format. (It will not become a question or an answer)&lt;/p&gt;&lt;p&gt;{tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;{tooltip = 'This is also a tooltip.'}&lt;/p&gt;&lt;p&gt;These will show the text inside the quotes and remove the question or answer they are in. So your question answer pair could look something like this:&lt;/p&gt;&lt;p&gt;Question,{tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;Answer,{tooltip = 'Hint: There's an answer.'}&lt;br/&gt;Question2,This text will not appear {tooltip=&amp;quot;This is a tooltip.&amp;quot;}&lt;br/&gt;Answer2,This text will also not appear {tooltip=&amp;quot;This is also a tooltip.&amp;quot;}&lt;/p&gt;&lt;p&gt;In this example the text inside second cells is not visible because they are in the same cell as the tooltip.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RegEx flag&lt;/span&gt;: You can set a RegEx flag to force RegEx matching on or off like following: {regex=True} or {regex=False} The matching is as lenient as in the tooltip. THE REGEX FLAG GOES ONLY TO THE ANSWER ROW!&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;CSV&lt;/span&gt;&lt;/p&gt;&lt;p&gt;This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.&lt;/p&gt;&lt;p&gt;-----&lt;br/&gt;Question1&lt;br/&gt;Answer1&lt;br/&gt;Question2a,Question2b,Question2c&lt;br/&gt;Answer2a&lt;br/&gt;What is the capital of Japan?&lt;br/&gt;Tokyo&lt;br/&gt;What is the tallest mountain in the world?&lt;br/&gt;Mount Everest,Everest&lt;br/&gt;What is 5 + 3?&lt;br/&gt;8&lt;br/&gt;What is the currency of the United States?&lt;br/&gt;Dollar,US Dollar,USD&lt;br/&gt;-----&lt;/p&gt;&lt;p&gt;On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that question will appear followingly: &amp;quot;Question2a / Question2b / Question2c&amp;quot; in the game.&lt;/p&gt;&lt;p&gt;To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. &lt;span style=&quot; font-weight:600;&quot;&gt;When saving the file remember to choose CSV as the format.&lt;/span&gt; After that you can just drag and drop the file onto the game window.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;JSON&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The game saves its files in JSON. You don't need to know anything about it if you don't want.&lt;/p&gt;&lt;p&gt;Here's a simple example of a file in JSON format.&lt;/p&gt;&lt;p&gt;-----&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -410,8 +410,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>1013</height>
+            <width>105</width>
+            <height>3270</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -465,8 +465,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>1737</height>
+            <width>188</width>
+            <height>3934</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -559,8 +559,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>611</height>
+            <width>116</width>
+            <height>2589</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -614,8 +614,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>684</width>
-            <height>725</height>
+            <width>151</width>
+            <height>1544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -668,9 +668,9 @@ p, li { white-space: pre-wrap; }
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-623</y>
-            <width>684</width>
-            <height>1436</height>
+            <y>0</y>
+            <width>196</width>
+            <height>3175</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_31">
