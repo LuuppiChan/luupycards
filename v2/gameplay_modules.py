@@ -164,9 +164,9 @@ class MainGameplay:
             self.current_question += 1
 
     def next_question_minus_one(self):
-        if self.current_question < self.all_settings["min question"]:  # usually 1
+        if self.current_question <= self.all_settings["min question"]:  # usually 1
             self.current_question = self.max_question
-        elif self.current_question >= self.max_question:
+        elif self.current_question > self.max_question:
             self.current_question = self.all_settings["min question"]
         else:
             self.current_question -= 1
