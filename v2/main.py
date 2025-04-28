@@ -487,9 +487,8 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.ui.tab_play.setEnabled(False)
                     self.ui.label_game_info.setText("Quitting...")
                     self.ui.label_game_info_mc.setText("Quitting...")
-                case "empty field":  # this shouldn't appear though
-                    self.set_info("This shouldn't appear. Please inform if this appears.")
-                    mainlog.error("Empty field appeared!")
+                case "empty field":  # this can appear when user inputs only whitespaces
+                    self.set_info("Please type something...")
                 case "wrong":
                     self.set_info(result[1])
 
@@ -1057,11 +1056,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
+    try:
+        import qt_themes
+    except ModuleNotFoundError:
+        pass
+
     if os.name == "nt":
         mainlog.warning("This program is intended for Linux, using Windows may have unexpected behaviour!")
     app = QtWidgets.QApplication(sys.argv)
-    #app.setStyle('Breeze')  # I'll set it properly later
+
+    # theming
     style_name = app.style().metaObject().className()
+    #qt_themes.set_theme("blender") if style_name == "QFusionStyle" else None  # colors
+
     if style_name == "QFusionStyle":
         palette = QtGui.QPalette()  # it works so it's fine
         palette.setColor(QtGui.QPalette.Accent, QtGui.QColor(218, 130, 218))
