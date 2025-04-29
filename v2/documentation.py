@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'documentation.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.9.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -40,7 +40,7 @@ class Ui_documentation(object):
         self.scrollArea_8.setWidgetResizable(True)
         self.scrollAreaWidgetContents_9 = QWidget()
         self.scrollAreaWidgetContents_9.setObjectName(u"scrollAreaWidgetContents_9")
-        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 247, 4710))
+        self.scrollAreaWidgetContents_9.setGeometry(QRect(0, 0, 684, 3591))
         self.verticalLayout_18 = QVBoxLayout(self.scrollAreaWidgetContents_9)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.label_11 = QLabel(self.scrollAreaWidgetContents_9)
@@ -50,7 +50,7 @@ class Ui_documentation(object):
         self.label_11.setFont(font1)
         self.label_11.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_11.setWordWrap(True)
-        self.label_11.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_11.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_18.addWidget(self.label_11)
 
@@ -59,7 +59,7 @@ class Ui_documentation(object):
         self.label_12.setFont(font)
         self.label_12.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_12.setWordWrap(True)
-        self.label_12.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_12.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_18.addWidget(self.label_12)
 
@@ -78,16 +78,16 @@ class Ui_documentation(object):
         self.scrollArea_9.setWidgetResizable(True)
         self.scrollAreaWidgetContents_10 = QWidget()
         self.scrollAreaWidgetContents_10.setObjectName(u"scrollAreaWidgetContents_10")
-        self.scrollAreaWidgetContents_10.setGeometry(QRect(0, 0, 284, 334))
+        self.scrollAreaWidgetContents_10.setGeometry(QRect(0, 0, 634, 420))
         self.verticalLayout_20 = QVBoxLayout(self.scrollAreaWidgetContents_10)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.label_13 = QLabel(self.scrollAreaWidgetContents_10)
         self.label_13.setObjectName(u"label_13")
         self.label_13.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_13.setWordWrap(True)
-        self.label_13.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_13.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
-        self.verticalLayout_20.addWidget(self.label_13, 0, Qt.AlignTop)
+        self.verticalLayout_20.addWidget(self.label_13, 0, Qt.AlignmentFlag.AlignTop)
 
         self.scrollArea_9.setWidget(self.scrollAreaWidgetContents_10)
 
@@ -103,14 +103,14 @@ class Ui_documentation(object):
         self.scrollArea_10.setWidgetResizable(True)
         self.scrollAreaWidgetContents_11 = QWidget()
         self.scrollAreaWidgetContents_11.setObjectName(u"scrollAreaWidgetContents_11")
-        self.scrollAreaWidgetContents_11.setGeometry(QRect(0, 0, 413, 932))
+        self.scrollAreaWidgetContents_11.setGeometry(QRect(0, 0, 406, 1372))
         self.verticalLayout_22 = QVBoxLayout(self.scrollAreaWidgetContents_11)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.label_14 = QLabel(self.scrollAreaWidgetContents_11)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setFont(font)
         self.label_14.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.label_14.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_14.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_22.addWidget(self.label_14)
 
@@ -126,7 +126,7 @@ class Ui_documentation(object):
         self.label_15.setObjectName(u"label_15")
         self.label_15.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_15.setWordWrap(True)
-        self.label_15.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_15.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_18.addWidget(self.label_15)
 
@@ -148,28 +148,28 @@ class Ui_documentation(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 684, 2472))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 684, 3517))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label = QLabel(self.scrollAreaWidgetContents_2)
         self.label.setObjectName(u"label")
         self.label.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label.setWordWrap(True)
-        self.label.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
-        self.verticalLayout_3.addWidget(self.label, 0, Qt.AlignTop)
+        self.verticalLayout_3.addWidget(self.label, 0, Qt.AlignmentFlag.AlignTop)
 
         self.label_2 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.label_2.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_2.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_3.addWidget(self.label_2)
 
         self.label_3 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.label_3.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_3.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_3.addWidget(self.label_3)
 
@@ -191,16 +191,16 @@ class Ui_documentation(object):
         self.scrollArea_11.setWidgetResizable(True)
         self.scrollAreaWidgetContents_12 = QWidget()
         self.scrollAreaWidgetContents_12.setObjectName(u"scrollAreaWidgetContents_12")
-        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 105, 3270))
+        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 102, 4756))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents_12)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.label_16 = QLabel(self.scrollAreaWidgetContents_12)
         self.label_16.setObjectName(u"label_16")
         self.label_16.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_16.setWordWrap(True)
-        self.label_16.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_16.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
-        self.verticalLayout_24.addWidget(self.label_16, 0, Qt.AlignTop)
+        self.verticalLayout_24.addWidget(self.label_16, 0, Qt.AlignmentFlag.AlignTop)
 
         self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -220,16 +220,16 @@ class Ui_documentation(object):
         self.scrollArea_12.setWidgetResizable(True)
         self.scrollAreaWidgetContents_13 = QWidget()
         self.scrollAreaWidgetContents_13.setObjectName(u"scrollAreaWidgetContents_13")
-        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 188, 3934))
+        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 183, 3815))
         self.verticalLayout_26 = QVBoxLayout(self.scrollAreaWidgetContents_13)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.label_17 = QLabel(self.scrollAreaWidgetContents_13)
         self.label_17.setObjectName(u"label_17")
         self.label_17.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_17.setWordWrap(True)
-        self.label_17.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_17.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
-        self.verticalLayout_26.addWidget(self.label_17, 0, Qt.AlignTop)
+        self.verticalLayout_26.addWidget(self.label_17, 0, Qt.AlignmentFlag.AlignTop)
 
         self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -249,14 +249,14 @@ class Ui_documentation(object):
         self.scrollArea_15.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 116, 2589))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 115, 3573))
         self.verticalLayout_32 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
         self.label_18 = QLabel(self.scrollAreaWidgetContents)
         self.label_18.setObjectName(u"label_18")
         self.label_18.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_18.setWordWrap(True)
-        self.label_18.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_18.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_32.addWidget(self.label_18)
 
@@ -278,14 +278,14 @@ class Ui_documentation(object):
         self.scrollArea_13.setWidgetResizable(True)
         self.scrollAreaWidgetContents_14 = QWidget()
         self.scrollAreaWidgetContents_14.setObjectName(u"scrollAreaWidgetContents_14")
-        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 151, 1544))
+        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 149, 2190))
         self.verticalLayout_29 = QVBoxLayout(self.scrollAreaWidgetContents_14)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_19 = QLabel(self.scrollAreaWidgetContents_14)
         self.label_19.setObjectName(u"label_19")
         self.label_19.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_19.setWordWrap(True)
-        self.label_19.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_19.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_29.addWidget(self.label_19)
 
@@ -307,14 +307,14 @@ class Ui_documentation(object):
         self.scrollArea_14.setWidgetResizable(True)
         self.scrollAreaWidgetContents_15 = QWidget()
         self.scrollAreaWidgetContents_15.setObjectName(u"scrollAreaWidgetContents_15")
-        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 196, 3175))
+        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 195, 4418))
         self.verticalLayout_31 = QVBoxLayout(self.scrollAreaWidgetContents_15)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.label_20 = QLabel(self.scrollAreaWidgetContents_15)
         self.label_20.setObjectName(u"label_20")
         self.label_20.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_20.setWordWrap(True)
-        self.label_20.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_20.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_31.addWidget(self.label_20)
 
@@ -347,7 +347,7 @@ class Ui_documentation(object):
 
         self.retranslateUi(documentation)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_examples_2.setCurrentIndex(0)
 
 
