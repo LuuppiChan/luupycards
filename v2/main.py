@@ -442,6 +442,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton_correct_mc.setFont(QtGui.QFont(font_family, 16))
             self.ui.pushButton_seek_mc.setFont(QtGui.QFont(font_family, 16))
             self.ui.pushButton_seek.setFont(QtGui.QFont(font_family, 16))
+            self.ui.label_lives.setFont(QtGui.QFont(font_family, 16))
         else:
             self.ui.label_question.setFont(QtGui.QFont(font_family, 20))
             self.ui.label_question_mc.setFont(QtGui.QFont(font_family, 20))
@@ -457,6 +458,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton_correct_mc.setFont(QtGui.QFont(font_family, 12))
             self.ui.pushButton_seek_mc.setFont(QtGui.QFont(font_family, 12))
             self.ui.pushButton_seek.setFont(QtGui.QFont(font_family, 12))
+            self.ui.label_lives.setFont(QtGui.QFont(font_family, 12))
 
     def correct_checkbutton(self):
         line_text = self.ui.lineEdit_answer.text()
