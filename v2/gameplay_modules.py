@@ -301,7 +301,7 @@ class MainGameplay:
         if self.enabled_answer_checks["correct answer"]:
             # check for correct answer in user_input, iterates through all answer candidates
             for answer in correct_answers:
-                if answer == user_input or user_input in answer:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
+                if answer == user_input or answer in user_input:  # IDK if "answer in user_input" should be included. It makes it easier but has some side effects. Or just token matching in fuzzy?
                     self.next_question()
                     self.streak_current += 1
                     return "correct", self.print_correct_answer()

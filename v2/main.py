@@ -654,6 +654,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for (choice, button) in zip(self.mc_choices, self.mc_buttons):
             button.setText(choice)
+            # Tooltip could maybe be added here.
 
         self.big_font_mode()  # ensures the buttons get big font
 
