@@ -103,7 +103,7 @@ class Ui_documentation(object):
         self.scrollArea_10.setWidgetResizable(True)
         self.scrollAreaWidgetContents_11 = QWidget()
         self.scrollAreaWidgetContents_11.setObjectName(u"scrollAreaWidgetContents_11")
-        self.scrollAreaWidgetContents_11.setGeometry(QRect(0, 0, 406, 1372))
+        self.scrollAreaWidgetContents_11.setGeometry(QRect(0, 0, 634, 1372))
         self.verticalLayout_22 = QVBoxLayout(self.scrollAreaWidgetContents_11)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.label_14 = QLabel(self.scrollAreaWidgetContents_11)
@@ -148,7 +148,7 @@ class Ui_documentation(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 684, 3517))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, -552, 684, 4041))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label = QLabel(self.scrollAreaWidgetContents_2)
@@ -191,7 +191,7 @@ class Ui_documentation(object):
         self.scrollArea_11.setWidgetResizable(True)
         self.scrollAreaWidgetContents_12 = QWidget()
         self.scrollAreaWidgetContents_12.setObjectName(u"scrollAreaWidgetContents_12")
-        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 102, 4756))
+        self.scrollAreaWidgetContents_12.setGeometry(QRect(0, 0, 684, 1341))
         self.verticalLayout_24 = QVBoxLayout(self.scrollAreaWidgetContents_12)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.label_16 = QLabel(self.scrollAreaWidgetContents_12)
@@ -220,7 +220,7 @@ class Ui_documentation(object):
         self.scrollArea_12.setWidgetResizable(True)
         self.scrollAreaWidgetContents_13 = QWidget()
         self.scrollAreaWidgetContents_13.setObjectName(u"scrollAreaWidgetContents_13")
-        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 183, 3815))
+        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 684, 1666))
         self.verticalLayout_26 = QVBoxLayout(self.scrollAreaWidgetContents_13)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.label_17 = QLabel(self.scrollAreaWidgetContents_13)
@@ -249,7 +249,7 @@ class Ui_documentation(object):
         self.scrollArea_15.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 115, 3573))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 684, 785))
         self.verticalLayout_32 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
         self.label_18 = QLabel(self.scrollAreaWidgetContents)
@@ -278,7 +278,7 @@ class Ui_documentation(object):
         self.scrollArea_13.setWidgetResizable(True)
         self.scrollAreaWidgetContents_14 = QWidget()
         self.scrollAreaWidgetContents_14.setObjectName(u"scrollAreaWidgetContents_14")
-        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 149, 2190))
+        self.scrollAreaWidgetContents_14.setGeometry(QRect(0, 0, 684, 976))
         self.verticalLayout_29 = QVBoxLayout(self.scrollAreaWidgetContents_14)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_19 = QLabel(self.scrollAreaWidgetContents_14)
@@ -307,7 +307,7 @@ class Ui_documentation(object):
         self.scrollArea_14.setWidgetResizable(True)
         self.scrollAreaWidgetContents_15 = QWidget()
         self.scrollAreaWidgetContents_15.setObjectName(u"scrollAreaWidgetContents_15")
-        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 195, 4418))
+        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, -1291, 684, 1980))
         self.verticalLayout_31 = QVBoxLayout(self.scrollAreaWidgetContents_15)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.label_20 = QLabel(self.scrollAreaWidgetContents_15)
@@ -408,8 +408,9 @@ class Ui_documentation(object):
                         " than answerring the question.</p><p>&quot;c&quot; or &quot;correct&quot;: Shows the correct answer. Breaks your streak.</p><p>&quot;seek NUMBER&quot;: Seeks to the specified number. Does not break your streak.</p><p>&quot;q&quot; or &quot;quit&quot;: Quits back to main menu. Breaks your streak (For now)</p><p>You can also just go back to the Main Menu tab by clicking it and start a new game.</p><p><br/></p><p>In Multiple Choice to quit the game you have to just click the Main Menu tab.</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_quickstart_2), QCoreApplication.translate("documentation", u"Quick Start", None))
         self.label.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">All about pairs</span></p><p>There's no use of the game without pairs.</p><p>Every format has the same end result; the pairs appear. There are still quite a lot of pair import methods for some reason. (Most of them will be considered legacy since they aren't needed anymore, I'll not be going through them here.)</p><p>The game supports only UTF 8 files. In most cases the files are UTF 8, but it will likely throw an error if the file is not UTF 8 encoded.</p><p><span style=\" font-size:16pt;\">Flags and Tooltips</span></p><p>You can make your own tooltips by putting it as a question or answer in the following format. (It will not become a question or an answer)</p><p>{tooltip=&quot;This is a tooltip.&quot;}<br/>{tooltip = 'This is also a tooltip.'}</p><p>These will show the text inside the quotes and remove the question or answer they are in. So your question answer pair could look something like this:</p><p>Question,{tooltip=&quot;This is a tooltip.&quot;}<"
-                        "br/>Answer,{tooltip = 'Hint: There's an answer.'}<br/>Question2,This text will not appear {tooltip=&quot;This is a tooltip.&quot;}<br/>Answer2,This text will also not appear {tooltip=&quot;This is also a tooltip.&quot;}</p><p>In this example the text inside second cells is not visible because they are in the same cell as the tooltip.</p><p><span style=\" font-weight:600;\">RegEx flag</span>: You can set a RegEx flag to force RegEx matching on or off like following: {regex=True} or {regex=False} The matching is as lenient as in the tooltip. THE REGEX FLAG GOES ONLY TO THE ANSWER ROW!</p><p><span style=\" font-size:16pt;\">CSV</span></p><p>This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.</p><p>-----<br/>Question1<br/>Answer1<br/>Question2a,Question2b,Question2c<br/>Answer2a<br/>What is the capital of Japan?<br/>Tokyo<br/>What is the tallest mountain in the world?<br/>Mount Everest,Everest<br/>What is 5 + 3?<br/>8<br/>What is the currency of the United Stat"
-                        "es?<br/>Dollar,US Dollar,USD<br/>-----</p><p>On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that question will appear followingly: &quot;Question2a / Question2b / Question2c&quot; in the game.</p><p>To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. <span style=\" font-weight:600;\">When saving the file remember to choose CSV as the format.</span> After that you can just drag and drop the file onto the game window.</p><p><span style=\" font-size:16pt;\">JSON</span></p><p>The game saves its files in JSON. You don't need to know anything about it if you don't want.</p><p>Here's a simple example of a file in JSON format.</p><p>-----</p></body></html>", None))
+                        "br/>Answer,{tooltip = 'Hint: There's an answer.'}<br/>Question2,This text will not appear {tooltip=&quot;This is a tooltip.&quot;}<br/>Answer2,This text will also not appear {tooltip=&quot;This is also a tooltip.&quot;}</p><p>In this example the text inside second cells is not visible because they are in the same cell as the tooltip.</p><p><span style=\" font-weight:600;\">RegEx flag</span>: You can set a RegEx flag to force RegEx matching on or off like following: {regex=True} or {regex=False} The matching is as lenient as in the tooltip. THE REGEX FLAG GOES ONLY TO THE ANSWER ROW!</p><p>The matching simply works like this (This is also explained in the menu bar regex support section):<br/>- `match = re.search(regex_answer, user_input)`<br/>Here we're checking if the user input is matching with the regex_answer.</p><p>Let's say we have an answer like this one:<br/>`answer \\(?the first one\\)?`<br/>This means that both of these are correct: `answer (the first one)` or `answer the first one`. If you're using t"
+                        "his feature you should have knowledge over RegEx so you know those aren't the only 2 correct answers.</p><p>If there are multiple answers the they is put inside a non-capturing group to encapsulate them since the app also uses RegEx when user inputs all the answers. (Read Play -&gt; Normal -&gt; Multiple Answer Choices)</p><p>If &quot;Invalid RegEx! (re.PatternError)&quot; shows up it means the there's a problem with the RegEx.</p><p><span style=\" font-size:16pt;\">CSV</span></p><p>This will be the format you will be writing in. It's fairly straight forward and the easiest of them all.</p><p>-----<br/>Question1<br/>Answer1<br/>Question2a,Question2b,Question2c<br/>Answer2a<br/>What is the capital of Japan?<br/>Tokyo<br/>What is the tallest mountain in the world?<br/>Mount Everest,Everest<br/>What is 5 + 3?<br/>8<br/>What is the currency of the United States?<br/>Dollar,US Dollar,USD<br/>-----</p><p>On the 3rd line you can see 3 questions. This is because you can flip the questions and answers, but that questio"
+                        "n will appear followingly: &quot;Question2a / Question2b / Question2c&quot; in the game.</p><p>To write in this format you can use something like LibreOffice Calc, Exel or Google Sheets. <span style=\" font-weight:600;\">When saving the file remember to choose CSV as the format.</span> After that you can just drag and drop the file onto the game window.</p><p><span style=\" font-size:16pt;\">JSON</span></p><p>The game saves its files in JSON. You don't need to know anything about it if you don't want.</p><p>Here's a simple example of a file in JSON format.</p><p>-----</p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("documentation", u"{\n"
 "    \"This title doesn't matter for now.\": [\n"
 "        {\n"
@@ -510,8 +511,8 @@ class Ui_documentation(object):
         self.label_19.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">Inspector</span></p><p>The inspector is probably the most advanced feature of the game although it's still really simple.</p><p>You can create, remove and inspect pairs with it.</p><p>The format on it is a bit different than the Default CSV format. This format uses only the &quot;;&quot; character as a separator.</p><p><br/></p><p>-- Question --</p><p>What currency does the United States use?</p><p>-- Answer --</p><p>US Dollar;USD;United States Dollar</p><p><br/></p><p>Here there are 3 answer options separated by the &quot;;&quot; character.</p><p><br/><span style=\" font-size:20pt;\">Inspector Tools</span></p><p>There's an Inspector section on the top bar.</p><p>This section has all the tools you can use in the inspector. I suggest you to use the shortcuts that are provided for more convenience. If the shorcuts don't feel intuitive please make a GitHub issue and suggest better ones.</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_inspector_2), QCoreApplication.translate("documentation", u"Inspector", None))
         self.label_20.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">Menu Bar options</span></p><p>This section goes through every single option in the menu bar.</p><p>The menu bar is the bar on top of the window. It has the sections File, Inspector, Misc and Help.</p><p><span style=\" font-size:16pt;\">File</span></p><p>This section has 5 items.</p><p>Open: This opens a file selector that you can open a pair file with.</p><p>Open (Advanced): Clicking this opens a small widget where you can choose what kind of import methods you want to use. (Hover to see examples on the tooltip.)</p><p>New: This use clears current pairs from the game memory. <span style=\" font-weight:600;\">There is no check for unsaved files.</span></p><p>Save: This is the same as the &quot;Save to file&quot; button in the inspector. It opens a file dialog where you can save the current pair file as a JSON.</p><p>Quit: Quits the game.</p><p><span style=\" font-size:16pt;\">Inspector</span></p><p>This has all the tools for the inspector.</p><p>New Row: Cr"
-                        "eates a new row at the end of the list.</p><p>New Row after selected: Creates a new row after the one you have a selected box in it.</p><p>Delete Last Row: Deletes the last row...</p><p>Delete Selected Row: Deletes the row you have a selected box in it.</p><p><span style=\" font-size:16pt;\">Misc</span></p><p>Big mode: Increases the size of certain gameplay elements.<br/></p><p>RegEx support: Allows you to write answers in Python RegEx. This is an advanced feature for those who want to really take control over answer matching.</p><p>There's also a force RegEx on or off flag. It's explained in Pairs -&gt; Flags and Tooltips -&gt; RegEx flag</p><p>The matching simply works like this:<br/>- `match = re.search(regex_answer, user_input)`<br/>Here we're checking if the user input is matching with the regex_answer.</p><p>Let's say we have an answer like this one:<br/>`answer \\(?the first one\\)?`<br/>This means that both of these are correct: `answer (the first one)` or `answer the first one`. If you're using this f"
-                        "eature you should have knowledge over RegEx so you know those aren't the only 2 correct answers.</p><p>If there are multiple answers the they is put inside a non-capturing group to encapsulate them since the app also uses RegEx when user inputs all the answers. (Read Play -&gt; Normal -&gt; Multiple Answer Choices)</p><p>If &quot;Invalid RegEx! (re.PatternError)&quot; shows up it means the there's a problem with the RegEx.</p><p>Test trigger: This is used for testing things. It should not do anything if you press it.</p><p><span style=\" font-size:16pt;\">Help</span></p><p>Help!: Shows this documentation.</p><p>Info: Shows information about the game.</p></body></html>", None))
+                        "eates a new row at the end of the list.</p><p>New Row after selected: Creates a new row after the one you have a selected box in it.</p><p>Delete Last Row: Deletes the last row...</p><p>Delete Selected Row: Deletes the row you have a selected box in it.</p><p><span style=\" font-size:16pt;\">Misc</span></p><p>Big mode: Increases the size of certain gameplay elements.<br/>Show only the first question: Whether to show only the first question or all the questions in the question field. (Default: enabled)</p><p>RegEx support: Allows you to write answers in Python RegEx. This is an advanced feature for those who want to really take control over answer matching.</p><p>There's also a force RegEx on or off flag. It's explained in Pairs -&gt; Flags and Tooltips -&gt; RegEx flag</p><p>The matching simply works like this (this is also explained in the pairs' regex flag section):<br/>- `match = re.search(regex_answer, user_input)`<br/>Here we're checking if the user input is matching with the regex_answer.</p><p>Let's say"
+                        " we have an answer like this one:<br/>`answer \\(?the first one\\)?`<br/>This means that both of these are correct: `answer (the first one)` or `answer the first one`. If you're using this feature you should have knowledge over RegEx so you know those aren't the only 2 correct answers.</p><p>If there are multiple answers the they is put inside a non-capturing group to encapsulate them since the app also uses RegEx when user inputs all the answers. (Read Play -&gt; Normal -&gt; Multiple Answer Choices)</p><p>If &quot;Invalid RegEx! (re.PatternError)&quot; shows up it means the there's a problem with the RegEx.</p><p>Test trigger: This is used for testing things. It should not do anything if you press it.</p><p><span style=\" font-size:16pt;\">Help</span></p><p>Help!: Shows this documentation.</p><p>Info: Shows information about the game.</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_menubar_2), QCoreApplication.translate("documentation", u"Menu Bar", None))
         self.pushButton.setText(QCoreApplication.translate("documentation", u"Close", None))
     # retranslateUi

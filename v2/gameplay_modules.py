@@ -142,8 +142,8 @@ class MainGameplay:
         if self.enabled_prints["fuzzy correct"]:
             return f"Almost correct! {" / ".join(correct_answers)}"
 
-    def print_question(self):
-        return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
+    def print_question(self) -> tuple[str, list[str], str]:
+        return f"{" / ".join(self.pairs[self.current_question][self.question])}", self.pairs[self.current_question][self.question], f"{self.current_question}. " if self.show_question_number else ""
 
     def fuzzy_check(self, correct_answers):
         for answer in correct_answers:
@@ -369,7 +369,7 @@ class MainGameplay:
 
         raise Exception("Please enable wrong answer check.")
 
-    def play_gui(self):
+    def play_gui(self) -> tuple[str, list[str], str]:
         self.settings_update()
 
         self.check_max_streak()
@@ -388,8 +388,7 @@ class Survive(MainGameplay):
         super().__init__(pairs, reverse, current_question, streak_current, order, regex)
         self.streak_all_time = core.settings_value_manipulator("all time survival streak")
         self.lives = core.settings_value_manipulator("lives")
-        self.enabled_prints["wrong answer"] = False
-        self.enabled_prints["show correct answer"] = False
+        self.enabled_prints["wrong answer"] = False  # It's a print, not the check!
 
     def check_max_streak(self):
         if self.streak_current > self.streak_all_time:
@@ -397,8 +396,6 @@ class Survive(MainGameplay):
             self.streak_all_time = core.settings_value_manipulator("all time survival streak")
 
     def print_question(self):
-        print(f"Current survival streak: {self.streak_current}, All time survival streak: {self.streak_all_time}")
-        print(f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}")
         return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
 
     def return_correct_answers(self):

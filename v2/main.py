@@ -339,6 +339,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.actionBig_mode.triggered.connect(self.big_font_mode)
         self.ui.actionTest_trigger.triggered.connect(self.test_trigger)
         self.ui.actionRegEx_support.triggered.connect(self.regex_setting)
+        self.ui.actionShow_only_the_first_question.triggered.connect(self.question_change)
 
         self.ui.actionOpen_Advanced.triggered.connect(self.advanced_import)
 
@@ -460,6 +461,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton_seek.setFont(QtGui.QFont(font_family, 12))
             self.ui.label_lives.setFont(QtGui.QFont(font_family, 12))
 
+    def question_change(self) -> None:
+        if self.ui.tab_play.isEnabled():
+            self.set_question(("", [""], ""))
+            self.set_question(self.the_game.play_gui())
+
     def correct_checkbutton(self):
         line_text = self.ui.lineEdit_answer.text()
         if line_text:
@@ -510,7 +516,7 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             mainlog.info("Empty button press.")
 
-            self.set_question("")
+            self.set_question(("", [""], ""))
             self.set_question(self.the_game.play_gui())
 
     def correct_checkbutton_mc(self, user_input = ""):
@@ -548,7 +554,7 @@ class MainWindow(QtWidgets.QMainWindow):
             case "empty field":
                 self.set_info("Please choose an option...")
 
-                self.set_question("")
+                self.set_question(("", [""], ""))
                 self.set_question(self.the_game.play_gui())
             case "wrong":
                 self.set_info(result[1])
@@ -608,9 +614,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.label_streak.setStatusTip(f"Current streak: {streak}, All time streak: {streak_all}")
         self.ui.label_streak_mc.setStatusTip(f"Current streak: {streak}, All time streak: {streak_all}")
 
-    def set_question(self, question):
-        self.ui.label_question.setText(question)
-        self.ui.label_question_mc.setText(question)
+    def set_question(self, question: tuple[str, list[str], str]):
+        if self.ui.actionShow_only_the_first_question.isChecked():
+            self.ui.label_question.setText(f"{question[2]}{question[1][0]}")
+            self.ui.label_question_mc.setText(f"{question[2]}{question[1][0]}")
+        else:
+            self.ui.label_question.setText(f"{question[2]}{question[0]}")
+            self.ui.label_question_mc.setText(f"{question[2]}{question[0]}")
+
+        # Tooltips
         if f"{self.the_game.question} tooltip" in self.the_game.pairs[self.the_game.current_question]:
             tooltip = self.the_game.pairs[self.the_game.current_question][f"{self.the_game.question} tooltip"]
 
@@ -619,7 +631,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.label_question_mc.setToolTip(tooltip)
             self.ui.label_question_mc.setStatusTip(tooltip)
         else:
-            tooltip = "The question"
+            tooltip = f"{question[2]}{question[0]}"
 
             self.ui.label_question.setToolTip(tooltip)
             self.ui.label_question.setStatusTip(tooltip)
