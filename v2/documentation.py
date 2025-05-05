@@ -103,7 +103,7 @@ class Ui_documentation(object):
         self.scrollArea_10.setWidgetResizable(True)
         self.scrollAreaWidgetContents_11 = QWidget()
         self.scrollAreaWidgetContents_11.setObjectName(u"scrollAreaWidgetContents_11")
-        self.scrollAreaWidgetContents_11.setGeometry(QRect(0, 0, 634, 1372))
+        self.scrollAreaWidgetContents_11.setGeometry(QRect(0, 0, 406, 1372))
         self.verticalLayout_22 = QVBoxLayout(self.scrollAreaWidgetContents_11)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.label_14 = QLabel(self.scrollAreaWidgetContents_11)
@@ -148,7 +148,7 @@ class Ui_documentation(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, -552, 684, 4041))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 684, 4041))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label = QLabel(self.scrollAreaWidgetContents_2)
@@ -220,7 +220,7 @@ class Ui_documentation(object):
         self.scrollArea_12.setWidgetResizable(True)
         self.scrollAreaWidgetContents_13 = QWidget()
         self.scrollAreaWidgetContents_13.setObjectName(u"scrollAreaWidgetContents_13")
-        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, 0, 684, 1666))
+        self.scrollAreaWidgetContents_13.setGeometry(QRect(0, -537, 684, 1792))
         self.verticalLayout_26 = QVBoxLayout(self.scrollAreaWidgetContents_13)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.label_17 = QLabel(self.scrollAreaWidgetContents_13)
@@ -307,7 +307,7 @@ class Ui_documentation(object):
         self.scrollArea_14.setWidgetResizable(True)
         self.scrollAreaWidgetContents_15 = QWidget()
         self.scrollAreaWidgetContents_15.setObjectName(u"scrollAreaWidgetContents_15")
-        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, -1291, 684, 1980))
+        self.scrollAreaWidgetContents_15.setGeometry(QRect(0, 0, 684, 1980))
         self.verticalLayout_31 = QVBoxLayout(self.scrollAreaWidgetContents_15)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.label_20 = QLabel(self.scrollAreaWidgetContents_15)
@@ -458,52 +458,59 @@ class Ui_documentation(object):
                         " and answers: This flips questions and answers so that now questions are answers and answers are questions.</p><p><br/></p><p>After selecting the wanted modes you can press the &quot;Play&quot; button at the bottom of the screen. That throws you into the gameplay section.</p><p><br/></p><p><span style=\" font-size:20pt;\">The Quit Button</span></p><p>This button simply closes the game.</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main_menu_2), QCoreApplication.translate("documentation", u"Main Menu", None))
         self.label_17.setText(QCoreApplication.translate("documentation", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">Play (Normal)</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Play tab has a couple of items to it.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the top left corner there's an info field. This displays current information such as if you answerred correctly or not.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:"
-                        "0px; -qt-block-indent:0; text-indent:0px;\">On the top right there's streak. If you hover over it you can see your all time streak. This is saved across sessions.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the middle you can see the question.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Under that there's the input field.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the bottom right corner there's a check button which can be pressed to check if what you wrote was correct. You can also press enter while typing.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you don't give an answer nothing will happen if the Check button is pressed.</p>\n"
-"<p style=\" margin-top:1"
-                        "2px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">Multiple answer choices</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you have multiple answer choices you can put them all on the answer field. You just have to make sure that these criteria is met:</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. the separator is one of these &quot; /|;,&quot; yes, they can also be separated by just a space</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. They must be in the same order as you've put them.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you're interested more deeply in the matching her"
-                        "e's how it's done:<br /><span style=\" font-style:italic;\">match = re.search(r&quot; ?[ /|;,]+ ?| ?or ?&quot;.join(correct_answers), user_input)</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">Commands</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Instead of typing the answer you can also type these commands to the input field and press check.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&quot;c&quot; or &quot;correct&quot;: Shows the correct answer. Breaks your streak.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&quot;seek NUMBER&quot;: Seeks to the specified number. Does not break your streak. (Replace NUMBER with an actual nu"
-                        "mber)</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&quot;q&quot; or &quot;quit&quot;: Quits back to main menu. Breaks your streak (For now)</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">You can also just go back to the Main Menu tab by clicking it. If you want to start a new game you just press play again.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">Survive!</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">In this mode you can see your &quot;lives&quot; at the bottom left corner of the window.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-""
-                        "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">Play (Multiple Choice)</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">There's also a multiple choice mode.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">In this you have a bit different layout. I'll still go through every item on the layout though.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the top left corner there's an info field. This displays current information such as if you answerred correctly or not.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the top right there's streak. If you hover over it you c"
-                        "an see your all time streak. This is saved across sessions.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the middle you can see the question.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Under that there are the answer options. They are on the right side for less mouse movement from an answer to the check button.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the bottom right corner there's a check button which can be pressed to check if what you wrote was correct.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">On the bottom left corner there are two buttons:</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; t"
-                        "ext-indent:0px;\">Correct: This shows the correct answer in the info field on top left corner.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Seek: This shows a widget where you can choose question number you want to go. You cannot enter an incorrect value to it.</p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">Big mode (Font)</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">You can go to Misc -&gt; Big mode to enable a bigger font for certain gameplay items.</p></body></html>", None))
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Noto Sans Arabic'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:20pt;\">Play (Normal)</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">Play tab has a couple of items to it.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -q"
+                        "t-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the top left corner there's an info field. This displays current information such as if you answerred correctly or not.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the top right there's streak. If you hover over it you can see your all time streak. This is saved across sessions.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the middle you can see the question.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">Under that there's the input field.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; mar"
+                        "gin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the bottom right corner there's a check button which can be pressed to check if what you wrote was correct. You can also press enter while typing.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">If you don't give an answer nothing will happen if the Check button is pressed.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:16pt;\">Multiple answer choices</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">If you have multiple answer choices you can put them all on the answer field. You just have to make sure that these"
+                        " criteria is met:</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">1. the separator is one of these &quot; /|;,&quot; yes, they can also be separated by just a space</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">2. They must be in the same order as you've put them.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">If you're interested more deeply in the matching here's how it's done:<br /></span><span style=\" font-family:'Sans Serif'; font-style:italic;\">match = re.search(r&quot; ?[ /|;,]+ ?| ?or ?&quot;.join(correct_answers), user_input)</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px;"
+                        " margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:16pt;\">Commands</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">Instead of typing the answer you can also type these commands to the input field and press check.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">&quot;c&quot; or &quot;correct&quot;: Shows the correct answer. Breaks your streak.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">&quot;seek NUMBER&quot;: Seeks to the specified number. Does not break your streak. (Replace NUMBER with an actual number)</span></p>\n"
+"<p style=\" margin-top:12px; margin-"
+                        "bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">&quot;seek +/-NUMBER&quot;: This is relative seek and for example if you are on question 10 the command &quot;seek +3&quot; moves you to question 13. And &quot;seek -5&quot; would move you to the question 5.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">&quot;q&quot; or &quot;quit&quot;: Quits back to main menu. Breaks your streak (For now)</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">You can also just go back to the Main Menu tab by clicking it. If you want to start a new game you just press play again.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-inden"
+                        "t:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:16pt;\">Survive!</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">In this mode you can see your &quot;lives&quot; at the bottom left corner of the window.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\"><br /></span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:20pt;\">Play (Multiple Choice)</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">There's also a multiple choice mode.</span></p>\n"
+"<p style=\" margin-top"
+                        ":12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">In this you have a bit different layout. I'll still go through every item on the layout though.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the top left corner there's an info field. This displays current information such as if you answerred correctly or not.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the top right there's streak. If you hover over it you can see your all time streak. This is saved across sessions.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">"
+                        "On the middle you can see the question.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">Under that there are the answer options. They are on the right side for less mouse movement from an answer to the check button.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the bottom right corner there's a check button which can be pressed to check if what you wrote was correct.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">On the bottom left corner there are two buttons:</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" f"
+                        "ont-family:'Sans Serif';\">Correct: This shows the correct answer in the info field on top left corner.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">Seek: This shows a widget where you can choose question number you want to go. You cannot enter an incorrect value to it.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\"><br /></span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif'; font-size:20pt;\">Big mode (Font)</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Sans Serif';\">You can go to Misc -&gt; Big mode to"
+                        " enable a bigger font for certain gameplay items.</span></p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_play_normal_2), QCoreApplication.translate("documentation", u"Play", None))
         self.label_18.setText(QCoreApplication.translate("documentation", u"<html><head/><body><p><span style=\" font-size:20pt;\">Settings</span></p><p>This will cover every single setting in the settings tab.</p><p>All time streak: Shows your all time streak</p><p>All time survival streak: Shows you all time streak on Survive! mode.</p><p>Reset all time streak: Resets your all time streak. You have to first check the box and save.</p><p>Reset all time survival streak: Resets your all time survival streak. You have to first check the box and save.</p><p>Min question: The lowest question number to be asked <span style=\" font-weight:600;\">in random mode</span>.</p><p>Max question: The highest question number to be asked <span style=\" font-weight:600;\">in random mode</span>.</p><p>Show current question number: Whether to show the current question number before the question.</p><p>Multiple choice max options: How many candidates to show in multiple choice.</p><p>Lives: Choose the amount of lives you want to have in Survive! mode.</p><p>Fuzzy select percent: ONLY WORKS IF THEFUZZ IS I"
                         "NTALLED! How many percent of error can the answer have for it to be counted as &quot;almost correct&quot;. <br/>100% = The answer has to be 100% correct. No mistakes.<br/>80% = The answer has to be 90% correct for it to count as &quot;almost correct&quot;.</p></body></html>", None))

@@ -116,7 +116,7 @@ class MainGameplay:
 
     def print_invalid_seek(self, question_number):
         if self.enabled_prints["invalid seek"]:
-            return f'"{question_number}" is an invalid seek number. (Max: {self.max_question})'
+            return f'"{question_number}" is an invalid seek target. (Min: {self.all_settings["min question"]}, Max: {self.max_question})'
 
     def print_valid_seek(self, question_number):
         if self.enabled_prints["valid seek"]:
@@ -191,7 +191,7 @@ class MainGameplay:
         else:
             raise Exception("Someone has set an invalid question order.")
 
-    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> tuple[int, list]:
+    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> tuple[int, list[str]]:
         if multiple_choice_options is None:
             multiple_choice_options = []
 
@@ -234,6 +234,9 @@ class MainGameplay:
             core.settings_value_manipulator("all time streak", "dump", self.streak_current)
             self.streak_all_time = core.settings_value_manipulator("all time streak")
 
+    def update_streaks(self):
+        self.streak_all_time = core.settings_value_manipulator("all time streak")
+
     def settings_update(self, update_random_list=False):
         max_question = core.settings_value_manipulator("max question")
         pair_length = len(self.pairs)
@@ -251,7 +254,8 @@ class MainGameplay:
             self.random_list = core.never_repeat_random_list(min_question, max_question)
 
         self.show_question_number = core.settings_value_manipulator("show current question number")
-        self.streak_all_time = core.settings_value_manipulator("all time streak")
+        self.check_max_streak()
+        self.update_streaks()
         self.max_question = max_question
         self.all_settings = core.get_options()
 
@@ -339,16 +343,31 @@ class MainGameplay:
                     return "fuzzy correct", self.print_fuzzy_correct(correct_answers)
 
         if self.enabled_answer_checks["seek"]:
+            # absolute seek (normal)
             match = re.search(r"^seek (\d+)", str(user_input))
             if match:  # seeking
                 info_return = ""
                 question_number = int(match.group(1))
-                if question_number > self.max_question:
-                    info_return = self.print_invalid_seek(question_number)
-                else:
+                if self.all_settings["min question"] < question_number < self.max_question:
                     info_return = self.print_valid_seek(question_number)
                     self.current_question = question_number
+                else:
+                    info_return = self.print_invalid_seek(question_number)
                 return "seek", info_return
+
+            # relative seek (new)
+            match = re.search(r"^seek ([\+\-])(\d+)", str(user_input))
+            if match:
+                info_return = ""
+                offset = int(match.group(1) + match.group(2))
+                question_number = self.current_question + offset
+                if self.all_settings["min question"] < question_number < self.max_question:
+                    info_return = self.print_valid_seek(question_number)
+                    self.current_question = question_number
+                else:
+                    info_return = self.print_invalid_seek(question_number)
+                return "seek", info_return
+
 
         if self.enabled_answer_checks["show correct answer"]:
             if user_input in self.show_correct_binds:  # show correct answer
@@ -372,8 +391,6 @@ class MainGameplay:
     def play_gui(self) -> tuple[str, list[str], str]:
         self.settings_update()
 
-        self.check_max_streak()
-
         return self.print_question()
 
 
@@ -395,8 +412,8 @@ class Survive(MainGameplay):
             core.settings_value_manipulator("all time survival streak", "dump", self.streak_current)
             self.streak_all_time = core.settings_value_manipulator("all time survival streak")
 
-    def print_question(self):
-        return f"{f"{self.current_question}. " if self.show_question_number else ""}{" / ".join(self.pairs[self.current_question][self.question])}"
+    def update_streaks(self):
+        self.streak_all_time = core.settings_value_manipulator("all time survival streak")
 
-    def return_correct_answers(self):
+    def return_correct_answers(self) -> str:
         return f"Correct answers: {" / ".join(self.pairs[self.current_question][self.answer])}"

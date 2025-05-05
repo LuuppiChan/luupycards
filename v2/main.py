@@ -666,7 +666,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for (choice, button) in zip(self.mc_choices, self.mc_buttons):
             button.setText(choice)
-            # Tooltip could maybe be added here.
+
+            #QtWidgets.QRadioButton.setToolTip()
+            # Tooltip could maybe be added here. (It's way too difficult)
 
         self.big_font_mode()  # ensures the buttons get big font
 
