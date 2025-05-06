@@ -269,7 +269,7 @@ class SeekWidget(QtWidgets.QDialog):
         self.ui.pushButton_ok.clicked.connect(self.ok_press)
         self.ui.pushButton_cancel.clicked.connect(self.cancel_press)
 
-        self.ui.spinBox_seek_value.setMaximum(window.the_game.max_question)
+        self.ui.spinBox_seek_value.setMaximum(len(window.the_game.pairs) - 1)
         self.ui.spinBox_seek_value.setValue(window.the_game.current_question)
         self.seek_value = self.ui.spinBox_seek_value.value()
         self.user_entered_number = False

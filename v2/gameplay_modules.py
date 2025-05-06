@@ -116,7 +116,7 @@ class MainGameplay:
 
     def print_invalid_seek(self, question_number):
         if self.enabled_prints["invalid seek"]:
-            return f'"{question_number}" is an invalid seek target. (Min: {self.all_settings["min question"]}, Max: {self.max_question})'
+            return f'"{question_number}" is an invalid seek target. (Max: {len(self.pairs) - 1})'
 
     def print_valid_seek(self, question_number):
         if self.enabled_prints["valid seek"]:
@@ -348,7 +348,7 @@ class MainGameplay:
             if match:  # seeking
                 info_return = ""
                 question_number = int(match.group(1))
-                if self.all_settings["min question"] < question_number < self.max_question:
+                if 0 <= question_number < len(self.pairs):
                     info_return = self.print_valid_seek(question_number)
                     self.current_question = question_number
                 else:
@@ -361,7 +361,7 @@ class MainGameplay:
                 info_return = ""
                 offset = int(match.group(1) + match.group(2))
                 question_number = self.current_question + offset
-                if self.all_settings["min question"] < question_number < self.max_question:
+                if 0 <= question_number < len(self.pairs):
                     info_return = self.print_valid_seek(question_number)
                     self.current_question = question_number
                 else:
