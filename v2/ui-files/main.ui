@@ -714,7 +714,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>613</width>
+                 <width>428</width>
                  <height>454</height>
                 </rect>
                </property>
@@ -1288,6 +1288,7 @@
     </property>
     <addaction name="actionBig_mode"/>
     <addaction name="actionShow_only_the_first_question"/>
+    <addaction name="actionShow_only_first_answer"/>
     <addaction name="actionRegEx_support"/>
     <addaction name="actionTest_trigger"/>
    </widget>
@@ -1716,6 +1717,23 @@
    </property>
    <property name="statusTip">
     <string>Shows only the first question instead of all them on the question field.</string>
+   </property>
+  </action>
+  <action name="actionShow_only_first_answer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show only first answer</string>
+   </property>
+   <property name="toolTip">
+    <string>Whether to show only the first answer or all of the answers in multiple choice.</string>
+   </property>
+   <property name="statusTip">
+    <string>Whether to show only the first answer or all of the answers in multiple choice.</string>
    </property>
   </action>
  </widget>

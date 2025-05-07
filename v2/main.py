@@ -340,6 +340,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.actionTest_trigger.triggered.connect(self.test_trigger)
         self.ui.actionRegEx_support.triggered.connect(self.regex_setting)
         self.ui.actionShow_only_the_first_question.triggered.connect(self.question_change)
+        self.ui.actionShow_only_first_answer.triggered.connect(self.button_refresh)
 
         self.ui.actionOpen_Advanced.triggered.connect(self.advanced_import)
 
@@ -413,6 +414,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.open_dir_dialog(to_be_loaded)
 
         self.ui.label_drag.setText("")
+
+    def button_refresh(self) -> None:
+        self.spawn_mc_buttons(new=False)
 
     def regex_setting(self):
         if self.ui.actionRegEx_support.isChecked():
@@ -665,7 +669,10 @@ class MainWindow(QtWidgets.QMainWindow):
                                                                                                          multiple_choice_options=self.mc_choices)
 
         for (choice, button) in zip(self.mc_choices, self.mc_buttons):
-            button.setText(choice)
+            if self.ui.actionShow_only_first_answer.isChecked():
+                button.setText(choice[0])
+            else:
+                button.setText(choice[1])
 
             #QtWidgets.QRadioButton.setToolTip()
             # Tooltip could maybe be added here. (It's way too difficult)

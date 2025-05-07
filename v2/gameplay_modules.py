@@ -191,7 +191,7 @@ class MainGameplay:
         else:
             raise Exception("Someone has set an invalid question order.")
 
-    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> tuple[int, list[str]]:
+    def generate_multiple_choice_answers_gui(self, generate_new=True, correct_index=-1, multiple_choice_options=None) -> tuple[int, list[list[str, str]]]:
         if multiple_choice_options is None:
             multiple_choice_options = []
 
@@ -225,7 +225,8 @@ class MainGameplay:
                     self.mc_correct_index = i
 
                 # change the same index to the answer
-                multiple_choice_options[i] = " / ".join(option[self.answer])
+                # the first one is only the first question and the second one is the full question
+                multiple_choice_options[i]: list[str, str] = [option[self.answer][0], " / ".join(option[self.answer])]
 
         return self.mc_correct_index, multiple_choice_options
 
