@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'import.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.9.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -35,7 +35,7 @@ class Ui_DialogImport(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 337, 706))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -170, 337, 1020))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.scrollAreaWidgetContents)
@@ -59,6 +59,11 @@ class Ui_DialogImport(object):
         self.radioButton_csv.setChecked(True)
 
         self.verticalLayout_csv.addWidget(self.radioButton_csv)
+
+        self.radioButton_alternative = QRadioButton(self.scrollAreaWidgetContents)
+        self.radioButton_alternative.setObjectName(u"radioButton_alternative")
+
+        self.verticalLayout_csv.addWidget(self.radioButton_alternative)
 
         self.radioButton_nq = QRadioButton(self.scrollAreaWidgetContents)
         self.radioButton_nq.setObjectName(u"radioButton_nq")
@@ -136,14 +141,14 @@ class Ui_DialogImport(object):
 
         self.verticalLayout_nq.addWidget(self.checkBox_nq_vocabulary)
 
-
-        self.verticalLayout.addLayout(self.verticalLayout_nq)
-
         self.checkBox_nq_pronunciation = QCheckBox(self.scrollAreaWidgetContents)
         self.checkBox_nq_pronunciation.setObjectName(u"checkBox_nq_pronunciation")
         self.checkBox_nq_pronunciation.setChecked(True)
 
-        self.verticalLayout.addWidget(self.checkBox_nq_pronunciation)
+        self.verticalLayout_nq.addWidget(self.checkBox_nq_pronunciation)
+
+
+        self.verticalLayout.addLayout(self.verticalLayout_nq)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -183,6 +188,10 @@ class Ui_DialogImport(object):
 "answer2", None))
 #endif // QT_CONFIG(tooltip)
         self.radioButton_csv.setText(QCoreApplication.translate("DialogImport", u"Default", None))
+#if QT_CONFIG(tooltip)
+        self.radioButton_alternative.setToolTip(QCoreApplication.translate("DialogImport", u"<html><head/><body><p>This is a more common alternative csv format:<br/>question1,answer1a,answer1b,answer1c<br/>question2,answer2</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.radioButton_alternative.setText(QCoreApplication.translate("DialogImport", u"Alternative", None))
 #if QT_CONFIG(tooltip)
         self.radioButton_nq.setToolTip(QCoreApplication.translate("DialogImport", u"<html><head/><body><p>Take the vocabulary.csv from the game files and choose it.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)

@@ -52,10 +52,10 @@ class PairImport:
         "answer tooltip": "I wonder what the game is called...",
         "regex": False,
     }
-    tooltip_regex = r"\{\s*tooltip\s*=\s*[\"'](.*)[\"']\s*\}"
-    regex_enabled_regex = r"\{\s*regex\s*=\s*[\"']?([Tt]rue|[Ff]alse|1|0|[Yy]es|[Nn]o)[\"']?\s*\}"
+    tooltip_regex: str = r"\{\s*tooltip\s*=\s*[\"'](.*)[\"']\s*\}"
+    regex_enabled_regex: str = r"\{\s*regex\s*=\s*[\"']?([Tt]rue|[Ff]alse|1|0|[Yy]es|[Nn]o)[\"']?\s*\}"
 
-    def determine_pair_file(self, file_path, jp_mode=False, sentences=False) -> list:
+    def determine_pair_file(self, file_path, jp_mode=False, sentences=False) -> list[dict[str, list[str] | str | bool]]:
         self.automatic = True
         pairs = list()
 
@@ -72,7 +72,8 @@ class PairImport:
             corelog.info("Imported")
         return pairs
 
-    def pair_import(self, csv_file_path) -> list:
+    # csv
+    def pair_import(self, csv_file_path) -> list[dict[str, list[str] | str | bool]]:
 
         pairs = list()
 
@@ -118,7 +119,52 @@ class PairImport:
 
         return pairs.copy()
 
-    def pair_import_json(self, json_file_path) -> list:
+    def pair_import_csv_alternative(self, csv_file_path) -> list[dict[str, list[str] | str | bool]]:
+
+        pairs = list()
+        if self.first_time:
+            pairs.append(self.pair0)
+            self.first_time = False
+        else:
+            pass
+
+        with open(csv_file_path, mode="r", encoding="utf-8") as file:
+            csv_reader = csv.reader(file)
+            for i, row in enumerate(csv_reader, start=1):
+                row = [x.strip() for x in row if x]  # removes empty slots and useless    whitespaces    .
+                # Row is like the following
+                # question,answer,answerA,answerB
+
+                question, *answers = row  # unpack
+                regex: bool | None = None
+
+                # check for regex flag
+                for answer in answers:
+                    match = re.search(self.tooltip_regex, answer)
+                    if match:
+                        regex = match.group(1)
+                        answer.remove(answer)
+
+                if regex:
+                    pairs.append(
+                        {
+                            "question": [question],
+                            "answer": answers,
+                            "regex": regex
+                        }
+                    )
+                else:
+                    pairs.append(
+                        {
+                            "question": [question],
+                            "answer": answers
+                        }
+                    )
+
+        return pairs
+
+    # json
+    def pair_import_json(self, json_file_path) -> list[dict[str, list[str] | str | bool]]:
         corelog.info("Importing from json.")
 
         pairs = list()
@@ -216,6 +262,7 @@ class PairImport:
         corelog.debug("Returning the list")
         return pairs.copy()
 
+    # nihongo quest
     def nq_import(self, csv_file_path, categories: list, pronunciation=False) -> list:
         pairs = list()
 

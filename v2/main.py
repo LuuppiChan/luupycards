@@ -112,6 +112,7 @@ class ImportDialog(QtWidgets.QDialog):
             },
             "csv" : {
                 "default" : False,
+                "alternative": False,
                 "nq" : False
             }
         }
@@ -142,6 +143,7 @@ class ImportDialog(QtWidgets.QDialog):
         if self.mode == "CSV":
             self.methods["csv"]["default"] = True if self.ui.radioButton_csv.isChecked() else False
             self.methods["csv"]["nq"] = True if self.ui.radioButton_nq.isChecked() else False
+            self.methods["alternative"] = True if self.ui.radioButton_alternative.isChecked() else False
 
             self.filepaths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file(s)", "Pair files (*.csv)")
             self.filepaths = self.filepaths[0]  # only the file paths
@@ -190,6 +192,9 @@ class ImportDialog(QtWidgets.QDialog):
             if self.methods["csv"]["default"]:
                 for file in self.filepaths:
                     self.pairs.extend(pair_import.pair_import(file))
+            elif self.methods["alternative"]:
+                for file in self.filepaths:
+                    self.pairs.extend(pair_import.pair_import_csv_alternative(file))
             elif self.methods["csv"]["nq"]:
                 # only first one since I assume there's only a single file
                 self.pairs = pair_import.nq_import(self.filepaths[0], self.selected_categories(), self.pronunciation)
@@ -618,7 +623,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.label_streak.setStatusTip(f"Current streak: {streak}, All time streak: {streak_all}")
         self.ui.label_streak_mc.setStatusTip(f"Current streak: {streak}, All time streak: {streak_all}")
 
-    def set_question(self, question: tuple[str, list[str], str]):
+    def set_question(self, question: tuple[str, list[str], str]):  # and tooltips
         if self.ui.actionShow_only_the_first_question.isChecked():
             self.ui.label_question.setText(f"{question[2]}{question[1][0]}")
             self.ui.label_question_mc.setText(f"{question[2]}{question[1][0]}")
@@ -626,7 +631,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.label_question.setText(f"{question[2]}{question[0]}")
             self.ui.label_question_mc.setText(f"{question[2]}{question[0]}")
 
-        # Tooltips
+        # question tooltip
+        # checks if the pair has a question tooltip
         if f"{self.the_game.question} tooltip" in self.the_game.pairs[self.the_game.current_question]:
             tooltip = self.the_game.pairs[self.the_game.current_question][f"{self.the_game.question} tooltip"]
 
@@ -635,13 +641,16 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.label_question_mc.setToolTip(tooltip)
             self.ui.label_question_mc.setStatusTip(tooltip)
         else:
-            tooltip = f"{question[2]}{question[0]}"
+            # if the game mode is reverse it hides the question
+            tooltip = f"{question[2]}{question[0]}" if self.the_game.question == "question" else "The question"
 
             self.ui.label_question.setToolTip(tooltip)
             self.ui.label_question.setStatusTip(tooltip)
             self.ui.label_question_mc.setToolTip(tooltip)
             self.ui.label_question_mc.setStatusTip(tooltip)
 
+        # answer tooltip
+        # checks if the pair has an answer tooltip
         if f"{self.the_game.answer} tooltip" in self.the_game.pairs[self.the_game.current_question]:
             tooltip = self.the_game.pairs[self.the_game.current_question][f"{self.the_game.answer} tooltip"]
 

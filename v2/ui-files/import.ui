@@ -28,9 +28,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-408</y>
+        <y>-170</y>
         <width>337</width>
-        <height>706</height>
+        <height>1020</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -76,6 +76,16 @@ answer2</string>
            </property>
            <property name="checked">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_alternative">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is a more common alternative csv format:&lt;br/&gt;question1,answer1a,answer1b,answer1c&lt;br/&gt;question2,answer2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>Alternative</string>
            </property>
           </widget>
          </item>
@@ -180,7 +190,7 @@ You will have to create a sentence block and the fields in it, other fields don'
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
