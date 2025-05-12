@@ -24,7 +24,7 @@ class Ui_DialogImport(object):
     def setupUi(self, DialogImport):
         if not DialogImport.objectName():
             DialogImport.setObjectName(u"DialogImport")
-        DialogImport.resize(367, 368)
+        DialogImport.resize(488, 431)
         font = QFont()
         font.setPointSize(16)
         DialogImport.setFont(font)
@@ -35,7 +35,7 @@ class Ui_DialogImport(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -170, 337, 1020))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 458, 975))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.scrollAreaWidgetContents)
