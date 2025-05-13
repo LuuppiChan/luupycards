@@ -3,9 +3,11 @@ import json
 import re
 import os
 import sys
+import time
 import shutil
 import logging
 import argparse
+import concurrent.futures
 from pathlib import Path
 
 from PySide6 import QtGui
@@ -578,26 +580,48 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 file_paths = [files]
 
-            if file_paths[0]:
-                print(file_paths[0])
-                for file in file_paths[0]:
-                    self.pairs.extend(pair_import.determine_pair_file(file))
-                    mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
-                    json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
-                    self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+            if file_paths[0]:  # if there are pair files
+                # this multithreading is broken, fix it before commit!
+                with concurrent.futures.ThreadPoolExecutor(60) as executor:
+                    threads: list[concurrent.futures.Future] = []
+                    print(file_paths[0])
+                    for i, file in enumerate(file_paths[0]):
+                        mainlog.info(f"Submitting to thread {i}")
+                        threads.append(executor.submit(pair_import.determine_pair_file, file, False, False))
+                        json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
+                        self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+                    else:
+                        print("All submitted!")
 
-                if len(file_paths[0]) == 1:
-                    json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
-                    self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
-                else:
-                    self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+                    # This makes sure that all threads are finished before answer fetching
+                    for i, future in enumerate(threads):
+                        mainlog.debug(f"Waiting for thread {i}")
+                        future.result()
 
-                # only if new pair files
-                self.pair_inspector_load()
+                    mainlog.info("All results done.")
 
-                if self.ui.tab_play.isEnabled():
-                    # setups the gameplay again if it's enabled
-                    self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+                    # after pairs are loaded
+                    for future in threads:
+                        self.pairs.extend(future.result())
+                        mainlog.debug("self.pairs now has %s pair(s)", len(self.pairs))
+
+                    mainlog.info("All loaded!")
+
+                    if len(file_paths[0]) == 1:
+                        json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
+                        self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
+                    else:
+                        self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
+
+                    # only if new pair files
+                    self.pair_inspector_load()
+
+                    if self.ui.tab_play.isEnabled():
+                        # setups the gameplay again if it's enabled
+                        self.gameplay_setup("False", self.the_game.current_question, self.the_game.streak_current)
+
+                mainlog.info("Threads closed.")
+
         except UnicodeEncodeError:
             self.ui.label_pair_status.setText("Pairs not loaded")
             QtWidgets.QMessageBox.critical(self, "Import Error!", "The file(s) you're trying to import aren't in a supported format (utf-8)")
