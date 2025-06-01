@@ -1,9 +1,13 @@
 #!/usr/bin/env python
+
+############################################
+# https://github.com/LuuppiChan/luupycards #
+############################################
+
 import json
 import re
 import os
 import sys
-import time
 import shutil
 import logging
 import argparse
@@ -23,6 +27,8 @@ import gameplay_modules as gameplay
 from import_dialog import Ui_DialogImport
 from documentation import Ui_documentation
 
+
+VERSION_NUMBER = "v.2.4"
 
 # argparse
 # Create parser
@@ -77,7 +83,7 @@ class InfoWidget(QtWidgets.QDialog):
 
         self.ui.pushButton_licence.clicked.connect(self.show_licence)
 
-        self.ui.label.setText("Luupycards v2.1")
+        self.ui.label.setText(f"Luupycards {VERSION_NUMBER}")
 
     def show_licence(self):
         licence = LicenceWidget(self)

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'info.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.9.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -23,7 +23,7 @@ class Ui_info(object):
     def setupUi(self, info):
         if not info.objectName():
             info.setObjectName(u"info")
-        info.resize(422, 363)
+        info.resize(414, 451)
         font = QFont()
         font.setPointSize(16)
         info.setFont(font)
@@ -34,7 +34,7 @@ class Ui_info(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 392, 361))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 398, 366))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label = QLabel(self.scrollAreaWidgetContents)
@@ -43,7 +43,7 @@ class Ui_info(object):
         font1.setPointSize(32)
         self.label.setFont(font1)
         self.label.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.label.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_2.addWidget(self.label)
 
@@ -52,7 +52,7 @@ class Ui_info(object):
         self.label_2.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.label_2.setWordWrap(True)
         self.label_2.setOpenExternalLinks(True)
-        self.label_2.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+        self.label_2.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.verticalLayout_2.addWidget(self.label_2)
 
@@ -72,23 +72,23 @@ class Ui_info(object):
 
         self.verticalLayout_2.addWidget(self.checkBox)
 
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout.addWidget(self.scrollArea)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.pushButton = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton = QPushButton(info)
         self.pushButton.setObjectName(u"pushButton")
 
         self.horizontalLayout.addWidget(self.pushButton)
 
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
-
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.verticalLayout.addWidget(self.scrollArea)
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
 
         self.retranslateUi(info)
