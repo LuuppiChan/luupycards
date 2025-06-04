@@ -714,7 +714,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>428</width>
+                 <width>613</width>
                  <height>454</height>
                 </rect>
                </property>
@@ -1546,6 +1546,9 @@
    <property name="font">
     <font/>
    </property>
+   <property name="shortcut">
+    <string>F13</string>
+   </property>
   </action>
   <action name="actionOpen_Advanced">
    <property name="text">
@@ -1690,10 +1693,10 @@
     <string>RegEx support</string>
    </property>
    <property name="toolTip">
-    <string>Enable RegEx support for answer matching.</string>
+    <string>Enable RegEx support for answer matching. This is ignored if the answer has a regex flag.</string>
    </property>
    <property name="statusTip">
-    <string>Enable RegEx support for answer matching.</string>
+    <string>Enable RegEx support for answer matching. This is ignored if the answer has a regex flag.</string>
    </property>
    <property name="font">
     <font/>
