@@ -8,5 +8,14 @@
     "show current question number": true,
     "multiple choice max options": 5,
     "lives": 3,
-    "fuzzy select percent": 90
+    "fuzzy select percent": 90,
+    "last game settings": {
+            "pairs": ["example.csv"],
+            "reverse": false,
+            "current_question": 1,
+            "streak_current": 0,
+            "order": "Forward",
+            "mode": "Normal"
+        },
+    "recent files": []
 }

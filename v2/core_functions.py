@@ -322,19 +322,29 @@ def static_value_functions_gui():
         settings_value_manipulator("all time survival streak", "dump", 0)
 
 
-def get_options(mode="load", settings_dict=None) -> dict:
+def get_options(mode="load", settings_dict=None) -> dict[str, int | bool | dict[str, str | bool | int | list[str]] | list[str]]:
     if settings_dict is None:
-        settings_dict = {}
+        settings_dict: dict[str, int | bool | dict[str, str | bool | int | list[str]] | list[str]] = {}
 
     if mode == "load":
         with open(static_settings_path, "r") as file:  # Open in read mode
             settings_dict = json.load(file)  # Use json.load() to directly parse the file
-            #print("Settings loaded:", settings_dict)
+
+            if "last game settings" not in settings_dict.keys():
+                settings_dict["last game settings"] = {
+                    "pairs": ["example.csv"],
+                    "reverse": False,
+                    "current_question": 1,
+                    "streak_current": 0,
+                    "order": "Forward",
+                    "mode": "Normal"
+                }
+            if "recent files" not in settings_dict:
+                settings_dict["recent files"] = []
 
     elif mode == "dump":
         with open(static_settings_path, "w") as file:  # Open in write mode
             json.dump(settings_dict, file, indent=4)  # Write the dictionary to the file
-            #print("Settings dumped successfully.")
 
     else:
         raise Exception('available modes: "load", "dump"')

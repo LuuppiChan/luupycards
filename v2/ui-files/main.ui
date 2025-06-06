@@ -714,7 +714,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>613</width>
+                 <width>428</width>
                  <height>454</height>
                 </rect>
                </property>
@@ -1266,8 +1266,15 @@
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuRecent_files">
+     <property name="title">
+      <string>Recent files</string>
+     </property>
+     <addaction name="actionexample_csv"/>
+    </widget>
     <addaction name="actionOpen"/>
     <addaction name="actionOpen_Advanced"/>
+    <addaction name="menuRecent_files"/>
     <addaction name="actionNew_file"/>
     <addaction name="separator"/>
     <addaction name="actionSave"/>
@@ -1737,6 +1744,11 @@
    </property>
    <property name="statusTip">
     <string>Whether to show only the first answer or all of the answers in multiple choice.</string>
+   </property>
+  </action>
+  <action name="actionexample_csv">
+   <property name="text">
+    <string>example.csv</string>
    </property>
   </action>
  </widget>

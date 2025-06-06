@@ -310,19 +310,35 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_Luupycards()
         self.ui.setupUi(self)
 
-        ## setting up
-        # gameplay stuff
-        self.the_game = gameplay.MainGameplay([{"question" : ["Please open a file."], "answer": ["Please open a file."]}])
-        self.pairs = []
-        self.ui.tab_play.setEnabled(False)  # this is enabled by the game setup thingy
-        self.current_mode = "Unset"
-        self.current_order = "Unset"
-
         # options
         self.reload_settings()
         self.game_options = core.get_options()
+
+        ## setting up
+        # gameplay stuff
+        self.pairs = []
+        self.latest_pair_files: list[str] = []
+        params: dict[str, str | bool | int | list[str]] = self.game_options["last game settings"]
+
+        if params["pairs"]:
+            self.open_dir_dialog(params["pairs"], True)  # tries to load last session pair files silently
+
+        if self.pairs:  # checks if the load was successful
+            self.ui.comboBox_modes.setObjectName(params["mode"])
+            self.ui.comboBox_question_order.setObjectName(params["order"])
+            self.gameplay_setup("False", params["streak_current"], params["current_question"], True)
+            self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
+        else:
+            self.the_game = gameplay.MainGameplay([{"question": ["Please open a file."], "answer": ["Please open a file."]}])
+            self.ui.tab_play.setEnabled(False)  # this is enabled by the game setup thingy
+            self.current_mode = "Unset"
+            self.current_order = "Unset"
         
         ## Buttons
+        # Recent file list buttons
+
+
+
         # Quit buttons
         self.ui.button_quit.clicked.connect(self.quit_action)
         self.ui.actionQuit.triggered.connect(self.quit_action)
@@ -427,6 +443,17 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.open_dir_dialog(to_be_loaded)
 
         self.ui.label_drag.setText("")
+
+    def closeEvent(self, event, /):
+        self.game_options["last game settings"] = {
+            "pairs": self.latest_pair_files,
+            "reverse": self.the_game.order,
+            "current_question": self.the_game.current_question,
+            "streak_current": self.the_game.streak_current,
+            "order": self.ui.comboBox_question_order.currentText(),
+            "mode": self.ui.comboBox_modes.currentText()
+        }
+        core.get_options("dump", self.game_options)
 
     def button_refresh(self) -> None:
         self.spawn_mc_buttons(new=False)
@@ -576,7 +603,7 @@ class MainWindow(QtWidgets.QMainWindow):
             case "wrong":
                 self.set_info(result[1])
 
-    def open_dir_dialog(self, files=None):
+    def open_dir_dialog(self, files=None, suppress_misc_errors=False):
         try:
             self.pairs.clear()
             pair_import = core.PairImport()
@@ -584,7 +611,9 @@ class MainWindow(QtWidgets.QMainWindow):
             if not files:
                 file_paths = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Pair File", "pair_file", "Pair files (*.json *.csv)")
             else:
-                file_paths = [files]
+                file_paths = (files, "other information that file dialog gives")
+
+            self.latest_pair_files = file_paths[0]  # saves for session restore function
 
             if file_paths[0]:  # if there are pair files
                 # this multithreading is broken, fix it before commit!
@@ -632,13 +661,18 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.label_pair_status.setText("Pairs not loaded")
             QtWidgets.QMessageBox.critical(self, "Import Error!", "The file(s) you're trying to import aren't in a supported format (utf-8)")
 
-        except:
-            self.ui.label_pair_status.setText("Pairs not loaded")
-            QtWidgets.QMessageBox.critical(self, "Import Error!", "Something went wrong while trying to import pairs.\nPlease check that you gave a valid pair file.")
+        except Exception as e:  # I'm sorry for making bad code, but I want feedback for the user.
+            if suppress_misc_errors:
+                print("A silent error message")
+            else:
+                self.ui.label_pair_status.setText("Pairs not loaded")
+                error_message = QtWidgets.QMessageBox(self)
+                error_message.setWindowTitle("Import Error!")
+                error_message.setText("Something went wrong while trying to import pairs.\nPlease check that you gave a valid pair file.")
+                error_message.setInformativeText(str(e))
 
     def quit_action(self):
-        self.hide()
-        exit(0)
+        self.close()
 
     def set_streak(self):
         streak = self.the_game.streak_current
@@ -1105,9 +1139,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def new_pairs(self):
         def ok():
+            self.latest_pair_files = []
             self.pairs.clear()
             self.ui.tab_play.setEnabled(False)
             self.pair_inspector_load()
+            self.ui.label_pair_status.setText("Pairs not loaded")
+            if self.ui.tab_main.currentWidget() == self.ui.tab_play:
+                self.ui.tab_main.setCurrentWidget(self.ui.tab_main_menu)
 
         if self.pairs:
             warning = QtWidgets.QMessageBox(self)
