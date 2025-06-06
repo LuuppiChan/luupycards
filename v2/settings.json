@@ -17,5 +17,6 @@
             "order": "Forward",
             "mode": "Normal"
         },
-    "recent files": []
+    "recent files": [],
+    "big mode": false
 }

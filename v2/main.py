@@ -314,6 +314,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.reload_settings()
         self.game_options = core.get_options()
 
+        # session restore is after setups
+
         ## setting up
         # gameplay stuff
         self.pairs = []
@@ -333,11 +335,16 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.tab_play.setEnabled(False)  # this is enabled by the game setup thingy
             self.current_mode = "Unset"
             self.current_order = "Unset"
-        
+
         ## Buttons
         # Recent file list buttons
+        # these 2 should be on the same order so the same index is the same item thankfully
+        self.recent_files: list[list[str]] = self.game_options["recent files"]
+        self.recent_actions: list[QtGui.QAction] = []
 
+        self.ui.menuRecent_files.removeAction(self.ui.actionexample_csv)  # remove the default action
 
+        self.refresh_recent()
 
         # Quit buttons
         self.ui.button_quit.clicked.connect(self.quit_action)
@@ -397,6 +404,11 @@ class MainWindow(QtWidgets.QMainWindow):
             "text" : False
         }
 
+        # session restore
+        # big mode
+        self.ui.actionBig_mode.setChecked(self.game_options["big mode"])
+        self.big_font_mode()
+
         mainlog.info("Set up class init.")
 
     def dragEnterEvent(self, event, /):
@@ -451,9 +463,31 @@ class MainWindow(QtWidgets.QMainWindow):
             "current_question": self.the_game.current_question,
             "streak_current": self.the_game.streak_current,
             "order": self.ui.comboBox_question_order.currentText(),
-            "mode": self.ui.comboBox_modes.currentText()
+            "mode": self.ui.comboBox_modes.currentText(),
         }
+        self.game_options["big mode"] = self.ui.actionBig_mode.isChecked()
+        while len(self.game_options["recent files"]) > 1:  # 1 is the max amount of recent files (check recent_file_clicked under for more info)
+            self.game_options["recent files"].pop(0)
+        self.game_options["recent files"] = self.recent_files
         core.get_options("dump", self.game_options)
+
+    def recent_file_clicked(self):
+        # as a temporary solution I'll be having only a single recent file due to a massive skill issue
+        self.open_dir_dialog(self.recent_files[0])
+
+    def refresh_recent(self):
+        if self.recent_files:
+            for file in self.recent_files:
+                recent_file = QtGui.QAction()
+                match = re.search(r".*[/\\](.*\.(?:csv|json))", file[0])
+                if match:
+                    filename = match.group(1)
+                else:  # it should always find a name, but let's give it a name if a name isn't found for some reason.
+                    filename = "null.csv"
+                recent_file.setText(filename)
+                recent_file.triggered.connect(self.recent_file_clicked)
+                self.ui.menuRecent_files.addAction(recent_file)
+                self.recent_actions.append(recent_file)
 
     def button_refresh(self) -> None:
         self.spawn_mc_buttons(new=False)
@@ -614,6 +648,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 file_paths = (files, "other information that file dialog gives")
 
             self.latest_pair_files = file_paths[0]  # saves for session restore function
+            self.recent_files.append(file_paths[0])
 
             if file_paths[0]:  # if there are pair files
                 # this multithreading is broken, fix it before commit!
@@ -663,7 +698,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         except Exception as e:  # I'm sorry for making bad code, but I want feedback for the user.
             if suppress_misc_errors:
-                print("A silent error message")
+                pass
             else:
                 self.ui.label_pair_status.setText("Pairs not loaded")
                 error_message = QtWidgets.QMessageBox(self)
