@@ -314,27 +314,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.reload_settings()
         self.game_options = core.get_options()
 
-        # session restore is after setups
-
-        ## setting up
-        # gameplay stuff
+        # gameplay
         self.pairs = []
         self.latest_pair_files: list[str] = []
-        params: dict[str, str | bool | int | list[str]] = self.game_options["last game settings"]
-
-        if params["pairs"]:
-            self.open_dir_dialog(params["pairs"], True)  # tries to load last session pair files silently
-
-        if self.pairs:  # checks if the load was successful
-            self.ui.comboBox_modes.setObjectName(params["mode"])
-            self.ui.comboBox_question_order.setObjectName(params["order"])
-            self.gameplay_setup("False", params["streak_current"], params["current_question"], True)
-            self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
-        else:
-            self.the_game = gameplay.MainGameplay([{"question": ["Please open a file."], "answer": ["Please open a file."]}])
-            self.ui.tab_play.setEnabled(False)  # this is enabled by the game setup thingy
-            self.current_mode = "Unset"
-            self.current_order = "Unset"
 
         ## Buttons
         # Recent file list buttons
@@ -404,7 +386,25 @@ class MainWindow(QtWidgets.QMainWindow):
             "text" : False
         }
 
-        # session restore
+        # session restore is after setups
+        # gameplay stuff
+        params: dict[str, str | bool | int | list[str]] = self.game_options["last game settings"]
+
+        if params["pairs"]:
+            self.open_dir_dialog(params["pairs"], True)  # tries to load last session pair files silently
+
+        if self.pairs:  # checks if the load was successful
+            self.ui.comboBox_modes.setObjectName(params["mode"])
+            self.ui.comboBox_question_order.setObjectName(params["order"])
+            self.gameplay_setup("False", params["streak_current"], params["current_question"], True)
+            self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
+        else:
+            self.the_game = gameplay.MainGameplay(
+                [{"question": ["Please open a file."], "answer": ["Please open a file."]}])
+            self.ui.tab_play.setEnabled(False)  # this is enabled by the game setup thingy
+            self.current_mode = "Unset"
+            self.current_order = "Unset"
+
         # big mode
         self.ui.actionBig_mode.setChecked(self.game_options["big mode"])
         self.big_font_mode()
@@ -477,6 +477,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def refresh_recent(self):
         if self.recent_files:
+            while len(self.recent_files) > 1:  # ensure only one entry
+                self.recent_files.pop(0)
+
             for file in self.recent_files:
                 recent_file = QtGui.QAction()
                 match = re.search(r".*[/\\](.*\.(?:csv|json))", file[0])
