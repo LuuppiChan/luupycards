@@ -74,6 +74,7 @@ class MainGameplay:
         self.mc_correct_index = -1
 
         # chooses the order
+        order = order.lower()
         self.order = order
         if order == "reverse":
             self.order = "reverse"

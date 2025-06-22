@@ -11,8 +11,8 @@ import sys
 import shutil
 import logging
 import argparse
-import concurrent.futures
 from pathlib import Path
+import concurrent.futures
 
 from PySide6 import QtGui
 from PySide6 import QtCore
@@ -393,9 +393,12 @@ class MainWindow(QtWidgets.QMainWindow):
         if params["pairs"]:
             self.open_dir_dialog(params["pairs"], True)  # tries to load last session pair files silently
 
-        if self.pairs:  # checks if the load was successful
-            self.ui.comboBox_modes.setObjectName(params["mode"])
-            self.ui.comboBox_question_order.setObjectName(params["order"])
+        #if self.pairs:  # checks if the load was successful
+        if False:  # restore is currently disabled
+            #self.ui.comboBox_modes.setObjectName(params["mode"])
+            #self.ui.comboBox_question_order.setObjectName(params["order"])
+            # this isn't the correct method to changing the selected object #
+
             self.gameplay_setup("False", params["streak_current"], params["current_question"], True)
             self.ui.tab_main.setCurrentWidget(self.ui.tab_play)
         else:
@@ -459,11 +462,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def closeEvent(self, event, /):
         self.game_options["last game settings"] = {
             "pairs": self.latest_pair_files,
-            "reverse": self.the_game.order,
+            "reverse": self.the_game.question == "answer",
             "current_question": self.the_game.current_question,
             "streak_current": self.the_game.streak_current,
-            "order": self.ui.comboBox_question_order.currentText(),
-            "mode": self.ui.comboBox_modes.currentText(),
+            "order": self.ui.comboBox_question_order.currentText().lower(),
+            "mode": self.ui.comboBox_modes.currentText().lower(),
         }
         self.game_options["big mode"] = self.ui.actionBig_mode.isChecked()
         while len(self.game_options["recent files"]) > 1:  # 1 is the max amount of recent files (check recent_file_clicked under for more info)
@@ -571,6 +574,20 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.set_info(result[1])
                 case "show correct answer":
                     self.set_info(result[1])
+                    if self.current_mode == "Survive!":
+                        self.set_info(self.the_game.return_correct_answers())
+                        self.the_game.lives += -1
+                        self.ui.label_lives.setText(f"Lives left: {self.the_game.lives}")
+                        if self.the_game.lives == 0:
+                            self.ui.tab_main.setCurrentWidget(self.ui.tab_main_menu)
+                            self.ui.tab_play.setEnabled(False)
+
+                            lose_dialog = QtWidgets.QMessageBox(self)
+                            lose_dialog.setText("You died!")
+                            lose_dialog.setInformativeText(self.the_game.return_correct_answers())
+                            lose_dialog.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                            lose_dialog.exec()
+
                 case "quit":
                     self.ui.tab_main.setCurrentWidget(self.ui.tab_main_menu)
                     self.ui.tab_play.setEnabled(False)
@@ -655,6 +672,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             if file_paths[0]:  # if there are pair files
                 # this multithreading is broken, fix it before commit!
+                # What do you mean broken past me? It works perfectly fine.
                 with concurrent.futures.ThreadPoolExecutor(60) as executor:
                     threads: list[concurrent.futures.Future] = []
                     print(file_paths[0])
@@ -680,6 +698,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
                     mainlog.info("All loaded!")
 
+                    if len(self.pairs) == 0:  # ensures there are pairs
+                        raise FileNotFoundError
+
                     if len(file_paths[0]) == 1:
                         json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
                         self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
@@ -698,6 +719,10 @@ class MainWindow(QtWidgets.QMainWindow):
         except UnicodeEncodeError:
             self.ui.label_pair_status.setText("Pairs not loaded")
             QtWidgets.QMessageBox.critical(self, "Import Error!", "The file(s) you're trying to import aren't in a supported format (utf-8)")
+
+        except FileNotFoundError:
+            # In most cases this is caused by the raise statement above.
+            self.ui.label_pair_status.setText("Pairs not loaded")
 
         except Exception as e:  # I'm sorry for making bad code, but I want feedback for the user.
             if suppress_misc_errors:
