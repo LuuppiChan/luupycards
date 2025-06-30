@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.0
+## Created by: Qt User Interface Compiler version 6.9.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -367,7 +367,7 @@ class Ui_Luupycards(object):
         self.scrollArea_mc.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 303, 192))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 615, 446))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_5 = QHBoxLayout()
@@ -375,6 +375,7 @@ class Ui_Luupycards(object):
         self.label_game_info_mc = QLabel(self.scrollAreaWidgetContents)
         self.label_game_info_mc.setObjectName(u"label_game_info_mc")
         self.label_game_info_mc.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
+        self.label_game_info_mc.setWordWrap(True)
         self.label_game_info_mc.setTextInteractionFlags(Qt.TextInteractionFlag.LinksAccessibleByMouse|Qt.TextInteractionFlag.TextSelectableByMouse)
 
         self.horizontalLayout_5.addWidget(self.label_game_info_mc)

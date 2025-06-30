@@ -523,8 +523,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>303</width>
-                     <height>192</height>
+                     <width>615</width>
+                     <height>446</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -543,6 +543,9 @@
                         </property>
                         <property name="text">
                          <string>Now playing: Multiple Choice</string>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>true</bool>
                         </property>
                         <property name="textInteractionFlags">
                          <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
