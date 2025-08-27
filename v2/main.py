@@ -128,8 +128,9 @@ class ImportDialog(QtWidgets.QDialog):
         self.all_categories = ["Hiragana", "Katakana", "Radical", "Vocab Meaning", "Vocabulary", "Kanji"]
         self.pronunciation = False
 
-    def closeEvent(self, event):
+    def closeEvent(self, arg__1: QtGui.QCloseEvent) -> None:
         window.setEnabled(True)
+        return super().closeEvent(arg__1)
 
     def combobox_update(self):
         current_text = self.ui.comboBox_import.currentText()
@@ -178,7 +179,7 @@ class ImportDialog(QtWidgets.QDialog):
             self.import_pairs()
             window.setEnabled(True)
             if len(self.filepaths) == 1:
-                json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", self.filepaths[0])
+                json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", self.filepaths[0])
                 window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
             else:
                 window.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
@@ -337,6 +338,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.button_check.clicked.connect(self.correct_checkbutton)  # check button
         self.ui.pushButton_check_mc.clicked.connect(self.correct_checkbutton_mc)  # check button mc
         self.ui.actionNew_file.triggered.connect(self.new_pairs)  # new file
+        self.ui.menuRecent_files.setToolTip("")
 
         # settings buttons
         self.ui.button_settings_reset_2.clicked.connect(self.reset_settings)
@@ -414,7 +416,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         mainlog.info("Set up class init.")
 
-    def dragEnterEvent(self, event, /):
+    def dragEnterEvent(self, event: QtGui.QDragEnterEvent) -> None:
         # Reset all the options
         for key in self.drop_data.keys():
             self.drop_data[key] = False
@@ -428,16 +430,18 @@ class MainWindow(QtWidgets.QMainWindow):
                 if not json_match:
                     self.ui.label_drag.setText("One or more of the files you're holding can't be pair (a) file(s)... Yet...")
             event.accept()
-
         elif event.mimeData().hasText():
             self.drop_data["text"] = True
             self.ui.label_drag.setText("Text is not supported... Yet...")
             event.accept()
         else:
             event.ignore()
+        # Is this needed?
+        return super().dragEnterEvent(event)
 
-    def dragLeaveEvent(self, event, /):
+    def dragLeaveEvent(self, event: QtGui.QDragLeaveEvent) -> None:
         self.ui.label_drag.setText("")
+        return super().dragLeaveEvent(event)
 
     def dropEvent(self, event):
         if self.drop_data["file"]:
@@ -459,7 +463,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.label_drag.setText("")
 
-    def closeEvent(self, event, /):
+    def closeEvent(self, event: QtGui.QCloseEvent) -> None:
         self.game_options["last game settings"] = {
             "pairs": self.latest_pair_files,
             "reverse": self.the_game.question == "answer",
@@ -469,29 +473,42 @@ class MainWindow(QtWidgets.QMainWindow):
             "mode": self.ui.comboBox_modes.currentText().lower(),
         }
         self.game_options["big mode"] = self.ui.actionBig_mode.isChecked()
-        while len(self.game_options["recent files"]) > 1:  # 1 is the max amount of recent files (check recent_file_clicked under for more info)
+        while len(self.game_options["recent files"]) > 11:  # 1 is the max amount of recent files (check recent_file_clicked under for more info)
             self.game_options["recent files"].pop(0)
         self.game_options["recent files"] = self.recent_files
         core.get_options("dump", self.game_options)
+        return super().closeEvent(event)
 
-    def recent_file_clicked(self):
+    def recent_file_clicked(self, item: list[str]):
         # as a temporary solution I'll be having only a single recent file due to a massive skill issue
-        self.open_dir_dialog(self.recent_files[0])
+        #action = self.ui.menuRecent_files
+        #self.open_dir_dialog(action.data())
+        # Some signals can probably fix this
+        # lambda with connect fixed it probably, haven't tested
+        self.open_dir_dialog(item)
+        #QtWidgets.QMessageBox.warning(self, "Not implemented", "This functionality is not yet implemented")
+
 
     def refresh_recent(self):
         if self.recent_files:
-            while len(self.recent_files) > 1:  # ensure only one entry
+            while len(self.recent_files) > 11:  # ensure only n entries
                 self.recent_files.pop(0)
 
             for file in self.recent_files:
                 recent_file = QtGui.QAction()
                 match = re.search(r".*[/\\](.*\.(?:csv|json))", file[0])
                 if match:
-                    filename = match.group(1)
+                    filename: str = match.group(1)
                 else:  # it should always find a name, but let's give it a name if a name isn't found for some reason.
-                    filename = "null.csv"
+                    filename = "unknown.csv"
                 recent_file.setText(filename)
-                recent_file.triggered.connect(self.recent_file_clicked)
+                #recent_file.setData(file)
+                recent_file.triggered.connect(lambda _: self.recent_file_clicked(file))
+                tooltip = ""
+                for name in file:
+                    tooltip = tooltip + f"{name} "
+                recent_file.setToolTip(tooltip)
+                recent_file.setStatusTip(tooltip)
                 self.ui.menuRecent_files.addAction(recent_file)
                 self.recent_actions.append(recent_file)
 
@@ -657,7 +674,7 @@ class MainWindow(QtWidgets.QMainWindow):
             case "wrong":
                 self.set_info(result[1])
 
-    def open_dir_dialog(self, files=None, suppress_misc_errors=False):
+    def open_dir_dialog(self, files: list[str] | None = None, suppress_misc_errors=False):
         try:
             self.pairs.clear()
             pair_import = core.PairImport()
@@ -679,7 +696,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     for i, file in enumerate(file_paths[0]):
                         mainlog.info(f"Submitting to thread {i}")
                         threads.append(executor.submit(pair_import.determine_pair_file, file, False, False))
-                        json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file)
+                        json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file)
                         self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
                     else:
                         print("All submitted!")
@@ -702,7 +719,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         raise FileNotFoundError
 
                     if len(file_paths[0]) == 1:
-                        json_match = re.search(fr"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
+                        json_match = re.search(r"^.*[/\\](.*\.json|.*\.csv)$", file_paths[0][0])
                         self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from {json_match.group(1)}.")
                     else:
                         self.ui.label_pair_status.setText(f"Loaded {len(self.pairs) -1} pairs from multiple files.")
