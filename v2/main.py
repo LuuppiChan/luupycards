@@ -485,12 +485,20 @@ class MainWindow(QtWidgets.QMainWindow):
         #self.open_dir_dialog(action.data())
         # Some signals can probably fix this
         # lambda with connect fixed it probably, haven't tested
+        # this is still broken what are you talking about past me?
+        #print(f"Recent file: {item}")
+        # wait never mind it works, kind of weird though, but I'm not going to touch it any more I think.
         self.open_dir_dialog(item)
         #QtWidgets.QMessageBox.warning(self, "Not implemented", "This functionality is not yet implemented")
 
 
     def refresh_recent(self):
         if self.recent_files:
+            # remove duplicates
+            for item in self.recent_files.copy():
+                if self.recent_files.count(item) > 1:
+                    self.recent_files.remove(item)
+
             while len(self.recent_files) > 11:  # ensure only n entries
                 self.recent_files.pop(0)
 
@@ -752,6 +760,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 error_message.setInformativeText(str(e))
 
     def quit_action(self):
+        # Why... Why past me? Why not to just use the close method straight!????
         self.close()
 
     def set_streak(self):
